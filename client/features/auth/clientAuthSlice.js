@@ -9,11 +9,11 @@ const TOKEN = 'token';
 /*
   THUNKS
 */
-export const me = createAsyncThunk('auth/me', async () => {
+export const clientMe = createAsyncThunk('auth/client/me', async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
-      const res = await axios.get('/auth/me', {
+      const res = await axios.get('/auth/client/me', {
         headers: {
           authorization: token,
         },
@@ -31,11 +31,12 @@ export const me = createAsyncThunk('auth/me', async () => {
   }
 });
 
-export const authenticate = createAsyncThunk(
-  'auth/authenticate',
+export const clientAuthenticate = createAsyncThunk(
+  'clientAuth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/${method}`, { username, password });
+      const res = await axios.post(`/auth/client/${method}`, { username, password });
+      console.log(res)
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(me());
     } catch (err) {
@@ -51,8 +52,8 @@ export const authenticate = createAsyncThunk(
 /*
   SLICE
 */
-export const authSlice = createSlice({
-  name: 'auth',
+export const clientAuthSlice = createSlice({
+  name: 'clientAuth',
   initialState: {
     me: {},
     error: null,
@@ -65,13 +66,13 @@ export const authSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(me.fulfilled, (state, action) => {
+    builder.addCase(clientMe.fulfilled, (state, action) => {
       state.me = action.payload;
     });
-    builder.addCase(me.rejected, (state, action) => {
+    builder.addCase(clientMe.rejected, (state, action) => {
       state.error = action.error;
     });
-    builder.addCase(authenticate.rejected, (state, action) => {
+    builder.addCase(clientAuthenticate.rejected, (state, action) => {
       state.error = action.payload;
     });
   },
@@ -80,9 +81,9 @@ export const authSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = authSlice.actions;
+export const { logout } = clientAuthSlice.actions;
 
 /*
   REDUCER
 */
-export default authSlice.reducer;
+export default clientAuthSlice.reducer;

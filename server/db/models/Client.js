@@ -9,23 +9,23 @@ const Client = db.define('client', {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false
+    // allowNull: false
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   email: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   rating: {
     type: Sequelize.FLOAT
@@ -42,53 +42,53 @@ module.exports = Client
 
 
 
-// Client.prototype.correctPassword = function(candidatePwd) {
-//   //we need to compare the plain version to an encrypted version of the password
-//   return bcrypt.compare(candidatePwd, this.password);
-// }
+Client.prototype.correctPassword = function(candidatePwd) {
+  //we need to compare the plain version to an encrypted version of the password
+  return bcrypt.compare(candidatePwd, this.password);
+}
 
-// Client.prototype.generateToken = function() {
-//   return jwt.sign({id: this.id}, process.env.JWT)
-// }
+Client.prototype.generateToken = function() {
+  return jwt.sign({id: this.id}, process.env.JWT)
+}
 
-// /**
-//  * classMethods
-//  */
-// Client.authenticate = async function({ username, password }){
-//     const user = await this.findOne({where: { username }})
-//     if (!user || !(await user.correctPassword(password))) {
-//       const error = Error('Incorrect username/password');
-//       error.status = 401;
-//       throw error;
-//     }
-//     return user.generateToken();
-// };
+/**
+ * classMethods
+ */
+Client.authenticate = async function({ username, password }){
+    const user = await this.findOne({where: { username }})
+    if (!user || !(await user.correctPassword(password))) {
+      const error = Error('Incorrect username/password');
+      error.status = 401;
+      throw error;
+    }
+    return user.generateToken();
+};
 
-// Client.findByToken = async function(token) {
-//   try {
-//     const {id} = await jwt.verify(token, process.env.JWT)
-//     const user = Client.findByPk(id)
-//     if (!user) {
-//       throw 'nooo'
-//     }
-//     return user
-//   } catch (ex) {
-//     const error = Error('bad token')
-//     error.status = 401
-//     throw error
-//   }
-// }
+Client.findByToken = async function(token) {
+  try {
+    const {id} = await jwt.verify(token, process.env.JWT)
+    const user = Client.findByPk(id)
+    if (!user) {
+      throw 'nooo'
+    }
+    return user
+  } catch (ex) {
+    const error = Error('bad token')
+    error.status = 401
+    throw error
+  }
+}
 
-// /**
-//  * hooks
-//  */
-// const hashPassword = async(user) => {
-//   //in case the password has been changed, we want to encrypt it with bcrypt
-//   if (user.changed('password')) {
-//     user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
-//   }
-// }
+/**
+ * hooks
+ */
+const hashPassword = async(user) => {
+  //in case the password has been changed, we want to encrypt it with bcrypt
+  if (user.changed('password')) {
+    user.password = await bcrypt.hash(user.password, SALT_ROUNDS);
+  }
+}
 
-// Client.beforeCreate(hashPassword)
-// Client.beforeUpdate(hashPassword)
-// Client.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))
+Client.beforeCreate(hashPassword)
+Client.beforeUpdate(hashPassword)
+Client.beforeBulkCreate(users => Promise.all(users.map(hashPassword)))

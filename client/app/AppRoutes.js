@@ -3,18 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
-import { me } from './store';
+import { clientMe } from './store';
+
 
 /**
  * COMPONENT
  */
 
 const AppRoutes = () => {
-  const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const isLoggedIn = false
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(me());
+    dispatch(clientMe());
   }, []);
 
   return (
