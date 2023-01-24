@@ -35,10 +35,9 @@ export const clientAuthenticate = createAsyncThunk(
   'clientAuth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/client/${method}`, { username, password });
-      console.log(res)
+      const res = await axios.post(`/auth/client/login`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      thunkAPI.dispatch(clientMe());
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);

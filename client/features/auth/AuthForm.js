@@ -19,7 +19,7 @@ const AuthForm = ({ name, displayName }) => {
     const username = evt.target.username.value;
     const password = evt.target.password.value;
     dispatch(clientAuthenticate({ username, password, method: formName }));
-  };
+  }; 
 
   return (
     <div>
