@@ -1,6 +1,7 @@
 'use strict'
+const faker = require("faker")
 
-const {db, models: {User} } = require('../server/db')
+const {db, models: {Client, Freelancer, Project, Request} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -10,20 +11,72 @@ async function seed() {
   await db.sync({ force: true }) // clears db and matches models to tables
   console.log('db synced!')
 
-  // Creating Users
-  const users = await Promise.all([
-    User.create({ username: 'cody', password: '123' }),
-    User.create({ username: 'murphy', password: '123' }),
-  ])
+  
+  for (let i = 0; i <= 100; i++) {
+    await Client.create({
+      username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),  
+      email : faker.internet.email(),
+      description : faker.lorem.sentences(),
+      imageUrl : faker.image.imageUrl(),  
+    });
+    await Freelancer.create({
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      imageUr: faker.image.imageUrl(),
+      description: faker.commerce.productDescription(),
+      categories: faker.name.jobType(),
+      username: faker.internet.userName(),
+      password: faker.internet.password(), 
 
-  console.log(`seeded ${users.length} users`)
+    });
+}
+
+await Request.create({
+  // projectId: 1,
+  // freelancerId: 2,
+  status:"PENDING",
+  requestMessage: faker.lorem.paragraph(),  
+
+});
+
+await Request.create({
+  // projectId: 2,
+  // freelancerId: 1,
+  status:"ACCEPTED",
+  requestMessage: faker.lorem.paragraph(),
+
+});
+
+await Project.create({
+  // clientId: 1,
+  // freeLancerId: 1,
+  status: 'Pending',
+  description: faker.lorem.sentences(),
+  category: faker.name.jobType()
+})
+
+await Project.create({
+  // clientId: 2,
+  // freeLancerId: 2,
+  status: 'Pending',
+  description: faker.lorem.sentences(),
+  category: faker.name.jobType()
+})
+
+
+
+
+  // console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)
-  return {
-    users: {
-      cody: users[0],
-      murphy: users[1]
-    }
-  }
+    // return {
+    //   users: {
+    //     cody: users[0],
+    //     murphy: users[1]
+    //   }
+    // }
 }
 
 /*
