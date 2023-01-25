@@ -51,16 +51,16 @@ await Request.create({
 });
 
 await Project.create({
-  // clientId: 1,
-  // freeLancerId: 1,
+  clientId: 1,
+  freeLancerId: 1,
   status: 'Pending',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
 
 await Project.create({
-  // clientId: 2,
-  // freeLancerId: 2,
+  clientId: 2,
+  freeLancerId: 2,
   status: 'Pending',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
