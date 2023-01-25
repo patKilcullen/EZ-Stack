@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
+import { AllFreelancers } from '../features/freelancers/AllFreelancers';
+import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
 import { clientMe, freelancerMe } from './store';
 
@@ -29,6 +31,14 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
+          />
         </Routes>
       ) : (
         <Routes>
@@ -43,6 +53,14 @@ const AppRoutes = () => {
           <Route
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
+          />
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
           />
         </Routes>
       )}
