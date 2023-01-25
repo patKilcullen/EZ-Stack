@@ -6,6 +6,7 @@ import { AllFreelancers } from '../features/freelancers/AllFreelancers';
 import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
 import { clientMe, freelancerMe } from './store';
+import Client from '../features/client/Client';
 
 
 /**
@@ -31,6 +32,8 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+
+
           <Route
             path="/freelancers"
             element={<AllFreelancers  />}
@@ -54,6 +57,10 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+
+          {/* not logged in single Client view */}
+          <Route path="/client-profile/:id" element={<Client/>} />
+
           <Route
             path="/freelancers"
             element={<AllFreelancers  />}
