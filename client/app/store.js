@@ -12,8 +12,7 @@ import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice
 const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
-
-    freelanceAuth: freelanceAuthSlice,
+    freelancerAuth: freelanceAuthSlice,
     allFreelancers: allFreelancersSlice,
     SingleFreelancer: singleFreelancerSlice,
 
