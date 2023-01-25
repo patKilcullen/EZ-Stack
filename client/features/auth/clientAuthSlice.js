@@ -35,7 +35,7 @@ export const clientAuthenticate = createAsyncThunk(
   'clientAuth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/client/login`, { username, password });
+      const res = await axios.post(`/auth/client/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(clientMe());
     } catch (err) {
@@ -58,7 +58,7 @@ export const clientAuthSlice = createSlice({
     error: null,
   },
   reducers: {
-    logout(state, action) {
+    clientLogout(state, action) {
       window.localStorage.removeItem(TOKEN);
       state.me = {};
       state.error = null;
@@ -80,7 +80,7 @@ export const clientAuthSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = clientAuthSlice.actions;
+export const { clientLogout } = clientAuthSlice.actions;
 
 /*
   REDUCER

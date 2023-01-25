@@ -9,7 +9,7 @@ const TOKEN = 'token';
 /*
   THUNKS
 */
-export const freelanceMe = createAsyncThunk('auth/freelancer/me', async () => {
+export const freelancerMe = createAsyncThunk('auth/freelancer/me', async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
@@ -31,13 +31,13 @@ export const freelanceMe = createAsyncThunk('auth/freelancer/me', async () => {
   }
 });
 
-export const freelanceAuthenticate = createAsyncThunk(
-  'auth/authenticate',
+export const freelancerAuthenticate = createAsyncThunk(
+  'freelancerAuth/authenticate',
   async ({ username, password, method }, thunkAPI) => {
     try {
       const res = await axios.post(`/auth/freelancer/${method}`, { username, password });
       window.localStorage.setItem(TOKEN, res.data.token);
-      thunkAPI.dispatch(me());
+      thunkAPI.dispatch(freelancerMe());
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);
@@ -52,26 +52,26 @@ export const freelanceAuthenticate = createAsyncThunk(
   SLICE
 */
 export const freelancerAuthSlice = createSlice({
-  name: 'freelancer',
+  name: 'freelancerAuth',
   initialState: {
     me: {},
     error: null,
   },
   reducers: {
-    logout(state, action) {
+    freelancerLogout(state, action) {
       window.localStorage.removeItem(TOKEN);
       state.me = {};
       state.error = null;
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(freelanceMe.fulfilled, (state, action) => {
+    builder.addCase(freelancerMe.fulfilled, (state, action) => {
       state.me = action.payload;
     });
-    builder.addCase(freelanceMe.rejected, (state, action) => {
+    builder.addCase(freelancerMe.rejected, (state, action) => {
       state.error = action.error;
     });
-    builder.addCase(freelanceAuthenticate.rejected, (state, action) => {
+    builder.addCase(freelancerAuthenticate.rejected, (state, action) => {
       state.error = action.payload;
     });
   },
@@ -80,7 +80,7 @@ export const freelancerAuthSlice = createSlice({
 /*
   ACTIONS
 */
-export const { logout } = freelancerAuthSlice.actions;
+export const { freelancerLogout } = freelancerAuthSlice.actions;
 
 /*
   REDUCER
