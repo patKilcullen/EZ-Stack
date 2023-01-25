@@ -2,12 +2,15 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
+import { AllFreelancers } from '../features/freelancers/AllFreelancers';
+import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
 import AllProjects from '../features/projects/allProjects';
 import SingleProject from '../features/projects/singleProject';
 import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
 import { clientMe, freelancerMe } from './store';
+import Client from '../features/client/Client';
 
 
 /**
@@ -33,6 +36,7 @@ const AppRoutes = () => {
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
+
           <Route
             path="/projects"
             element={<AllProjects />}
@@ -50,6 +54,14 @@ const AppRoutes = () => {
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
             
+         
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
           />
         </Routes>
       ) : (
@@ -66,6 +78,7 @@ const AppRoutes = () => {
             path="/signup"
             element={<AuthForm name="signup" displayName="Sign Up" />}
           />
+
           <Route
             path="/projects"
             element={<AllProjects />}
@@ -83,7 +96,19 @@ const AppRoutes = () => {
           <Route
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
-            
+           
+
+          {/* not logged in single Client view */}
+          <Route path="/client-profile/:id" element={<Client/>} />
+
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
+
           />
         </Routes>
       )}

@@ -5,6 +5,7 @@ module.exports = router
 
 //GET route /api/requests
 router.get('/', async (req, res, next) => {
+  console.log("HELLO")
     try{
         const requests = await Request.findAll();
         res.send(requests)

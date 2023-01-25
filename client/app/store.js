@@ -2,17 +2,29 @@ import { configureStore } from '@reduxjs/toolkit';
 import logger from 'redux-logger';
 // import authReducer from '../features/auth/authSlice';
 import clientAuthSlice from '../features/auth/clientAuthSlice';
-import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
+
+
 import projectsSlice from '../features/projects/allProjectsSlice'
 import singleProjectSlice from '../features/projects/singleProjectSlice';
+import clientReducer from '../features/client/clientSlice';
+import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
+import allFreelancersSlice from '../features/freelancers/allFreelancersSlice';
+import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice';
+
+
 
 
 const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
     freelancerAuth: freelanceAuthSlice,
+
     allProjects: projectsSlice,
     singleProject: singleProjectSlice,
+    client: clientReducer,
+    allFreelancers: allFreelancersSlice,
+    SingleFreelancer: singleFreelancerSlice,
+
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
