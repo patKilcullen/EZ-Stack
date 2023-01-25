@@ -3,12 +3,13 @@ import logger from 'redux-logger';
 // import authReducer from '../features/auth/authSlice';
 import clientAuthSlice from '../features/auth/clientAuthSlice';
 import freelanceAuthSlice from '../features/auth/freelanceAuthSlice';
-
+import clientReducer from '../features/client/clientSlice';
 
 const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
-    freelancerAuth: freelanceAuthSlice
+    freelancerAuth: freelanceAuthSlice,
+    client: clientReducer,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
