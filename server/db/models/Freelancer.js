@@ -8,11 +8,11 @@ const SALT_ROUNDS = 5;
 const Freelancer = db.define("freelancer", {
   firstName: {
     type: Sequelize.STRING,
-    allowNull: false
+    // allowNull: false
   },
   lastName: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
 },
 imageUrl: {
     type: Sequelize.STRING,
@@ -30,11 +30,11 @@ imageUrl: {
   username: {
     type: Sequelize.STRING,
     unique: true,
-    allowNull: false,
+    // allowNull: false,
   },
   password: {
     type: Sequelize.STRING,
-    allowNull: false,
+    // allowNull: false,
     min: 5,
   },
   
