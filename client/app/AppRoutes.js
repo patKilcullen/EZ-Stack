@@ -3,8 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
-import AllProjects from '../features/projects/allProjects'
-import { clientMe } from './store';
+import AllProjects from '../features/projects/allProjects';
+import { clientMe, freelancerMe } from './store';
 
 
 /**
@@ -12,16 +12,21 @@ import { clientMe } from './store';
  */
 
 const AppRoutes = () => {
-  const isLoggedIn = false
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
+  // const clientIsLoggedIn = false
+  // const freelancerIsLoggedIn = false
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(clientMe());
+    dispatch(freelancerMe())
   }, []);
 
   return (
     <div>
-      {isLoggedIn ? (
+      {clientIsLoggedIn || freelancerIsLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />

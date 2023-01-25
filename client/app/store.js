@@ -6,10 +6,11 @@ import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
 import allProjectsSlice from '../features/projects/allProjectsSlice';
 
 
+
 const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
-    freelanceAuth: freelanceAuthSlice,
+    freelancerAuth: freelanceAuthSlice,
     allProjects: allProjectsSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
@@ -17,3 +18,4 @@ const store = configureStore({
 
 export default store;
 export * from '../features/auth/clientAuthSlice';
+export * from '../features/auth/freelanceAuthSlice';
