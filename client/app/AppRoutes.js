@@ -5,7 +5,7 @@ import AuthForm from '../features/auth/AuthForm';
 import { AllFreelancers } from '../features/freelancers/AllFreelancers';
 import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
-import { clientMe } from './store';
+import { clientMe, freelancerMe } from './store';
 
 
 /**
@@ -13,16 +13,21 @@ import { clientMe } from './store';
  */
 
 const AppRoutes = () => {
-  const isLoggedIn = false
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
+  // const clientIsLoggedIn = false
+  // const freelancerIsLoggedIn = false
   const dispatch = useDispatch();
+
 
   useEffect(() => {
     dispatch(clientMe());
+    dispatch(freelancerMe())
   }, []);
 
   return (
     <div>
-      {isLoggedIn ? (
+      {clientIsLoggedIn || freelancerIsLoggedIn ? (
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />

@@ -1,14 +1,19 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { logout } from '../../app/store';
+import { clientLogout, freelancerLogout } from '../../app/store';
 
 const Navbar = () => {
-  const isLoggedIn = false
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
-    dispatch(logout());
+    if(clientIsLoggedIn){
+    dispatch(clientLogout());
+    }else if(freelancerIsLoggedIn){
+      dispatch(freelancerLogout())
+    }
     navigate('/login');
   };
 
@@ -16,7 +21,7 @@ const Navbar = () => {
     <div>
       <h1>FS-App-Template</h1>
       <nav>
-        {isLoggedIn ? (
+        {clientIsLoggedIn || freelancerIsLoggedIn ? (
           <div>
             {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
