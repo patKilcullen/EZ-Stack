@@ -26,6 +26,16 @@ router.get("/client/:clientId", async (req, res, next) => {
     }
   });
 
+  router.get("/freelancer/:freelancerId", async (req, res, next) => {
+    try {
+      const projects = await Project.findAll({ where: {freelancerId: req.params.freelancerId}});
+      res.send(projects);
+    } catch (error) {
+      console.log("Error in all projects route");
+      next(error);
+    }
+  });
+
 
 // Single project route
 router.get("/:projectId", async (req, res, next) => {

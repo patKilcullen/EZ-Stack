@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
-import { fetchProjectsAsync, selectProjects  } from "../projects/allProjectsSlice";
+import { useParams, Link } from "react-router-dom"
+import { fetchProjectsByClientAsync, selectProjects  } from "../projects/allProjectsSlice";
 
 
 
-const AllProjects = () => {
+const AllClientProjects = () => {
   const projects = useSelector(selectProjects);
 
   console.log("ALL PROJECT: ", projects)
   
   const dispatch = useDispatch()
+
+  const { clientId } = useParams()
   
   useEffect(() => {
-    dispatch(fetchProjectsAsync());
+    dispatch(fetchProjectsByClientAsync(clientId));
   }, [dispatch] );
 
   return (
@@ -33,4 +35,4 @@ const AllProjects = () => {
   )
 };
 
-export default AllProjects
+export default AllClientProjects

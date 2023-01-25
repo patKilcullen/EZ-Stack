@@ -13,6 +13,11 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
         return data;
       });
 
+      export const fetchProjectsByFreelancerAsync = createAsyncThunk("allProjectsByFreelancer", async (id) => {
+        const { data } = await axios.get(`/api/projects/freelancer/${id}`);
+        return data;
+      });
+
     export const addProjectAsync = createAsyncThunk("addProject", async ({}) => {
       const { data } = await axios.post(`/api/projects`, {});
         return data;
@@ -24,16 +29,18 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     })
 
   const projectsSlice = createSlice({
-    name: "Projects",
+    name: "projects",
     initialState: [],
     reducers: {},
     extraReducers: (builder) => {
       builder.addCase(fetchProjectsAsync.fulfilled, (state, action) => {
-        console.log("PAYLOAD: ", action.payload)
         return action.payload;
         
       });
       builder.addCase(fetchProjectsByClientAsync.fulfilled, (state, action) => {
+        return action.payload;
+      });
+      builder.addCase(fetchProjectsByFreelancerAsync.fulfilled, (state, action) => {
         return action.payload;
       });
 
@@ -50,6 +57,9 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     },
   });
 
-  export const selectProjects = (state) => state.Projects
+  export const selectProjects = (state) => {
+    console.log('SELECT PROJECTS ', state)
+    return state.allProjects
+}
 
   export default projectsSlice.reducer

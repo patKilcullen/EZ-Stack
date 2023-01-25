@@ -4,6 +4,9 @@ import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
 import Home from '../features/home/Home';
 import AllProjects from '../features/projects/allProjects';
+import SingleProject from '../features/projects/singleProject';
+import AllClientProjects from '../features/projects/allClientProjects';
+import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
 import { clientMe, freelancerMe } from './store';
 
 
@@ -34,6 +37,20 @@ const AppRoutes = () => {
             path="/projects"
             element={<AllProjects />}
           />
+          <Route
+            path="/projects/:projectId"
+            element={<SingleProject />}
+          />
+          <Route
+            path="/projects/client/:clientId"
+            element={<AllClientProjects />}
+            
+          />
+          <Route
+            path="/projects/freelancer/:freelancerId"
+            element={<AllFreelancerProjects />}
+            
+          />
         </Routes>
       ) : (
         <Routes>
@@ -52,6 +69,21 @@ const AppRoutes = () => {
           <Route
             path="/projects"
             element={<AllProjects />}
+          />
+          <Route
+            path="/projects/:projectId"
+            element={<SingleProject />}
+            
+          />
+          <Route
+            path="/projects/client/:clientId"
+            element={<AllClientProjects />}
+            
+          />
+          <Route
+            path="/projects/freelancer/:freelancerId"
+            element={<AllFreelancerProjects />}
+            
           />
         </Routes>
       )}

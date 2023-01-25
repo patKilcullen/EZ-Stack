@@ -1,19 +1,21 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom"
-import { fetchProjectsAsync, selectProjects  } from "../projects/allProjectsSlice";
+import { useParams, Link } from "react-router-dom"
+import { fetchProjectsByFreelancerAsync, selectProjects  } from "../projects/allProjectsSlice";
 
 
 
-const AllProjects = () => {
+const AllFreelancerProjects = () => {
   const projects = useSelector(selectProjects);
 
   console.log("ALL PROJECT: ", projects)
   
   const dispatch = useDispatch()
+
+  const { freelancerId } = useParams()
   
   useEffect(() => {
-    dispatch(fetchProjectsAsync());
+    dispatch(fetchProjectsByFreelancerAsync(freelancerId));
   }, [dispatch] );
 
   return (
@@ -33,4 +35,4 @@ const AllProjects = () => {
   )
 };
 
-export default AllProjects
+export default AllFreelancerProjects

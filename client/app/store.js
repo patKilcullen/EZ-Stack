@@ -3,15 +3,16 @@ import logger from 'redux-logger';
 // import authReducer from '../features/auth/authSlice';
 import clientAuthSlice from '../features/auth/clientAuthSlice';
 import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
-import allProjectsSlice from '../features/projects/allProjectsSlice';
-
+import projectsSlice from '../features/projects/allProjectsSlice'
+import singleProjectSlice from '../features/projects/singleProjectSlice';
 
 
 const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
     freelancerAuth: freelanceAuthSlice,
-    allProjects: allProjectsSlice,
+    allProjects: projectsSlice,
+    singleProject: singleProjectSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
