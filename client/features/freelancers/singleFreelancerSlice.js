@@ -1,0 +1,28 @@
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+
+export const fetchSingleFreelancer = createAsyncThunk("fetchSingleFreelancer", async(id)=>{
+try{
+    const {data} = await axios.get(`/api/freelancers/${id}`)
+    return data
+
+}catch(error){
+    console.log("ERROR IN FETCHSINGLEFREELANCER THUNK: ", error)
+}
+})
+
+const SingleFreelancer = createSlice({
+    name: "singleFreelancer",
+    initialState: {},
+    reducers: {},
+    extraReducers: (builder)=>{
+        builder.addCase(fetchSingleFreelancer.fulfilled, (state, action)=>{
+            return action.payload
+        })
+    }
+})
+export const selectSingleFreelancer = (state)=>{
+    return state.SingleFreelancer
+}
+
+export default SingleFreelancer.reducer 

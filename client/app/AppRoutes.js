@@ -2,6 +2,8 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Route, Routes } from 'react-router-dom';
 import AuthForm from '../features/auth/AuthForm';
+import { AllFreelancers } from '../features/freelancers/AllFreelancers';
+import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
@@ -31,10 +33,15 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
 
-           {/* logged in single Client view */}
-          <Route path="/client-profile" element={<Client/>} />
 
-
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
+          />
         </Routes>
       ) : (
         <Routes>
@@ -54,7 +61,14 @@ const AppRoutes = () => {
           {/* not logged in single Client view */}
           <Route path="/client-profile/:id" element={<Client/>} />
 
-
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
+          />
         </Routes>
       )}
     </div>
