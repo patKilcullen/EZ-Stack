@@ -11,6 +11,8 @@ router.get('/', async (req, res, next) => {
   }
 })
 
+
+//Get request to view client's projects
 router.get('/:id', async (req, res, next) => {
   try{
     const client = await Client.findByPk(req.params.id, {
@@ -22,4 +24,5 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
-//Get request to view client's projects
+//PUT client update information
+//
