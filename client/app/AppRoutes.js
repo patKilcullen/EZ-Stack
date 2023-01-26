@@ -7,7 +7,7 @@ import SingleFreelancer from '../features/freelancers/SingleFreelancer';
 import Home from '../features/home/Home';
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-
+import UpdateClient from '../features/client/updateClient';
 
 /**
  * COMPONENT
@@ -69,6 +69,9 @@ const AppRoutes = () => {
             path="/freelancers/:id"
             element={<SingleFreelancer  />}
           />
+          {/* not logged in single Client view */}
+          <Route path="/update-client" element={<UpdateClient/>} />
+
         </Routes>
       )}
     </div>
