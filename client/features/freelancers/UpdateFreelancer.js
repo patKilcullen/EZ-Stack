@@ -1,39 +1,41 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchClient, selectClient, updateClientAsync } from "./clientSlice";
+import { fetchSingleFreelancer, selectSingleFreelancer, updateFreelancerAsync } from "./singleFreelancerSlice";
 
 
-const UpdateClient = () => {
+const UpdateFreelancer = () => {
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.clientAuth.clientMe.id)
+  const id = useSelector((state) => state.freelancerAuth.me.id)
+  const freelancer = useSelector(selectSingleFreelancer)
   const navigate = useNavigate()
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
   const [username, setUsername] = useState('')
+  const [categories, setCategories] = useState('')
   const [imageUrl, setImageUrl] = useState('')
-  const client = useSelector(selectClient)
 
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    await dispatch(updateClientAsync({id: client.id, firstName, lastName, email, description, username, imageUrl }))  
+    await dispatch(updateFreelancerAsync({id: freelancer.id, firstName, lastName, email, description, username, categories, imageUrl }))
     navigate('/profile')
   }
 
   useEffect(() => {
-    const getClient = async () => {
-      await dispatch(fetchClient(id))
+    const getFreelancer = async () => {
+      await dispatch(fetchSingleFreelancer(id))
     }
-    getClient()
-    setFirstName(client.firstName)
-    setLastName(client.lastName)
-    setEmail(client.email)
-    setDescription(client.description)
-    setUsername(client.username)
-    setImageUrl(client.imageUrl)
+    getFreelancer()
+    setFirstName(freelancer.firstName)
+    setLastName(freelancer.lastName)
+    setEmail(freelancer.email)
+    setDescription(freelancer.description)
+    setUsername(freelancer.username)
+    setCategories(freelancer.categories)
+    setImageUrl(freelancer.imageUrl)
   }, [])
 
   return (
@@ -49,9 +51,9 @@ const UpdateClient = () => {
       onChange={(e) => setUsername(e.target.value)}
       />
 
-      <label >First Name:</label>
+      <label >Name:</label>
       <input
-        name="fisrtName"
+        name="name"
         value={firstName}
         onChange={(e) => setFirstName(e.target.value)}
       />
@@ -79,6 +81,13 @@ const UpdateClient = () => {
         onChange={(e) => setDescription(e.target.value)}
       />
 
+      <label>Categories:</label>
+      <input 
+      name='categories'
+      value={categories}
+      onChange={(e) => setCategories(e.target.value)}
+      />
+
       <label>Profile Image:</label>
       <input 
       name="image"
@@ -91,4 +100,4 @@ const UpdateClient = () => {
   );
 };
 
-export default UpdateClient;
+export default UpdateFreelancer;

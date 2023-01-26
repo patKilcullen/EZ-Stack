@@ -13,10 +13,11 @@ import ClientRequests from '../features/requests/ClientRequests'
 
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-import ClientProfile from '../features/profile/clientProfile';
-import FreelancerProfile from '../features/profile/freelancerProfile';
+import ClientProfile from '../features/profile/ClientProfile';
+import FreelancerProfile from '../features/profile/FreelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
+import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
 
 /**
  * COMPONENT
@@ -75,6 +76,7 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<ClientProfile />} />
+          <Route path='profile/update' element={<UpdateClient />} />
         </Routes>
       </div>
     )
@@ -114,6 +116,7 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<FreelancerProfile />} />
+          <Route path='profile/update' element={<UpdateFreelancer />} />
         </Routes>
       </div>
     )

@@ -1,16 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchClient, selectClient } from "../client/clientSlice";
 
 const ClientProfile = () => {
-  const client = useSelector((state) => state.clientAuth.clientMe)
-  console.log(client)
+  const dispatch = useDispatch()
+  const id  = useSelector((state) => state.clientAuth.clientMe.id)
+ const client = useSelector(selectClient)
+
+  useEffect(() => {
+    dispatch(fetchClient(id))
+  }, [dispatch])
 
 return(
   <>
   <h1>{client.username}'s Profile</h1>
   <Link to={'/profile/update'}>Edit Profile</Link>
   <ul>
+    <li>{client.email}</li>
     <li>{client.firstName} {client.lastName}</li>
     {client.imageUrl ? 
     <li><img src={client.imageUrl} /></li> : 
@@ -21,9 +28,6 @@ return(
     {client.rating ? 
     <li>Rating: {client.rating} </li> : 
     <li>No Ratings Yet!</li>}
-    {client.categories ?
-    <li>{client.categories}</li> : 
-    <li>No Categories - <Link to={'/profile/update'}>Edit Profile</Link></li>}
   </ul>
   </>
 )

@@ -53,6 +53,7 @@ const EditProject = (props) => {
         <option>Ongoing</option>
         <option>Complete</option>
         </select>
+        <button type="submit">Edit Project</button>
         </div> ) : null }
 
         {client === projectClientId ? (
