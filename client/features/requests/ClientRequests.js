@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import {fetchClientRequests, selectClientRequests} from './clientRequestSlice'
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 
 export default function ClientRequests () {
@@ -21,16 +21,16 @@ useEffect(()=>{
  console.log("CLIENT REQUESTS: ", requests )
 
   return (
-    <div>
+<div>
       <ul>
         {requests.map((request) => (
-          <li>
-            <Link to={`/freelancers/${freelancers.id}`}>
-              <p>{freelancers.firstName} {freelancers.lastName}</p>
-            </Link>
+          <li key={request.id}>
+             <p>You have recieved a request from: <Link to={`/freelancers/${request.freelancer.id}`}> {request.freelancer.firstName} {request.freelancer.lastName}</Link></p>
+              <p>{request.requestMessage}</p>
           </li>
         ))}
       </ul>
+      Hello
     </div>
   )
 }

@@ -27,7 +27,7 @@ router.get('/', async (req, res, next) => {
   //GET route  - 
 router.get("/:projectId", async (req, res, next) => {
   try {
-    const request = await Request.findAll({where: {projectId: req.params.projectId}});
+    const request = await Request.findAll({where: {projectId: req.params.projectId}, include: Freelancer});
     res.send(request);
   } catch (err) {
     next(err);
