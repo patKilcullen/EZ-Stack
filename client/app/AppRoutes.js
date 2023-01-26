@@ -9,10 +9,12 @@ import AllProjects from '../features/projects/allProjects';
 import SingleProject from '../features/projects/singleProject';
 import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
+import ClientRequests from '../features/requests/ClientRequests'
+
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-import ClientProfile from '../features/profile/clientProfile';
-import FreelancerProfile from '../features/profile/freelancerProfile';
+import ClientProfile from '../features/profile/ClientProfile';
+import FreelancerProfile from '../features/profile/FreelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
 import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
@@ -49,6 +51,11 @@ const AppRoutes = () => {
             path="/projects/:projectId"
             element={<SingleProject />}
           />
+          <Route
+            path="/projects/:projectId/requests"
+            element={<ClientRequests />}
+          />
+
           <Route
             path="/projects/client/:clientId"
             element={<AllClientProjects />}
@@ -146,11 +153,8 @@ const AppRoutes = () => {
           <Route
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
-
            />
-
-
-          {/* not logged in single Client view */}
+        {/* not logged in single Client view */}
           <Route path="/client-profile/:id" element={<Client/>} />
 
           <Route
