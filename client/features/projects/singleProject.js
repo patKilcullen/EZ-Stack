@@ -10,9 +10,9 @@ import { deleteSingleProjectAsync } from "./allProjectsSlice";
 
 const SingleProject = () => {
 
-  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
-  const client = useSelector((state) => state.clientAuth.me.id)
+  const client = useSelector((state) => state.clientAuth.clientMe.id)
   
   const project = useSelector(selectSingleProject);
   

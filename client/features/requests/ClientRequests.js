@@ -20,7 +20,7 @@ useEffect(()=>{
 }, [])
 
 const handleAssignUser = (id)=>{
-dispatch(editAssignFreelancer({projectId: projectId, freelancerId: 69}))
+dispatch(editAssignFreelancer({projectId: projectId, freelancerId: id}))
 }
 
   return (
