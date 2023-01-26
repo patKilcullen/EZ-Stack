@@ -24,7 +24,6 @@ const store = configureStore({
     client: clientReducer,
     allFreelancers: allFreelancersSlice,
     SingleFreelancer: singleFreelancerSlice,
-
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

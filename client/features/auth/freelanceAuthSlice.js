@@ -33,9 +33,9 @@ export const freelancerMe = createAsyncThunk('auth/freelancer/freelancerMe', asy
 
 export const freelancerAuthenticate = createAsyncThunk(
   'freelancerAuth/authenticate',
-  async ({ username, password, firstName, lastName, method }, thunkAPI) => {
+  async ({ username, password, firstName, lastName, email, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/freelancer/${method}`, { username, password, firstName, lastName });
+      const res = await axios.post(`/auth/freelancer/${method}`, { username, password, firstName, lastName, email });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(freelancerMe());
     } catch (err) {

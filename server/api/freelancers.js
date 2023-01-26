@@ -29,3 +29,12 @@ router.delete("/:freelancerId", async (req, res, next) => {
     next(error);
   }
 });
+
+router.put('/:id', async (req, res, next) => {
+  try{
+    const freelancer = await Freelancer.findByPk(req.params.id)
+    res.send(await freelancer.update(req.body))
+  }catch(err){
+    next(err)
+  }
+})
