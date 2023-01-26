@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Request }} = require('../db')
+const { models: { Request,Freelancer }} = require('../db')
 module.exports = router
 
 
@@ -15,14 +15,25 @@ router.get('/', async (req, res, next) => {
 });
 
 //GET route  - 
-router.get("/:id", async (req, res, next) => {
-    try {
-      const request = await Request.findByPk(req.params.id);
-      res.send(request);
-    } catch (err) {
-      next(err);
-    }
-  });
+// router.get("/:id", async (req, res, next) => {
+//     try {
+//       const request = await Request.findByPk(req.params.id);
+//       res.send(request);
+//     } catch (err) {
+//       next(err);
+//     }
+//   });
+
+  //GET route  - 
+router.get("/:projectId", async (req, res, next) => {
+  try {
+    const request = await Request.findAll({where: {projectId: req.params.projectId}});
+    res.send(request);
+  } catch (err) {
+    next(err);
+  }
+});
+
 
 
 
