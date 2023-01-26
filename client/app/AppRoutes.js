@@ -13,28 +13,31 @@ import ClientRequests from '../features/requests/ClientRequests'
 
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-
+import ClientProfile from '../features/profile/clientProfile';
+import FreelancerProfile from '../features/profile/freelancerProfile';
+import SignUpForm from '../features/auth/SignUpForm';
+import UpdateClient from '../features/client/UpdateClient';
 
 /**
  * COMPONENT
  */
 
 const AppRoutes = () => {
-  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
-  // const clientIsLoggedIn = false
-  // const freelancerIsLoggedIn = false
+
   const dispatch = useDispatch();
 
 
   useEffect(() => {
-    dispatch(clientMe());
     dispatch(freelancerMe())
+    dispatch(clientMe());
   }, []);
 
-  return (
-    <div>
-      {clientIsLoggedIn || freelancerIsLoggedIn ? (
+
+  if(clientIsLoggedIn){
+    return(
+      <div>
         <Routes>
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
@@ -62,6 +65,7 @@ const AppRoutes = () => {
             element={<AllFreelancerProjects />}
             />
          
+
           <Route
             path="/freelancers"
             element={<AllFreelancers  />}
@@ -70,9 +74,52 @@ const AppRoutes = () => {
             path="/freelancers/:id"
             element={<SingleFreelancer  />}
           />
+          <Route path='/profile' element={<ClientProfile />} />
         </Routes>
-      ) : (
+      </div>
+    )
+  }
+
+  if(freelancerIsLoggedIn){
+    return(
+      <div>
         <Routes>
+          <Route path="/*" element={<Home />} />
+          <Route to="/home" element={<Home />} />
+
+          <Route
+            path="/projects"
+            element={<AllProjects />}
+          />
+          <Route
+            path="/projects/:projectId"
+            element={<SingleProject />}
+          />
+          <Route
+            path="/projects/client/:clientId"
+            element={<AllClientProjects />}
+            
+          />
+          <Route
+            path="/projects/freelancer/:freelancerId"
+            element={<AllFreelancerProjects />}
+            />
+         
+          <Route
+            path="/freelancers"
+            element={<AllFreelancers  />}
+          />
+          <Route
+            path="/freelancers/:id"
+            element={<SingleFreelancer  />}
+          />
+          <Route path='/profile' element={<FreelancerProfile />} />
+        </Routes>
+      </div>
+    )
+  }else{
+    return(
+    <Routes>
           <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
@@ -83,7 +130,7 @@ const AppRoutes = () => {
           />
           <Route
             path="/signup"
-            element={<AuthForm name="signup" displayName="Sign Up" />}
+            element={<SignUpForm />}
           />
 
           <Route
@@ -104,8 +151,7 @@ const AppRoutes = () => {
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
            />
-
-          {/* not logged in single Client view */}
+        {/* not logged in single Client view */}
           <Route path="/client-profile/:id" element={<Client/>} />
 
           <Route
@@ -117,10 +163,11 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
 
           />
-        </Routes>
-      )}
-    </div>
-  );
-};
+          {/* not logged in single Client view */}
+          <Route path="/update-client" element={<UpdateClient/>} />
 
+        </Routes>
+    )
+  }
+  }
 export default AppRoutes;

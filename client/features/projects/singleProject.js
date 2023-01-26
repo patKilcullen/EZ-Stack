@@ -3,12 +3,18 @@ import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom"
 import { selectSingleProject } from "../projects/singleProjectSlice";
 import { fetchSingleProjectAsync } from "../projects/singleProjectSlice";
+import  EditProject  from "../projects/editProjectForm"
+import { deleteSingleProjectAsync } from "./allProjectsSlice";
 
 
 
 const SingleProject = () => {
+
+  const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.me.id);
+  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
+  const client = useSelector((state) => state.clientAuth.me.id)
+  
   const project = useSelector(selectSingleProject);
-  console.log("PROJECT: ", project)
   
   const  { projectId }  = useParams()
 
@@ -16,14 +22,29 @@ const SingleProject = () => {
   
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
-    console.log("USE EFFECT ", project)
   }, [dispatch]);
+
+  const handleDelete = (projectId) => {
+    dispatch(deleteSingleProjectAsync(projectId))
+    window.location.reload()
+      
+  };
 
   return (
     <div id="allProjects">
         <p>{project.singleProject.status}</p>
         <p>{project.singleProject.description}</p>
         <p>{project.singleProject.category}</p>
+        {clientIsLoggedIn || freelancerIsLoggedIn ? (
+        <div id='editForm'>
+          <EditProject projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
+        </div>
+        ): null}
+        { client === project.singleProject.clientId ? (
+          <div id='delete'>
+          <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
+          </div>
+        ): null }
     </div>
   )
 };
