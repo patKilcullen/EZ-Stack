@@ -24,6 +24,19 @@ const clientRequestsSlice = createSlice({
     }
 })
 
+export const editAssignFreelancer = createAsyncThunk(
+    "editAssignFreelancer",
+    async (project) => {
+        console.log("PROJECT IN THUNK: ", project.projectId)
+      try {
+        const { data } = await axios.put(`/api/projects/${project.projectId}`, project);
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
+
 export const selectClientRequests = (state)=>{
     return state.clientRequests
 }
