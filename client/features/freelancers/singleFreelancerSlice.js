@@ -11,6 +11,23 @@ try{
 }
 })
 
+export const updateFreelancerAsync = createAsyncThunk('updateFreelancer', async ({id, firstName, lastName, email, description, username, categories, imageUrl }) =>{
+    try{
+      const { data } = await axios.put(`/api/freelancers/${id}`, {
+        firstName,
+        lastName,
+        email,
+        description,
+        categories,
+        username,
+        imageUrl
+      })
+      return data
+    }catch(err){
+      console.log(err)
+    }
+   })
+
 const SingleFreelancer = createSlice({
     name: "singleFreelancer",
     initialState: {},

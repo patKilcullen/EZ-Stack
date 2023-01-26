@@ -1,18 +1,24 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { fetchSingleFreelancer, selectSingleFreelancer } from "../freelancers/singleFreelancerSlice";
 
 const FreelancerProfile = () => {
-  const freelancer = useSelector((state) => state.freelancerAuth.me)
+  const dispatch = useDispatch()
+  const id = useSelector((state) => state.freelancerAuth.me.id)
+  const freelancer = useSelector(selectSingleFreelancer)
 
-  console.log(freelancer)
 
+  useEffect(() => {
+    dispatch(fetchSingleFreelancer(id))
+  }, [dispatch])
 
   return(
     <>
     <h1>{freelancer.username}'s Profile</h1>
     <Link to={'/profile/update'}>Edit Profile</Link>
     <ul>
+      <li>{freelancer.email}</li>
       <li>{freelancer.firstName} {freelancer.lastName}</li>
       {freelancer.imageUrl ? 
       <li><img src={freelancer.imageUrl} /></li> : 
