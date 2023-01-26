@@ -9,11 +9,11 @@ const TOKEN = 'token';
 /*
   THUNKS
 */
-export const freelancerMe = createAsyncThunk('auth/freelancer/me', async () => {
+export const freelancerMe = createAsyncThunk('auth/freelancer/freelancerMe', async () => {
   const token = window.localStorage.getItem(TOKEN);
   try {
     if (token) {
-      const res = await axios.get('/auth/freelancer/me', {
+      const res = await axios.get('/auth/freelancer/freelancerMe', {
         headers: {
           authorization: token,
         },
@@ -33,9 +33,9 @@ export const freelancerMe = createAsyncThunk('auth/freelancer/me', async () => {
 
 export const freelancerAuthenticate = createAsyncThunk(
   'freelancerAuth/authenticate',
-  async ({ username, password, method }, thunkAPI) => {
+  async ({ username, password, firstName, lastName, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/freelancer/${method}`, { username, password });
+      const res = await axios.post(`/auth/freelancer/${method}`, { username, password, firstName, lastName });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(freelancerMe());
     } catch (err) {
