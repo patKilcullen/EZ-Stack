@@ -65,7 +65,7 @@ router.put("/:projectId", async (req, res, next) => {
     const project = await Project.findByPk(req.params.projectId);
     res.send(await project.update(req.body));
   } catch (error) {
-    console.log("Error in update product route");
+    console.log("Error in update project route");
     next(error);
   }
 });

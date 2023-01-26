@@ -54,7 +54,7 @@ const AppRoutes = () => {
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
             
-         
+          />
           <Route
             path="/freelancers"
             element={<AllFreelancers  />}
@@ -97,7 +97,7 @@ const AppRoutes = () => {
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
            
-
+          />
           {/* not logged in single Client view */}
           <Route path="/client-profile/:id" element={<Client/>} />
 
