@@ -9,7 +9,7 @@ const EditProject = (props) => {
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
 
-  const client = useSelector((state) => state.clientAuth.me.id)
+  const client = useSelector((state) => state.clientAuth.clientMe.id)
 
   const { projectId, projectClientId, projectFreelancerId } = props
 

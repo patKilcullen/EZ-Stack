@@ -27,7 +27,8 @@ router.get('/', async (req, res, next) => {
   //GET route  - 
 router.get("/:projectId", async (req, res, next) => {
   try {
-    const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
+      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: Freelancer});
+    // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
     res.send(request);
   } catch (err) {
     next(err);
@@ -35,18 +36,15 @@ router.get("/:projectId", async (req, res, next) => {
 });
 
 
-// Post.findAll({
-//   where: {
-//     authorId: 12,
-//     status: 'active'
+// Update Request Status
+// router.put("/:projectId", async (req, res, next) => {
+//   try {
+//     const project = await Project.findByPk(req.params.projectId);
+//     res.send(await project.update(req.body));
+//   } catch (error) {
+//     console.log("Error in update project route");
+//     next(error);
 //   }
-// }).then(function (data) {
-//     res.status(200).json(data)
-//             })
-//    .catch(function (error) {
-//                 res.status(500).json(error)
-//    });;
-//Post.findAll({ where: {deletedAt: null, topicId: req.params.id} })
+// });
 
-//Post.findAll({ where: {deletedAt: {$ne: null}, topicId: req.params.id} })
 
