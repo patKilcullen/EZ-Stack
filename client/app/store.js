@@ -10,6 +10,7 @@ import clientReducer from '../features/client/clientSlice';
 import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
 import allFreelancersSlice from '../features/freelancers/allFreelancersSlice';
 import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice';
+import clientRequestSlice from '../features/requests/clientRequestSlice';
 
 
 
@@ -24,7 +25,7 @@ const store = configureStore({
     client: clientReducer,
     allFreelancers: allFreelancersSlice,
     SingleFreelancer: singleFreelancerSlice,
-
+    clientRequests: clientRequestSlice
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });
