@@ -21,7 +21,8 @@ export const editSingleProject = createAsyncThunk(
   "editProduct",
   async (project) => {
     try {
-      const { data } = await axios.put(`/api/products/${project.id}`, project);
+      const { data } = await axios.put(`/api/projects/${project.id}`, project);
+      console.log("THUNK: ", data)
       return data;
     } catch (err) {
       console.log(err);

@@ -14,7 +14,7 @@ import Client from '../features/client/Client';
 import ClientProfile from '../features/profile/clientProfile';
 import FreelancerProfile from '../features/profile/freelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
-
+import UpdateClient from '../features/client/UpdateClient';
 
 /**
  * COMPONENT
@@ -58,6 +58,7 @@ const AppRoutes = () => {
             element={<AllFreelancerProjects />}
             />
          
+
           <Route
             path="/freelancers"
             element={<AllFreelancers  />}
@@ -142,7 +143,9 @@ const AppRoutes = () => {
           <Route
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
+
            />
+
 
           {/* not logged in single Client view */}
           <Route path="/client-profile/:id" element={<Client/>} />
@@ -156,6 +159,9 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
 
           />
+          {/* not logged in single Client view */}
+          <Route path="/update-client" element={<UpdateClient/>} />
+
         </Routes>
     )
   }
