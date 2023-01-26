@@ -8,12 +8,11 @@ const Client = () => {
    const dispatch = useDispatch();
   
   const client = useSelector(selectClient);
-//   const client = useSelector((state) => state.clientAuth.clientMe);
-  console.log(client)
+
 
   useEffect(() => {
     dispatch(fetchClient(id));
-  }, [id,dispatch]);
+  }, [dispatch]);
 
   return (
     <div className="client-container">

@@ -5,9 +5,18 @@ import { useSelector } from 'react-redux';
  * COMPONENT
  */
 const Home = (props) => {
-  const clientUsername = useSelector((state) => state.clientAuth.me.username);
+  const clientUsername = useSelector((state) => state.clientAuth.clientMe.username);
   const freelancerUsername = useSelector((state) => state.freelancerAuth.me.username);
 
+
+
+  if(freelancerUsername){
+    return (
+      <div>
+        <h3>Welcome, {freelancerUsername}</h3>
+      </div>
+    );
+  }
 
 if(clientUsername){
 
@@ -18,13 +27,6 @@ if(clientUsername){
   );
 }
 
-if(freelancerUsername){
-  return (
-    <div>
-      <h3>Welcome, {freelancerUsername}</h3>
-    </div>
-  );
-}
 
 };
 
