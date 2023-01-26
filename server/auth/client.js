@@ -25,7 +25,7 @@ router.post('/signup', async (req, res, next) => {
   }
 });
 
-router.get('/me', async (req, res, next) => {
+router.get('/clientMe', async (req, res, next) => {
   try {
     res.send(await Client.findByToken(req.headers.authorization));
   } catch (ex) {

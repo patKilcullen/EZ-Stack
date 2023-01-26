@@ -4,22 +4,23 @@ import axios from 'axios';
 /*
   CONSTANT VARIABLES
 */
-const TOKEN = 'token';
+const CLIENTTOKEN = 'clienttoken';
 
 /*
   THUNKS
 */
 export const clientMe = createAsyncThunk('auth/client/me', async () => {
-  const token = window.localStorage.getItem(TOKEN);
+  const token = window.localStorage.getItem(CLIENTTOKEN);
   try {
     if (token) {
-      const res = await axios.get('/auth/client/me', {
+      const res = await axios.get('/auth/client/clientMe', {
         headers: {
           authorization: token,
         },
       });
       return res.data;
     } else {
+      console.log('fsdfasdfasdfasdf')
       return {};
     }
   } catch (err) {
@@ -33,10 +34,10 @@ export const clientMe = createAsyncThunk('auth/client/me', async () => {
 
 export const clientAuthenticate = createAsyncThunk(
   'clientAuth/authenticate',
-  async ({ username, password, method }, thunkAPI) => {
+  async ({ username, password, firstName, lastName, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/client/${method}`, { username, password });
-      window.localStorage.setItem(TOKEN, res.data.token);
+      const res = await axios.post(`/auth/client/${method}`, { username, password, firstName, lastName });
+      window.localStorage.setItem(CLIENTTOKEN, res.data.token);
       thunkAPI.dispatch(clientMe());
     } catch (err) {
       if (err.response.data) {
@@ -54,19 +55,20 @@ export const clientAuthenticate = createAsyncThunk(
 export const clientAuthSlice = createSlice({
   name: 'clientAuth',
   initialState: {
-    me: {},
+    clientMe: {},
     error: null,
   },
   reducers: {
     clientLogout(state, action) {
-      window.localStorage.removeItem(TOKEN);
-      state.me = {};
+      console.log(state.clientMe)
+      window.localStorage.removeItem(CLIENTTOKEN);
+      state.clientMe = {};
       state.error = null;
     },
   },
   extraReducers: (builder) => {
     builder.addCase(clientMe.fulfilled, (state, action) => {
-      state.me = action.payload;
+      state.clientMe = action.payload;
     });
     builder.addCase(clientMe.rejected, (state, action) => {
       state.error = action.error;
