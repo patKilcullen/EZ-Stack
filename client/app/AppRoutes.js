@@ -11,7 +11,7 @@ import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-import UpdateClient from '../features/client/updateClient';
+import UpdateClient from '../features/client/UpdateClient';
 
 /**
  * COMPONENT
