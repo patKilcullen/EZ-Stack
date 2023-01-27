@@ -15,7 +15,7 @@ router.get('/', async (req, res, next) => {
 //Get request to view client's projects
 router.get('/:id', async (req, res, next) => {
   try{
-    const client = await Client.findByPk(req.params.id)
+    const client = await Client.findByPk(req.params.id, {include: Project})
     res.send(client)
   }catch(err){
     next(err)

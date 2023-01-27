@@ -59,8 +59,8 @@ await Request.create({
 });
 
 await Project.create({
-   clientId: 102,
-   freelancerId: 102,
+   clientId: 103,
+   freelancerId: 103,
   status: 'Pending',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
