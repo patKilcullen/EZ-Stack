@@ -6,7 +6,7 @@ export const fetchClientRequests = createAsyncThunk('fetchClientRequests',async(
     try{
     const {data} = await axios.get(`/api/requests/${id}`)
     return data
-    }catch(error){
+    }catch(error) {
         console.log("Error in fetchClient requests")
     }
 })
