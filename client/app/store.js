@@ -11,6 +11,7 @@ import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
 import allFreelancersSlice from '../features/freelancers/allFreelancersSlice';
 import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice';
 import clientRequestSlice from '../features/requests/clientRequestSlice';
+import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
 
 
 
@@ -25,7 +26,8 @@ const store = configureStore({
     client: clientReducer,
     allFreelancers: allFreelancersSlice,
     SingleFreelancer: singleFreelancerSlice,
-    clientRequests: clientRequestSlice
+    clientRequests: clientRequestSlice,
+    freelancerRequests: freelancerRequestSlice,
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

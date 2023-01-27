@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Freelancer }} = require('../db')
+const { models: { Freelancer, Project, Client }} = require('../db')
 const Request = require('../db/models/Request')
 module.exports = router
 
@@ -25,10 +25,11 @@ router.get('/', async (req, res, next) => {
 //     }
 //   });
 
-  //GET route  - 
-router.get("/:projectId", async (req, res, next) => {
+  //GET route by ProjectID - 
+router.get("/product/:projectId/", async (req, res, next) => {
+  console.log("HOLA: ")
   try {
-      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: Freelancer});
+      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: [Freelancer, Project]});
     // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
     res.send(request);
   } catch (err) {
@@ -36,6 +37,18 @@ router.get("/:projectId", async (req, res, next) => {
   }
 });
 
+// GET ROUTE BY FREELANCERID
+router.get("/freelancer/:freelancerId", async (req, res, next) => {
+  console.log("HOLA: ")
+  try {
+      const request = await Request.findAll({where: {freelancerId : req.params.freelancerId}, include: [Freelancer, Project]});
+    // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
+
+    res.send(request);
+  } catch (err) {
+    next(err);
+  }
+});
 
 
 // Update Request Status

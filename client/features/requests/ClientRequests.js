@@ -10,6 +10,7 @@ export default function ClientRequests (props) {
  const requests = useSelector(selectClientRequests)
  const {projectId} = useParams()
  console.log("ID: ", projectId)
+ console.log("REQUESTS:", requests)
 
 useEffect(()=>{
     dispatch(fetchClientRequests(projectId))
