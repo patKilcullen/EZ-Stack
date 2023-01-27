@@ -6,23 +6,11 @@ export const fetchClientRequests = createAsyncThunk('fetchClientRequests',async(
     try{
     const {data} = await axios.get(`/api/requests/${id}`)
     return data
-    }catch(error){
+    }catch(error) {
         console.log("Error in fetchClient requests")
     }
 })
 
-
-
-const clientRequestsSlice = createSlice({
-    name: 'clientRequests',
-    initialState: [],
-    reducer: {},
-    extraReducers: (builder) =>{
-        builder.addCase(fetchClientRequests.fulfilled, (state, action)=>{
-            return action.payload
-        })
-    }
-})
 
 export const editAssignFreelancer = createAsyncThunk(
     "editAssignFreelancer",
@@ -36,6 +24,32 @@ export const editAssignFreelancer = createAsyncThunk(
       }
     }
   );
+
+  export const editAcceptRequest = createAsyncThunk(
+    "editAcceptRequest",
+    async (project) => {
+      try {
+        const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
+        return data;
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  );
+
+
+const clientRequestsSlice = createSlice({
+    name: 'clientRequests',
+    initialState: [],
+    reducer: {},
+    extraReducers: (builder) =>{
+        builder.addCase(fetchClientRequests.fulfilled, (state, action)=>{
+            return action.payload
+        })
+    }
+})
+
+
 
 export const selectClientRequests = (state)=>{
     return state.clientRequests

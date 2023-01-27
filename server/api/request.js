@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const { models: { Request,Freelancer }} = require('../db')
+const { models: { Freelancer }} = require('../db')
+const Request = require('../db/models/Request')
 module.exports = router
 
 
@@ -27,7 +28,8 @@ router.get('/', async (req, res, next) => {
   //GET route  - 
 router.get("/:projectId", async (req, res, next) => {
   try {
-    const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
+      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: Freelancer});
+    // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
     res.send(request);
   } catch (err) {
     next(err);
@@ -35,18 +37,19 @@ router.get("/:projectId", async (req, res, next) => {
 });
 
 
-// Post.findAll({
-//   where: {
-//     authorId: 12,
-//     status: 'active'
-//   }
-// }).then(function (data) {
-//     res.status(200).json(data)
-//             })
-//    .catch(function (error) {
-//                 res.status(500).json(error)
-//    });;
-//Post.findAll({ where: {deletedAt: null, topicId: req.params.id} })
 
-//Post.findAll({ where: {deletedAt: {$ne: null}, topicId: req.params.id} })
+// Update Request Status
+router.put("/:projectId", async (req, res, next) => {
+  console.log("REQ BODY: ", req.body)
+  try {
+    const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
+    console.log("PROJECT: ", request)
+    const updateRequest = request.dataValues
+    res.send(await request[0].update(req.body));
+  } catch (error) {
+    console.log("Error in update project route");
+    next(error);
+  }
+});
+
 
