@@ -15,7 +15,7 @@ useEffect(()=>{
 
 
   return (
-    <div>AllFreelancers
+    <div className="all-freelancers">AllFreelancers
 <ul>
         {freelancers.map((freelancers) => (
           <li>

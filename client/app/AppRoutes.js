@@ -15,6 +15,8 @@ import ClientProfile from '../features/profile/clientProfile';
 import FreelancerProfile from '../features/profile/freelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
+import AboutUs from "../features/footer/AboutUs";
+import ContactUs from "../features/footer/ContactUs"
 
 /**
  * COMPONENT
@@ -68,6 +70,10 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<ClientProfile />} />
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
+          
         </Routes>
       </div>
     )
@@ -107,16 +113,23 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<FreelancerProfile />} />
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
         </Routes>
       </div>
     )
   }else{
     return(
     <Routes>
-          <Route
+          {/* <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
+
+          <Route path="/*" element={<Home />} />
+          <Route to="/home" element={<Home />} />
+
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -145,6 +158,9 @@ const AppRoutes = () => {
             element={<AllFreelancerProjects />}
 
            />
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
 
 
           {/* not logged in single Client view */}
