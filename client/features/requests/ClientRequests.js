@@ -19,16 +19,18 @@ useEffect(()=>{
 const handleAssignUser = (id)=>{
 dispatch(editAssignFreelancer({projectId: projectId, freelancerId: id, status:"Ongoing"})).then(()=>{
   dispatch(editAcceptRequest({projectId: projectId, freelancerId: id, status:"ACCEPTED"}))
+}).then(()=>{
+  dispatch(fetchClientRequests(projectId))
 })
-
-// .then(()=>{
-//   dispatch(fetchClientRequests(projectId))
-// })
 }
 const handleUnassignUser = (id)=>{
   dispatch(editAssignFreelancer({projectId: projectId, freelancerId: null , status:"Pending"})).then(()=>{
+    dispatch(editAcceptRequest({projectId: projectId, freelancerId: id, status:"PENDING"}))
+  }).then(()=>{
     dispatch(fetchClientRequests(projectId))
   })
+  
+ 
   }
 
   return (

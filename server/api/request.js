@@ -45,7 +45,7 @@ router.put("/:projectId", async (req, res, next) => {
     const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
     console.log("PROJECT: ", request)
     const updateRequest = request.dataValues
-    res.send(await request.update(req.body));
+    res.send(await request[0].update(req.body));
   } catch (error) {
     console.log("Error in update project route");
     next(error);
