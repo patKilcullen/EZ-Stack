@@ -18,8 +18,8 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
         return data;
       });
 
-    export const addProjectAsync = createAsyncThunk("addProject", async ({}) => {
-      const { data } = await axios.post(`/api/projects`, {});
+    export const addProjectAsync = createAsyncThunk("addProject", async ({clientId, description, category }) => {
+      const { data } = await axios.post(`/api/projects`, {clientId, description, category});
         return data;
       });
 

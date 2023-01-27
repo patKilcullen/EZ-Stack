@@ -13,7 +13,9 @@ router.get('/', async (req, res, next) => {
 
 router.get('/:freelancerId', async (req, res, next) => {
   try {
-    const freelancer = await Freelancer.findByPk(req.params.freelancerId)
+    const freelancer = await Freelancer.findByPk(req.params.freelancerId, {
+      include: Project
+    })
     res.json(freelancer)
   } catch (err) {
     next(err)

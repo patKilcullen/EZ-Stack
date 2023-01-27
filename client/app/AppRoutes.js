@@ -18,6 +18,7 @@ import FreelancerProfile from '../features/profile/FreelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
 import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
+import AddProject from '../features/projects/postProject';
 
 /**
  * COMPONENT
@@ -77,6 +78,8 @@ const AppRoutes = () => {
           />
           <Route path='/profile' element={<ClientProfile />} />
           <Route path='profile/update' element={<UpdateClient />} />
+          <Route path='/post' element={<AddProject />} />
+
         </Routes>
       </div>
     )

@@ -2,11 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchClient, selectClient } from "../client/clientSlice";
+import AllClientProjects from "../projects/allClientProjects";
 
 const ClientProfile = () => {
   const dispatch = useDispatch()
   const id  = useSelector((state) => state.clientAuth.clientMe.id)
  const client = useSelector(selectClient)
+ console.log(client)
 
   useEffect(() => {
     dispatch(fetchClient(id))
@@ -28,6 +30,11 @@ return(
     {client.rating ? 
     <li>Rating: {client.rating} </li> : 
     <li>No Ratings Yet!</li>}
+  </ul>
+
+  <h1>Projects</h1>
+  <ul>
+    {client.projects ?  <AllClientProjects id={client.id} /> : null}
   </ul>
   </>
 )
