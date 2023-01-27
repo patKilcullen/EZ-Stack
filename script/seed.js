@@ -33,7 +33,10 @@ async function seed() {
 
     });
 }
-
+await Freelancer.create({
+  username: 'aaaaa',
+  password: '12345'
+})
 await Request.create({
   // projectId: 1,
   // freelancerId: 2,
@@ -52,7 +55,7 @@ await Request.create({
 
 await Project.create({
    clientId: 1,
-   freelancerId: 1,
+   freelancerId: 102,
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()

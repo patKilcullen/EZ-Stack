@@ -19,24 +19,23 @@ const SideNav = () => {
   
     if (clientIsLoggedIn) {
     return (
-      <div id="side-nav" className="sidenav">
+      <div id="sideBar">
         {/* The navbar will show current client's pending projects 
             will show these links after you log in */}
-        <nav>
+        
         <Link to= "/" className = "projects">Projects</Link>
         <Link to= "/" className = "projects">Pending Requests</Link>
-        </nav>
+      
       </div>
     );
   }
 
   if (freelancerIsLoggedIn) {
     return (
-      <div id="side-nav" className="sidenav">
+      <div id="sideBar">
         {/* The navbar will show current client's pending projects 
             will show these links after you log in */}
         <nav>
-        
         <div> Projects</div>
           <div>Update Account</div>
           <div>New Received Requests</div>
@@ -47,7 +46,7 @@ const SideNav = () => {
 
   if (!freelancerIsLoggedIn && !clientIsLoggedIn){
   return (
-    <div id="side-nav" className="sidenav">
+    <div id="sideBar">
       <nav>
       <h4>Featured Catergories</h4>
         <div>Category 1</div>

@@ -22,33 +22,24 @@ const Home = (props) => {
 
   if (freelancerIsLoggedIn) {
     return (
-      <div id="main-body">
-        <SideNav />
         <div id="right-body">
           <h3>Welcome, {freelancerUsername}</h3>
 
         </div>
-      </div>
     );
   }
 
   if (clientIsLoggedIn) {
     return (
-      <div id="main-body">
-        <SideNav />
         <div id="right-body">
           <h3>Welcome, {clientUsername}</h3>
         </div>
-      </div>
     );
   }
 
   return(
-    <div id="main-body">
-      <SideNav />
       <div id="right-body">
         <h3>Welcome!</h3>
-      </div>
     </div>
   )
     
