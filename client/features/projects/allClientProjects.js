@@ -8,10 +8,10 @@ import EditProject from "./editProjectForm";
 
 const AllClientProjects = (props) => {
   const projects = useSelector(selectProjects);
-
+  const dispatch = useDispatch()
+  
   console.log("ALL PROJECT: ", projects)
   
-  const dispatch = useDispatch()
   
   useEffect(() => {
     dispatch(fetchProjectsByClientAsync(props.id));

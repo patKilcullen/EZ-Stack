@@ -34,13 +34,7 @@ return(
 
   <h1>Projects</h1>
   <ul>
-    {client.projects ? client.projects.map((project) => {
-      return(
-        <>
-          <AllClientProjects id={client.id} />
-        </>
-      )
-    }) : null}
+    {client.projects ?  <AllClientProjects id={client.id} /> : null}
   </ul>
   </>
 )
