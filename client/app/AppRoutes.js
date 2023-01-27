@@ -17,8 +17,13 @@ import ClientProfile from '../features/profile/ClientProfile';
 import FreelancerProfile from '../features/profile/FreelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
+
+import AboutUs from "../features/footer/AboutUs";
+import ContactUs from "../features/footer/ContactUs"
+
 import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
 import AddProject from '../features/projects/postProject';
+
 
 /**
  * COMPONENT
@@ -77,8 +82,15 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<ClientProfile />} />
+
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
+          
+
           <Route path='profile/update' element={<UpdateClient />} />
           <Route path='/post' element={<AddProject />} />
+
 
         </Routes>
       </div>
@@ -119,17 +131,27 @@ const AppRoutes = () => {
             element={<SingleFreelancer  />}
           />
           <Route path='/profile' element={<FreelancerProfile />} />
+
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
+
           <Route path='profile/update' element={<UpdateFreelancer />} />
+
         </Routes>
       </div>
     )
   }else{
     return(
     <Routes>
-          <Route
+          {/* <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
+
+          <Route path="/*" element={<Home />} />
+          <Route to="/home" element={<Home />} />
+
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -157,7 +179,16 @@ const AppRoutes = () => {
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
            />
+
+
+          <Route path="/contact" element={<ContactUs />}></Route>
+          <Route path="/AboutUs" element={<AboutUs />}></Route>
+
+
+          {/* not logged in single Client view */}
+
         {/* not logged in single Client view */}
+
           <Route path="/client-profile/:id" element={<Client/>} />
 
           <Route
