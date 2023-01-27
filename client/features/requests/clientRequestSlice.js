@@ -29,7 +29,7 @@ export const editAssignFreelancer = createAsyncThunk(
     "editAcceptRequest",
     async (project) => {
       try {
-        const { data } = await axios.put(`/api/projects/${project.projectId}`, project);
+        const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
         return data;
       } catch (err) {
         console.log(err);

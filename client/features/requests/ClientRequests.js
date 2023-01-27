@@ -1,10 +1,7 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchClientRequests, selectClientRequests, editAssignFreelancer} from './clientRequestSlice'
+import {fetchClientRequests, selectClientRequests, editAssignFreelancer, editAcceptRequest} from './clientRequestSlice'
 import { useParams, Link } from "react-router-dom";
-
-
-
 
 export default function ClientRequests () {
 //hardcoded data 
@@ -21,8 +18,12 @@ useEffect(()=>{
 
 const handleAssignUser = (id)=>{
 dispatch(editAssignFreelancer({projectId: projectId, freelancerId: id, status:"Ongoing"})).then(()=>{
-  dispatch(fetchClientRequests(projectId))
+  dispatch(editAcceptRequest({projectId: projectId, freelancerId: id, status:"ACCEPTED"}))
 })
+
+// .then(()=>{
+//   dispatch(fetchClientRequests(projectId))
+// })
 }
 const handleUnassignUser = (id)=>{
   dispatch(editAssignFreelancer({projectId: projectId, freelancerId: null , status:"Pending"})).then(()=>{
