@@ -14,6 +14,8 @@ const SingleProject = () => {
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
   const client = useSelector((state) => state.clientAuth.clientMe.id)
+  const c = useSelector((state) => state.clientAuth.clientMe)
+  console.log(c)
   
   const project = useSelector(selectSingleProject);
   
@@ -31,6 +33,8 @@ const SingleProject = () => {
       
   };
 
+  console.log(client, project.singleProject)
+
   return (
     <div id="allProjects">
         <p>{project.singleProject.status}</p>
@@ -46,7 +50,7 @@ const SingleProject = () => {
           <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
           </div>
         ): null }
-        <ClientRequests />
+        { client ? <ClientRequests clientId={client} projectId={project.singleProject.clientId}/> : null}
     </div>
   )
 };

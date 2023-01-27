@@ -1,12 +1,12 @@
 const router = require('express').Router();
 const {
-  models: { Client },
+  models: { Client, Project },
 } = require('../db');
 module.exports = router;
 
 router.post('/login', async (req, res, next) => {
   try {
-    res.send({ token: await Client.authenticate(req.body) });
+    res.send({ token: await Client.authenticate(req.body, {include: Project}) });
   } catch (err) {
     next(err);
   }

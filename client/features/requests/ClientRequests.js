@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import {fetchClientRequests, selectClientRequests, editAssignFreelancer, editAcceptRequest} from './clientRequestSlice'
 import { useParams, Link } from "react-router-dom";
 
-export default function ClientRequests () {
+export default function ClientRequests (props) {
 //hardcoded data 
 
  const dispatch = useDispatch()
@@ -29,6 +29,8 @@ const handleUnassignUser = (id)=>{
   }).then(()=>{
     dispatch(fetchClientRequests(projectId))
   })
+
+  console.log(props.clientId, props.projectId)
   
  
   }
@@ -36,7 +38,8 @@ const handleUnassignUser = (id)=>{
   return (
 <div>
       <ul>
-        {requests.map((request) => (
+
+        {props.clientId === props.projectId ? requests.map((request) => (
           <div>
           <li key={request.id}>
             <p>Request Status: {request.status}</p>
@@ -46,7 +49,7 @@ const handleUnassignUser = (id)=>{
           <button onClick={()=>handleAssignUser(request.freelancer.id)}>Assign {request.freelancer.firstName} {request.freelancer.lastName} to Project</button>
           <button onClick={()=>handleUnassignUser(request.freelancer.id)}>Unassign {request.freelancer.firstName} {request.freelancer.lastName} from Project</button>
           </div>
-        ))}
+        )): null}
       </ul>
     </div>
   )
