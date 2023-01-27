@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { addProjectAsync } from "./allProjectsSlice";
 
 const AddProject = () => {
@@ -9,14 +10,14 @@ const AddProject = () => {
 
   const clientId = useSelector((state) => state.clientAuth.clientMe.id)
 
+  const navigate = useNavigate()
+
 
   const dispatch = useDispatch();
   
   const handleAddProject = (e) => {
     e.preventDefault();
-    dispatch(
-      addProjectAsync({ clientId, description, category })
-    )
+    dispatch(addProjectAsync({ clientId, description, category })).then(()=>navigate('/home'))
   };
 
   
@@ -35,7 +36,7 @@ const AddProject = () => {
           value={category}
           onChange={(e) => setCategory(e.target.value)}
         />
-        <button type="submit">Edit Project</button>
+        <button type="submit">Post Project</button>
       </form>
     </div>
   );
