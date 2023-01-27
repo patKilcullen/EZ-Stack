@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { fetchSingleFreelancer, selectSingleFreelancer } from "../freelancers/singleFreelancerSlice";
+import AllFreelancerProjects from "../projects/allFreelancerProjects";
 
 const FreelancerProfile = () => {
   const dispatch = useDispatch()
@@ -33,6 +34,8 @@ const FreelancerProfile = () => {
       <li>{freelancer.categories}</li> : 
       <li>No Categories - <Link to={'/profile/update'}>Edit Profile</Link></li>}
     </ul>
+    {freelancer.projects ? <AllFreelancerProjects id={freelancer.id} /> : null }
+    
     </>
   )
 }

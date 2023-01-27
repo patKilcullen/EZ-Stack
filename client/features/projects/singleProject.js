@@ -5,6 +5,7 @@ import { selectSingleProject } from "../projects/singleProjectSlice";
 import { fetchSingleProjectAsync } from "../projects/singleProjectSlice";
 import  EditProject  from "../projects/editProjectForm"
 import { deleteSingleProjectAsync } from "./allProjectsSlice";
+import ClientRequests from "../requests/ClientRequests";
 
 
 
@@ -45,6 +46,7 @@ const SingleProject = () => {
           <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
           </div>
         ): null }
+        <ClientRequests />
     </div>
   )
 };
