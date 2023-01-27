@@ -34,9 +34,9 @@ export const clientMe = createAsyncThunk('auth/client/me', async () => {
 
 export const clientAuthenticate = createAsyncThunk(
   'clientAuth/authenticate',
-  async ({ username, password, firstName, lastName, method }, thunkAPI) => {
+  async ({ username, password, firstName, lastName, email, method }, thunkAPI) => {
     try {
-      const res = await axios.post(`/auth/client/${method}`, { username, password, firstName, lastName });
+      const res = await axios.post(`/auth/client/${method}`, { username, password, firstName, lastName, email });
       window.localStorage.setItem(CLIENTTOKEN, res.data.token);
       thunkAPI.dispatch(clientMe());
     } catch (err) {

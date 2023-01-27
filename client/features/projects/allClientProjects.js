@@ -2,20 +2,19 @@ import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom"
 import { fetchProjectsByClientAsync, selectProjects  } from "../projects/allProjectsSlice";
+import EditProject from "./editProjectForm";
 
 
 
-const AllClientProjects = () => {
+const AllClientProjects = (props) => {
   const projects = useSelector(selectProjects);
-
+  const dispatch = useDispatch()
+  
   console.log("ALL PROJECT: ", projects)
   
-  const dispatch = useDispatch()
-
-  const { clientId } = useParams()
   
   useEffect(() => {
-    dispatch(fetchProjectsByClientAsync(clientId));
+    dispatch(fetchProjectsByClientAsync(props.id));
   }, [dispatch] );
 
   return (

@@ -53,7 +53,7 @@ await Request.create({
 await Project.create({
    clientId: 1,
    freelancerId: 1,
-  status: 'Pending',
+  status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
@@ -61,7 +61,7 @@ await Project.create({
 await Project.create({
    clientId: 2,
    freelancerId: 2,
-  status: 'Pending',
+  status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })

@@ -17,6 +17,10 @@ const Freelancer = db.define("freelancer", {
 imageUrl: {
     type: Sequelize.STRING,
   },
+  email: {
+    type: Sequelize.STRING,
+    // allowNull: false
+  },
   rating: {
     type: Sequelize.FLOAT,
     allowNull: true,

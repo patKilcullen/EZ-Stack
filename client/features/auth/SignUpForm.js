@@ -22,11 +22,12 @@ const SignUpForm = () => {
     const password = evt.target.password.value;
     const firstName = evt.target.firstName.value
     const lastName = evt.target.lastName.value
+    const email = evt.target.email.value
     const option = evt.target.dispatchRoute.value;
     if(option === 'client'){
-    dispatch(clientAuthenticate({ username, password, firstName, lastName, method: 'signup' }));
+    dispatch(clientAuthenticate({ username, password, firstName, lastName, email, method: 'signup' }));
     }else if(option === 'freelancer'){
-    dispatch(freelancerAuthenticate({username, password, firstName, lastName, method: 'signup'}))
+    dispatch(freelancerAuthenticate({username, password, firstName, lastName, email, method: 'signup'}))
     }
   }; 
 
@@ -56,6 +57,12 @@ const SignUpForm = () => {
             <small>Last Name</small>
           </label>
           <input name="lastName" type="text" />
+        </div>
+        <div>
+          <label htmlFor="email">
+            <small>Email</small>
+          </label>
+          <input name="email" type="text" />
         </div>
         <div>
           <select name='dispatchRoute'>

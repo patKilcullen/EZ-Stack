@@ -9,14 +9,21 @@ import AllProjects from '../features/projects/allProjects';
 import SingleProject from '../features/projects/singleProject';
 import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
+import ClientRequests from '../features/requests/ClientRequests'
+
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
-import ClientProfile from '../features/profile/clientProfile';
-import FreelancerProfile from '../features/profile/freelancerProfile';
+import ClientProfile from '../features/profile/ClientProfile';
+import FreelancerProfile from '../features/profile/FreelancerProfile';
 import SignUpForm from '../features/auth/SignUpForm';
 import UpdateClient from '../features/client/UpdateClient';
+
 import AboutUs from "../features/footer/AboutUs";
 import ContactUs from "../features/footer/ContactUs"
+
+import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
+import AddProject from '../features/projects/postProject';
+
 
 /**
  * COMPONENT
@@ -51,6 +58,11 @@ const AppRoutes = () => {
             element={<SingleProject />}
           />
           <Route
+            path="/projects/:projectId/requests"
+            element={<ClientRequests />}
+          />
+
+          <Route
             path="/projects/client/:clientId"
             element={<AllClientProjects />}
             
@@ -71,9 +83,15 @@ const AppRoutes = () => {
           />
           <Route path='/profile' element={<ClientProfile />} />
 
+
           <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
           
+
+          <Route path='profile/update' element={<UpdateClient />} />
+          <Route path='/post' element={<AddProject />} />
+
+
         </Routes>
       </div>
     )
@@ -114,8 +132,12 @@ const AppRoutes = () => {
           />
           <Route path='/profile' element={<FreelancerProfile />} />
 
+
           <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
+
+          <Route path='profile/update' element={<UpdateFreelancer />} />
+
         </Routes>
       </div>
     )
@@ -156,14 +178,17 @@ const AppRoutes = () => {
           <Route
             path="/projects/freelancer/:freelancerId"
             element={<AllFreelancerProjects />}
-
            />
+
 
           <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
 
 
           {/* not logged in single Client view */}
+
+        {/* not logged in single Client view */}
+
           <Route path="/client-profile/:id" element={<Client/>} />
 
           <Route

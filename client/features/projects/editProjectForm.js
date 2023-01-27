@@ -7,9 +7,11 @@ const EditProject = (props) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
+  const freelancer = useSelector((state) => state.freelancerAuth.me.id)
 
-  const { projectId } = props
+  const client = useSelector((state) => state.clientAuth.clientMe.id)
+
+  const { projectId, projectClientId, projectFreelancerId } = props
 
   const id = projectId
   
@@ -35,10 +37,11 @@ const EditProject = (props) => {
     });
   };
 
+  
   return (
     <div id="editProject">
       <form onSubmit={handleEditProject}>
-        {freelancerIsLoggedIn ? (
+        {freelancer === projectFreelancerId ? (
         <div id='dropDown'>
         <label htmlFor="status">Status:</label>
         <select
@@ -50,8 +53,11 @@ const EditProject = (props) => {
         <option>Ongoing</option>
         <option>Complete</option>
         </select>
+        <button type="submit">Edit Project</button>
         </div> ) : null }
 
+        {client === projectClientId ? (
+          <div>
         <label htmlFor="description">Description:</label>
         <input
           name="description"
@@ -65,6 +71,9 @@ const EditProject = (props) => {
           onChange={(e) => setCategory(e.target.value)}
         />
         <button type="submit">Edit Project</button>
+        </div>
+        ) : null} 
+        
       </form>
     </div>
   );
