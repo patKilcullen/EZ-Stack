@@ -25,6 +25,8 @@ import ContactUs from "../features/footer/ContactUs";
 import UpdateFreelancer from "../features/freelancers/UpdateFreelancer";
 import AddProject from "../features/projects/postProject";
 
+import AddRequest from "../features/requests/AddRequest";
+
 /**
  * COMPONENT
  */
@@ -92,8 +94,12 @@ const AppRoutes = () => {
           <Route path="/projects/:projectId" element={<SingleProject />} />
 
           <Route
-            path="/projects/:freelancerId/requests"
+            path="/freelancer/:freelancerId/requests"
             element={<FreelancerRequests />}
+          />
+          <Route
+            path="/projects/:projectId/addrequest"
+            element={<AddRequest />}
           />
           <Route
             path="/projects/client/:clientId"
@@ -112,6 +118,7 @@ const AppRoutes = () => {
           <Route path="/AboutUs" element={<AboutUs />}></Route>
 
           <Route path="profile/update" element={<UpdateFreelancer />} />
+          <Route path="/client-profile/:id" element={<Client />} />
         </Routes>
       </div>
     );

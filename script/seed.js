@@ -73,7 +73,7 @@ await Project.create({
  category: faker.name.jobType()
 })
 
-await Project.create({
+await Project.create({ 
   clientId: 4,
   freelancerId: 2,
  status: 'Ongoing',

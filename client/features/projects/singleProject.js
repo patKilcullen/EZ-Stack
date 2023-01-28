@@ -51,6 +51,7 @@ const SingleProject = () => {
           </div>
         ): null }
         { client ? <ClientRequests clientId={client} projectId={project.singleProject.clientId}/> : null}
+        <p><Link to={`/projects/${project.singleProject.id}/addrequest`}>Send a proposal to work on this project.</Link></p>
     </div>
   )
 };

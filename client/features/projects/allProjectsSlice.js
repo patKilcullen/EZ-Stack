@@ -58,7 +58,7 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
   });
 
   export const selectProjects = (state) => {
-    console.log('SELECT PROJECTS ', state)
+
     return state.allProjects
 }
 
