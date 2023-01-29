@@ -13,15 +13,15 @@ export const fetchFreelancerRequests = createAsyncThunk('fetchfreelancerRequests
 
 
 
-export const postRequestAsync = createAsyncThunk("postRequest", async(request)=>{
-    try{
-        const {data} = await axios.post(`/api/requests/`, request)
-        return data
-    }catch(error){
-        console.log("Error in post request thunk: ", error)
-    }
+// export const postRequestAsync = createAsyncThunk("postRequest", async(request)=>{
+//     try{
+//         const {data} = await axios.post(`/api/requests/`, request)
+//         return data
+//     }catch(error){
+//         console.log("Error in post request thunk: ", error)
+//     }
     
-})
+// })
 
 
 

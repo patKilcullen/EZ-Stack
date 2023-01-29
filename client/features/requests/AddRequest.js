@@ -7,6 +7,7 @@ import {
   fetchSingleProjectAsync,
 } from "../projects/singleProjectSlice";
 import { postRequestAsync } from "./freelancerRequestSlice";
+import { fetchFreelancerRequests } from "./freelancerRequestSlice";
 import axios from "axios";
 
 const AddRequest = () => {
@@ -22,19 +23,37 @@ const AddRequest = () => {
     dispatch(fetchSingleProjectAsync(projectId));
   }, [dispatch]);
 
-  const handleSubmit = (e) => {
+//   const handleSubmit = (e) => {
+//     e.preventDefault();
+//     dispatch(
+//       postRequestAsync({
+//         status: "PENDING",
+//         requestMessage: requestMessage,
+//         projectId: Number(projectId),
+//         freelancerId: freelancerId,
+//       })
+//     ).then(()=>{
+//         dispatch(fetchFreelancerRequests(freelancerId))
+//     })
+//     .then(() => {
+//       navigate(`/freelancer/${freelancerId}/requests`);
+//     });
+//   };
+const handleSubmit = async (e) => {
     e.preventDefault();
-    dispatch(
-      postRequestAsync({
+    await axios.post(`/api/requests/`, {
         status: "PENDING",
         requestMessage: requestMessage,
         projectId: Number(projectId),
         freelancerId: freelancerId,
       })
-    ).then(() => {
+    .then(() => {
       navigate(`/freelancer/${freelancerId}/requests`);
     });
   };
+
+
+
   return (
     <div>
       <h1>Submit a proposal to work on:</h1>
