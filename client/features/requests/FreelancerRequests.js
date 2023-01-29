@@ -1,9 +1,9 @@
 import React, { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import {fetchFreelancerRequests, selectFreelancerRequests} from './FreelancerRequestslice'
+import {fetchFreelancerRequests, selectFreelancerRequests, deleteRequestAsync} from './FreelancerRequestSlice'
 import { useParams, Link } from "react-router-dom";
 
-import { fetchSingleFreelancer, selectSingleFreelancer } from "../freelancers/singleFreelancerSlice";
+import { fetchSingleFreelancer  } from "../freelancers/singleFreelancerSlice";
 
 export default function FreelancerRequests (props) {
 //hardcoded data 
@@ -12,10 +12,8 @@ export default function FreelancerRequests (props) {
  const requests = useSelector(selectFreelancerRequests)
  const {freelancerId} = useParams()
  const id = useSelector((state) => state.freelancerAuth.me.id)
- const freelancer = useSelector(selectSingleFreelancer)
-// console.log("HERE", typeof id, id)
-// console.log("HERE>>", typeof freelancerId, freelancerId)
-//  console.log("REQUESTS: ", requests)
+console.log("ID: ", typeof id, id)
+
 
 useEffect(()=>{
     dispatch(fetchSingleFreelancer(id)).then(()=>{
@@ -26,7 +24,12 @@ useEffect(()=>{
  
 }, [])
 
-
+const handleDeleteRequest = (projectId)=>{
+  console.log("PROID: ", typeof projectId, projectId)
+  dispatch(deleteRequestAsync({projectId: projectId, freelancerId: id})).then(()=>{
+    dispatch(fetchFreelancerRequests(id.toString()))
+  })
+}
 
   return (
 <div>
@@ -38,6 +41,7 @@ useEffect(()=>{
             <h3>Project: <Link to={`/projects/${request.project.id}`}>{request.project.description}</Link> </h3>
             <p>Request Status: {request.status}</p>
               <p>Your Request Message: {request.requestMessage}</p>
+              <button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposale</button>
           </li>
           </div>
         )): null}

@@ -78,3 +78,14 @@ res.send(request)
 
 })
 
+router.delete("/:projectId/:freelancerId", async (req, res, next) => {
+  // console.log("DELETE REQUES Route", req.body)
+  try {
+    const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.params.freelancerId}})
+    console.log("REQUESTccccL ", request)
+    res.send( await request[0].destroy());
+  } catch (error) {
+    console.log("Error in delete product route");
+    next(error);
+  }
+});

@@ -77,7 +77,7 @@ const handleSubmit = async (e) => {
       <form onSubmit={handleSubmit}>
         <div>
           <textarea
-            style={{ width: 600, height: 600 }}
+            style={{ width: 800, height: 200 }}
             type="textarea"
             name="requestMessage"
             value={requestMessage}
