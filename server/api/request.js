@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Freelancer, Project, Client }} = require('../db')
+const { models: { Freelancer, Project}} = require('../db')
 const Request = require('../db/models/Request')
 module.exports = router
 
@@ -56,8 +56,6 @@ router.put("/:projectId", async (req, res, next) => {
   console.log("REQ BODY: ", req.body)
   try {
     const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
-    console.log("PROJECT: ", request)
-    const updateRequest = request.dataValues
     res.send(await request[0].update(req.body));
   } catch (error) {
     console.log("Error in update project route");
@@ -65,4 +63,20 @@ router.put("/:projectId", async (req, res, next) => {
   }
 });
 
+
+
+// create request
+
+router.post("/", async (req,res,next)=>{
+  console.log("HIT POST ROUTE")
+try{
+const  request  = await Request.create(req.body)
+console.log("REQUEST: ", request)
+res.send(request)
+}catch(error){
+  console.log("Error in create request route");
+    next(error);
+}
+
+})
 
