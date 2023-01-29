@@ -16,6 +16,7 @@ export default function FreelancerRequests (props) {
 console.log("HERE", typeof id, id)
 console.log("HERE>>", typeof freelancerId, freelancerId)
  console.log("REQUESTS: ", requests)
+
 useEffect(()=>{
     dispatch(fetchSingleFreelancer(id)).then(()=>{
         dispatch(fetchFreelancerRequests(id.toString()))

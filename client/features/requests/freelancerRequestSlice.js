@@ -13,6 +13,17 @@ export const fetchFreelancerRequests = createAsyncThunk('fetchfreelancerRequests
 
 
 
+export const postRequestAsync = createAsyncThunk("postRequest", async(request)=>{
+    try{
+        const {data} = await axios.post(`/api/requests/`, request)
+        return data
+    }catch(error){
+        console.log("Error in post request thunk: ", error)
+    }
+    
+})
+
+
 
 const freelancerRequestsSlice = createSlice({
     name: 'freelancerRequests',
@@ -23,6 +34,10 @@ const freelancerRequestsSlice = createSlice({
             console.log("AXION LOADL ")
             return action.payload
         })
+        // builder.addCase(postRequestAsync.fulfilled, (state, action)=>{
+        //     console.log("AX PYLOAD: ", action.payload)
+        //     state.push(action.payload)
+        // } )
     }
 })
 
