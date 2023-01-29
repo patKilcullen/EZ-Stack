@@ -1,11 +1,13 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import SideNav from "../navbar/SideNav";
+import AllProjects from "../projects/allProjects";
+import  AllFreelancers  from "../freelancers/AllFreelancers";
 
 /**
  * COMPONENT
  */
-const Home = (props) => {
+const Home = () => {
   const clientUsername = useSelector(
     (state) => state.clientAuth.clientMe.username
   );
@@ -23,8 +25,7 @@ const Home = (props) => {
   if (freelancerIsLoggedIn) {
     return (
         <div id="right-body">
-          <h3>Welcome, {freelancerUsername}</h3>
-
+          <AllProjects />
         </div>
     );
   }
@@ -32,14 +33,14 @@ const Home = (props) => {
   if (clientIsLoggedIn) {
     return (
         <div id="right-body">
-          <h3>Welcome, {clientUsername}</h3>
+          <AllFreelancers />
         </div>
     );
   }
 
   return(
       <div id="right-body">
-        <h3>Welcome!</h3>
+        <AllFreelancers />
     </div>
   )
     

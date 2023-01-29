@@ -25,7 +25,7 @@ async function seed() {
     await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      imageUr: faker.image.imageUrl(),
+      imageUrl: faker.image.imageUrl(),
       description: faker.commerce.productDescription(),
       categories: faker.name.jobType(),
       username: faker.internet.userName(),
