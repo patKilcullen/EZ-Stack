@@ -1,5 +1,5 @@
 const router = require('express').Router()
-const { models: { Freelancer }} = require('../db')
+const { models: { Freelancer, Project}} = require('../db')
 const Request = require('../db/models/Request')
 module.exports = router
 
@@ -25,10 +25,11 @@ router.get('/', async (req, res, next) => {
 //     }
 //   });
 
-  //GET route  - 
-router.get("/:projectId", async (req, res, next) => {
+  //GET route by ProjectID - 
+router.get("/product/:projectId/", async (req, res, next) => {
+  console.log("HOLA: ")
   try {
-      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: Freelancer});
+      const request = await Request.findAll({where: {projectId : req.params.projectId}, include: [Freelancer, Project]});
     // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
     res.send(request);
   } catch (err) {
@@ -36,6 +37,18 @@ router.get("/:projectId", async (req, res, next) => {
   }
 });
 
+// GET ROUTE BY FREELANCERID
+router.get("/freelancer/:freelancerId", async (req, res, next) => {
+  console.log("HOLA: ")
+  try {
+      const request = await Request.findAll({where: {freelancerId : req.params.freelancerId}, include: [Freelancer, Project]});
+    // const request = await Request.findAll({where: {projectId : req.params.projectId, status: 'PENDING'}, include: Freelancer});
+
+    res.send(request);
+  } catch (err) {
+    next(err);
+  }
+});
 
 
 // Update Request Status
@@ -43,8 +56,6 @@ router.put("/:projectId", async (req, res, next) => {
   console.log("REQ BODY: ", req.body)
   try {
     const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
-    console.log("PROJECT: ", request)
-    const updateRequest = request.dataValues
     res.send(await request[0].update(req.body));
   } catch (error) {
     console.log("Error in update project route");
@@ -53,3 +64,28 @@ router.put("/:projectId", async (req, res, next) => {
 });
 
 
+
+// create request
+
+router.post("/", async (req,res,next)=>{
+try{
+const  request  = await Request.create(req.body)
+res.send(request)
+}catch(error){
+  console.log("Error in create request route");
+    next(error);
+}
+
+})
+
+router.delete("/:projectId/:freelancerId", async (req, res, next) => {
+  // console.log("DELETE REQUES Route", req.body)
+  try {
+    const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.params.freelancerId}})
+    console.log("REQUESTccccL ", request)
+    res.send( await request[0].destroy());
+  } catch (error) {
+    console.log("Error in delete product route");
+    next(error);
+  }
+});

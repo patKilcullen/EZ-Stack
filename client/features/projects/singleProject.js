@@ -33,7 +33,7 @@ const SingleProject = () => {
       
   };
 
-  console.log(client, project.singleProject)
+  console.log("Hi", client, project.singleProject.clientId)
 
   return (
     <div id="allProjects">
@@ -50,7 +50,8 @@ const SingleProject = () => {
           <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
           </div>
         ): null }
-        { client ? <ClientRequests clientId={client} projectId={project.singleProject.clientId}/> : null}
+        { clientIsLoggedIn && client ? <ClientRequests clientId={client} projectId={project.singleProject.clientId}/> : null}
+       {freelancerIsLoggedIn ? <p><Link to={`/projects/${project.singleProject.id}/addrequest`}>Send a proposal to work on this project.</Link></p>: null}
     </div>
   )
 };

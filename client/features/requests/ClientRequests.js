@@ -9,7 +9,10 @@ export default function ClientRequests (props) {
  const dispatch = useDispatch()
  const requests = useSelector(selectClientRequests)
  const {projectId} = useParams()
- console.log("ID: ", projectId)
+ 
+// need to get project id from project id and make sure the clientID matches
+ const id  = useSelector((state) => state.clientAuth.clientMe.id)
+ console.log("ID: ", id)
 
 useEffect(()=>{
     dispatch(fetchClientRequests(projectId))
@@ -30,15 +33,14 @@ const handleUnassignUser = (id)=>{
     dispatch(fetchClientRequests(projectId))
   })
 
-  console.log(props.clientId, props.projectId)
-  
- 
   }
 
+  console.log("props.clientId, props.projectId",props.clientId, props.projectId )
+  console.log("props",props )
   return (
 <div>
       <ul>
-
+        <h3>Requests: </h3>
         {props.clientId === props.projectId ? requests.map((request) => (
           <div>
           <li key={request.id}>
@@ -49,7 +51,7 @@ const handleUnassignUser = (id)=>{
           <button onClick={()=>handleAssignUser(request.freelancer.id)}>Assign {request.freelancer.firstName} {request.freelancer.lastName} to Project</button>
           <button onClick={()=>handleUnassignUser(request.freelancer.id)}>Unassign {request.freelancer.firstName} {request.freelancer.lastName} from Project</button>
           </div>
-        )): null}
+        )): "Currently no requests"}
       </ul>
     </div>
   )
