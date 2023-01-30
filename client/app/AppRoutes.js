@@ -151,6 +151,7 @@ const AppRoutes = () => {
 
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
+          <Route path="/*" element={<Home />} />
 
           <Route to="/home" element={<Home />} />
 

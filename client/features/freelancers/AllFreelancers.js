@@ -33,7 +33,7 @@ const handleSearch = () =>{
           <li>
             <Link to={`/freelancers/${freelancers.id}`}>
               <p>{freelancers.firstName} {freelancers.lastName}</p>
-              <img>{freelancers.imageUrl}</img>
+              <p>{freelancers.imageUrl}</p>
               <p>{freelancers.categories}</p>
             </Link>
           </li>

@@ -18,7 +18,7 @@ dispatch(fetchSingleFreelancer(id))
   return (
     <div>
         <p>{freelancer.firstName} {freelancer.lastName}</p>
-        <img>{freelancer.imageUrl}</img>
+        <p>{freelancer.imageUrl}</p>
         <p>{freelancer.categories}</p>
     </div>
   )
