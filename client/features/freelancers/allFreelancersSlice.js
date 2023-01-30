@@ -11,6 +11,11 @@ export const fetchAllFreelancers = createAsyncThunk ('allFreelancers', async ()=
 
 })
 
+export const fetchFreelancersByCategoryAsync = createAsyncThunk("allFreelancersByCategory", async (category) => {
+    const { data } = await axios.get(`/api/freelancers/cat/${category}`);
+    return data;
+  });
+
 
 const allFreelancersSlice = createSlice({
     name: "allFreelancers",
@@ -18,6 +23,9 @@ const allFreelancersSlice = createSlice({
     reducers: {},
     extraReducers: (builder)=>{
         builder.addCase(fetchAllFreelancers.fulfilled, (state, action)=>{
+            return action.payload
+        })
+        builder.addCase(fetchFreelancersByCategoryAsync.fulfilled, (state, action)=>{
             return action.payload
         })
     }

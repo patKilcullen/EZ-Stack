@@ -1,23 +1,25 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Route, Routes } from "react-router-dom";
-import AuthForm from "../features/auth/AuthForm";
-import { AllFreelancers } from "../features/freelancers/AllFreelancers";
-import SingleFreelancer from "../features/freelancers/SingleFreelancer";
-import Home from "../features/home/Home";
-import AllProjects from "../features/projects/allProjects";
-import SingleProject from "../features/projects/singleProject";
-import AllClientProjects from "../features/projects/allClientProjects";
-import AllFreelancerProjects from "../features/projects/allFreelancerProjects";
-import ClientRequests from "../features/requests/ClientRequests";
+
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Route, Routes } from 'react-router-dom';
+import AuthForm from '../features/auth/AuthForm';
+import  AllFreelancers  from '../features/freelancers/AllFreelancers';
+import SingleFreelancer from '../features/freelancers/SingleFreelancer';
+import Home from '../features/home/Home';
+import AllProjects from '../features/projects/allProjects';
+import SingleProject from '../features/projects/singleProject';
+import AllClientProjects from '../features/projects/allClientProjects';
+import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
+import ClientRequests from '../features/requests/ClientRequests'
 import FreelancerRequests from "../features/requests/FreelancerRequests"
 
-import { clientMe, freelancerMe } from "./store";
-import Client from "../features/client/Client";
-import ClientProfile from "../features/profile/ClientProfile";
-import FreelancerProfile from "../features/profile/FreelancerProfile";
-import SignUpForm from "../features/auth/SignUpForm";
-import UpdateClient from "../features/client/UpdateClient";
+import { clientMe, freelancerMe } from './store';
+import Client from '../features/client/Client';
+import ClientProfile from '../features/profile/ClientProfile';
+import FreelancerProfile from '../features/profile/FreelancerProfile';
+import SignUpForm from '../features/auth/SignUpForm';
+import UpdateClient from '../features/client/UpdateClient';
+
 
 import AboutUs from "../features/footer/AboutUs";
 import ContactUs from "../features/footer/ContactUs";
@@ -132,6 +134,10 @@ const AppRoutes = () => {
 
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
+          <Route path="/*" element={<Home />} />
+
+          <Route to="/home" element={<Home />} />
+
 
         <Route
           path="/login"

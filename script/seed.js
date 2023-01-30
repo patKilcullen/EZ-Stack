@@ -25,7 +25,7 @@ async function seed() {
     await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      imageUr: faker.image.imageUrl(),
+      imageUrl: faker.image.imageUrl(),
       description: faker.commerce.productDescription(),
       categories: faker.name.jobType(),
       username: faker.internet.userName(),
@@ -34,11 +34,16 @@ async function seed() {
     });
 }
 
-// await Request.create({
-//   // projectId: 1,
-//   // freelancerId: 2,
-//   status:"PENDING",
-//   requestMessage: faker.lorem.paragraph(),  
+await Freelancer.create({
+  username: 'aaaaa',
+  password: '12345'
+})
+await Request.create({
+  // projectId: 1,
+  // freelancerId: 2,
+  status:"PENDING",
+  requestMessage: faker.lorem.paragraph(),  
+
 
 // });
 
@@ -52,7 +57,7 @@ async function seed() {
 
 await Project.create({
    clientId: 1,
-   freelancerId: 1,
+   freelancerId: 102,
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()

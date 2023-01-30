@@ -15,6 +15,17 @@ router.get("/", async (req, res, next) => {
     next(error);
   }
 });
+
+router.get("/cat/:category", async (req, res, next) => {
+  try {
+    const projects = await Project.findAll({ where: {category: req.params.category}});
+    res.send(projects);
+  } catch (error) {
+    console.log("Error in all projects route");
+    next(error);
+  }
+});
+
 // All projects for individual client route
 router.get("/client/:clientId", async (req, res, next) => {
     try {

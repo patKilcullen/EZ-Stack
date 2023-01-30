@@ -6,17 +6,18 @@ import EditProject from "./editProjectForm";
 
 
 
-const AllFreelancerProjects = (props) => {
+const AllFreelancerProjects = () => {
   const projects = useSelector(selectProjects);
 
   console.log("ALL PROJECT: ", projects)
   
   const dispatch = useDispatch()
 
-  const { freelancerId } = useParams()
+  const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+  
   
   useEffect(() => {
-    dispatch(fetchProjectsByFreelancerAsync(props.id));
+    dispatch(fetchProjectsByFreelancerAsync(freelancer));
   }, [dispatch] );
 
   return (
