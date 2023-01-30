@@ -144,13 +144,7 @@ const AppRoutes = () => {
   }else{
     return(
     <Routes>
-          {/* <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
-
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} /> */}
+          
           <Route path="/*" element={<Home />} />
 
           <Route to="/home" element={<Home />} />

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProjectAsync, editSingleProject } from "./singleProjectSlice";
+import Button from '@mui/material/Button';
+
 
 const EditProject = (props) => {
   const [status, setStatus] = useState("");
@@ -43,7 +45,6 @@ const EditProject = (props) => {
       <form onSubmit={handleEditProject}>
         {freelancer === projectFreelancerId ? (
         <div id='dropDown'>
-        <label htmlFor="status">Status:</label>
         <select
           name="status"
           value={status}
@@ -53,24 +54,30 @@ const EditProject = (props) => {
         <option>Ongoing</option>
         <option>Complete</option>
         </select>
-        <button type="submit">Edit Project</button>
+        <Button  variant="contained" type="submit">Edit Status</Button>
         </div> ) : null }
 
         {client === projectClientId ? (
           <div>
-        <label htmlFor="description">Description:</label>
-        <input
+            <div>
+        <textarea
+        className = 'descriptionInput'
           name="description"
           value={description}
+          placeholder="Edit Description"
           onChange={(e) => setDescription(e.target.value)}
         />
-        <label htmlFor="category">Category:</label>
+        </div>
+        <div>
         <input
+          className="catInput"
           name="category"
           value={category}
+          placeholder='edit category'
           onChange={(e) => setCategory(e.target.value)}
         />
-        <button type="submit">Edit Project</button>
+        </div>
+        <Button variant="contained" type="submit">Edit Project</Button>
         </div>
         ) : null} 
         

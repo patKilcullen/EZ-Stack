@@ -29,16 +29,6 @@ if (clientIsLoggedIn) {
         Fivver Clone<span>Some Slogan</span>
         </h1>
       <div id="navbar-right">
-        <div id="search-box">
-            <input
-              type="text"
-              placeholder="S e a r c h i n g . . ."
-              id="search-bar"
-            ></input>
-            <button type="submit" id="go-button">
-              Go
-            </button>
-          </div>
           <nav>
               <div
               style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
@@ -65,16 +55,6 @@ if (freelancerIsLoggedIn) {
            Fivver Clone<span>Some Slogan</span>
            </h1>
          <div id="navbar-right">
-           <div id="search-box">
-               <input
-                 type="text"
-                 placeholder="S e a r c h i n g . . ."
-                 id="search-bar"
-               ></input>
-               <button type="submit" id="go-button">
-                 Go
-               </button>
-             </div>
              <nav>
                  <div
                  style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
@@ -100,16 +80,6 @@ if (freelancerIsLoggedIn) {
              Fivver Clone<span>Some Slogan</span>
              </h1>
            <div id="navbar-right">
-             <div id="search-box">
-                 <input
-                   type="text"
-                   placeholder="S e a r c h i n g . . ."
-                   id="search-bar"
-                 ></input>
-                 <button type="submit" id="go-button">
-                   Go
-                 </button>
-               </div>
                <nav>
                    <div
                    style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
