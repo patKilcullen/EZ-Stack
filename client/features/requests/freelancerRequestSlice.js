@@ -12,9 +12,8 @@ export const fetchFreelancerRequests = createAsyncThunk('fetchfreelancerRequests
 })
 
 
+// Could add this directly to component
 export const deleteRequestAsync = createAsyncThunk('deleteRequest', async(info)=>{
-    console.log("HIT DELETE REQUEST THUNK: ", info.projectId)
-    console.log("HIT DELETE REQUEST THU: ", info.freelancerId)
     try{
       await axios.delete(`/api/requests/${info.projectId}/${info.freelancerId}`)
     }catch(error){

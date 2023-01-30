@@ -5,6 +5,8 @@ import { useParams, Link } from "react-router-dom";
 
 import { fetchSingleFreelancer  } from "../freelancers/singleFreelancerSlice";
 
+import axios from 'axios'
+
 export default function FreelancerRequests (props) {
 //hardcoded data 
 
@@ -12,7 +14,6 @@ export default function FreelancerRequests (props) {
  const requests = useSelector(selectFreelancerRequests)
  const {freelancerId} = useParams()
  const id = useSelector((state) => state.freelancerAuth.me.id)
-console.log("ID: ", typeof id, id)
 
 
 useEffect(()=>{
@@ -24,9 +25,15 @@ useEffect(()=>{
  
 }, [])
 
-const handleDeleteRequest = (projectId)=>{
-  console.log("PROID: ", typeof projectId, projectId)
-  dispatch(deleteRequestAsync({projectId: projectId, freelancerId: id})).then(()=>{
+// const handleDeleteRequest = (projectId)=>{
+//   dispatch(deleteRequestAsync({projectId: projectId, freelancerId: id})).then(()=>{
+//     dispatch(fetchFreelancerRequests(id.toString()))
+//   })
+// }
+
+const handleDeleteRequest = async (projectId)=>{
+  await axios.delete(`/api/requests/${projectId}/${freelancerId}`)
+  .then(()=>{
     dispatch(fetchFreelancerRequests(id.toString()))
   })
 }
