@@ -23,6 +23,9 @@ import ContactUs from "../features/footer/ContactUs"
 
 import UpdateFreelancer from '../features/freelancers/UpdateFreelancer';
 import AddProject from '../features/projects/postProject';
+import AllMessages from '../features/messages/AllMessages';
+import IndividualMessagesClient from '../features/messages/IndividualMessagesClient';
+import IndividualMessagesFreelancer from '../features/messages/IndividualMessagesFreelancer';
 
 
 /**
@@ -91,6 +94,9 @@ const AppRoutes = () => {
           <Route path='profile/update' element={<UpdateClient />} />
           <Route path='/post' element={<AddProject />} />
 
+          <Route path='/messages' element={<AllMessages />} />
+          <Route path='/messages/:id' element={<IndividualMessagesClient/>} />
+
 
         </Routes>
       </div>
@@ -137,6 +143,8 @@ const AppRoutes = () => {
           <Route path="/AboutUs" element={<AboutUs />}></Route>
 
           <Route path='profile/update' element={<UpdateFreelancer />} />
+          <Route path='/messages' element={<AllMessages />} />
+          <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
 
         </Routes>
       </div>
@@ -144,12 +152,12 @@ const AppRoutes = () => {
   }else{
     return(
     <Routes>
-          {/* <Route
+          <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
           />
 
-          <Route path="/*" element={<Home />} />
+          {/* <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
 
           <Route

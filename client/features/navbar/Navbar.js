@@ -45,6 +45,7 @@ const Navbar = () => {
                 <Link to='profile'>My Account</Link>
                 <Link to='/freelancers'>Freelancers</Link>
                 <Link to="/create-project">Post a Project</Link>
+                <Link to='/messages'>Messages</Link>
                 <button type="button" onClick={logoutAndRedirectHome}>
                   Logout
                 </button>
