@@ -30,6 +30,22 @@ export const editSingleProject = createAsyncThunk(
   }
 );
 
+export const editAssignFreelancer = createAsyncThunk(
+  "editAssignFreelancer",
+  async (project) => {
+    try {
+      const { data } = await axios.put(`/api/projects/${project.projectId}`, project);
+      return data;
+    } catch (err) {
+      console.log(err);
+    }
+  }
+);
+
+
+
+
+
 const singleProjectSlice = createSlice({
   name: "singleProject",
   initialState,
@@ -39,6 +55,9 @@ const singleProjectSlice = createSlice({
       state.singleProject = action.payload;
     });
     builder.addCase(editSingleProject.fulfilled, (state, action) => {
+      state.singleProject = action.payload;
+    });
+    builder.addCase(editAssignFreelancer.fulfilled, (state, action) => {
       state.singleProject = action.payload;
     });
   },

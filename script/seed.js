@@ -38,14 +38,7 @@ await Freelancer.create({
   username: 'aaaaa',
   password: '12345'
 })
-await Request.create({
-  // projectId: 1,
-  // freelancerId: 2,
-  status:"PENDING",
-  requestMessage: faker.lorem.paragraph(),  
 
-
-// });
 
 // await Request.create({
 //   // projectId: 2,
