@@ -24,8 +24,15 @@ import UpdateClient from '../features/client/UpdateClient';
 import AboutUs from "../features/footer/AboutUs";
 import ContactUs from "../features/footer/ContactUs";
 
+
+
+import AllMessages from '../features/messages/AllMessages';
+import IndividualMessagesClient from '../features/messages/IndividualMessagesClient';
+import IndividualMessagesFreelancer from '../features/messages/IndividualMessagesFreelancer';
+
 import UpdateFreelancer from "../features/freelancers/UpdateFreelancer";
 import AddProject from "../features/projects/postProject";
+
 
 import AddRequest from "../features/requests/AddRequest";
 
@@ -78,6 +85,15 @@ const AppRoutes = () => {
           <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
 
+          
+
+          <Route path='profile/update' element={<UpdateClient />} />
+          <Route path='/post' element={<AddProject />} />
+
+          <Route path='/messages' element={<AllMessages />} />
+          <Route path='/messages/:id' element={<IndividualMessagesClient/>} />
+
+
           <Route path="profile/update" element={<UpdateClient />} />
           <Route path="/post" element={<AddProject />} />
         </Routes>
@@ -119,22 +135,25 @@ const AppRoutes = () => {
           <Route path="/contact" element={<ContactUs />}></Route>
           <Route path="/AboutUs" element={<AboutUs />}></Route>
 
-          <Route path="profile/update" element={<UpdateFreelancer />} />
+
+          <Route path='profile/update' element={<UpdateFreelancer />} />
+          <Route path='/messages' element={<AllMessages />} />
+          <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
+
         </Routes>
       </div>
+    )
+  }else{
+    return(
+    <Routes>
+          <Route
 
-   
-    );
-  } else {
-    return (
-      <Routes>
-        {/* <Route
             path="/*"
             element={<AuthForm name="login" displayName="Login" />}
           />
 
-          <Route path="/*" element={<Home />} />
+          {/* <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
 
           <Route path="/*" element={<Home />} />
