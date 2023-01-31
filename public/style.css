@@ -70,6 +70,13 @@ li {
   margin-top: 10px;
   border: white;
 }
+.signUpForm {
+  margin: 50px;
+}
+.signUpInput {
+  margin: 10px;
+  background-color: aliceblue;
+}
 
 /* Header/Nav Starts */
 nav a {
