@@ -8,6 +8,11 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
       return data;
     });
 
+    export const fetchProjectsByCategoryAsync = createAsyncThunk("allProjectsByCategory", async (category) => {
+      const { data } = await axios.get(`/api/projects/cat/${category}`);
+      return data;
+    });
+
     export const fetchProjectsByClientAsync = createAsyncThunk("allProjectsByClient", async (id) => {
         const { data } = await axios.get(`/api/projects/client/${id}`);
         return data;
@@ -37,6 +42,10 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
         return action.payload;
         
       });
+      builder.addCase(fetchProjectsByCategoryAsync.fulfilled, (state, action) => {
+        return action.payload;
+        
+      });
       builder.addCase(fetchProjectsByClientAsync.fulfilled, (state, action) => {
         return action.payload;
       });
@@ -58,7 +67,7 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
   });
 
   export const selectProjects = (state) => {
-    console.log('SELECT PROJECTS ', state)
+
     return state.allProjects
 }
 
