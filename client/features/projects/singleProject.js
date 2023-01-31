@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { selectSingleProject } from "../projects/singleProjectSlice";
@@ -11,17 +11,26 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import axios from "axios";
+
 
 
 
 const SingleProject = () => {
+const [error, setError] = useState("")
+const navigate = useNavigate()
 
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
   const client = useSelector((state) => state.clientAuth.clientMe.id)
   
-  const navigate = useNavigate()
   
+
+  const c = useSelector((state) => state.clientAuth.clientMe)
+
+  const freelancer = useSelector((state) => state.freelancerAuth.me)
+  console.log("FREELANCER: ", freelancer)
+
   const project = useSelector(selectSingleProject);
   
   const  { projectId }  = useParams()
@@ -33,10 +42,20 @@ const SingleProject = () => {
   }, [dispatch]);
 
   const handleDelete = (projectId) => {
+
     dispatch(deleteSingleProjectAsync(projectId)).then(()=>navigate('/home')) 
   };
 
   
+  const handleCheckForProposal = async ()=>{
+    const request = await axios.get(`/api/requests/${projectId}/${freelancer.id}`)
+    console.log("REQUEST: ", request)
+    request.data[0] ? 
+    setError("You already sent a proposal to this project")
+    : navigate(`/projects/${projectId}/addrequest`)
+  }
+
+
   return (
     <div className="singleView">
         <Card sx={{ maxWidth: 345 }}>
@@ -61,7 +80,20 @@ const SingleProject = () => {
           <EditProject projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
         </div>
         ): null}
-        { client ? <ClientRequests clientId={client} projectId={project.singleProject.clientId}/> : null}
+
+        
+
+        { client === project.singleProject.clientId ? (
+          <div id='delete'>
+          <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
+          </div>
+        ): null }
+        { clientIsLoggedIn && client ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null}
+        {/* { clientIsLoggedIn && client ? <ClientRequests clientId={client} project={project} freelancerId={project.singleProject.freelancerId}/> : null} */}
+       {/* {freelancerIsLoggedIn ? <p><Link to={`/projects/${project.singleProject.id}/addrequest`}>Send a proposal to work on this project.</Link></p>: null} */}
+       {freelancerIsLoggedIn ? <button onClick={()=>handleCheckForProposal()}>Submit a Proposal</button>: null}
+        <h1>{error}</h1>
+
     </div>
   )
 };

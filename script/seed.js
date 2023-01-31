@@ -33,25 +33,20 @@ async function seed() {
 
     });
 }
+
 await Freelancer.create({
   username: 'aaaaa',
   password: '12345'
 })
-await Request.create({
-  // projectId: 1,
-  // freelancerId: 2,
-  status:"PENDING",
-  requestMessage: faker.lorem.paragraph(),  
 
-});
 
-await Request.create({
-  // projectId: 2,
-  // freelancerId: 1,
-  status:"ACCEPTED",
-  requestMessage: faker.lorem.paragraph(),
+// await Request.create({
+//   // projectId: 2,
+//   // freelancerId: 1,
+//   status:"ACCEPTED",
+//   requestMessage: faker.lorem.paragraph(),
 
-});
+// });
 
 await Project.create({
    clientId: 1,
@@ -68,9 +63,57 @@ await Project.create({
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
+await Project.create({
+  clientId: 3,
+  freelancerId: 1,
+ status: 'Ongoing',
+ description: faker.lorem.sentences(),
+ category: faker.name.jobType()
+})
 
-
-
+await Project.create({ 
+  clientId: 4,
+  freelancerId: 2,
+ status: 'Ongoing',
+ description: faker.lorem.sentences(),
+ category: faker.name.jobType()
+})
+await Request.create({
+  projectId: 2,
+  freelancerId: 2,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
+await Request.create({
+  projectId: 3,
+  freelancerId: 2,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
+await Request.create({
+  projectId: 4,
+  freelancerId: 2,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
+await Request.create({
+  projectId: 1,
+  freelancerId: 3,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
+await Request.create({
+  projectId: 3,
+  freelancerId: 1,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
+await Request.create({
+  projectId: 4,
+  freelancerId: 1,
+ status: 'PENDING',
+ requestMessage: faker.lorem.paragraph(),
+})
 
   // console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)
