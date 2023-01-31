@@ -37,7 +37,7 @@ router.get("/product/:projectId/", async (req, res, next) => {
   }
 });
 
-// GET ROUTE BY FREELANCERID
+// GET REQUESTS BY FREELANCERID
 router.get("/freelancer/:freelancerId", async (req, res, next) => {
   console.log("HOLA: ")
   try {
@@ -85,7 +85,20 @@ router.delete("/:projectId/:freelancerId", async (req, res, next) => {
     console.log("REQUESTccccL ", request)
     res.send( await request[0].destroy());
   } catch (error) {
-    console.log("Error in delete product route");
+    console.log("Error in delete request route");
+    next(error);
+  }
+});
+
+// get request by Project and Freelance
+router.get("/:projectId/:freelancerId", async (req, res, next) => {
+  // console.log("DELETE REQUES Route", req.body)
+  try {
+    const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.params.freelancerId}})
+ console.log("REQUEST CHECK: ", request)
+    res.send(request);
+  } catch (error) {
+    console.log("Error in find by projectId/freelancerId route");
     next(error);
   }
 });

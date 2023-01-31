@@ -12,6 +12,7 @@ import axios from "axios";
 
 const AddRequest = () => {
   const [requestMessage, setRequestMessage] = useState("");
+  const [error, setError] = useState("")
 
   const { projectId } = useParams();
   const dispatch = useDispatch();
@@ -19,26 +20,11 @@ const AddRequest = () => {
   const navigate = useNavigate();
 
   const freelancerId = useSelector((state) => state.freelancerAuth.me.id);
-  useEffect(() => {
+  useEffect( () => {
     dispatch(fetchSingleProjectAsync(projectId));
   }, [dispatch]);
 
-//   const handleSubmit = (e) => {
-//     e.preventDefault();
-//     dispatch(
-//       postRequestAsync({
-//         status: "PENDING",
-//         requestMessage: requestMessage,
-//         projectId: Number(projectId),
-//         freelancerId: freelancerId,
-//       })
-//     ).then(()=>{
-//         dispatch(fetchFreelancerRequests(freelancerId))
-//     })
-//     .then(() => {
-//       navigate(`/freelancer/${freelancerId}/requests`);
-//     });
-//   };
+
 const handleSubmit = async (e) => {
     e.preventDefault();
     await axios.post(`/api/requests/`, {
@@ -56,6 +42,7 @@ const handleSubmit = async (e) => {
 
   return (
     <div>
+        <h1>{error}</h1>
       <h1>Submit a proposal to work on:</h1>
       <h2>
         {project ? (

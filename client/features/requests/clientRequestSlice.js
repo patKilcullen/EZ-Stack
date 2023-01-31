@@ -4,7 +4,6 @@ import axios from 'axios'
 export const fetchClientRequests = createAsyncThunk('fetchClientRequests',async(id)=>{
     try{
     const {data} = await axios.get(`/api/requests/product/${id}`)
-    
     return data
     }catch(error) {
         console.log("Error in fetchClient requests")
