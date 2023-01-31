@@ -2,10 +2,12 @@ import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchSingleClientMessageAsync, selectSingleClientMessage, sendClientMessageAsync } from './clientSingleMessageSlice';
+import { updateMessageAsync } from './freelancerSingleMessageSlice';
 
 const IndividualMessagesClient = () => {
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
   const client = useSelector((state) => state.clientAuth.clientMe);
+  const [render, setRender] = useState(false)
   const [content, setContent] = useState('')
   const dispatch = useDispatch()
   const { id } = useParams()
@@ -13,20 +15,32 @@ const IndividualMessagesClient = () => {
 
 
 
-  const formSubmit = (e) => {
+  const formSubmit = async (e) => {
     e.preventDefault()
-    console.log(content)
-    dispatch(sendClientMessageAsync({freelancerId: id, clientId, content, from: client.username }))
+    await dispatch(sendClientMessageAsync({freelancerId: id, clientId, content, from: client.username }))
+    setRender(!render)
   }
+
+  messages.map((msg) => {
+    if(!msg.read && msg.from != client.username){
+      dispatch(updateMessageAsync({id: msg.id, read: true}))
+    }
+  })
 
   useEffect(() => {
     dispatch(fetchSingleClientMessageAsync({id, clientId}))
-  }, [dispatch])
+  }, [dispatch, render])
+
+  const copy =[...messages]
+
+  const sorted = copy.sort((a,b) => {
+    return a.id - b.id
+  })
 
   
   return(
   <>
-    {messages ? messages.map((message) => {
+    {sorted ? sorted.map((message) => {
       return(
         <>
           <ul>

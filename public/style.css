@@ -28,3 +28,14 @@ form div {
 li{
   list-style: none;
 }
+
+.messages{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.noNewMessage{
+  display: none;
+}

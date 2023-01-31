@@ -25,7 +25,6 @@ router.get('/freelancer/:id', async (req, res, next) => {
 });
 
 router.get('/client/conversation/:id', async (req, res, next) => {
-  console.log('here', req.query)
   try{
     const messages = await Message.findAll({
       where:
@@ -48,7 +47,6 @@ router.post('/', async (req, res, next) => {
 })
 
 router.get('/freelancer/conversation/:id', async (req, res, next) => {
-  console.log('here', req.query)
   try{
     const messages = await Message.findAll({
       where:
@@ -56,6 +54,15 @@ router.get('/freelancer/conversation/:id', async (req, res, next) => {
       freelancerId: req.query.freelancerId}
     })
     res.send(messages)
+  }catch(err){
+    next(err)
+  }
+})
+
+router.put('/client/:id', async (req, res, next) => {
+  try{
+    const message = await Message.findByPk(req.params.id)
+    res.send(await message.update(req.body))
   }catch(err){
     next(err)
   }

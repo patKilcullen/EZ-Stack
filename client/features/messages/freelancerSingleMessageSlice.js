@@ -24,6 +24,17 @@ export const sendFreelancerMessageAsync = createAsyncThunk('freelancerSendMessag
   }
 })
 
+export const updateMessageAsync = createAsyncThunk('updateMessage', async ({id, read}) => {
+  try{
+    const { data } = await axios.put(`/api/messages/client/${id}`, {
+      read
+    })
+    return data
+  }catch(err){
+    console.log(err)
+  }
+})
+
 export const freelancerSingleMessageSlice = createSlice({
   name: 'freelancerSingleMessage',
   initialState: [],
