@@ -36,7 +36,7 @@ const store = configureStore({
     freelancerMessages: freelancerMessagesSlice,
     clientMessages: clientMessagesSlice,
     clientSingleMessage: clientSingleMessageSlice,
-    freelancerSingleMessage: freelancerSingleMessageSlice
+    freelancerSingleMessage: freelancerSingleMessageSlice,
     freelancerRequests: freelancerRequestSlice,
 
   },
