@@ -78,7 +78,7 @@ return(
       </Box>
       <TabPanel value={value} index={0}>
         <>
-          <h1>{client.username}'s Profile</h1>
+          <h1>Welcome {client.username}!</h1>
           <ul>
             <li>{client.email}</li>
             <li>

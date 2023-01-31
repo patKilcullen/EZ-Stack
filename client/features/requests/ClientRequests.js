@@ -11,6 +11,13 @@ import { editAssignFreelancer } from "../projects/singleProjectSlice";
 import { selectSingleProject } from "../projects/singleProjectSlice";
 import { fetchSingleProjectAsync } from "../projects/singleProjectSlice";
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 export default function ClientRequests(props) {
   const [error, setError] = useState("");
 
@@ -105,7 +112,9 @@ export default function ClientRequests(props) {
         {props.clientId === props.projectClientId
           ? requests.map((request) => (
               <div>
-                <h3>Requests: </h3>
+                <Card>
+                  <CardContent>
+                <h3> Project Request: </h3>
                 <li key={request.id}>
                   <p>Request Status: {request.status}</p>
                   <p>
@@ -116,18 +125,21 @@ export default function ClientRequests(props) {
                       {request.freelancer.lastName}
                     </Link>
                   </p>
-                  <p>{request.requestMessage}</p>
+                  <Typography gutterBottom variant="h5" component="div">
+                  {request.requestMessage}
+                  </Typography>
                 </li>
-                <button onClick={() => handleAssignUser(request.freelancer.id)}>
+                <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>
                   Assign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} to Project
-                </button>
-                <button
-                  onClick={() => handleUnassignUser(request.freelancer.id)}
-                >
+                </Button>
+                {" "}
+                <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
                   Unassign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} from Project
-                </button>
+                </Button>
+                </CardContent>
+                </Card>
               </div>
             ))
           : null}
@@ -135,3 +147,4 @@ export default function ClientRequests(props) {
     </div>
   );
 }
+

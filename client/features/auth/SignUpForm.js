@@ -3,6 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 // import { authenticate } from '../../app/store';
 import { clientAuthenticate } from './clientAuthSlice';
 import { freelancerAuthenticate } from './freelanceAuthSlice';
+import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+
+
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -33,43 +40,29 @@ const SignUpForm = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
+      <form className="signUpForm" onSubmit={handleSubmit} name={name}>
+        <div className="signUpInput">
+          <TextField id="outlined-basic" label="username" name="username"  variant="filled" />
+        </div>
+        <div className="signUpInput">
+          <TextField id="outlined-basic" label="password" name="password"  variant="filled" />
+        </div>
+        <div className="signUpInput">
+          <TextField id="outlined-basic" label="firstName" name="firstName"  variant="filled" />
+        </div>
+        <div className="signUpInput">
+          <TextField id="outlined-basic" label="lastName" name="lastName"  variant="filled" />
+        </div>
+        <div className="signUpInput">
+        <TextField id="outlined-basic" label="email" name="email"  variant="filled" />
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <label htmlFor="firstName">
-            <small>First Name</small>
-          </label>
-          <input name="firstName" type="text" />
-        </div>
-        <div>
-          <label htmlFor="lastName">
-            <small>Last Name</small>
-          </label>
-          <input name="lastName" type="text" />
-        </div>
-        <div>
-          <label htmlFor="email">
-            <small>Email</small>
-          </label>
-          <input name="email" type="text" />
-        </div>
-        <div>
-          <select name='dispatchRoute'>
-            <option value={'client'}>Client</option>
-            <option value={'freelancer'}>Freelancer</option>
-          </select>
-          <button type="submit">Sign Up</button>
+        <InputLabel >User Type</InputLabel>
+          <Select name='dispatchRoute'>
+            <MenuItem value={'client'}>Client</MenuItem>
+            <MenuItem value={'freelancer'}>Freelancer</MenuItem>
+          </Select>
+          <Button type="submit" variant="contained">Sign Up</Button>
         </div>
       </form>
     </div>

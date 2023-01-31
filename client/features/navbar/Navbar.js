@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { clientLogout, freelancerLogout } from '../../app/store';
 import SvgIcon from '@mui/material/SvgIcon';
+import Button from '@mui/material/Button';
 
 
 const Navbar = () => {
@@ -15,6 +16,14 @@ const Navbar = () => {
   
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
+  function HomeIcon(props) {
+    return (
+      <SvgIcon {...props}>
+        <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z" />
+      </SvgIcon>
+    );
+  }
   
   const logoutAndRedirectHome = () => {
     if(clientIsLoggedIn){
@@ -36,14 +45,14 @@ if (clientIsLoggedIn) {
               style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
               >
                 <Link 
-                to="/home">Home</Link>
+                to="/home"><HomeIcon fontSize="large" /></Link>
                 <Link to='profile'>My Account</Link>
                 <Link to='/freelancers'>Freelancers</Link>
                 <Link to={`/projects/client/${client}`}>My Projects</Link>
                 <Link to="/post">Post a Project</Link>
-                <button type="button" onClick={logoutAndRedirectHome}>
+                <Button variant="contained" size="small" onClick={logoutAndRedirectHome}>
                   Logout
-                </button>
+                </Button>
               </div>
           </nav>
       </div>
@@ -62,13 +71,13 @@ if (freelancerIsLoggedIn) {
                  style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
                  >
                    <Link 
-                   to="/home">Home</Link>
+                   to="/home"><HomeIcon fontSize="large" /></Link>
                    <Link to='profile'>My Account</Link>
                    <Link to='/projects'>View All Project</Link>
                    <Link to={`/projects/freelancer/${freelancer}`}>My Projects</Link>
-                   <button type="button" onClick={logoutAndRedirectHome}>
-                     Logout
-                   </button>
+                   <Button variant="contained" size="small" onClick={logoutAndRedirectHome}>
+                  Logout
+                </Button>
                  </div>
              </nav>
          </div>
@@ -87,7 +96,7 @@ if (freelancerIsLoggedIn) {
                    style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
                    >
                      <Link 
-                     to="/home">Home</Link>
+                     to="/home"><HomeIcon fontSize="large" /></Link>
                      <Link to='/projects'>View All Project</Link>
                      <Link to="/freelancers">View All Freelancer</Link>
                      <Link to="/login">Login</Link>

@@ -4,6 +4,14 @@ import { useSelector, useDispatch } from 'react-redux';
 import { clientAuthenticate } from './clientAuthSlice';
 import { freelancerAuthenticate } from './freelanceAuthSlice';
 
+import Button from '@mui/material/Button';
+import TextField from "@mui/material/TextField";
+import Select from '@mui/material/Select';
+import MenuItem from '@mui/material/MenuItem';
+import InputLabel from '@mui/material/InputLabel';
+
+
+
 /**
   The AuthForm component can be used for Login or Sign Up.
   Props for Login: name="login", displayName="Login"
@@ -30,25 +38,20 @@ const AuthForm = ({ name, displayName }) => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit} name={name}>
-        <div>
-          <label htmlFor="username">
-            <small>Username</small>
-          </label>
-          <input name="username" type="text" />
+      <form className="signUpForm" onSubmit={handleSubmit} name={name}>
+        <div className='signUpInput'>
+          <TextField id="outlined-basic" label="username" name="username"  variant="filled" />
+        </div>
+        <div className='signUpInput'>
+        <TextField id="outlined-basic" label="password" name="password"  variant="filled" />
         </div>
         <div>
-          <label htmlFor="password">
-            <small>Password</small>
-          </label>
-          <input name="password" type="password" />
-        </div>
-        <div>
-          <select name='dispatchRoute'>
-            <option value={'client'}>Client</option>
-            <option value={'freelancer'}>Freelancer</option>
-          </select>
-          <button type="submit">{displayName}</button>
+        <InputLabel >User Type</InputLabel>
+          <Select name='dispatchRoute'>
+            <MenuItem value={'client'}>Client</MenuItem>
+            <MenuItem value={'freelancer'}>Freelancer</MenuItem>
+          </Select>
+          <Button type="submit" variant='contained'>{displayName}</Button>
         </div>
       </form>
     </div>

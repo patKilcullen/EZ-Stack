@@ -58,6 +58,7 @@ const navigate = useNavigate()
 
   return (
     <div className="singleView">
+      <div className="card">
         <Card sx={{ maxWidth: 345 }}>
           <CardContent>
           <Typography  variant="h6" component="div">
@@ -81,19 +82,10 @@ const navigate = useNavigate()
         </div>
         ): null}
 
-        
-
-        { client === project.singleProject.clientId ? (
-          <div id='delete'>
-          <button id='deleteProject' onClick={() => handleDelete(project.singleProject.id)}>Delete Project</button>
-          </div>
-        ): null }
-        { clientIsLoggedIn && client ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null}
-        {/* { clientIsLoggedIn && client ? <ClientRequests clientId={client} project={project} freelancerId={project.singleProject.freelancerId}/> : null} */}
-       {/* {freelancerIsLoggedIn ? <p><Link to={`/projects/${project.singleProject.id}/addrequest`}>Send a proposal to work on this project.</Link></p>: null} */}
+        { client === project.singleProject.clientId ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null}
        {freelancerIsLoggedIn ? <button onClick={()=>handleCheckForProposal()}>Submit a Proposal</button>: null}
         <h1>{error}</h1>
-
+        </div>
     </div>
   )
 };
