@@ -2,6 +2,8 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { clientLogout, freelancerLogout } from '../../app/store';
+import SvgIcon from '@mui/material/SvgIcon';
+
 
 const Navbar = () => {
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
