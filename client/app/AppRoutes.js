@@ -123,6 +123,8 @@ const AppRoutes = () => {
           <Route path="/client-profile/:id" element={<Client />} />
         </Routes>
       </div>
+
+   
     );
   } else {
     return (
@@ -134,6 +136,7 @@ const AppRoutes = () => {
 
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
+
           <Route path="/*" element={<Home />} />
 
           <Route to="/home" element={<Home />} />
