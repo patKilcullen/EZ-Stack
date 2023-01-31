@@ -99,6 +99,22 @@ nav a {
   font-weight: 400;
 }
 
+
+li{
+  list-style: none;
+}
+
+.messages{
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem;
+}
+
+.noNewMessage{
+  display: none;
+}
+
 #siteName span {
   margin-top: 5px;
   font-size: 15px;
@@ -160,11 +176,6 @@ nav a {
 }
 
 /* Header/Nav Ends */
-
-
-
-
-
 
 
 

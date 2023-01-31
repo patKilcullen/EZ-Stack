@@ -11,7 +11,14 @@ import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
 import allFreelancersSlice from '../features/freelancers/allFreelancersSlice';
 import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice';
 import clientRequestSlice from '../features/requests/clientRequestSlice';
+
+import freelancerMessagesSlice from '../features/messages/freelancerMessagesSlice';
+import clientMessagesSlice from '../features/messages/clientMessagesSlice';
+import clientSingleMessageSlice from '../features/messages/clientSingleMessageSlice';
+import freelancerSingleMessageSlice from '../features/messages/freelancerSingleMessageSlice';
+
 import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
+
 
 
 
@@ -20,14 +27,18 @@ const store = configureStore({
   reducer: { 
     clientAuth: clientAuthSlice,
     freelancerAuth: freelanceAuthSlice,
-
     allProjects: projectsSlice,
     singleProject: singleProjectSlice,
     client: clientReducer,
     allFreelancers: allFreelancersSlice,
     SingleFreelancer: singleFreelancerSlice,
     clientRequests: clientRequestSlice,
+    freelancerMessages: freelancerMessagesSlice,
+    clientMessages: clientMessagesSlice,
+    clientSingleMessage: clientSingleMessageSlice,
+    freelancerSingleMessage: freelancerSingleMessageSlice,
     freelancerRequests: freelancerRequestSlice,
+
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
 });

@@ -20,7 +20,6 @@ export const clientMe = createAsyncThunk('auth/client/me', async () => {
       });
       return res.data;
     } else {
-      console.log('fsdfasdfasdfasdf')
       return {};
     }
   } catch (err) {
