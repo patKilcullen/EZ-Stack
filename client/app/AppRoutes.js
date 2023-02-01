@@ -35,6 +35,7 @@ import AddProject from "../features/projects/postProject";
 
 
 import AddRequest from "../features/requests/AddRequest";
+import ViewAllRatings from '../features/ratings/ViewAllRatings';
 
 /**
  * COMPONENT
@@ -60,7 +61,7 @@ const AppRoutes = () => {
       <div>
         <Routes>
           <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
@@ -96,6 +97,8 @@ const AppRoutes = () => {
 
           <Route path="profile/update" element={<UpdateClient />} />
           <Route path="/post" element={<AddProject />} />
+
+          <Route path="/ratings/:freelancerId" element={<ViewAllRatings />} />
         </Routes>
       </div>
     );
@@ -106,7 +109,7 @@ const AppRoutes = () => {
       <div>
         <Routes>
           <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
@@ -141,6 +144,8 @@ const AppRoutes = () => {
           <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
 
+          <Route path="/ratings" element={<ViewAllRatings />} />
+
         </Routes>
       </div>
     )
@@ -158,7 +163,7 @@ const AppRoutes = () => {
 
           <Route path="/*" element={<Home />} />
 
-          <Route to="/home" element={<Home />} />
+          <Route path="/home" element={<Home />} />
 
 
         <Route

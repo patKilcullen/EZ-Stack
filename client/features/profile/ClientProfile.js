@@ -77,37 +77,47 @@ return(
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-        <>
-          <h1>Welcome {client.username}!</h1>
-          <ul>
-            <li>{client.email}</li>
-            <li>
-              {client.firstName} {client.lastName}
-            </li>
-            {client.imageUrl ? (
-              <li>
-                <img src={client.imageUrl} />
-              </li>
-            ) : (
-              <li>
-                No Image - <Link to={"/profile/update"}>Edit Profile</Link>
-              </li>
-            )}
-            {client.description ? (
-              <li>{client.description}</li>
-            ) : (
-              <li>
-                No Description -{" "}
-                <Link to={"/profile/update"}>Edit Profile</Link>
-              </li>
-            )}
-            {client.rating ? (
-              <li>Rating: {client.rating} </li>
-            ) : (
-              <li>No Ratings Yet!</li>
-            )}
-          </ul>
-        </>
+      <div className="client-container">
+      <div id="client-image">
+        <img className="client-image" src={client.imageUrl}></img>
+      </div>
+      <div id="client-details">
+        <h1>
+          {client.firstName} {client.lastName}
+        </h1>
+        <h3>{client.email}</h3>
+        <hr></hr>
+        <h4>{client.description}</h4>
+      </div>
+      <div id="client-projects">
+        {client.projects && client.projects.length ? (
+          client.projects.map((project) => {
+            console.log(project);
+            return (
+              <div
+                className="project-container"
+                key={project.id}
+                style={{ border: "1px solid black", padding: "25px" }}
+              >
+                <h1>Projects Completed</h1>
+                {project.status ===
+                  "Complete" ? (
+                    <div className="single-complete-project"
+                    style={{ border: "1px solid black", padding: "25px" }}
+                    >
+                        <Link to={`/projects/client/${client.id}`}>
+                            <h4>Project Title</h4>
+                        </Link>
+                    </div>
+                  ): null}
+              </div>
+            );
+          })
+        ) : (
+          <h4>... No projects pending</h4>
+        )}
+      </div>
+    </div>
       </TabPanel>
       <TabPanel value={value} index={1}>
         <UpdateClient />

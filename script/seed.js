@@ -1,7 +1,7 @@
 'use strict'
 const faker = require("faker")
 
-const {db, models: {Client, Freelancer, Project, Request} } = require('../server/db')
+const {db, models: {Client, Freelancer, Project, Request, Rating} } = require('../server/db')
 
 /**
  * seed - this function clears the database, updates tables to
@@ -38,7 +38,23 @@ await Freelancer.create({
   username: 'aaaaa',
   password: '12345'
 })
+await Rating.create({
+  freelancerId: 102,
+  rating: 3,
+  review: 'did super great job'
+})
 
+await Rating.create({
+  freelancerId: 102,
+  rating: 4,
+  review: 'saved my mom from a burning building'
+})
+
+await Rating.create({
+  freelancerId: 102,
+  rating: 3,
+  review: 'cured my blindness with the beauty of their work'
+})
 
 // await Request.create({
 //   // projectId: 2,
@@ -51,6 +67,7 @@ await Freelancer.create({
 await Project.create({
    clientId: 1,
    freelancerId: 102,
+   title: "super cool project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
@@ -59,6 +76,7 @@ await Project.create({
 await Project.create({
    clientId: 2,
    freelancerId: 2,
+   title: "nice project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
@@ -66,6 +84,7 @@ await Project.create({
 await Project.create({
   clientId: 3,
   freelancerId: 1,
+  title: "just an okay project",
  status: 'Ongoing',
  description: faker.lorem.sentences(),
  category: faker.name.jobType()
@@ -74,6 +93,7 @@ await Project.create({
 await Project.create({ 
   clientId: 4,
   freelancerId: 2,
+  title: "medium cool project",
  status: 'Ongoing',
  description: faker.lorem.sentences(),
  category: faker.name.jobType()

@@ -31,6 +31,9 @@ const AllClientProjects = () => {
             <Link to={`/projects/${project.id}`}>
           <Card sx={{ maxWidth: 345 }}>
           <CardContent>
+          <Typography  variant="h5" component="div">
+            {project.title}
+            </Typography>
             <Typography  variant="h5" component="div">
             {project.category}
             </Typography>

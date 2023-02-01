@@ -7,7 +7,7 @@ import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import FreelancerRequests from "../requests/FreelancerRequests";
 
 
 
@@ -34,6 +34,9 @@ const AllFreelancerProjects = () => {
             <Link to={`/projects/${project.id}`}>
           <Card sx={{ maxWidth: 345 }}>
           <CardContent>
+          <Typography  variant="h5" component="div">
+            {project.title}
+            </Typography>
             <Typography  variant="h5" component="div">
             {project.category}
             </Typography>
@@ -46,6 +49,7 @@ const AllFreelancerProjects = () => {
           </CardActions>
         </Card>
         </Link>
+        <FreelancerRequests />
         </div>
         ))}
       </div> 

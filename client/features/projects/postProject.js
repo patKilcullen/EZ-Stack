@@ -20,6 +20,7 @@ const AddProject = () => {
   
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+  const [title, setTitle] = useState('')
 
   const clientId = useSelector((state) => state.clientAuth.clientMe.id)
 
@@ -30,7 +31,7 @@ const AddProject = () => {
   
   const handleAddProject = (e) => {
     e.preventDefault();
-    dispatch(addProjectAsync({ clientId, description, category }))
+    dispatch(addProjectAsync({ clientId, title, description, category }))
     .then(()=> navigate("/projects/client/:clientId"))
   };
 
@@ -39,6 +40,7 @@ const AddProject = () => {
     const nameInput = e.target.name;
     if (nameInput === "description") setDescription(value);
     if (nameInput === "category") setCategory(value);
+    if (nameInput === "title") setTitle(value)
   };
   
   return (
@@ -63,6 +65,18 @@ const AddProject = () => {
           noValidate
           sx={{ mt: 3 }}
         >
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            multiline
+            rows={4}
+            label="title"
+            autoComplete="title"
+            value={title}
+            name="title"
+            onChange={onChange}
+          />
           <TextField
             margin="normal"
             required

@@ -5,7 +5,7 @@ import {
   selectClientRequests,
   editAcceptRequest,
 } from "./clientRequestSlice";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
 import { editAssignFreelancer } from "../projects/singleProjectSlice";
 
 import { selectSingleProject } from "../projects/singleProjectSlice";
@@ -17,21 +17,25 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
 
 export default function ClientRequests(props) {
   const [error, setError] = useState("");
+  const [render, setRender] = useState(false)
 
   const dispatch = useDispatch();
   const requests = useSelector(selectClientRequests);
   const { projectId } = useParams();
+  const navigate = useNavigate()
 
   const project = useSelector(selectSingleProject);
 
   useEffect(() => {
     dispatch(fetchClientRequests(projectId)).then(() => {
       dispatch(fetchSingleProjectAsync(projectId));
+
     });
-  }, [dispatch]);
+  }, [dispatch,]);
 
   const handleAssignUser = (id) => {
     project.singleProject.freelancerId === null ?
@@ -52,27 +56,28 @@ export default function ClientRequests(props) {
           })
         )
       })
-      .then(() => {
+      // .then(() => {
         
-        dispatch(
-          editAcceptRequest({
-            projectId: projectId,
-            freelancerId: id,
-            status: "ACCEPTED",
-          })
-        )
-      })
+      //   dispatch(
+      //     editAcceptRequest({
+      //       projectId: projectId,
+      //       freelancerId: id,
+      //       status: "ACCEPTED",
+      //     })
+      //   )
+      // })
       .then(() => {
-        dispatch(fetchClientRequests(projectId));
-         
+        // dispatch(fetchClientRequests(projectId));
+         navigate(`/projects/${projectId}`)
+         window.location.reload()
       }).then(()=>{
         setError("")
       })
       : setError("You already have a freelancer assigned to this project. You can only assign one freelnacer per project. Please unassign the current freelancer before adding a new one.")
   };
-  const handleUnassignUser = (id) => {
+  const handleUnassignUser = async (id) => {
     //  id === project.singleProject.freelancerId ?
-    dispatch(
+    await dispatch(
       editAssignFreelancer({
         projectId: projectId,
         freelancerId: null,
@@ -88,20 +93,25 @@ export default function ClientRequests(props) {
           })
         );
       })
+      // .then(() => {
+      //   dispatch(
+      //     editAcceptRequest({
+      //       projectId: projectId,
+      //       freelancerId: id,
+      //       status: "PENDING",
+      //     })
+      //   );
+      // })
       .then(() => {
-        dispatch(
-          editAcceptRequest({
-            projectId: projectId,
-            freelancerId: id,
-            status: "PENDING",
-          })
-        );
-      })
-      .then(() => {
-        dispatch(fetchClientRequests(projectId));
+        // dispatch(fetchClientRequests(projectId));
+         navigate(`/projects/${projectId}`)
+        window.location.reload()
+
       }).then(()=>{
         setError("")
       })
+      
+
     //  : setError("Freelancer is not assigned to project")
   };
 
