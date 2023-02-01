@@ -12,7 +12,6 @@ export default function FreelancerRequests (props) {
 
  const dispatch = useDispatch()
  const requests = useSelector(selectFreelancerRequests)
- const {freelancerId} = useParams()
  const id = useSelector((state) => state.freelancerAuth.me.id)
 
 
@@ -32,7 +31,7 @@ useEffect(()=>{
 // }
 
 const handleDeleteRequest = async (projectId)=>{
-  await axios.delete(`/api/requests/${projectId}/${freelancerId}`)
+  await axios.delete(`/api/requests/${projectId}/${id}`)
   .then(()=>{
     dispatch(fetchFreelancerRequests(id.toString()))
   })
@@ -42,10 +41,10 @@ const handleDeleteRequest = async (projectId)=>{
 <div>
       <ul>
         <h2>Your Requests</h2>
-        {id.toString() === freelancerId ? requests.map((request) => (
+        {id.toString() ? requests.map((request) => (
           <div key={request.id}>
           <li >
-            <h3>Project: <Link to={`/projects/${request.project.id}`}>{request.project.description}</Link> </h3>
+            <h3>Project: <Link to={`/projects/${request.project.id}`}>{request.project.title}</Link> </h3>
             <p>Request Status: {request.status}</p>
               <p>Your Request Message: {request.requestMessage}</p>
               <button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposale</button>

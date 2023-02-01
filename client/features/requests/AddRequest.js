@@ -165,7 +165,7 @@ const AddRequest = () => {
                   variant="h4"
                   sx={{ display: "inline" }}
                 >
-                    {project.singleProject.description}
+                    {project.singleProject.title}
                 </Typography>
               </Link>
             ) : null}
