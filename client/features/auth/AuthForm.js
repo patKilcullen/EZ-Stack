@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 // import { authenticate } from '../../app/store';
 import { clientAuthenticate } from './clientAuthSlice';
 import { freelancerAuthenticate } from './freelanceAuthSlice';
@@ -21,6 +22,7 @@ import InputLabel from '@mui/material/InputLabel';
 const AuthForm = ({ name, displayName }) => {
   // const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -34,6 +36,7 @@ const AuthForm = ({ name, displayName }) => {
     }else if(option === 'freelancer'){
     dispatch(freelancerAuthenticate({username, password, method: formName}))
     }
+    navigate("/");
   }; 
 
   return (
