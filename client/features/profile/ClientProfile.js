@@ -201,7 +201,8 @@ const ClientProfile = () => {
 
           <div 
           className="recent-orders"
-          style={{backgroundColor: "white", marginLeft:"200px" }}>
+          style={{backgroundColor: "white", margin:"100px 100px",  borderRadius: "4px",
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>
             <Typography
               component="h6"
               color="primary"
