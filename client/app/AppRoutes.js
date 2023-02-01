@@ -24,6 +24,7 @@ import UpdateClient from '../features/client/UpdateClient';
 import AboutUs from "../features/footer/AboutUs";
 import ContactUs from "../features/footer/ContactUs";
 
+import PageNotFound from '../features/PageNotFound';
 
 
 import AllMessages from '../features/messages/AllMessages';
@@ -59,7 +60,7 @@ const AppRoutes = () => {
     return (
       <div>
         <Routes>
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route to="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
@@ -96,6 +97,11 @@ const AppRoutes = () => {
 
           <Route path="profile/update" element={<UpdateClient />} />
           <Route path="/post" element={<AddProject />} />
+
+           {/* PAGE NOT FOUND */}
+           <Route path="*" element={<PageNotFound />} />
+
+
         </Routes>
       </div>
     );
@@ -105,7 +111,7 @@ const AppRoutes = () => {
     return (
       <div>
         <Routes>
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
           <Route to="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
@@ -141,22 +147,25 @@ const AppRoutes = () => {
           <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
 
+           {/* PAGE NOT FOUND */}
+           <Route path="*" element={<PageNotFound />} />
+
         </Routes>
       </div>
     )
   }else{
     return(
     <Routes>
-          <Route
+          {/* <Route
 
-            path="/*"
+            path="/"
             element={<AuthForm name="login" displayName="Login" />}
-          />
+          /> */}
 
           {/* <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} /> */}
 
-          <Route path="/*" element={<Home />} />
+          <Route path="/" element={<Home />} />
 
           <Route to="/home" element={<Home />} />
 
@@ -191,6 +200,10 @@ const AppRoutes = () => {
         <Route path="/freelancers/:id" element={<SingleFreelancer />} />
         {/* not logged in single Client view */}
         <Route path="/update-client" element={<UpdateClient />} />
+
+           {/* PAGE NOT FOUND */}
+           <Route path="*" element={<PageNotFound />} />
+
       </Routes>
     );
   }
