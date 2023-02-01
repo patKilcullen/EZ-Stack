@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { fetchSingleFreelancer, selectSingleFreelancer } from './singleFreelancerSlice';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -12,10 +12,14 @@ import { fetchRatingsByFreelancerAsync, selectRatings } from '../ratings/ViewAll
 
 
 const SingleFreelancer = () => {
+const navigate = useNavigate()
 const dispatch = useDispatch()
 const {id} = useParams()
+const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
 
-
+const messageButton = () => {
+navigate(`/messages/${freelancer.id}`)
+}
 
 const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
@@ -45,9 +49,18 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
             {freelancer.description} 
             </Typography>
             <Typography variant="body2" color="text.secondary">
+            {freelancer.description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
             {freelancer.categories}
             </Typography>
-            </CardContent>
+
+          </CardContent>
+          <CardActions>
+            <Button size="small">Learn More</Button>
+            {clientIsLoggedIn ? <Button onClick={messageButton} size='small'>Message</Button> : null}
+          </CardActions>
+
         </Card>
           
         {reviews.map((rating) => (

@@ -76,6 +76,7 @@ if (freelancerIsLoggedIn) {
                    to="/home"><HomeIcon fontSize="large" /></Link>
                    <Link to='profile'>My Account</Link>
                    <Link to='/projects'>View All Project</Link>
+                   <Link to='/messages'>Messages</Link>
                    <Link to={`/projects/freelancer/${freelancer}`}>My Projects</Link>
                    <Button variant="contained" size="small" onClick={logoutAndRedirectHome}>
                   Logout

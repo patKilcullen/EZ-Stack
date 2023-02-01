@@ -25,7 +25,7 @@ async function seed() {
     await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
-      imageUrl: faker.image.imageUrl(),
+      imageUrl: faker.image.people(),
       description: faker.commerce.productDescription(),
       categories: faker.name.jobType(),
       username: faker.internet.userName(),
@@ -56,13 +56,8 @@ await Rating.create({
   review: 'cured my blindness with the beauty of their work'
 })
 
-// await Request.create({
-//   // projectId: 2,
-//   // freelancerId: 1,
-//   status:"ACCEPTED",
-//   requestMessage: faker.lorem.paragraph(),
 
-// });
+
 
 await Project.create({
    clientId: 1,

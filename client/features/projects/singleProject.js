@@ -80,7 +80,12 @@ const navigate = useNavigate()
   const  { projectId }  = useParams()
 
   const dispatch = useDispatch()
-  
+
+
+  const clickMessage = () => {
+    navigate(`/messages/${project.singleProject.clientId}`)
+  }  
+
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
   }, [dispatch]);
@@ -148,8 +153,8 @@ const navigate = useNavigate()
           Status:  {project.singleProject.status}
             </Typography>
           </CardContent>
-          { client === project.singleProject.clientId ? (
           <CardActions>
+
             <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button>
           </CardActions> ): null }
 
@@ -169,6 +174,11 @@ const navigate = useNavigate()
               </Link>
             ) : null}
           </Typography>
+
+            { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
+            <Button onClick={clickMessage} type="small">Message</Button>
+          </CardActions> 
+
         </Card>
         </div>
         {clientIsLoggedIn || freelancerIsLoggedIn ? (
