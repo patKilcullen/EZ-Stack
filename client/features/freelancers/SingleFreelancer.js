@@ -36,6 +36,9 @@ dispatch(fetchSingleFreelancer(id))
             {freelancer.firstName} {freelancer.lastName} 
             </Typography>
             <Typography variant="body2" color="text.secondary">
+            {freelancer.description}
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
             {freelancer.categories}
             </Typography>
           </CardContent>
