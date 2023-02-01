@@ -48,7 +48,6 @@ if (clientIsLoggedIn) {
                 to="/home"><HomeIcon fontSize="large" /></Link>
                 <Link to='profile'>My Account</Link>
                 <Link to='/freelancers'>Freelancers</Link>
->
                 <Link to='/messages'>Messages</Link>
                 <Link to={`/projects/client/${client}`}>My Projects</Link>
                 <Link to="/post">Post a Project</Link>
