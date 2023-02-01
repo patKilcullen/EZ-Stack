@@ -39,22 +39,43 @@ const IndividualMessagesClient = () => {
 
   
   return(
-  <>
+  <div className='individual-mssg'>
     {sorted ? sorted.map((message) => {
       return(
-        <>
-          <ul>
-            <li><small><span>{message.from} - {message.createdAt}</span></small></li>
-            <li>{message.content}</li>
-          </ul>
-        </>
+        <div className="mssg-list">
+          <div>
+            <div className="mssg-header"><small><span>{message.from} - {message.createdAt}</span></small></div>
+            <div>{message.content}</div>
+          </div>
+        </div>
       )
     }) : null}
+    
     <form onSubmit={formSubmit}>
       <input value={content} name='content' type='text' onChange={(e) => setContent(e.target.value)} />
       <button type='submit'>Send</button>
     </form>
-  </>
+  </div>
+
+
+
+  // <>
+  //   {sorted ? sorted.map((message) => {
+  //     return(
+  //       <div className="MessageList">
+  //         <ul>
+  //           <li><small><span>{message.from} - {message.createdAt}</span></small></li>
+  //           <li>{message.content}</li>
+  //         </ul>
+  //       </div>
+  //     )
+  //   }) : null}
+    
+  //   <form onSubmit={formSubmit}>
+  //     <input value={content} name='content' type='text' onChange={(e) => setContent(e.target.value)} />
+  //     <button type='submit'>Send</button>
+  //   </form>
+  // </>
   )
 }
 
