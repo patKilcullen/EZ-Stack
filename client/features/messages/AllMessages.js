@@ -1,8 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { fetchClientMessagesAsync, selectClientMessages } from './clientMessagesSlice';
 import { fetchFreelancerMessagesAsync, selectFreelancerMessages } from './freelancerMessagesSlice';
+import { Button } from '@mui/material';
+
 
 const AllMessages = () => {
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
@@ -12,6 +14,7 @@ const AllMessages = () => {
   const client = useSelector((state) => state.clientAuth.clientMe);
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
   const freelancerId = useSelector((state) => state.freelancerAuth.me.id);
+  const navigate = useNavigate()
   const freelancer = useSelector((state) => state.freelancerAuth.me)
   const dispatch = useDispatch()
 
@@ -39,6 +42,9 @@ const AllMessages = () => {
       }
     })
   
+    const clickMessageClient = (freelancerId) => {
+      navigate(`/messages/${freelancerId}`)
+    }
   
     useEffect(() => {
       dispatch(fetchClientMessagesAsync(clientId))    
@@ -52,7 +58,7 @@ const AllMessages = () => {
       {newMsgs ? newMsgs.map((message) => {
         return(
           <>
-            <Link to={`/messages/${message.freelancerId}`}>{message.from}</Link>
+            <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.from}</button>
           </>
         )
       }) : null}
@@ -81,7 +87,11 @@ const AllMessages = () => {
       }
     })
 
-    console.log(freelancerNew)
+
+    const clickMessageFreelancer = (clientId) => {
+      navigate(`/messages/${clientId}`)
+    }
+
 
     useEffect(() => {
       dispatch(fetchFreelancerMessagesAsync(freelancerId))
@@ -93,7 +103,7 @@ const AllMessages = () => {
           
           return(
             <>
-              <Link to={`/messages/${message.clientId}`}>{message.from}</Link>
+              <button className='messageLink' onClick={() => clickMessageFreelancer(message.clientId)}>{message.from}</button>
             </>
           )
         }) : null}
