@@ -70,7 +70,7 @@ if (freelancerIsLoggedIn) {
          <div id="navbar-right">
              <nav>
                  <div
-                 style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
+                //  style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
                  >
                    <Link 
                    to="/home"><HomeIcon fontSize="large" /></Link>
@@ -96,7 +96,7 @@ if (freelancerIsLoggedIn) {
            <div id="navbar-right">
                <nav>
                    <div
-                   style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
+                  //  style={{ display: "flex", flexDirection: "row", height: "50%", width: '100%' }}
                    >
                      <Link 
                      to="/home"><HomeIcon fontSize="large" /></Link>

@@ -174,7 +174,7 @@ const navigate = useNavigate()
               </Link>
             ) : null}
           </Typography>
-
+          <CardActions> 
             { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
             <Button onClick={clickMessage} type="small">Message</Button>
           </CardActions> 

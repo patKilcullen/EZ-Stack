@@ -157,7 +157,7 @@ const FreelancerProfile = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor:"white",
+          backgroundColor:"#F5F5F5",
           borderRadius: "4px"
         }}
         >
@@ -203,8 +203,8 @@ const FreelancerProfile = () => {
 
         <div 
         className="recent-orders"
-        style={{backgroundColor: "white", margin:"100px 100px",  borderRadius: "4px",
-          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>>
+        style={{backgroundColor: "#F5F5F5", margin:"100px 100px",  borderRadius: "4px",
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>
           <Typography
             component="h6"
             color="primary"

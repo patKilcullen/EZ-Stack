@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { fetchSingleFreelancer, selectSingleFreelancer, updateFreelancerAsync } from "./singleFreelancerSlice";
+import {
+  fetchSingleFreelancer,
+  selectSingleFreelancer,
+  updateFreelancerAsync,
+} from "./singleFreelancerSlice";
 // import { updateFreelancerAsync } from "./singleFreelancerSlice";
 
 // MATERIAL UI
@@ -17,51 +21,59 @@ import Container from "@mui/material/Container";
 
 const UpdateFreelancer = () => {
   const dispatch = useDispatch();
-  const id = useSelector((state) => state.freelancerAuth.me.id)
-  const freelancer = useSelector(selectSingleFreelancer)
-  const navigate = useNavigate()
+  const id = useSelector((state) => state.freelancerAuth.me.id);
+  const freelancer = useSelector(selectSingleFreelancer);
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
   const [description, setDescription] = useState("");
-  const [username, setUsername] = useState('')
-  const [categories, setCategories] = useState('')
-  const [imageUrl, setImageUrl] = useState('')
-
+  const [username, setUsername] = useState("");
+  const [categories, setCategories] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
 
   const handleSubmit = async (evt) => {
     evt.preventDefault();
-    await dispatch(updateFreelancerAsync({id: freelancer.id, firstName, lastName, email, description, username, categories, imageUrl }))
-    .then(() => dispatch(fetchSingleFreelancer(id)));
-    navigate('/profile')
-  }
+    await dispatch(
+      updateFreelancerAsync({
+        id: freelancer.id,
+        firstName,
+        lastName,
+        email,
+        description,
+        username,
+        categories,
+        imageUrl,
+      })
+    ).then(() => dispatch(fetchSingleFreelancer(id)));
+    navigate("/profile");
+  };
 
   useEffect(() => {
     const getFreelancer = async () => {
-      await dispatch(fetchSingleFreelancer(id))
-    }
-    getFreelancer()
-    setFirstName(freelancer.firstName)
-    setLastName(freelancer.lastName)
-    setEmail(freelancer.email)
-    setDescription(freelancer.description)
-    setUsername(freelancer.username)
-    setCategories(freelancer.categories)
-    setImageUrl(freelancer.imageUrl)
-  }, [])
+      await dispatch(fetchSingleFreelancer(id));
+    };
+    getFreelancer();
+    setFirstName(freelancer.firstName);
+    setLastName(freelancer.lastName);
+    setEmail(freelancer.email);
+    setDescription(freelancer.description);
+    setUsername(freelancer.username);
+    setCategories(freelancer.categories);
+    setImageUrl(freelancer.imageUrl);
+  }, []);
 
   return (
-
-<Container component="main" maxWidth="sm">
+    <Container component="main" maxWidth="sm">
       <Box
         sx={{
           marginTop: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
-          backgroundColor:"white",
-          padding:"1em 1em",
-          borderRadius: "4px"
+          backgroundColor: "#F5F5F5",
+          padding: "1em 1em",
+          borderRadius: "4px",
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>

@@ -44,10 +44,17 @@ const AuthForm = ({ name, displayName }) => {
   return (
     <Box
     sx={{
-      marginTop: 8,
+      marginTop: 4,
+      margingBottom: 3,
+      maxHeight: 345,
+      maxWidth: 400,
       display: 'flex',
       flexDirection: 'column',
       alignItems: 'center',
+      backgroundColor:"#F5F5F5",
+      borderRadius: "4px",
+      boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+
     }}
   >
     <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
