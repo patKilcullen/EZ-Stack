@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchSingleProjectAsync, editSingleProject } from "./singleProjectSlice";
 
 
@@ -23,8 +24,11 @@ const statuses = ["Pending", "Ongoing", "Complete"];
 
 const EditProject = (props) => {
   const [status, setStatus] = useState("");
+  const [title, setTitle] = useState("")
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
+
+  const navigate = useNavigate()
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
 
@@ -39,9 +43,10 @@ const EditProject = (props) => {
   
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId)).then((res) => {
-      const {status, description, category } = res.payload;
+      const {status, title, description, category } = res.payload;
 
       setStatus(status);
+      setTitle(title)
       setDescription(description);
       setCategory(category);
     });
@@ -50,9 +55,12 @@ const EditProject = (props) => {
   const handleEditProject = (e) => {
     e.preventDefault();
     dispatch(
-      editSingleProject({ id, status, description, category })
+      editSingleProject({ id, title, status, description, category })
     ).then(() => {
       dispatch(fetchSingleProjectAsync(projectId));
+    }).then(()=>{
+      navigate(`/projects/${id}`)
+      window.location.reload()
     });
   };
 
@@ -147,15 +155,12 @@ const EditProject = (props) => {
               margin="normal"
               required
               fullWidth
-              multiline
-              rows={4}
-              label="description"
-              autoComplete="description"
-              value={description}
-              name="description"
-              onChange={(e) => setDescription(e.target.value)}
+              autoComplete="title"
+              label="title"
+              value={title}
+              name="title"
+              onChange={(e) => setTitle(e.target.value)}
             />
-
             <TextField
               margin="normal"
               required

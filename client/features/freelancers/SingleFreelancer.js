@@ -8,6 +8,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
+import { fetchRatingsByFreelancerAsync, selectRatings } from '../ratings/ViewAllSlice';
 
 
 const SingleFreelancer = () => {
@@ -21,15 +22,20 @@ navigate(`/messages/${freelancer.id}`)
 }
 
 const freelancer = useSelector(selectSingleFreelancer)
+const reviews = useSelector(selectRatings)
 
 useEffect(()=>{
-dispatch(fetchSingleFreelancer(id))
+dispatch(fetchSingleFreelancer(id)).then(()=>{
+  dispatch(fetchRatingsByFreelancerAsync(id))
+})
+
 },[dispatch])
 
+
   return (
-    <div>
+    <div className='singleView'>
         <div className='card'>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ width: 500}}>
           <CardMedia
             sx={{ height: 140 }}
             image={freelancer.imageUrl}
@@ -39,18 +45,39 @@ dispatch(fetchSingleFreelancer(id))
             <Typography gutterBottom variant="h5" component="div">
             {freelancer.firstName} {freelancer.lastName} 
             </Typography>
+            <Typography gutterBottom variant="h5" component="div">
+            {freelancer.description} 
+            </Typography>
             <Typography variant="body2" color="text.secondary">
             {freelancer.description}
             </Typography>
             <Typography variant="body2" color="text.secondary">
             {freelancer.categories}
             </Typography>
+
           </CardContent>
           <CardActions>
             <Button size="small">Learn More</Button>
             {clientIsLoggedIn ? <Button onClick={messageButton} size='small'>Message</Button> : null}
           </CardActions>
+
         </Card>
+          
+        {reviews.map((rating) => (
+          <div>
+             <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
+             <Typography variant="body2" color="text.secondary">
+            Review
+            </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {rating.rating} Stars
+            </Typography>
+            <Typography variant="body2" color="text.secondary">
+            {rating.review}
+            </Typography>
+            </Card>
+          </div>
+        ))}
         </div>
     </div>
   )

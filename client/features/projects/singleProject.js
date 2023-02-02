@@ -13,6 +13,53 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import axios from "axios";
 
+import AddRating from "../ratings/AddRating";
+import FreelancerRequests from "../requests/FreelancerRequests";
+
+import PropTypes from "prop-types";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import Box from "@mui/material/Box";
+
+
+
+
+
+function TabPanel(props) {
+  const { children, value, index, ...other } = props;
+
+  return (
+    <div
+      role="tabpanel"
+      hidden={value !== index}
+      id={`simple-tabpanel-${index}`}
+      aria-labelledby={`simple-tab-${index}`}
+      {...other}
+    >
+      {value === index && (
+        <Box sx={{ p: 3 }}>
+          <div>{children}</div>
+        </Box>
+      )}
+    </div>
+  );
+}
+
+TabPanel.propTypes = {
+  children: PropTypes.node,
+  index: PropTypes.number.isRequired,
+  value: PropTypes.number.isRequired,
+};
+
+function a11yProps(index) {
+  return {
+    id: `simple-tab-${index}`,
+    "aria-controls": `simple-tabpanel-${index}`,
+  };
+}
+
+
+
 
 
 
@@ -25,9 +72,6 @@ const navigate = useNavigate()
   const client = useSelector((state) => state.clientAuth.clientMe.id)
   
   
-
-  const c = useSelector((state) => state.clientAuth.clientMe)
-
   const freelancer = useSelector((state) => state.freelancerAuth.me)
   console.log("FREELANCER: ", freelancer)
 
@@ -59,40 +103,122 @@ const navigate = useNavigate()
     setError("You already sent a proposal to this project")
     : navigate(`/projects/${projectId}/addrequest`)
   }
-
+  
+  //MUI for tabs
+  const [value, setValue] = React.useState(0);
+  const handleChange = (e, newValue) => {
+    setValue(newValue);
+  };
+ 
+  
+  
 
   return (
+<div>
+<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab label="Project Info" {...a11yProps(0)} />
+          {clientIsLoggedIn ? (
+          <Tab label="Edit Project" {...a11yProps(1)} />
+          ): null}
+          {clientIsLoggedIn ? (
+          <Tab label="Add Review" {...a11yProps(2)} />
+          ): null}
+          {clientIsLoggedIn ? (
+          <Tab label="Requests" {...a11yProps(3)} />
+          ): null}
+          
+        </Tabs>
+      </Box>
     <div className="singleView">
+
+    <TabPanel value={value} index={0}>
       <div className="card">
-        <Card sx={{ maxWidth: 345 }}>
+        <Card sx={{ maxWidth: 700 }}>
           <CardContent>
+          <Typography  variant="h3" component="div">
+            {project.singleProject.title}
+            </Typography>
           <Typography  variant="h6" component="div">
-            {project.singleProject.description}
+             Description:    {project.singleProject.description}
             </Typography>
             <Typography  variant="h5" component="div">
             {project.singleProject.category}
             </Typography>
             <Typography variant="body2" color="text.secondary">
-            {project.singleProject.status}
+          Status:  {project.singleProject.status}
             </Typography>
           </CardContent>
           <CardActions>
+
+            <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button>
+          </CardActions> ): null }
+
+          <Typography variant="h5">
+            posted by:
+            {project.singleProject.id ? (
+              <Link to={`/client-profile/${project.singleProject.client.id}`}>
+                <Typography
+                  color="secondary"
+                  variant="h5"
+                  sx={{ display: "inline",}}
+                >
+                  {" "}
+                  {project.singleProject.client.firstName}{" "}
+                  {project.singleProject.client.lastName}
+                </Typography>
+              </Link>
+            ) : null}
+          </Typography>
+
             { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
             <Button onClick={clickMessage} type="small">Message</Button>
           </CardActions> 
+
         </Card>
+        </div>
         {clientIsLoggedIn || freelancerIsLoggedIn ? (
         <div className='editForm'>
+          {/* {project.singleProject.freelancerId === null ? (
+            <div>
           <EditProject projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
+          </div>
+          ): null} */}
+          {/* <div>
+          <AddRating projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
+          </div> */}
         </div>
         ): null}
 
-        { client === project.singleProject.clientId ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null}
+        {/* { client === project.singleProject.clientId ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null} */}
        {freelancerIsLoggedIn ? <button onClick={()=>handleCheckForProposal()}>Submit a Proposal</button>: null}
         <h1>{error}</h1>
+
+</TabPanel>
+        <TabPanel value={value} index={1}>
+
+        {project.singleProject.freelancerId === null ? (
+            <div>
+          <EditProject projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
+          </div>
+          ): "You can't edit a project after you've assigned a freelancer to it"}
+      </TabPanel>
+      <TabPanel value={value} index={2}>
+      <AddRating projectId={projectId} projectClientId={project.singleProject.clientId} projectFreelancerId={project.singleProject.freelancerId} />
+      </TabPanel>
+      <TabPanel value={value} index={3}>
+      { client === project.singleProject.clientId ? <ClientRequests clientId={client} projectClientId={project.singleProject.clientId} freelancerId={project.singleProject.freelancerId} projectId={project.singleProject.id}/> : null}
+       {freelancerIsLoggedIn ? <FreelancerRequests/> : null}
+        <h1>{error}</h1>
+      </TabPanel>
         </div>
-    </div>
+        </div>
   )
 };
 
 export default SingleProject
+

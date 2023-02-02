@@ -36,6 +36,7 @@ import AddProject from "../features/projects/postProject";
 
 
 import AddRequest from "../features/requests/AddRequest";
+import ViewAllRatings from '../features/ratings/ViewAllRatings';
 
 /**
  * COMPONENT
@@ -60,7 +61,9 @@ const AppRoutes = () => {
     return (
       <div>
         <Routes>
+
           <Route path="/" element={<Home />} />
+
           <Route path="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
@@ -98,9 +101,13 @@ const AppRoutes = () => {
           <Route path="profile/update" element={<UpdateClient />} />
           <Route path="/post" element={<AddProject />} />
 
+
            {/* PAGE NOT FOUND */}
            <Route path="*" element={<PageNotFound />} />
 
+
+
+          <Route path="/ratings/:freelancerId" element={<ViewAllRatings />} />
 
         </Routes>
       </div>
@@ -111,7 +118,11 @@ const AppRoutes = () => {
     return (
       <div>
         <Routes>
+
           <Route path="/" element={<Home />} />
+
+       
+
           <Route path="/home" element={<Home />} />
 
           <Route path="/projects" element={<AllProjects />} />
@@ -147,8 +158,12 @@ const AppRoutes = () => {
           <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
 
+
            {/* PAGE NOT FOUND */}
            <Route path="*" element={<PageNotFound />} />
+
+          <Route path="/ratings" element={<ViewAllRatings />} />
+
 
         </Routes>
       </div>
@@ -157,7 +172,9 @@ const AppRoutes = () => {
     return(
     <Routes>
 
+
           <Route path="/" element={<Home />} />
+
           <Route path="/home" element={<Home />} />
 
 

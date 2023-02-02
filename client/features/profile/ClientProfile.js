@@ -145,6 +145,7 @@ const ClientProfile = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
+
       <h2>Welcome {client.firstName}, we've missed you!</h2>
       <Typography variant="body2" color="text.secondary">
                     You are logged in as client.
@@ -239,6 +240,7 @@ const ClientProfile = () => {
 
 
         </Box>
+
       </TabPanel>
       <TabPanel value={value} index={1}>
         <div

@@ -18,6 +18,7 @@ import clientSingleMessageSlice from '../features/messages/clientSingleMessageSl
 import freelancerSingleMessageSlice from '../features/messages/freelancerSingleMessageSlice';
 
 import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
+import ratingsSlice from '../features/ratings/ViewAllSlice';
 
 
 
@@ -38,6 +39,8 @@ const store = configureStore({
     clientSingleMessage: clientSingleMessageSlice,
     freelancerSingleMessage: freelancerSingleMessageSlice,
     freelancerRequests: freelancerRequestSlice,
+    allRatings: ratingsSlice
+
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
