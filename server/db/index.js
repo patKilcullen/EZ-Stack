@@ -9,6 +9,7 @@ const Project = require('./models/Project')
 const Request = require('./models/Request')
 const Message = require('./models/Message')
 const Rating = require('./models/Rating')
+const Like = require('./models/Like')
 
 //associations could go here!
 Client.hasMany(Project)
@@ -25,6 +26,10 @@ Freelancer.hasMany(Message)
 Message.belongsTo(Freelancer)
 Freelancer.hasMany(Rating)
 Rating.belongsTo(Freelancer)
+Freelancer.hasMany(Like)
+Like.belongsTo(Freelancer)
+Project.hasMany(Like)
+Like.belongsTo(Project)
 
 
 
@@ -37,6 +42,7 @@ module.exports = {
     Project,
     Request,
     Message,
-    Rating
+    Rating,
+    Like
   },
 }
