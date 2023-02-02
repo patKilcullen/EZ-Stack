@@ -55,7 +55,7 @@ const UpdateClient = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor:"white",
+        backgroundColor:"#F5F5F5",
         padding:"1em 1em",
         borderRadius: "4px"
       }}
