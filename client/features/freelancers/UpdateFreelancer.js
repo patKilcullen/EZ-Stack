@@ -55,10 +55,13 @@ const UpdateFreelancer = () => {
 <Container component="main" maxWidth="sm">
       <Box
         sx={{
-          marginTop: 3,
+          marginTop: 2,
           display: "flex",
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor:"white",
+          padding:"1em 1em",
+          borderRadius: "4px"
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
@@ -159,67 +162,6 @@ const UpdateFreelancer = () => {
         </Box>
       </Box>
     </Container>
-
-
-
-    // <form 
-    // onSubmit={handleSubmit}
-    // >
-    //     <h1>Update your information</h1>
-
-    //   <label>Username:</label>
-    //   <input 
-    //   name="username"
-    //   value={username}
-    //   onChange={(e) => setUsername(e.target.value)}
-    //   />
-
-    //   <label >Name:</label>
-    //   <input
-    //     name="name"
-    //     value={firstName}
-    //     onChange={(e) => setFirstName(e.target.value)}
-    //   />
-
-    //   <label>Last name:</label>
-    //   <input
-    //     name="lastname"
-    //     value={lastName}
-    //     onChange={(e) => setLastName(e.target.value)}
-    //   />
-     
-     
-    //   <label>Email:</label>
-    //   <input
-    //     name="email"
-    //     value={email}
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-      
-      
-    //   <label>Description:</label>
-    //   <input
-    //     name="description"
-    //     value={description}
-    //     onChange={(e) => setDescription(e.target.value)}
-    //   />
-
-    //   <label>Categories:</label>
-    //   <input 
-    //   name='categories'
-    //   value={categories}
-    //   onChange={(e) => setCategories(e.target.value)}
-    //   />
-
-    //   <label>Profile Image:</label>
-    //   <input 
-    //   name="image"
-    //   value={imageUrl}
-    //   onChange={(e) => setImageUrl(e.target.value)}
-    //   />
-
-    //   <button type="submit">Edit</button>
-    // </form>
   );
 };
 

@@ -51,10 +51,13 @@ const UpdateClient = () => {
     <Container component="main" maxWidth="sm">
     <Box
       sx={{
-        marginTop: 3,
+        marginTop: 2,
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
+        backgroundColor:"white",
+        padding:"1em 1em",
+        borderRadius: "4px"
       }}
     >
       <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>

@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import { fetchProjectsAsync, selectProjects, fetchProjectsByCategoryAsync  } from "../projects/allProjectsSlice";
+import usePagination from "../freelancers/usePagimentation";
+
+
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Pagination from "@mui/material/Pagination";
+import Box from "@mui/material/Box";
+import { List } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 
 const AllProjects = () => {
@@ -29,14 +35,31 @@ const AllProjects = () => {
     dispatch(fetchProjectsByCategoryAsync(newCat))
   }
 
+
+    ////FOR PAGINATION/////
+    let [page, setPage] = useState(1);
+    const PER_PAGE = 10;
+  
+    const count = Math.ceil(projects.length / PER_PAGE);
+    const _DATA = usePagination(projects, PER_PAGE);
+  
+    const handleChange = (e, p) => {
+      setPage(p);
+      _DATA.jump(p);
+    };
+  
+    ///////////////////////
+
   return (
     <div className="allViewContainer">
       <div className='search'>
       <input className='searchBar' type='text' placeholder='search projects by category' value={category}
        onChange={event => setCategory(event.target.value)} onKeyDown={handleSearch}/>
     </div>
+    <Box p="5">
+        <List p="10" pt="3" spacing={2}>
     <div className='allList'>
-        {projects.map((project) => (
+        {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
           <Card sx={{ maxWidth: 345 }}>
@@ -59,6 +82,18 @@ const AllProjects = () => {
         </div>
         ))}
       </div> 
+      </List>
+        <Stack alignItems="center">
+          <Pagination
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Stack>
+      </Box>
     </div>
   )
 };

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from "react-router-dom";
 // import { authenticate } from '../../app/store';
 import { clientAuthenticate } from './clientAuthSlice';
 import { freelancerAuthenticate } from './freelanceAuthSlice';
@@ -9,8 +10,10 @@ import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
-
-
+import Avatar from '@mui/material/Avatar';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
+import Typography from '@mui/material/Typography';
 
 /**
   The AuthForm component can be used for Login or Sign Up.
@@ -21,6 +24,7 @@ import InputLabel from '@mui/material/InputLabel';
 const AuthForm = ({ name, displayName }) => {
   // const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -34,10 +38,24 @@ const AuthForm = ({ name, displayName }) => {
     }else if(option === 'freelancer'){
     dispatch(freelancerAuthenticate({username, password, method: formName}))
     }
+    navigate("/");
   }; 
 
   return (
-    <div>
+    <Box
+    sx={{
+      marginTop: 8,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+    }}
+  >
+    <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
+      <LockOutlinedIcon />
+    </Avatar>
+    <Typography component="h1" variant="h5">
+      Sign in
+    </Typography>
       <form className="signUpForm" onSubmit={handleSubmit} name={name}>
         <div className='signUpInput'>
           <TextField id="outlined-basic" label="username" name="username"  variant="filled" />
@@ -54,7 +72,7 @@ const AuthForm = ({ name, displayName }) => {
           <Button type="submit" variant='contained'>{displayName}</Button>
         </div>
       </form>
-    </div>
+      </Box>
   );
 };
 

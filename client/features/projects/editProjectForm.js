@@ -130,7 +130,7 @@ const EditProject = (props) => {
     {/* Clients can edit project */}
     {client === projectClientId ? (
       <Container component="main" maxWidth="sm">
-        <CssBaseline />
+        
         <Box
           sx={{
             marginTop: 8,
