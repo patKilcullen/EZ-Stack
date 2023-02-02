@@ -19,6 +19,7 @@ import freelancerSingleMessageSlice from '../features/messages/freelancerSingleM
 
 import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
 import ratingsSlice from '../features/ratings/ViewAllSlice';
+import likedProjectsSlice from '../features/projects/likedProjectsSlice';
 
 
 
@@ -39,7 +40,8 @@ const store = configureStore({
     clientSingleMessage: clientSingleMessageSlice,
     freelancerSingleMessage: freelancerSingleMessageSlice,
     freelancerRequests: freelancerRequestSlice,
-    allRatings: ratingsSlice
+    allRatings: ratingsSlice,
+    likedProjects: likedProjectsSlice
 
 
   },

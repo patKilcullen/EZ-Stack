@@ -14,16 +14,23 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import { likeProjectAsync } from "./likedProjectsSlice";
 
 
 const AllProjects = () => {
   const projects = useSelector(selectProjects);
+  const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+  const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
 
   console.log("ALL PROJECT: ", projects)
   
   const dispatch = useDispatch()
 
   const [category, setCategory] = useState('')
+
+  const likeProject = (freelancerId, projectId) => {
+    dispatch(likeProjectAsync({freelancerId, projectId}))
+  }
   
   useEffect(() => {
     dispatch(fetchProjectsAsync());
