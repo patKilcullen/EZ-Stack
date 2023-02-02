@@ -18,6 +18,8 @@ import Container from "@mui/material/Container";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+
+import Rating from '@mui/material/Rating';
 ////////////////
 
 const statuses = ["Pending", "Ongoing", "Complete"];
@@ -52,6 +54,8 @@ const AddRating = (props) => {
   const handlePostRating = (e) => {
     e.preventDefault();
     const rating = e.target.rating.value
+   
+    
     const review = e.target.review.value
     dispatch(
       addRatingAsync({ freelancerId, rating, review })
@@ -66,7 +70,10 @@ const AddRating = (props) => {
         {client === projectClientId ? (
      <form className="signUpForm" onSubmit={handlePostRating} name={name}>
         <div >
-          <TextField id="outlined-basic" label="rating" name="rating"  variant="filled" sx={{ backgroundColor: "#f7f4eb" }}/>
+        <Rating
+        name="rating"
+        defaultValue={1}
+      />
         </div>
         <div>
           <TextField id="outlined-basic" label="review" name="review"  variant="filled" sx={{ backgroundColor: "#f7f4eb" }}/>

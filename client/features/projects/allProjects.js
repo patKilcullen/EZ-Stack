@@ -19,7 +19,7 @@ import Stack from "@mui/material/Stack";
 const AllProjects = () => {
   const projects = useSelector(selectProjects);
 
-  console.log("ALL PROJECT: ", projects)
+  
   
   const dispatch = useDispatch()
 
@@ -62,20 +62,20 @@ const AllProjects = () => {
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card  sx={{ minWidth: 300, minHeight: 300 }}>
           <CardContent>
-          <Typography  variant="h2" component="div">
+          <Typography color='primary'  variant="h3" component="div">
             {project.title}
             </Typography>
-            <Typography  variant="h5" component="div">
+            <Typography color='primary'  variant="h5" component="div">
             {project.category}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color='primary'>
             {project.status}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small" variant='contained'>Learn More</Button>
           </CardActions>
         </Card>
         </Link>
@@ -85,6 +85,7 @@ const AllProjects = () => {
       </List>
         <Stack alignItems="center">
           <Pagination
+          color='primary'
             count={count}
             size="large"
             page={page}

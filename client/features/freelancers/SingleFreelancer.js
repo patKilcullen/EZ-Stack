@@ -35,44 +35,38 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
   return (
     <div className='singleView'>
         <div className='card'>
-          <Card sx={{ width: 500}}>
+          <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 500, marginTop: 10}}>
           <CardMedia
             sx={{ height: 140 }}
             image={freelancer.imageUrl}
             title="Freelancer"
           />
           <CardContent>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography color='primary' gutterBottom variant="h5" component="div">
             {freelancer.firstName} {freelancer.lastName} 
             </Typography>
-            <Typography gutterBottom variant="h5" component="div">
+            <Typography color='primary' gutterBottom variant="h5" component="div">
             {freelancer.description} 
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-            {freelancer.description}
-            </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography color='primary' variant="body2" >
             {freelancer.categories}
             </Typography>
-
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
-            {clientIsLoggedIn ? <Button onClick={messageButton} size='small'>Message</Button> : null}
+            {clientIsLoggedIn ? <Button onClick={messageButton} size='small' variant='contained'>Message</Button> : null}
           </CardActions>
-
         </Card>
           
         {reviews.map((rating) => (
           <div>
              <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
-             <Typography variant="body2" color="text.secondary">
+             <Typography color='primary' variant="body2" >
             Review
             </Typography>
-          <Typography variant="body2" color="text.secondary">
-            {rating.rating} Stars
+          <Typography variant="body2" color='primary'>
+            {rating.rating === 1 ? (<p>{"★"}</p>) :rating.rating === 2 ? (<p>{"★★"}</p>):rating.rating === 3 ? (<p>{"★★★"}</p>) :rating.rating === 4 ? (<p>{"★★★★"}</p>):rating.rating === 5 ? (<p>{"★★★★★"}</p>): null}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color='primary'>
             {rating.review}
             </Typography>
             </Card>

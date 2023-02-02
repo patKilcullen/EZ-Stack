@@ -72,10 +72,10 @@ const AllFreelancers = () => {
             {_DATA.currentData().map((freelancers) => (
               <div className="card">
                 <Link to={`/freelancers/${freelancers.id}`}>
-                  <Card
+                  <Card 
                     sx={{
-                      // maxWidth: 345,
-                      width: "345",
+                      minWidth: 300, minHeight: 300, 
+                      
                       margin: "0 auto",
                       padding: "0.3em",
                     }}
@@ -85,16 +85,16 @@ const AllFreelancers = () => {
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />
-                    <CardContent>
-                      <Typography gutterBottom variant="h5" component="div">
+                    <CardContent >
+                      <Typography color='primary' gutterBottom variant="h5" component="div">
                         {freelancers.firstName} {freelancers.lastName}
                       </Typography>
-                      <Typography variant="body2" color="text.secondary">
+                      <Typography color='primary' variant="body2">
                         {freelancers.categories}
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small">Learn More</Button>
+                      <Button size="small" variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
                 </Link>
@@ -104,6 +104,7 @@ const AllFreelancers = () => {
         </List>
         <Stack alignItems="center">
           <Pagination
+          color='primary'
             count={count}
             size="large"
             page={page}

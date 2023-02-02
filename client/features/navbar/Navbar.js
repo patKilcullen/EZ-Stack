@@ -4,6 +4,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { clientLogout, freelancerLogout } from '../../app/store';
 import SvgIcon from '@mui/material/SvgIcon';
 import Button from '@mui/material/Button';
+import { Typography } from '@mui/material';
 
 
 const Navbar = () => {
@@ -52,7 +53,7 @@ if (clientIsLoggedIn) {
                 <Link to={`/projects/client/${client}`}>My Projects</Link>
                 <Link to="/post">Post a Project</Link>
 
-                <Button variant="contained" size="small" onClick={logoutAndRedirectHome}>
+                <Button color='primary' variant="contained" size="small" onClick={logoutAndRedirectHome}>
                   Logout
                 </Button>
               </div>
@@ -78,7 +79,7 @@ if (freelancerIsLoggedIn) {
                    <Link to='/projects'>View All Project</Link>
                    <Link to='/messages'>Messages</Link>
                    <Link to={`/projects/freelancer/${freelancer}`}>My Projects</Link>
-                   <Button variant="contained" size="small" onClick={logoutAndRedirectHome}>
+                   <Button color= 'primary' variant="contained" size="small" onClick={logoutAndRedirectHome}>
                   Logout
                 </Button>
                  </div>
