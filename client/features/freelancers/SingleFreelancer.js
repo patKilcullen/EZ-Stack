@@ -21,8 +21,11 @@ const messageButton = () => {
 navigate(`/messages/${freelancer.id}`)
 }
 
+
 const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
+
+console.log(freelancer)
 
 useEffect(()=>{
 dispatch(fetchSingleFreelancer(id)).then(()=>{

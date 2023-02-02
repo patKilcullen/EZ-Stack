@@ -20,6 +20,8 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import { checkLikedProjectsAsync, likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
+import FavoriteIcon from '@mui/icons-material/Favorite';
 
 
 
@@ -65,6 +67,7 @@ function a11yProps(index) {
 
 const SingleProject = () => {
 const [error, setError] = useState("")
+const [render, setRender] = useState(false)
 const navigate = useNavigate()
 
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
@@ -80,14 +83,28 @@ const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
+  const p = useSelector(selectLikedProjects)
+
 
   const clickMessage = () => {
     navigate(`/messages/${project.singleProject.clientId}`)
   }  
 
+  console.log(p)
+
+  const likeProject = async () => {
+    if(!p[0]){
+      await dispatch(likeProjectAsync({freelancerId: freelancer.id, projectId: project.singleProject.id}))
+      setRender(!render)
+      }
+  }
+
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
-  }, [dispatch]);
+    dispatch(checkLikedProjectsAsync({freelancerId: freelancer.id, projectId}))
+
+  }, [dispatch, render]);
+  
 
   const handleDelete = (projectId) => {
 
@@ -138,7 +155,10 @@ const navigate = useNavigate()
       <div className="card">
         <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 500 }}>
           <CardContent>
+
+            {p[0] ? <FavoriteIcon></FavoriteIcon> : null}
           <Typography color='primary'  variant="h3" component="div">
+
             {project.singleProject.title}
             </Typography>
           <Typography color='primary'  variant="h6" component="div">
@@ -151,6 +171,7 @@ const navigate = useNavigate()
           Status:  {project.singleProject.status}
             </Typography>
           </CardContent>
+
           <Typography variant="h5" color='primary'>
             posted by:
             {project.singleProject.id ? (
@@ -167,9 +188,11 @@ const navigate = useNavigate()
               </Link>
             ) : null}
           </Typography>
-
+           <CardActions>
             { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
-            <Button onClick={clickMessage} type="small" variant='contained'>Message</Button>
+            {freelancerIsLoggedIn ? <Button onClick={clickMessage} type="small"  variant='contained'>Message</Button> : null }
+            {freelancerIsLoggedIn ? <Button onClick={likeProject} size='small' variant='contained'>Like Project</Button> : null}
+          </CardActions> 
         </Card>
         </div>
         {clientIsLoggedIn || freelancerIsLoggedIn ? (
