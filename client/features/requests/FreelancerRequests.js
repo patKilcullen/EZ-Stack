@@ -7,6 +7,13 @@ import { fetchSingleFreelancer  } from "../freelancers/singleFreelancerSlice";
 
 import axios from 'axios'
 
+import Card from '@mui/material/Card';
+import CardActions from '@mui/material/CardActions';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Button from '@mui/material/Button';
+import Typography from '@mui/material/Typography';
+
 export default function FreelancerRequests (props) {
 //hardcoded data 
 
@@ -38,17 +45,16 @@ const handleDeleteRequest = async (projectId)=>{
 }
 
   return (
-<div>
+<div id='freelancerRequests'>
       <ul>
-        <h2>Your Requests</h2>
         {id.toString() ? requests.map((request) => (
           <div key={request.id}>
+            <Card sx={{ maxWidth: 345, marginLeft: -5 }}>
           <li >
-            <h3>Project: <Link to={`/projects/${request.project.id}`}>{request.project.title}</Link> </h3>
-            <p>Request Status: {request.status}</p>
-              <p>Your Request Message: {request.requestMessage}</p>
-              <button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposale</button>
+            <Typography> Your Request Status: {request.status}</Typography>
+              <Button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposal</Button>
           </li>
+          </Card>
           </div>
         )): null}
       </ul>

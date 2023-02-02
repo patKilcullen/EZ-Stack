@@ -63,7 +63,7 @@ const UpdateClient = () => {
       <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
         <LockOutlinedIcon />
       </Avatar>
-      <Typography component="h1" variant="h4">
+      <Typography color='primary' component="h1" variant="h4">
         UPDATE YOUR INFORMATION
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>

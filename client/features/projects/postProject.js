@@ -60,7 +60,7 @@ const AddProject = () => {
         <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
           <AddCircleOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h4">
+        <Typography color='primary' component="h1" variant="h4">
           Add Project
         </Typography>
         <Box

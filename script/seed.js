@@ -38,6 +38,10 @@ await Freelancer.create({
   username: 'aaaaa',
   password: '12345'
 })
+await Client.create({
+  username: 'bbbbb',
+  password: '12345'
+})
 await Rating.create({
   freelancerId: 102,
   rating: 3,
@@ -56,11 +60,8 @@ await Rating.create({
   review: 'cured my blindness with the beauty of their work'
 })
 
-
-
-
 await Project.create({
-   clientId: 1,
+   clientId: 102,
    freelancerId: 102,
    title: "super cool project",
   status: 'Ongoing',
@@ -69,21 +70,22 @@ await Project.create({
 })
 
 await Project.create({
-   clientId: 2,
-   freelancerId: 2,
+   clientId: 102,
+   freelancerId: 102,
    title: "nice project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
+for (let i = 0; i <= 100; i++) {
 await Project.create({
-  clientId: 3,
-  freelancerId: 1,
-  title: "just an okay project",
+  clientId: Math.floor(Math.random() * 103),
+  freelancerId: Math.floor(Math.random() * 103),
+  title: faker.name.jobType(),
  status: 'Ongoing',
  description: faker.lorem.sentences(),
  category: faker.name.jobType()
-})
+})}
 
 await Project.create({ 
   clientId: 4,

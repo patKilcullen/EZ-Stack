@@ -8,10 +8,15 @@ import TextField from "@mui/material/TextField";
 import Select from '@mui/material/Select';
 import MenuItem from '@mui/material/MenuItem';
 import InputLabel from '@mui/material/InputLabel';
+
 import Avatar from '@mui/material/Avatar';
 import Box from '@mui/material/Box';
 import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
+
+import { useNavigate } from 'react-router-dom';
+
+
 
 
 /**
@@ -23,6 +28,7 @@ import Typography from '@mui/material/Typography';
 const SignUpForm = () => {
   // const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const navigate = useNavigate()
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -39,6 +45,7 @@ const SignUpForm = () => {
     }else if(option === 'freelancer'){
     dispatch(freelancerAuthenticate({username, password, firstName, lastName, email, method: 'signup'}))
     }
+    navigate('/')
   }; 
 
   return (

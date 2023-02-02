@@ -1,12 +1,14 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:wght@300&display=swap'); 
+
 body {
-  background-color: cadetblue;
+  background-color: #51d0de;
 }
 #body {
   font-family: sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: cadetblue;
+  background-color: #51d0de;
 }
 
 
@@ -14,12 +16,12 @@ body {
   display: flex;
   flex-direction: row;
   min-height: 70vh;
-  background-color: cadetblue;
+ background-color:#51d0de;
   justify-content: center;
   flex: 2;
 }
 #footerbox {
-  background-color: darkslategray;
+  background-color: #bf4aa8;
   height: 75px;
   text-align: center;
   display: flex;
@@ -59,14 +61,7 @@ li {
 .card {
   margin: 10px;
 }
-.singleView {
-  margin-top: 50px;
-  text-align: center;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
+
 .editForm {
   display: flex;
   flex-direction: row;
@@ -101,11 +96,13 @@ nav a {
 #navbarBox {
   display: flex;
   justify-content: space-between;
-  background-color: darkslategrey;
-  /* border-radius: 25px; */
+
+  background-color:#bf4aa8;
+  border-radius: 25px;
   min-height: 15vh;
 
 }
+
 @media screen and (max-width: 900px){
   #navbarBox{
     display:flex;
@@ -116,9 +113,7 @@ nav a {
     display:flex;
     flex-direction: column;
     justify-content: center;
-    /* align-items: center; */
     flex-wrap: wrap;
-    
   }
 }
 

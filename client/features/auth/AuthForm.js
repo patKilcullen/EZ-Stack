@@ -60,12 +60,12 @@ const AuthForm = ({ name, displayName }) => {
     <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
       <LockOutlinedIcon />
     </Avatar>
-    <Typography component="h1" variant="h5">
+    <Typography color='primary' component="h1" variant="h5">
       Sign in
     </Typography>
       <form className="signUpForm" onSubmit={handleSubmit} name={name}>
         <div className='signUpInput'>
-          <TextField id="outlined-basic" label="username" name="username"  variant="filled" />
+          <TextField  id="outlined-basic" label="username" name="username"  variant="filled" />
         </div>
         <div className='signUpInput'>
         <TextField id="outlined-basic" label="password" name="password"  variant="filled" />

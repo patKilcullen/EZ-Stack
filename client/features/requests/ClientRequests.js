@@ -135,7 +135,7 @@ export default function ClientRequests(props) {
                       {request.freelancer.lastName}
                     </Link>
                   </p>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography color='primary' gutterBottom variant="h5" component="div">
                   {request.requestMessage}
                   </Typography>
                 </li>
