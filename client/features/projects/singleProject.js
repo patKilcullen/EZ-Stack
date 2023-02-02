@@ -189,7 +189,7 @@ const navigate = useNavigate()
             ) : null}
           </Typography>
            <CardActions>
-            { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
+            { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small" variant='contained'>Delete Project</Button> : null }
             {freelancerIsLoggedIn ? <Button onClick={clickMessage} type="small"  variant='contained'>Message</Button> : null }
             {freelancerIsLoggedIn ? <Button onClick={likeProject} size='small' variant='contained'>Like Project</Button> : null}
           </CardActions> 
