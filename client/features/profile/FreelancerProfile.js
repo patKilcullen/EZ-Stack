@@ -157,7 +157,8 @@ const FreelancerProfile = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor:"white"
+          backgroundColor:"white",
+          borderRadius: "4px"
         }}
         >
         <div className="card">
@@ -241,7 +242,11 @@ const FreelancerProfile = () => {
       </Box>
     </TabPanel>
     <TabPanel value={value} index={1}>
+    <div
+         style={{width: "80vw"}}
+        >
       <UpdateFreelancer />
+      </div>
     </TabPanel>
   </Box>
 

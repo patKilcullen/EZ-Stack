@@ -156,7 +156,8 @@ const ClientProfile = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor:"white"
+            backgroundColor:"white",
+            borderRadius: "4px"
           }}
           >
           <div className="card">
@@ -240,32 +241,14 @@ const ClientProfile = () => {
         </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <UpdateClient />
+        <div
+         style={{width: "80vw"}}
+        >
+           <UpdateClient />
+        </div>
+       
       </TabPanel>
     </Box>
-
-    // <>
-    // <h1>{client.username}'s Profile</h1>
-    // <Link to={'/profile/update'}>Edit Profile</Link>
-    // <ul>
-    //   <li>{client.email}</li>
-    //   <li>{client.firstName} {client.lastName}</li>
-    //   {client.imageUrl ?
-    //   <li><img src={client.imageUrl} /></li> :
-    //   <li>No Image - <Link to={'/profile/update'}>Edit Profile</Link></li>}
-    //   {client.description ?
-    //   <li>{client.description}</li> :
-    //    <li>No Description - <Link to={'/profile/update'}>Edit Profile</Link></li>}
-    //   {client.rating ?
-    //   <li>Rating: {client.rating} </li> :
-    //   <li>No Ratings Yet!</li>}
-    // </ul>
-
-    // <h1>Projects</h1>
-    // <ul>
-    //   {client.projects ?  <AllClientProjects id={client.id} /> : null}
-    // </ul>
-    // </>
   );
 };
 
