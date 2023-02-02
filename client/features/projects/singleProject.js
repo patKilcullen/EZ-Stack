@@ -156,7 +156,6 @@ const navigate = useNavigate()
           <CardActions>
 
             <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button>
-          </CardActions> ): null }
 
           <Typography variant="h5">
             posted by:
@@ -176,7 +175,7 @@ const navigate = useNavigate()
           </Typography>
 
             { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
-            <Button onClick={clickMessage} type="small">Message</Button>
+            { freelancerIsLoggedIn ? <Button onClick={clickMessage} type="small">Message</Button> : null }
           </CardActions> 
 
         </Card>
