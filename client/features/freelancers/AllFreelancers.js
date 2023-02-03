@@ -94,7 +94,7 @@ const AllFreelancers = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" variant='contained'>Learn More</Button>
+                      <Button  fullWidth size="small" variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
                 </Link>

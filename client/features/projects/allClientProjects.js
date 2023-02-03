@@ -27,22 +27,30 @@ const AllClientProjects = () => {
     <div className="allViewContainer">
     <div className='allList'>
         {projects.map((project) => (
-          <div className='card'>
+          <div className='card'
+          style={{boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}
+          >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ minWidth: 400, minHeight: 400 }}>
+          <Card sx={{ width: 400, height: 400 , }}>
           <CardContent>
-          <Typography color='primary'  variant="h5" component="div">
+          <Typography   variant="h5" component="div">
             {project.title}
             </Typography>
-            <Typography color='primary'  variant="h5" component="div">
-            {project.category}
+            <Typography color='primary'  variant="h6" component="div">
+            category: {project.category}
             </Typography>
-            <Typography variant="body2" color='primary'>
-            {project.status}
+            <hr></hr>
+            <Typography variant="body2" >
+            Current Status: {project.status}
             </Typography>
+
+            <Typography  gutterBottom component="div" variant="subtitle1" >
+            {project.description} 
+            </Typography>
+
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button fullWidth variant="contained">Go to Project</Button>
           </CardActions>
         </Card>
         </Link>
