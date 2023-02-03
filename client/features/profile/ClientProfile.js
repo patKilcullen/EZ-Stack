@@ -148,7 +148,7 @@ const ClientProfile = () => {
 
       <h2>Welcome {client.firstName}, we've missed you!</h2>
       <Typography variant="body2" color="text.secondary">
-                    You are logged in as client.
+                    You are logged in as a client.
                   </Typography>
         <Box
           sx={{
@@ -177,25 +177,19 @@ const ClientProfile = () => {
                 title="client"
               />
               <CardContent>
-                <Typography gutterBottom variant="h5" component="div">
-                  {client.firstName} {client.lastName}
+                <Typography gutterBottom variant="h6" component="div">
+                  Full Name: {client.firstName} {client.lastName}
                 </Typography>
-
-                {client.projects ? (
+            <hr></hr>
                   <Typography variant="body2" color="text.secondary">
-                    Number of Projects completed: {client.projects.length}
+                    {client.email}
                   </Typography>
-                ) : (
-                  "No Projects attached to your account"
-                )}
+                  <br></br>
 
-                {client.rating ? (
                   <Typography variant="body2" color="text.secondary">
-                    Current Rating: {client.rating}
+                    Description: {client.description}
                   </Typography>
-                ) : (
-                  "No reviews so far"
-                )}
+                
               </CardContent>
             </Card>
           </div>

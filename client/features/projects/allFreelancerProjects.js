@@ -30,22 +30,24 @@ const AllFreelancerProjects = () => {
     <div className="allViewContainer">
     <div className='allList'>
         {projects.map((project) => (
-          <div className='card'>
+          <div className='card'
+          style={{display:"flex", flexDirection: "column", justifyContent: "center", alignItems:"center"}}
+          >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ minWidth: 400, minHeight: 400 }}>
+          <Card sx={{ minWidth: 400, minHeight: 400, display: "flex",flexDirection: "column", justifyContent: "center", alignItems:"center"  }}>
           <CardContent>
-          <Typography color='primary'  variant="h5" component="div">
+          <Typography variant="h5" component="div">
             {project.title}
             </Typography>
-            <Typography color='primary'  variant="h5" component="div">
-            {project.category}
+            <Typography color='primary'  variant="h6" component="div">
+            category: {project.category}
             </Typography>
-            <Typography variant="body2" color='primary'>
-            {project.status}
+            <Typography variant="body2" >
+            Current Status: {project.status}
             </Typography>
           </CardContent>
           <CardActions>
-            <Button size="small">Learn More</Button>
+            <Button size="small" variant="contained">Learn More</Button>
           </CardActions>
         </Card>
         </Link>

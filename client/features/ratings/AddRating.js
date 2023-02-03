@@ -68,19 +68,51 @@ const AddRating = (props) => {
   return (
     <div >
         {client === projectClientId ? (
-     <form className="signUpForm" onSubmit={handlePostRating} name={name}>
-        <div >
+          <Box
+          sx={{
+          marginTop: 3,
+          marginBottom: 3,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          backgroundColor:"#F5F5F5",
+          padding:"1em 1em",
+          borderRadius: "4px",
+          width: 600,
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
+          }}
+        >
+     <form 
+     style={{width:600}}
+     className="signUpForm" onSubmit={handlePostRating} name={name}>
+        <Typography color='primary' component="h4" variant="h4">
+          Add a Review!
+        </Typography>
+
+        <hr></hr>
+        <br></br>
+
+        <div 
+        style={{display: "flex", justifyContent: "center", alignContent: "center", marginBottom: "30px"}}
+        >
         <Rating
         name="rating"
         defaultValue={1}
       />
         </div>
         <div>
-          <TextField id="outlined-basic" label="review" name="review"  variant="filled" sx={{ backgroundColor: "#f7f4eb" }}/>
+          <TextField id="outlined-basic" label="review" name="review"  variant="filled" fullWidth
+            multiline
+            rows={4} 
+            sx={{ backgroundColor:"#F5F5F5", }}/>
         </div>
-          <Button type="submit" variant="contained">Leave Review</Button>
+        <br></br>
+        <br></br>
+          <Button type="submit" fullWidth variant="contained">Leave Review</Button>
         
       </form>
+     </Box>
       ): null}
   </div>
   );
