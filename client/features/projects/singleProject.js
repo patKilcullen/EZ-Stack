@@ -21,9 +21,17 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 
+
+import {
+  fetchSingleFreelancerRequest,
+  selectSingleRequest,
+} from "../requests/singleRequestSlice";
+
+
 import { likeProjectAsync, unlikeProjectAsync } from "./likedProjectsSlice";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { checkLikedProjectsAsync, selectCheckProjects } from "./checkProjectSlice";
+
 
 
 
@@ -63,7 +71,6 @@ function a11yProps(index) {
 }
 
 const SingleProject = () => {
-  const [error, setError] = useState("");
   const [render, setRender] = useState(false);
   const navigate = useNavigate();
 
@@ -88,8 +95,6 @@ const SingleProject = () => {
     navigate(`/messages/${project.singleProject.clientId}`);
   };
 
-  console.log(p);
-
   const likeProject = async () => {
     if (!p[0]) {
       await dispatch(
@@ -109,8 +114,12 @@ const SingleProject = () => {
 
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
+
     dispatch(
       checkLikedProjectsAsync({ freelancerId: freelancer.id, projectId })
+    );
+    dispatch(
+      fetchSingleFreelancerRequest({ freelancerId: freelancer.id, projectId })
     );
   }, [dispatch, render]);
 
@@ -118,13 +127,11 @@ const SingleProject = () => {
     dispatch(deleteSingleProjectAsync(projectId)).then(() => navigate("/home"));
   };
 
-  const handleCheckForProposal = async () => {
-    const request = await axios.get(
-      `/api/requests/${projectId}/${freelancer.id}`
-    );
-    request.data[0]
-      ? setError("You already sent a proposal to this project")
-      : navigate(`/projects/${projectId}/addrequest`);
+  //  const request = useSelector(selectSingleRequest);
+  const request = useSelector((state) => state.singleRequest);
+
+  const handleSubmitProposal = async () => {
+    navigate(`/projects/${projectId}/addrequest`);
   };
 
   //MUI for tabs
@@ -243,14 +250,16 @@ const SingleProject = () => {
                     >
                       Like Project
                     </Button>
-                    <Button
-                      onClick={()=>handleCheckForProposal()}
-                      size="small"
-                      variant="contained"
-                    >
-                      Submit a Proposal
-                    </Button>
-                    <h1>{error}</h1>
+
+                    {request.singleRequest ? null : (
+                      <Button
+                        onClick={() => handleSubmitProposal()}
+                        size="small"
+                        variant="contained"
+                      >
+                        Submit a Proposal
+                      </Button>
+                    )}
                   </>
                 ) : null}
               </CardActions>
@@ -290,7 +299,6 @@ const SingleProject = () => {
             />
           ) : null}
           {freelancerIsLoggedIn ? <FreelancerRequests /> : null}
-          <h1>{error}</h1>
         </TabPanel>
       </div>
     </div>

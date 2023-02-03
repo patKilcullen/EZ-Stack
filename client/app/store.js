@@ -11,11 +11,13 @@ import freelanceAuthSlice from '../features/auth/freelanceAuthSlice'
 import allFreelancersSlice from '../features/freelancers/allFreelancersSlice';
 import singleFreelancerSlice from '../features/freelancers/singleFreelancerSlice';
 import clientRequestSlice from '../features/requests/clientRequestSlice';
+import  selectSingleRequest  from '../features/requests/singleRequestSlice';
 
 import freelancerMessagesSlice from '../features/messages/freelancerMessagesSlice';
 import clientMessagesSlice from '../features/messages/clientMessagesSlice';
 import clientSingleMessageSlice from '../features/messages/clientSingleMessageSlice';
 import freelancerSingleMessageSlice from '../features/messages/freelancerSingleMessageSlice';
+
 
 import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
 import ratingsSlice from '../features/ratings/ViewAllSlice';
@@ -42,7 +44,8 @@ const store = configureStore({
     freelancerRequests: freelancerRequestSlice,
     allRatings: ratingsSlice,
     likedProjects: likedProjectsSlice,
-    checkLikedProjects: checkProjectSlice
+    checkLikedProjects: checkProjectSlice,
+    singleRequest: selectSingleRequest,
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
