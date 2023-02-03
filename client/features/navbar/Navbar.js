@@ -80,6 +80,7 @@ if (freelancerIsLoggedIn) {
                    <Link to='/messages'>Messages</Link>
                    <Link to={`/projects/freelancer/${freelancer}`}>My Projects</Link>
                    <Link to={'/liked'}>Liked Projects</Link>
+                   <Link to={`/freelancer/${freelancer}/requests`}>My Proposals</Link>
                    <Button color= 'primary' variant="contained" size="small" onClick={logoutAndRedirectHome}>
                   Logout
                 </Button>

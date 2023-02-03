@@ -26,6 +26,7 @@ import {
   checkLikedProjectsAsync,
   selectCheckProjects,
 } from "./checkProjectSlice";
+import {fetchSingleFreelancerRequest} from "../requests/freelancerRequestSlice"
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -100,12 +101,17 @@ const SingleProject = () => {
     }
   };
 
-  useEffect(() => {
+  useEffect(async () => {
     dispatch(fetchSingleProjectAsync(projectId));
     dispatch(
       checkLikedProjectsAsync({ freelancerId: freelancer.id, projectId })
-    );
+    )
+    dispatch(fetchSingleFreelancerRequest({
+      freelancerId: freelancer.id,
+      projectId: project.singleProject.id,
+    }));
   }, [dispatch, render]);
+ 
 
   const handleDelete = (projectId) => {
     dispatch(deleteSingleProjectAsync(projectId)).then(() => navigate("/home"));
@@ -117,7 +123,8 @@ const SingleProject = () => {
     );
     request.data[0]
       ? setError("You already sent a proposal to this project")
-      : navigate(`/projects/${projectId}/addrequest`);
+      : 
+      navigate(`/projects/${projectId}/addrequest`);
   };
 
   //MUI for tabs
@@ -236,13 +243,13 @@ const SingleProject = () => {
                     >
                       Like Project
                     </Button>
-                    <Button
+                  { request.data[0] ? null : <Button
                       onClick={()=>handleCheckForProposal()}
                       size="small"
                       variant="contained"
                     >
                       Submit a Proposal
-                    </Button>
+                    </Button> }
                     <h1>{error}</h1>
                   </>
                 ) : null}
