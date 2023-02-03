@@ -47,11 +47,13 @@ const handleDeleteRequest = async (projectId)=>{
   return (
 <div id='freelancerRequests'>
       <ul>
+        
         {id.toString() ? requests.map((request) => (
           <div key={request.id}>
             <Card sx={{ maxWidth: 345, marginLeft: -5 }}>
           <li >
-            <Typography> Your Request Status: {request.status}</Typography>
+            
+            <Typography> Project id: {request.projectId}</Typography>
               <Button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposal</Button>
           </li>
           </Card>

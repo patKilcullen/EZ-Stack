@@ -21,12 +21,11 @@ import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
 import { likeProjectAsync } from "./likedProjectsSlice";
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import { checkLikedProjectsAsync, selectCheckProjects } from "./checkProjectSlice";
-
-
-
-;;
+import FavoriteIcon from "@mui/icons-material/Favorite";
+import {
+  checkLikedProjectsAsync,
+  selectCheckProjects,
+} from "./checkProjectSlice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -80,9 +79,8 @@ const SingleProject = () => {
 
   const { projectId } = useParams();
 
-  const p = useSelector(selectCheckProjects)
+  const p = useSelector(selectCheckProjects);
   const dispatch = useDispatch();
-
 
   const clickMessage = () => {
     navigate(`/messages/${project.singleProject.clientId}`);
@@ -152,7 +150,14 @@ const SingleProject = () => {
             className="card"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
           >
-            <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 450, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
+            <Card
+              sx={{
+                maxWidth: 600,
+                maxHeight: 700,
+                minHeight: 450,
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+              }}
+            >
               <CardContent>
                 {p[0] ? <FavoriteIcon></FavoriteIcon> : null}
                 <Typography variant="h3" component="div" align="center">
@@ -181,7 +186,7 @@ const SingleProject = () => {
 
                 <Typography variant="h6" color="primary" align="center">
                   Posted by:
-                  {project.singleProject.id ? (
+                  {project.singleProject.id && project.singleProject.client ? (
                     <Link
                       to={`/client-profile/${project.singleProject.client.id}`}
                     >
@@ -224,27 +229,27 @@ const SingleProject = () => {
                 ) : null}
                 {freelancerIsLoggedIn ? (
                   <>
-                  <Button
-                    onClick={likeProject}
-                    size="small"
-                    variant="contained"
-                  >
-                    Like Project
-                  </Button>
-                   <Button
-                   onClick={handleCheckForProposal}
-                   size="small"
-                   variant="contained"
-                 >
-                   Submit a Proposal
-                 </Button>
-                 </>
+                    <Button
+                      onClick={likeProject}
+                      size="small"
+                      variant="contained"
+                    >
+                      Like Project
+                    </Button>
+                    <Button
+                      onClick={()=>handleCheckForProposal()}
+                      size="small"
+                      variant="contained"
+                    >
+                      Submit a Proposal
+                    </Button>
+                    <h1>{error}</h1>
+                  </>
                 ) : null}
               </CardActions>
             </Card>
           </div>
         </TabPanel>
-
 
         <TabPanel value={value} index={1}>
           {project.singleProject.freelancerId === null ? (
@@ -260,8 +265,6 @@ const SingleProject = () => {
           )}
         </TabPanel>
 
-
-
         <TabPanel value={value} index={2}>
           <AddRating
             projectId={projectId}
@@ -269,8 +272,6 @@ const SingleProject = () => {
             projectFreelancerId={project.singleProject.freelancerId}
           />
         </TabPanel>
-
-
 
         <TabPanel value={value} index={3}>
           {client === project.singleProject.clientId ? (
