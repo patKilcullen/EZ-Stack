@@ -26,7 +26,10 @@ import {
   checkLikedProjectsAsync,
   selectCheckProjects,
 } from "./checkProjectSlice";
-import {fetchSingleFreelancerRequest} from "../requests/freelancerRequestSlice"
+import {
+  fetchSingleFreelancerRequest,
+  selectSingleRequest,
+} from "../requests/singleRequestSlice";
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -75,8 +78,12 @@ const SingleProject = () => {
   const client = useSelector((state) => state.clientAuth.clientMe.id);
 
   const freelancer = useSelector((state) => state.freelancerAuth.me);
+  console.log("FREELANCER ID: ", freelancer.id);
 
   const project = useSelector(selectSingleProject);
+
+  
+
 
   const { projectId } = useParams();
 
@@ -101,30 +108,32 @@ const SingleProject = () => {
     }
   };
 
-  useEffect(async () => {
+  useEffect( () => {
     dispatch(fetchSingleProjectAsync(projectId));
+
     dispatch(
       checkLikedProjectsAsync({ freelancerId: freelancer.id, projectId })
-    )
-    dispatch(fetchSingleFreelancerRequest({
-      freelancerId: freelancer.id,
-      projectId: project.singleProject.id,
-    }));
+    );
+    dispatch(
+      fetchSingleFreelancerRequest({ freelancerId: freelancer.id, projectId })
+    );
   }, [dispatch, render]);
- 
 
   const handleDelete = (projectId) => {
     dispatch(deleteSingleProjectAsync(projectId)).then(() => navigate("/home"));
   };
 
+  //  const request = useSelector(selectSingleRequest);
+   const request = useSelector((state) => state.singleRequest);
+  console.log("REQUEST: ", request)
   const handleCheckForProposal = async () => {
-    const request = await axios.get(
-      `/api/requests/${projectId}/${freelancer.id}`
-    );
-    request.data[0]
-      ? setError("You already sent a proposal to this project")
-      : 
-      navigate(`/projects/${projectId}/addrequest`);
+    // const request = await axios.get(
+    //   `/api/requests/${projectId}/${freelancer.id}`
+    // );
+    // request.data[0]
+    //   ? setError("You already sent a proposal to this project")
+    //   :
+    navigate(`/projects/${projectId}/addrequest`);
   };
 
   //MUI for tabs
@@ -243,13 +252,15 @@ const SingleProject = () => {
                     >
                       Like Project
                     </Button>
-                  { request.data[0] ? null : <Button
-                      onClick={()=>handleCheckForProposal()}
-                      size="small"
-                      variant="contained"
-                    >
-                      Submit a Proposal
-                    </Button> }
+                    
+                     {request.singleRequest ? null : <Button
+                        onClick={() => handleCheckForProposal()}
+                        size="small"
+                        variant="contained"
+                      >
+                        Submit a Proposal
+                      </Button>}
+                    
                     <h1>{error}</h1>
                   </>
                 ) : null}

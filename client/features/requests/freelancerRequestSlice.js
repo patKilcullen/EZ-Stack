@@ -12,13 +12,13 @@ export const fetchFreelancerRequests = createAsyncThunk('fetchfreelancerRequests
 })
 
 
-export const fetchSingleFreelancerRequest = createAsyncThunk('deleteRequest', async(info)=>{
-    try{
-      await axios.get(`/api/requests/${info.projectId}/${info.freelancerId}`)
-    }catch(error){
-        console.log("Error in delete request thunk: ", error)
-    }
-})
+// export const fetchSingleFreelancerRequest = createAsyncThunk('deleteRequest', async(info)=>{
+//     try{
+//       await axios.get(`/api/requests/${info.projectId}/${info.freelancerId}`)
+//     }catch(error){
+//         console.log("Error in delete request thunk: ", error)
+//     }
+// })
 
 
 
