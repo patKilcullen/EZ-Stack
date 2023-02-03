@@ -101,7 +101,7 @@ export default function ClientRequests(props) {
       <ul>
         {props.clientId === props.projectClientId
           ? 
-          requests.length < 1 ? "No Requests Yet" :
+          requests.length < 1 ? "No requests yet for this project" :
           requests.map((request) => (
               <div>
                 <Card>
