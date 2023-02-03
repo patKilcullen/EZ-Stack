@@ -20,7 +20,7 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { likeProjectAsync } from "./likedProjectsSlice";
+import { likeProjectAsync, unlikeProjectAsync } from "./likedProjectsSlice";
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import { checkLikedProjectsAsync, selectCheckProjects } from "./checkProjectSlice";
 
@@ -102,6 +102,11 @@ const SingleProject = () => {
     }
   };
 
+  const unlike = async () => {
+    await dispatch(unlikeProjectAsync(p[0].id))
+    setRender(!render)
+  }
+
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
     dispatch(
@@ -128,6 +133,7 @@ const SingleProject = () => {
     setValue(newValue);
   };
 
+  if(!p[0]){
   return (
     <div>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
@@ -154,7 +160,6 @@ const SingleProject = () => {
           >
             <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 450, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
               <CardContent>
-                {p[0] ? <FavoriteIcon></FavoriteIcon> : null}
                 <Typography variant="h3" component="div" align="center">
                   {project.singleProject.title}
                 </Typography>
@@ -287,6 +292,168 @@ const SingleProject = () => {
       </div>
     </div>
   );
-};
+}else{
+    return (
+      <div>
+        <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+          <Tabs
+            value={value}
+            onChange={handleChange}
+            aria-label="basic tabs example"
+          >
+            <Tab label="Project Info" {...a11yProps(0)} />
+            {clientIsLoggedIn ? (
+              <Tab label="Edit Project" {...a11yProps(1)} />
+            ) : null}
+            {clientIsLoggedIn ? (
+              <Tab label="Add Review" {...a11yProps(2)} />
+            ) : null}
+            {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
+          </Tabs>
+        </Box>
+        <div className="singleView">
+          <TabPanel value={value} index={0}>
+            <div
+              className="card"
+              style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
+            >
+              <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 450, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
+                <CardContent>
+                  <FavoriteIcon></FavoriteIcon>
+                  <Typography variant="h3" component="div" align="center">
+                    {project.singleProject.title}
+                  </Typography>
+  
+                  <Typography
+                    color="primary"
+                    align="center"
+                    variant="h5"
+                    component="div"
+                  >
+                    {project.singleProject.category}
+                  </Typography>
+  
+                  <Typography variant="h6" align="center" color="primary">
+                    Status: {project.singleProject.status}
+                  </Typography>
+                  <br></br>
+                  <br></br>
+  
+                  <Typography align="center" variant="h6" component="div">
+                    Description: {project.singleProject.description}
+                  </Typography>
+                  <br></br>
+  
+                  <Typography variant="h6" color="primary" align="center">
+                    Posted by:
+                    {project.singleProject.id ? (
+                      <Link
+                        to={`/client-profile/${project.singleProject.client.id}`}
+                      >
+                        <Typography
+                          color="primary"
+                          variant="h5"
+                          sx={{ display: "inline" }}
+                        >
+                          {" "}
+                          {project.singleProject.client.firstName}{" "}
+                          {project.singleProject.client.lastName}
+                        </Typography>
+                      </Link>
+                    ) : null}
+                  </Typography>
+  
+                  <br></br>
+                  <br></br>
+                </CardContent>
+  
+                <CardActions>
+                  {client === project.singleProject.clientId ? (
+                    <Button
+                      onClick={() => handleDelete(project.singleProject.id)}
+                      fullWidth
+                      size="large"
+                      variant="contained"
+                    >
+                      Delete Project
+                    </Button>
+                  ) : null}
+                  {freelancerIsLoggedIn ? (
+                    <Button
+                      onClick={clickMessage}
+                      type="small"
+                      variant="contained"
+                    >
+                      Message
+                    </Button>
+                  ) : null}
+                  {freelancerIsLoggedIn ? (
+                    <>
+                    <Button
+                      onClick={unlike}
+                      size="small"
+                      variant="contained"
+                    >
+                      Unlike
+                    </Button>
+                     <Button
+                     onClick={handleCheckForProposal}
+                     size="small"
+                     variant="contained"
+                   >
+                     Submit a Proposal
+                   </Button>
+                   </>
+                  ) : null}
+                </CardActions>
+              </Card>
+            </div>
+          </TabPanel>
+  
+  
+          <TabPanel value={value} index={1}>
+            {project.singleProject.freelancerId === null ? (
+              <div>
+                <EditProject
+                  projectId={projectId}
+                  projectClientId={project.singleProject.clientId}
+                  projectFreelancerId={project.singleProject.freelancerId}
+                />
+              </div>
+            ) : (
+              "You can't edit a project after you've assigned a freelancer to it"
+            )}
+          </TabPanel>
+  
+  
+  
+          <TabPanel value={value} index={2}>
+            <AddRating
+              projectId={projectId}
+              projectClientId={project.singleProject.clientId}
+              projectFreelancerId={project.singleProject.freelancerId}
+            />
+          </TabPanel>
+  
+  
+  
+          <TabPanel value={value} index={3}>
+            {client === project.singleProject.clientId ? (
+              <ClientRequests
+                clientId={client}
+                projectClientId={project.singleProject.clientId}
+                freelancerId={project.singleProject.freelancerId}
+                projectId={project.singleProject.id}
+              />
+            ) : null}
+            {freelancerIsLoggedIn ? <FreelancerRequests /> : null}
+            <h1>{error}</h1>
+          </TabPanel>
+        </div>
+      </div>
+    );
+  }
+
+}
 
 export default SingleProject;
