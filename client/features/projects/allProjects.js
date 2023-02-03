@@ -69,20 +69,25 @@ const AllProjects = () => {
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300 }}>
+          <Card  sx={{ minWidth: 300, minHeight: 300, backgroundColor:"#F5F5F5", boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}>
           <CardContent>
-          <Typography color='primary'  variant="h3" component="div">
+          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
             {project.title}
             </Typography>
-            <Typography color='primary'  variant="h5" component="div">
+            <hr></hr>
+            <br></br>
+            <Typography color='primary'  variant="body1" component="div">
             {project.category}
             </Typography>
+            <br></br>
             <Typography variant="body2" color='primary'>
-            {project.status}
+            Status: {project.status}
             </Typography>
           </CardContent>
+          <br></br>
+          <br></br>
           <CardActions>
-            <Button size="small" variant='contained'>Learn More</Button>
+            <Button size="small" fullWidth variant='contained'>Learn More</Button>
           </CardActions>
         </Card>
         </Link>

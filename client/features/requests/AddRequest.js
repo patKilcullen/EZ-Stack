@@ -64,40 +64,50 @@ const AddRequest = () => {
     <Container component="main">
       <Box
         sx={{
-          "& .MuiTextField-root": { m: 1, width: "100ch" },
+          // "& .MuiTextField-root": { m: 1, width: "100ch" },
+          marginTop: 3,
+          marginBottom: 3,
           display: "flex",
+          width: 600,
           flexDirection: "column",
           alignItems: "center",
+          backgroundColor:"#F5F5F5",
+        padding:"1em 1em",
+        borderRadius: "4px",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
         }}
         noValidate
         autoComplete="off"
       >
-        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}></Avatar>
-        <AddCircleOutlinedIcon />
+        <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
+          <AddCircleOutlinedIcon />
+        </Avatar>
+        
         <div>
-          <Typography color='primary' component="h1" variant="h3" sx={{ textAlign: "center"}}>Submit a Proposal</Typography>
-          <Typography color='primary' component="h1" variant="h4"sx={{ bgcolor: "primary" }} >
-            {" "}
-            Project:
+          <Typography color='primary' component="h1" 
+          variant="h4" sx={{ textAlign: "center"}}>
+            Submit a Proposal
+            </Typography>
+            <hr></hr>
+            <br></br>
             {  project ? (
               <Link to={`/projects/${project.singleProject.id}`}>
                 <Typography
-                  color="primary"
-                  variant="h4"
+                  variant="h5"
                   sx={{ display: "inline" }}
                 >
-                    {project.singleProject.title}
+                  {project.singleProject.title}
                 </Typography>
               </Link>
             ) : null}
-          </Typography>
-          <Typography color='primary' variant="h5">
+          <br></br>
+          <Typography color='primary' variant="body2">
             posted by:
             {project.singleProject.id ? (
               <Link to={`/client-profile/${project.singleProject.client.id}`}>
                 <Typography
                   color='primary'
-                  variant="h5"
+                  variant="body2"
                   sx={{ display: "inline",}}
                 >
                   {" "}
@@ -108,8 +118,12 @@ const AddRequest = () => {
             ) : null}
           </Typography>
 
-          <Box component="form" onSubmit={handleSubmit}>
-            <div>
+          <br></br>
+
+          <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <div
+            style={{display:"flex", flexDirection:"column", width:600}}
+            >
               <TextField
                 error={characterError}
                 helperText={
@@ -122,6 +136,7 @@ const AddRequest = () => {
                 label="Write your proposal here"
                 placeholder="Placeholder"
                 multiline
+                rows={4}
                 variant="filled"
                 name="requestMessage"
                 value={requestMessage}
@@ -135,16 +150,6 @@ const AddRequest = () => {
               >
                 Submit Proposal
               </Button>
-
-              {/* <Button
-            type="submit"
-            fullWidth
-            variant="contained"
-            sx={{ mt: 3, mb: 2, height: "60px", fontSize: "1.25rem" }}
-            color="primary"
-          >
-            Submit Proposal
-          </Button> */}
             </div>
           </Box>
         </div>

@@ -76,6 +76,10 @@ const EditProject = (props) => {
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor:"#F5F5F5",
+            padding:"1em 1em",
+            borderRadius: "4px",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
@@ -133,10 +137,14 @@ const EditProject = (props) => {
         
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 3,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor:"#F5F5F5",
+            padding:"1em 1em",
+            borderRadius: "4px",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>

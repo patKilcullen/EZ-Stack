@@ -38,25 +38,30 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
   return (
     <div className='singleView'>
         <div className='card'>
-          <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 500, marginTop: 10}}>
+          <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 500, marginTop: 10, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", }}>
           <CardMedia
-            sx={{ height: 140 }}
+            component="img"
+            height="250"
+            sx={{ objectFit: "contain", marginTop: 4 }}
             image={freelancer.imageUrl}
-            title="Freelancer"
+            title="freelancer"
           />
           <CardContent>
-            <Typography color='primary' gutterBottom variant="h5" component="div">
+            <Typography gutterBottom variant="h5" component="div" align='center'>
             {freelancer.firstName} {freelancer.lastName} 
             </Typography>
-            <Typography color='primary' gutterBottom variant="h5" component="div">
-            {freelancer.description} 
-            </Typography>
-            <Typography color='primary' variant="body2" >
+            <hr></hr>
+            <Typography color='primary' variant="body2" align='center' >
             {freelancer.categories}
             </Typography>
+            
+            <Typography  gutterBottom component="div" variant="subtitle1" >
+            {freelancer.description} 
+            </Typography>
+            
           </CardContent>
           <CardActions>
-            {clientIsLoggedIn ? <Button onClick={messageButton} size='small' variant='contained'>Message</Button> : null}
+            {clientIsLoggedIn ? <Button  fullWidth onClick={messageButton} size='large'  variant='outlined'>Message</Button> : null}
           </CardActions>
         </Card>
           

@@ -147,8 +147,8 @@ const FreelancerProfile = () => {
     </Box>
     <TabPanel value={value} index={0}>
     <h2>Welcome {freelancer.firstName}, we've missed you!</h2>
-    <Typography variant="body2" color='primary'>
-                  You are logged in as freelancer
+    <Typography variant="body2" color="text.secondary">
+                  You are logged in as freelancer.
                 </Typography>
       <Box
         sx={{
@@ -177,25 +177,19 @@ const FreelancerProfile = () => {
               title="Freelancer"
             />
             <CardContent>
-              <Typography color='primary' gutterBottom variant="h5" component="div">
-                {freelancer.firstName} {freelancer.lastName}
+              <Typography gutterBottom variant="h6" component="div">
+               Full Name: {freelancer.firstName} {freelancer.lastName}
               </Typography>
-
-              {freelancer.projects ? (
-                <Typography variant="body2" color='primary'>
-                  Number of Projects completed: {freelancer.projects.length}
+          <hr></hr>
+              
+                <Typography variant="body2" color='text.secondary'>
+                   {freelancer.email}
                 </Typography>
-              ) : (
-                "No Projects attached to your account"
-              )}
-
-              {freelancer.rating ? (
-                <Typography variant="body2" color='primary'>
-                  Current Rating: {freelancer.rating}
-                </Typography>
-              ) : (
-                "No reviews so far"
-              )}
+                <br></br>
+              
+                <Typography variant="body2" color="text.secondary">
+                    Description: {freelancer.description}
+                  </Typography>
             </CardContent>
           </Card>
         </div>
@@ -203,7 +197,7 @@ const FreelancerProfile = () => {
 
         <div 
         className="recent-orders"
-        style={{backgroundColor: "#F5F5F5", margin:"100px 100px",  borderRadius: "4px",
+        style={{backgroundColor: "white", margin:"100px 100px",  borderRadius: "4px",
           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>
           <Typography
             component="h6"
