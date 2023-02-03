@@ -157,7 +157,7 @@ const ClientProfile = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor:"white",
+            backgroundColor:"#F5F5F5",
             borderRadius: "4px"
           }}
           >

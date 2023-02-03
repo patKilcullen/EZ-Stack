@@ -54,7 +54,8 @@ const AllMessages = () => {
 
   return(
   <div className='messages'>
-    <h1 className={clientNew ? 'newMessage' : 'noNewMessage'}>New Messages</h1>
+     <h1>Messages</h1>
+    <h4 className={clientNew ? 'newMessage' : 'noNewMessage'}>New Messages</h4>
       {newMsgs ? newMsgs.map((message) => {
         return(
           <>
@@ -98,7 +99,8 @@ const AllMessages = () => {
     }, [dispatch])
     return(
       <div className='messages'>
-        <h1 className={freelancerNew ? 'newMessage' : 'noNewMessage'}>New Messages</h1>
+        <h1>Messages</h1>
+        <h4 className={freelancerNew ? 'newMessage' : 'noNewMessage'}>New Messages</h4>
         {newMsgs ? newMsgs.map((message) => {
           
           return(

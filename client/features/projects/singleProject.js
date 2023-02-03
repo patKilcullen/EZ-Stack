@@ -76,7 +76,6 @@ const navigate = useNavigate()
   
   
   const freelancer = useSelector((state) => state.freelancerAuth.me)
-  console.log("FREELANCER: ", freelancer)
 
   const project = useSelector(selectSingleProject);
   
@@ -115,7 +114,6 @@ const navigate = useNavigate()
   
   const handleCheckForProposal = async ()=>{
     const request = await axios.get(`/api/requests/${projectId}/${freelancer.id}`)
-    console.log("REQUEST: ", request)
     request.data[0] ? 
     setError("You already sent a proposal to this project")
     : navigate(`/projects/${projectId}/addrequest`)
@@ -155,32 +153,31 @@ const navigate = useNavigate()
 
     <TabPanel value={value} index={0}>
       <div className="card">
-        <Card sx={{ maxWidth: 700 }}>
+        <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 500 }}>
           <CardContent>
+
             {p[0] ? <FavoriteIcon></FavoriteIcon> : null}
-          <Typography  variant="h3" component="div">
+          <Typography color='primary'  variant="h3" component="div">
+
             {project.singleProject.title}
             </Typography>
-          <Typography  variant="h6" component="div">
+          <Typography color='primary'  variant="h6" component="div">
              Description:    {project.singleProject.description}
             </Typography>
-            <Typography  variant="h5" component="div">
+            <Typography color='primary'  variant="h5" component="div">
             {project.singleProject.category}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color='primary'>
           Status:  {project.singleProject.status}
             </Typography>
           </CardContent>
-          <CardActions>
 
-            <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button>
-
-          <Typography variant="h5">
+          <Typography variant="h5" color='primary'>
             posted by:
             {project.singleProject.id ? (
               <Link to={`/client-profile/${project.singleProject.client.id}`}>
                 <Typography
-                  color="secondary"
+                  color='primary'
                   variant="h5"
                   sx={{ display: "inline",}}
                 >
@@ -192,11 +189,12 @@ const navigate = useNavigate()
             ) : null}
           </Typography>
 
-            { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small">Delete Project</Button> : null }
-            {freelancerIsLoggedIn ? <Button onClick={clickMessage} type="small">Message</Button> : null }
-            {freelancerIsLoggedIn ? <Button onClick={likeProject} size='small'>Like Project</Button> : null}
-          </CardActions> 
+           <CardActions>
+            { client === project.singleProject.clientId ? <Button onClick={() => handleDelete(project.singleProject.id)} size="small" variant='contained'>Delete Project</Button> : null }
+            {freelancerIsLoggedIn ? <Button onClick={clickMessage} type="small"  variant='contained'>Message</Button> : null }
+            {freelancerIsLoggedIn ? <Button onClick={likeProject} size='small' variant='contained'>Like Project</Button> : null}
 
+          </CardActions> 
         </Card>
         </div>
         {clientIsLoggedIn || freelancerIsLoggedIn ? (

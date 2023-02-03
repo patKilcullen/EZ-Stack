@@ -55,7 +55,7 @@ const UpdateClient = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor:"white",
+        backgroundColor:"#F5F5F5",
         padding:"1em 1em",
         borderRadius: "4px"
       }}
@@ -63,7 +63,7 @@ const UpdateClient = () => {
       <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
         <LockOutlinedIcon />
       </Avatar>
-      <Typography component="h1" variant="h4">
+      <Typography color='primary' component="h1" variant="h4">
         UPDATE YOUR INFORMATION
       </Typography>
       <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 3 }}>

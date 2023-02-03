@@ -32,15 +32,15 @@ const AllFreelancerProjects = () => {
         {projects.map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ maxWidth: 345 }}>
+          <Card sx={{ minWidth: 400, minHeight: 400 }}>
           <CardContent>
-          <Typography  variant="h5" component="div">
+          <Typography color='primary'  variant="h5" component="div">
             {project.title}
             </Typography>
-            <Typography  variant="h5" component="div">
+            <Typography color='primary'  variant="h5" component="div">
             {project.category}
             </Typography>
-            <Typography variant="body2" color="text.secondary">
+            <Typography variant="body2" color='primary'>
             {project.status}
             </Typography>
           </CardContent>

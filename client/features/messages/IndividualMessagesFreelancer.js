@@ -17,6 +17,7 @@ const IndividualMessagesFreelancer = () => {
     e.preventDefault()
     await dispatch(sendFreelancerMessageAsync({clientId: id, freelancerId, content, from: freelancer.username }))
     setRender(!render)
+    setContent("")
   }
 
   messages.map((msg) => {
@@ -41,24 +42,31 @@ const IndividualMessagesFreelancer = () => {
       style={{
         overflowY: "auto",
         padding: "10px",
-        backgroundColor: "white",
-        marginTop: "50px",
-        width: "70vw",
+        backgroundColor: "#F5F5F5",
+        margin: "20px 20px",
+        width: "60vw",
+        height: "60vh",
         alignContent: "center",
         borderRadius: "4px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
       }}
     >
-      <h1 
-      style={{ alignSelf: "center" }}
-      >Messages</h1>
+      <h3 
+    style={{ display: "flex", justifyContent: "center" }}
+    >Messages</h3>
       {sorted
         ? sorted.map((message) => {
             return (
               <div
                 className="mssg-list"
               >
-                <div className="single-mssg" style={{ margin: "15px 15px", borderRadius: "4px", backgroundColor: "lightgray", boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}>
+                <div className="single-mssg" 
+                style={{ 
+                  margin: "15px 15px", 
+                  borderRadius: "4px", 
+                  backgroundColor: "lightgray", 
+                  boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
+                  }}>
                   <div
                     className="author"
                     style={{ fontWeight: "bold", margin: "0 8px 0 0" }}
@@ -75,7 +83,7 @@ const IndividualMessagesFreelancer = () => {
                   </div>
                   <div
                     className="mssg-content"
-                    style={{ margin: "10px 10px", fontSize: "20px" }}
+                    style={{ margin: "10px 10px", fontSize: "20px", overflowWrap:"break-word"  }}
                   >
                     {message.content}
                   </div>
@@ -119,22 +127,6 @@ const IndividualMessagesFreelancer = () => {
         >Send</button>
       </form>
     </div>
-    // <>
-    //   {sorted ? sorted.map((message) => {
-    //   return(
-    //     <>
-    //       <ul>
-    //         <li><small><span>{message.from} - {message.createdAt}</span></small></li>
-    //         <li>{message.content}</li>
-    //       </ul>
-    //     </>
-    //   )
-    // }) : null}
-    // <form onSubmit={formSubmit}>
-    //   <input value={content} name='content' type='text' onChange={(e) => setContent(e.target.value)} />
-    //   <button type='submit'>Send</button>
-    // </form>
-    // </>
   )
 
 }

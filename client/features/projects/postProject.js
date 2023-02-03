@@ -47,16 +47,20 @@ const AddProject = () => {
 <Container component="main" maxWidth="sm">
       <Box
         sx={{
-          marginTop: 8,
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
+        marginTop: 3,
+        marginBottom: 3,
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        backgroundColor:"#F5F5F5",
+        padding:"1em 1em",
+        borderRadius: "4px"
         }}
       >
         <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
           <AddCircleOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h4">
+        <Typography color='primary' component="h1" variant="h4">
           Add Project
         </Typography>
         <Box

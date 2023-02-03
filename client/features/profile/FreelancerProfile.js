@@ -147,7 +147,7 @@ const FreelancerProfile = () => {
     </Box>
     <TabPanel value={value} index={0}>
     <h2>Welcome {freelancer.firstName}, we've missed you!</h2>
-    <Typography variant="body2" color="text.secondary">
+    <Typography variant="body2" color='primary'>
                   You are logged in as freelancer
                 </Typography>
       <Box
@@ -157,7 +157,7 @@ const FreelancerProfile = () => {
           flexDirection: "row",
           justifyContent: "space-between",
           alignItems: "center",
-          backgroundColor:"white",
+          backgroundColor:"#F5F5F5",
           borderRadius: "4px"
         }}
         >
@@ -177,12 +177,12 @@ const FreelancerProfile = () => {
               title="Freelancer"
             />
             <CardContent>
-              <Typography gutterBottom variant="h5" component="div">
+              <Typography color='primary' gutterBottom variant="h5" component="div">
                 {freelancer.firstName} {freelancer.lastName}
               </Typography>
 
               {freelancer.projects ? (
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color='primary'>
                   Number of Projects completed: {freelancer.projects.length}
                 </Typography>
               ) : (
@@ -190,7 +190,7 @@ const FreelancerProfile = () => {
               )}
 
               {freelancer.rating ? (
-                <Typography variant="body2" color="text.secondary">
+                <Typography variant="body2" color='primary'>
                   Current Rating: {freelancer.rating}
                 </Typography>
               ) : (
@@ -203,8 +203,8 @@ const FreelancerProfile = () => {
 
         <div 
         className="recent-orders"
-        style={{backgroundColor: "white", margin:"100px 100px",  borderRadius: "4px",
-          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>>
+        style={{backgroundColor: "#F5F5F5", margin:"100px 100px",  borderRadius: "4px",
+          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>
           <Typography
             component="h6"
             color="primary"

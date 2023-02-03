@@ -4,9 +4,25 @@ import MediaCard from '../features/navbar/cardDemo';
 import Navbar from '../features/navbar/Navbar';
 import SideNav from '../features/navbar/SideNav';
 import AppRoutes from './AppRoutes';
+import { createTheme, ThemeProvider } from '@mui/material/styles'
+
+const theme = createTheme({
+  palette: {
+    primary: {
+      main: '#bf4aa8'
+    },
+    secondary: {
+      main: '#51d0de'
+    },
+  },
+  typography: {
+    fontFamily: 'Ubuntu'
+  }
+})
 
 const App = () => {
   return (
+    <ThemeProvider theme={theme}>
     <div id ="body">
       <div id ="header">
       <Navbar />
@@ -18,6 +34,7 @@ const App = () => {
       <Footer/>
       </div>
     </div>
+    </ThemeProvider>
   );
 };
 
