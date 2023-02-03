@@ -17,28 +17,20 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
+
 
 export default function ClientRequests(props) {
-  const [error, setError] = useState("");
-  const [render, setRender] = useState(false)
+
 
   const dispatch = useDispatch();
   const requests = useSelector(selectClientRequests);
   const { projectId } = useParams();
-  const navigate = useNavigate()
-
-  const project = useSelector(selectSingleProject);
 
   useEffect(() => {
-    dispatch(fetchClientRequests(projectId)).then(() => {
-      dispatch(fetchSingleProjectAsync(projectId));
-
-    });
+    dispatch(fetchClientRequests(projectId))
   }, [dispatch,]);
 
   const handleAssignUser = (id) => {
-    project.singleProject.freelancerId === null ?
     dispatch(
       editAssignFreelancer({
         projectId: projectId,
@@ -56,27 +48,23 @@ export default function ClientRequests(props) {
           })
         )
       })
-      // .then(() => {
+      .then(async () => {
         
-      //   dispatch(
-      //     editAcceptRequest({
-      //       projectId: projectId,
-      //       freelancerId: id,
-      //       status: "ACCEPTED",
-      //     })
-      //   )
-      // })
-      .then(() => {
-        // dispatch(fetchClientRequests(projectId));
-         navigate(`/projects/${projectId}`)
-         window.location.reload()
-      }).then(()=>{
-        setError("")
+       await dispatch(
+          editAcceptRequest({
+            projectId: projectId,
+            freelancerId: id,
+            status: "ACCEPTED",
+          })
+        )
       })
-      : setError("You already have a freelancer assigned to this project. You can only assign one freelnacer per project. Please unassign the current freelancer before adding a new one.")
+      .then(() => {
+         dispatch(fetchClientRequests(projectId));
+
+      })
+
   };
   const handleUnassignUser = async (id) => {
-    //  id === project.singleProject.freelancerId ?
     await dispatch(
       editAssignFreelancer({
         projectId: projectId,
@@ -93,34 +81,28 @@ export default function ClientRequests(props) {
           })
         );
       })
-      // .then(() => {
-      //   dispatch(
-      //     editAcceptRequest({
-      //       projectId: projectId,
-      //       freelancerId: id,
-      //       status: "PENDING",
-      //     })
-      //   );
-      // })
-      .then(() => {
-        // dispatch(fetchClientRequests(projectId));
-         navigate(`/projects/${projectId}`)
-        window.location.reload()
-
-      }).then(()=>{
-        setError("")
+      .then( async () => {
+        dispatch(
+         await  editAcceptRequest({
+            projectId: projectId,
+            freelancerId: id,
+            status: "PENDING",
+          })
+        );
       })
-      
-
-    //  : setError("Freelancer is not assigned to project")
+      .then(() => {
+         dispatch(fetchClientRequests(projectId));
+      })
   };
+
 
   return (
     <div>
       <ul>
-      <p style={{color: "red", fontSize: "16px"}}>{error}</p>
         {props.clientId === props.projectClientId
-          ? requests.map((request) => (
+          ? 
+          requests.length < 1 ? "No requests yet for this project" :
+          requests.map((request) => (
               <div>
                 <Card>
                   <CardContent>
@@ -135,19 +117,19 @@ export default function ClientRequests(props) {
                       {request.freelancer.lastName}
                     </Link>
                   </p>
-                  <Typography color='primary' gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="h5" component="div">
                   {request.requestMessage}
                   </Typography>
                 </li>
-                <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>
+              {request.project.freelancerId === null ?  <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>
                   Assign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} to Project
-                </Button>
+                </Button>: null}
                 {" "}
-                <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
+               {request.project.freelancerId === request.freelancerId ? <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
                   Unassign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} from Project
-                </Button>
+                </Button>: null}
                 </CardContent>
                 </Card>
               </div>
