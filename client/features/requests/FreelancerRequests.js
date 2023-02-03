@@ -47,6 +47,7 @@ const handleDeleteRequest = async (projectId)=>{
   return (
 <div id='freelancerRequests'>
       <ul>
+        
         {id.toString() ? requests.map((request) => (
           <div key={request.id}>
             <Card sx={{ maxWidth: 345, marginLeft: -5 }}>

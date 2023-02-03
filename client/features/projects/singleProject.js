@@ -237,12 +237,13 @@ const SingleProject = () => {
                       Like Project
                     </Button>
                     <Button
-                      onClick={handleCheckForProposal}
+                      onClick={()=>handleCheckForProposal()}
                       size="small"
                       variant="contained"
                     >
                       Submit a Proposal
                     </Button>
+                    <h1>{error}</h1>
                   </>
                 ) : null}
               </CardActions>
