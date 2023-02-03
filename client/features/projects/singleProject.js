@@ -65,7 +65,6 @@ function a11yProps(index) {
 }
 
 const SingleProject = () => {
-  const [error, setError] = useState("");
   const [render, setRender] = useState(false);
   const navigate = useNavigate();
 
@@ -78,12 +77,8 @@ const SingleProject = () => {
   const client = useSelector((state) => state.clientAuth.clientMe.id);
 
   const freelancer = useSelector((state) => state.freelancerAuth.me);
-  console.log("FREELANCER ID: ", freelancer.id);
 
   const project = useSelector(selectSingleProject);
-
-  
-
 
   const { projectId } = useParams();
 
@@ -93,8 +88,6 @@ const SingleProject = () => {
   const clickMessage = () => {
     navigate(`/messages/${project.singleProject.clientId}`);
   };
-
-  console.log(p);
 
   const likeProject = async () => {
     if (!p[0]) {
@@ -108,7 +101,7 @@ const SingleProject = () => {
     }
   };
 
-  useEffect( () => {
+  useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
 
     dispatch(
@@ -124,15 +117,9 @@ const SingleProject = () => {
   };
 
   //  const request = useSelector(selectSingleRequest);
-   const request = useSelector((state) => state.singleRequest);
-  console.log("REQUEST: ", request)
-  const handleCheckForProposal = async () => {
-    // const request = await axios.get(
-    //   `/api/requests/${projectId}/${freelancer.id}`
-    // );
-    // request.data[0]
-    //   ? setError("You already sent a proposal to this project")
-    //   :
+  const request = useSelector((state) => state.singleRequest);
+
+  const handleSubmitProposal = async () => {
     navigate(`/projects/${projectId}/addrequest`);
   };
 
@@ -252,16 +239,16 @@ const SingleProject = () => {
                     >
                       Like Project
                     </Button>
-                    
-                     {request.singleRequest ? null : <Button
-                        onClick={() => handleCheckForProposal()}
+
+                    {request.singleRequest ? null : (
+                      <Button
+                        onClick={() => handleSubmitProposal()}
                         size="small"
                         variant="contained"
                       >
                         Submit a Proposal
-                      </Button>}
-                    
-                    <h1>{error}</h1>
+                      </Button>
+                    )}
                   </>
                 ) : null}
               </CardActions>
@@ -301,7 +288,6 @@ const SingleProject = () => {
             />
           ) : null}
           {freelancerIsLoggedIn ? <FreelancerRequests /> : null}
-          <h1>{error}</h1>
         </TabPanel>
       </div>
     </div>
