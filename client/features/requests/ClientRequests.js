@@ -56,20 +56,20 @@ export default function ClientRequests(props) {
           })
         )
       })
-      // .then(() => {
+      .then( async () => {
         
-      //   dispatch(
-      //     editAcceptRequest({
-      //       projectId: projectId,
-      //       freelancerId: id,
-      //       status: "ACCEPTED",
-      //     })
-      //   )
-      // })
+       await dispatch(
+          editAcceptRequest({
+            projectId: projectId,
+            freelancerId: id,
+            status: "ACCEPTED",
+          })
+        )
+      })
       .then(() => {
-        // dispatch(fetchClientRequests(projectId));
-         navigate(`/projects/${projectId}`)
-         window.location.reload()
+         dispatch(fetchClientRequests(projectId));
+        //  navigate(`/projects/${projectId}`)
+        //  window.location.reload()
       }).then(()=>{
         setError("")
       })
@@ -84,6 +84,15 @@ export default function ClientRequests(props) {
         status: "Pending",
       })
     )
+      .then(async () => {
+       await dispatch(
+          editAcceptRequest({
+            projectId: projectId,
+            freelancerId: id,
+            status: "PENDING",
+          })
+        );
+      })
       .then(() => {
         dispatch(
           editAcceptRequest({
@@ -93,19 +102,10 @@ export default function ClientRequests(props) {
           })
         );
       })
-      // .then(() => {
-      //   dispatch(
-      //     editAcceptRequest({
-      //       projectId: projectId,
-      //       freelancerId: id,
-      //       status: "PENDING",
-      //     })
-      //   );
-      // })
       .then(() => {
-        // dispatch(fetchClientRequests(projectId));
-         navigate(`/projects/${projectId}`)
-        window.location.reload()
+        dispatch(fetchClientRequests(projectId));
+        //  navigate(`/projects/${projectId}`)
+        // window.location.reload()
 
       }).then(()=>{
         setError("")
