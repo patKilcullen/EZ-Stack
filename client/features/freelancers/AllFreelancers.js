@@ -85,7 +85,7 @@ const AllFreelancers = () => {
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />
-                    <CardContent >
+                    <CardContent>
                       <Typography color='primary' gutterBottom variant="h5" component="div">
                         {freelancers.firstName} {freelancers.lastName}
                       </Typography>
@@ -94,7 +94,7 @@ const AllFreelancers = () => {
                       </Typography>
                     </CardContent>
                     <CardActions>
-                      <Button  fullWidth size="small" variant='contained'>Learn More</Button>
+                      <Button size="small" variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
                 </Link>
