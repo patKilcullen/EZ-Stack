@@ -20,8 +20,9 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-import { checkLikedProjectsAsync, likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
+import { likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
 import FavoriteIcon from '@mui/icons-material/Favorite';
+import { checkLikedProjectsAsync, selectCheckProjects } from "./checkProjectSlice";
 
 
 
@@ -83,7 +84,7 @@ const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
-  const p = useSelector(selectLikedProjects)
+  const p = useSelector(selectCheckProjects)
 
 
   const clickMessage = () => {

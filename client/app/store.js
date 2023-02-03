@@ -20,7 +20,7 @@ import freelancerSingleMessageSlice from '../features/messages/freelancerSingleM
 import freelancerRequestSlice from '../features/requests/freelancerRequestSlice';
 import ratingsSlice from '../features/ratings/ViewAllSlice';
 import likedProjectsSlice from '../features/projects/likedProjectsSlice';
-
+import checkProjectSlice from '../features/projects/checkProjectSlice';
 
 
 
@@ -41,8 +41,8 @@ const store = configureStore({
     freelancerSingleMessage: freelancerSingleMessageSlice,
     freelancerRequests: freelancerRequestSlice,
     allRatings: ratingsSlice,
-    likedProjects: likedProjectsSlice
-
+    likedProjects: likedProjectsSlice,
+    checkLikedProjects: checkProjectSlice
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
