@@ -17,7 +17,8 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
+
+
 
 export default function ClientRequests(props) {
   const [error, setError] = useState("");
@@ -139,15 +140,15 @@ export default function ClientRequests(props) {
                   {request.requestMessage}
                   </Typography>
                 </li>
-                <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>
+               { request.project.freelancerId === null ? <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>
                   Assign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} to Project
-                </Button>
+                </Button> : null}
                 {" "}
-                <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
+                {request.project.freelancerId = request.freelancerId ? <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
                   Unassign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} from Project
-                </Button>
+                </Button> : null}
                 </CardContent>
                 </Card>
               </div>
