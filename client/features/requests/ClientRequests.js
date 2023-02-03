@@ -17,7 +17,7 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-import { createSerializableStateInvariantMiddleware } from "@reduxjs/toolkit";
+
 
 export default function ClientRequests(props) {
 
@@ -26,14 +26,8 @@ export default function ClientRequests(props) {
   const requests = useSelector(selectClientRequests);
   const { projectId } = useParams();
 
-
-  const project = useSelector(selectSingleProject);
-
   useEffect(() => {
-    dispatch(fetchClientRequests(projectId)).then(() => {
-      dispatch(fetchSingleProjectAsync(projectId));
-
-    });
+    dispatch(fetchClientRequests(projectId))
   }, [dispatch,]);
 
   const handleAssignUser = (id) => {
@@ -106,7 +100,9 @@ export default function ClientRequests(props) {
     <div>
       <ul>
         {props.clientId === props.projectClientId
-          ? requests.map((request) => (
+          ? 
+          requests.length < 1 ? "No Requests Yet" :
+          requests.map((request) => (
               <div>
                 <Card>
                   <CardContent>
