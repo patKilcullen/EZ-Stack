@@ -25,13 +25,20 @@ navigate(`/messages/${freelancer.id}`)
 const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
 
-console.log(freelancer)
+console.log("REVIEW ", reviews)
 
+const rating = reviews.map((review)=>review.rating)
+const ratingSum = rating.reduce((accumulator, value) =>{
+  return accumulator + value;
+}, 0)
+
+const ratingAvg = Math.round(ratingSum / rating.length)
+
+   
 useEffect(()=>{
 dispatch(fetchSingleFreelancer(id)).then(()=>{
-  dispatch(fetchRatingsByFreelancerAsync(id))
-})
-
+  dispatch(fetchRatingsByFreelancerAsync(id))  
+  })  
 },[dispatch])
 
 
@@ -53,6 +60,12 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
             </Typography>
             <Typography color='primary' variant="body2" >
             {freelancer.categories}
+            </Typography>
+            <Typography color='primary' variant="body2" >
+            {ratingAvg === 1 ? (<p>{"★"}</p>) :ratingAvg === 2 ? (<p>{"★★"}</p>):ratingAvg === 3 ? (<p>{"★★★"}</p>) :ratingAvg === 4 ? (<p>{"★★★★"}</p>):ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+            </Typography>
+            <Typography color='primary' variant="body2" >
+            {rating.length} Reviews
             </Typography>
           </CardContent>
           <CardActions>

@@ -19,15 +19,20 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
+import ViewAvgRating from "../ratings/ViewAvgRating";
+import { fetchRatingsByFreelancerAsync, selectRatings } from "../ratings/ViewAllSlice";
+
+
 
 const AllFreelancers = () => {
   const dispatch = useDispatch();
   const freelancers = useSelector(selectAllFreelancers);
+  const reviews = useSelector(selectRatings)
 
   const [category, setCategory] = useState("");
 
   useEffect(() => {
-    dispatch(fetchAllFreelancers());
+    dispatch(fetchAllFreelancers())
   }, [dispatch]);
 
   const handleSearch = () => {
@@ -47,7 +52,18 @@ const AllFreelancers = () => {
     setPage(p);
     _DATA.jump(p);
   };
+console.log("FREELANCERS ", freelancers)
 
+// const getAvg = (id) =>{
+//   dispatch(fetchRatingsByFreelancerAsync(id))
+//   const rating = reviews.map((review)=>review.rating)
+// const ratingSum = rating.reduce((accumulator, value) =>{
+//   return accumulator + value;
+// }, 0)
+
+// return Math.round(ratingSum / rating.length)
+
+// }
   ///////////////////////
 
   return (
@@ -91,6 +107,9 @@ const AllFreelancers = () => {
                       </Typography>
                       <Typography color='primary' variant="body2">
                         {freelancers.categories}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratings.rating}
                       </Typography>
                     </CardContent>
                     <CardActions>

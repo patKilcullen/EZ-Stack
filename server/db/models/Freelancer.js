@@ -21,7 +21,7 @@ imageUrl: {
     type: Sequelize.STRING,
     // allowNull: false
   },
-  rating: {
+  ratingAvg: {
     type: Sequelize.FLOAT,
     allowNull: true,
   },
