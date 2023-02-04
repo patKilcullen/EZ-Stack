@@ -108,14 +108,14 @@ console.log("FREELANCERS ", freelancers)
                       <Typography color='primary' variant="body2">
                         {freelancers.categories}
                       </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.ratings.rating}
-                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small" variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
+                  <div>
+                  {/* <ViewAvgRating id={freelancers.id} /> */}
+                  </div>
                 </Link>
               </div>
             ))}

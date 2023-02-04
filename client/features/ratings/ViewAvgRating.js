@@ -21,17 +21,19 @@ import { selectAllFreelancers } from '../freelancers/allFreelancersSlice';
 
     console.log("REVIEWS ", reviews)
 
-useEffect(()=>{
-    dispatch(fetchRatingsByFreelancerAsync(id))
-},[dispatch])
-
-const rating = reviews.map((review)=>review.rating)
+    const rating = reviews.map((review)=>review.rating)
 const ratingSum = rating.reduce((accumulator, value) =>{
   return accumulator + value;
 }, 0)
 
 const ratingAvg = Math.round(ratingSum / rating.length)
+
 console.log("RATING AVG ", ratingAvg)
+
+
+useEffect(()=>{
+    dispatch(fetchRatingsByFreelancerAsync(id))
+},[dispatch])
 
 
   return (

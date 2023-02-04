@@ -10,7 +10,6 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
 
     export const fetchRatingsByFreelancerAsync = createAsyncThunk("allProjectsByCategory", async (id) => {
       const { data } = await axios.get(`/api/ratings/${id}`);
-      console.log("DATA ", data)
       return data;
     });
 
@@ -46,6 +45,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
         
       });
       builder.addCase(fetchRatingsByFreelancerAsync.fulfilled, (state, action) => {
+        console.log("PAYLOAD ", action.payload)
         return action.payload;
         
       });
