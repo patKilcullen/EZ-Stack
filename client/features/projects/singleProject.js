@@ -310,7 +310,7 @@ console.log("PPPPRRROJECT: ", project)
             projectId={projectId}
             projectClientId={project.singleProject.clientId}
             projectFreelancerId={project.singleProject.freelancerId}
-          /> : "You can only add a review once you product is marked complete"
+          /> : "You can only add a review once you project is marked complete"
   }
         </TabPanel>
 
