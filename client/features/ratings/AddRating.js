@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchSingleProjectAsync, editSingleProject } from "../projects/singleProjectSlice";
 import { addRatingAsync } from "./ViewAllSlice";
-
+import { fetchRatingByFreelancerAndProject, selectSingleRating } from "./singleRatingSlice";
 
 
 
@@ -30,6 +30,8 @@ const AddRating = (props) => {
   
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+  const singleRating = useSelector(selectSingleRating)
+  console.log("SINGLE RATING: ", singleRating)
 
   const client = useSelector((state) => state.clientAuth.clientMe.id)
 
@@ -50,6 +52,9 @@ const AddRating = (props) => {
 //       setReview(description);
 //     });
 //   }, [dispatch]);
+useEffect(()=>{
+dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
+}, [dispatch])
 
   const handlePostRating = (e) => {
     e.preventDefault();
@@ -67,7 +72,8 @@ const AddRating = (props) => {
   
   return (
     <div >
-        {client === projectClientId ? (
+      { singleRating ? "You already rated this freelancer for this project" :
+        client === projectClientId ? (
           <Box
           sx={{
           marginTop: 3,
@@ -114,6 +120,7 @@ const AddRating = (props) => {
       </form>
      </Box>
       ): null}
+        
   </div>
   );
 };

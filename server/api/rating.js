@@ -2,7 +2,7 @@ const router = require("express").Router();
 module.exports = router;
 
 const {
-  models: { Rating,  },
+  models: { Rating, Project  },
 } = require("../db");
 
 // All ratings route
@@ -20,13 +20,26 @@ router.get("/", async (req, res, next) => {
 // All projects for individual client route
 router.get("/:freelancerId", async (req, res, next) => {
     try {
-      const rating = await Rating.findAll({ where: {freelancerId: req.params.freelancerId}});
+      const rating = await Rating.findAll({ where: {freelancerId: req.params.freelancerId},include: Project });
       res.send(rating);
     } catch (error) {
       console.log("Error in all rating route");
       next(error);
     }
   });
+
+
+  // RATING BY PROJECT ANF FREELANCER
+router.get("/:projectId/:freelancerId", async (req, res, next) => {
+  try {
+    const rating = await Rating.findOne({ where: {freelancerId: req.params.freelancerId, projectId:req.params.projectId },include: Project });
+    console.log("RARA RATING: ", rating)
+    res.send(rating);
+  } catch (error) {
+    console.log("Error in all rating route");
+    next(error);
+  }
+});
 
 // create project route
 router.post("/", async (req, res, next) => {

@@ -24,6 +24,7 @@ import ratingsSlice from '../features/ratings/ViewAllSlice';
 import likedProjectsSlice from '../features/projects/likedProjectsSlice';
 import checkProjectSlice from '../features/projects/checkProjectSlice';
 
+import singleRatingSlice from '../features/ratings/singleRatingSlice';
 
 
 
@@ -46,6 +47,7 @@ const store = configureStore({
     likedProjects: likedProjectsSlice,
     checkLikedProjects: checkProjectSlice,
     singleRequest: selectSingleRequest,
+    singleRating: singleRatingSlice,
 
   },
   middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),

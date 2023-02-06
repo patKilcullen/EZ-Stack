@@ -141,8 +141,8 @@ const SingleProject = () => {
   };
 
 
+console.log("PPPPRRROJECT: ", project)
 
-console.log("PROJECTTTTTTT: ", project)
   if(!p[0]){
   return (
     <div>

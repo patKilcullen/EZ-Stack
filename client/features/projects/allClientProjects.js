@@ -179,7 +179,7 @@ return project.status === "Ongoing"
           
           {projects.filter((project)=>{
             
-return project.status === "Completed"
+return project.status === "Complete"
           
         }).map((project) => (
           

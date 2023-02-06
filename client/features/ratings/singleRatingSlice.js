@@ -42,8 +42,13 @@ export const fetchSingleRatingAsync = createAsyncThunk(
 //   }
 // );
 
-
-
+  // CHECK FOR RATING
+export const fetchRatingByFreelancerAndProject = createAsyncThunk("singleRating", async ({projectId, freelancerId}) => {
+  console.log("PROJ AN D FFRE: ", freelancerId)
+   const { data } = await axios.get(`/api/ratings/${projectId}/${freelancerId}`);
+  // console.log("DATER: ", data)
+  return data;
+});
 
 
 const singleRatingSlice = createSlice({
@@ -51,10 +56,13 @@ const singleRatingSlice = createSlice({
   initialState,
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(fetchSingleRatingAsync.fulfilled, (state, action) => {
-      state.singleProject = action.payload;
-    });
-
+    // builder.addCase(fetchSingleRatingAsync.fulfilled, (state, action) => {
+    //   state.singleRating = action.payload;
+    // });
+ // CHECK FOR RATING
+      builder.addCase(fetchRatingByFreelancerAndProject.fulfilled, (state, action) => {
+        state.singleRating = action.payload
+      });
   },
 });
 

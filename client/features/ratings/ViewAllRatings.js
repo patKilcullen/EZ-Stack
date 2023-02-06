@@ -14,7 +14,7 @@ import Typography from '@mui/material/Typography';
  const ViewAllRatings = () => {
     const dispatch = useDispatch()
     const ratings = useSelector(selectRatings)
-    console.log("RATINGS: ", ratings)
+
 
 
     const id = useSelector((state) => state.freelancerAuth.me.id)
