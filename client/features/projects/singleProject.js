@@ -140,6 +140,9 @@ const SingleProject = () => {
     setValue(newValue);
   };
 
+
+
+  // console.log("POROROROJACT: ",typeof project.singleProject.freelancer, project.singleProject.freelancer.firstName)
   if(!p[0]){
   return (
     <div>
@@ -216,6 +219,26 @@ const SingleProject = () => {
                     </Link>
                   ) : null}
                 </Typography> }
+
+                
+                {project.singleProject.freelancer ? (
+                    
+                      <Typography
+                        color="primary"
+                        variant="h5"
+                        sx={{ display: "inline" }}
+                      >
+                        {" "}
+                        Assigned to:   {" "}
+                        <Link
+                      to={`/freelancers/${project.singleProject.freelancerId}`}
+                    >
+                        {project.singleProject.freelancer.firstName}{" "}
+                        {project.singleProject.freelancer.lastName}
+                        </Link>
+                      </Typography>
+                  
+                  ) : null}
 
                 <br></br>
                 <br></br>
