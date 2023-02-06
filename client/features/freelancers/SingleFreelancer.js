@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { fetchSingleFreelancer, selectSingleFreelancer } from './singleFreelancerSlice';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -26,6 +26,8 @@ const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
 
 console.log(freelancer)
+console.log("REVIEWS:  ", reviews)
+
 
 useEffect(()=>{
 dispatch(fetchSingleFreelancer(id)).then(()=>{
@@ -34,7 +36,7 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
 
 },[dispatch])
 
-
+console.log("FREEEELANCEERR: ", freelancer.projects)
   return (
     <div className='singleView'>
         <div className='card'>
@@ -80,6 +82,28 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
             </Card>
           </div>
         ))}
+ 
+<Typography color='primary' variant="body2" >
+Completed Projects: 
+            </Typography>
+{freelancer.projects ? freelancer.projects.filter((project)=>{
+
+return project.status === "Ongoing"})
+
+.map((project) => (
+          <div>
+             <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
+             
+            <Link to={`/projects/${project.id}`} >
+            <Typography variant="body2" color='primary'>
+            {project.title}
+            </Typography>
+            </Link> 
+            </Card>
+          </div>
+        )): null}
+        
+        
         </div>
     </div>
   )
