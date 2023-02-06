@@ -2,10 +2,10 @@ const router = require("express").Router();
 module.exports = router;
 
 const {
-  models: { Rating },
+  models: { Rating,  },
 } = require("../db");
 
-// All projects route
+// All ratings route
 router.get("/", async (req, res, next) => {
   try {
     const rating = await Rating.findAll();

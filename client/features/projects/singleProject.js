@@ -142,7 +142,7 @@ const SingleProject = () => {
 
 
 
-  // console.log("POROROROJACT: ",typeof project.singleProject.freelancer, project.singleProject.freelancer.firstName)
+
   if(!p[0]){
   return (
     <div>
