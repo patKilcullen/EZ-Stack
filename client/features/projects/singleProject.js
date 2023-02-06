@@ -156,7 +156,7 @@ console.log("PROJECTTTTTTT: ", project)
           {clientIsLoggedIn ? (
             <Tab label="Edit Project" {...a11yProps(1)} />
           ) : null}
-          {clientIsLoggedIn && project.singleProject.status === "Complete" ? (
+          {clientIsLoggedIn  ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
           {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
@@ -221,7 +221,7 @@ console.log("PROJECTTTTTTT: ", project)
                 </Typography> }
 
                 
-                {project.singleProject.freelancer ? (
+                {clientIsLoggedIn && project.singleProject.freelancer ? (
                     
                       <Typography
                         color="primary"
@@ -305,11 +305,13 @@ console.log("PROJECTTTTTTT: ", project)
         </TabPanel>
 
         <TabPanel value={value} index={2}>
+          { project.singleProject.status === "Complete" ?
           <AddRating
             projectId={projectId}
             projectClientId={project.singleProject.clientId}
             projectFreelancerId={project.singleProject.freelancerId}
-          />
+          /> : "You can only add a review once you product is marked complete"
+  }
         </TabPanel>
 
         <TabPanel value={value} index={3}>

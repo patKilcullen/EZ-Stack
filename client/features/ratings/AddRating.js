@@ -58,7 +58,7 @@ const AddRating = (props) => {
     
     const review = e.target.review.value
     dispatch(
-      addRatingAsync({ freelancerId, rating, review })
+      addRatingAsync({ freelancerId, rating, review, projectId })
     ).then(() => {
       dispatch(fetchSingleProjectAsync(projectId));
     });
