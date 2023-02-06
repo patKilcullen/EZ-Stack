@@ -92,6 +92,7 @@ return project.status === "Pending"
           
       
           <div
+          key={project.id}
             className="card"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
           >
@@ -137,7 +138,7 @@ return project.status === "Ongoing"
         }).map((project) => (
           
       
-          <div
+          <div key={project.id}
             className="card"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
           >
@@ -184,6 +185,7 @@ return project.status === "Completed"
           
       
           <div
+          key={project.id}
             className="card"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
           >

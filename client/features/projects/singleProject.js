@@ -142,7 +142,7 @@ const SingleProject = () => {
 
 
 
-
+console.log("PROJECTTTTTTT: ", project)
   if(!p[0]){
   return (
     <div>
@@ -156,7 +156,7 @@ const SingleProject = () => {
           {clientIsLoggedIn ? (
             <Tab label="Edit Project" {...a11yProps(1)} />
           ) : null}
-          {clientIsLoggedIn ? (
+          {clientIsLoggedIn && project.singleProject.status === "Complete" ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
           {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}

@@ -130,7 +130,7 @@ const AllFreelancerProjects = () => {
             return project.status === "Complete"
                       
                     }).map((project) => (
-          <div className='card'
+          <div key={project.id} className='card'
           style={{display:"flex", flexDirection: "column", justifyContent: "center", alignItems:"center"}}
           >
             <Link to={`/projects/${project.id}`}>
