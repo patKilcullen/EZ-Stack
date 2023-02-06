@@ -71,14 +71,14 @@ const ratingAvg = Math.round(ratingSum / ratings.length)
     e.preventDefault();
     const rating = e.target.rating.value
     const review = e.target.review.value
-    ratings.push(rating)
+    ratings.push(parseInt(rating))
     console.log("PUSH ", ratings)
     console.log("RATINGS SUM ",)
     console.log("NEW AVG ", ratingAvg)
   
     dispatch(
       addRatingAsync({ freelancerId, rating, review })
-    ).then(() => {dispatch(updateFreelancerAsync({id, ratingAvg}))
+    ).then(() => {dispatch(updateFreelancerAsync({id, ratingAvg})).then(()=> window.location.reload())
       console.log("NEW REVIEWS ", reviews)
     });
   };

@@ -26,6 +26,7 @@ async function seed() {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       imageUrl: faker.image.people(),
+      ratingAvg: Math.floor(Math.random() * 5) + 1, 
       description: faker.commerce.productDescription(),
       categories: faker.name.jobType(),
       username: faker.internet.userName(),
@@ -55,7 +56,7 @@ await Rating.create({
 })
 
 await Rating.create({
-  freelancerId: 102,
+  freelancerId: 101,
   rating: 3,
   review: 'cured my blindness with the beauty of their work'
 })
@@ -86,7 +87,7 @@ await Project.create({
  description: faker.lorem.sentences(),
  category: faker.name.jobType()
 })}
-
+ 
 await Project.create({ 
   clientId: 4,
   freelancerId: 2,

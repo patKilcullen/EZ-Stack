@@ -8,7 +8,6 @@ export const fetchAllFreelancers = createAsyncThunk ('allFreelancers', async ()=
     }catch(error){
         console.log("ERROR IN FETCHALLFRELANCERS THUNK: ", error)
     }
-
 })
 
 export const fetchFreelancersByCategoryAsync = createAsyncThunk("allFreelancersByCategory", async (category) => {
@@ -19,11 +18,32 @@ export const fetchFreelancersByCategoryAsync = createAsyncThunk("allFreelancersB
 
 const allFreelancersSlice = createSlice({
     name: "allFreelancers",
-    initialState: [],
-    reducers: {},
+    initialState: {
+        freelancers: [],
+        freelancersByReviews: [],
+    },
+    freelancersByReviews: [],
+    reducers: {
+     sortByCategory(state, action){
+        state.freelancersByReviews = state.freelancers.sort((a, b) => {
+            const A = a.ratings.length;
+            const B = b.ratings.length;
+      
+            if (A < B) {
+              return 1;
+            }
+            if (A > B) {
+              return -1;
+            }
+            return 0;
+          })
+    },
+},
     extraReducers: (builder)=>{
         builder.addCase(fetchAllFreelancers.fulfilled, (state, action)=>{
-            return action.payload
+            state.freelancers = action.payload.sort((a, b) => {
+                return b.ratingAvg - a.ratingAvg;
+              })
         })
         builder.addCase(fetchFreelancersByCategoryAsync.fulfilled, (state, action)=>{
             return action.payload
@@ -31,8 +51,13 @@ const allFreelancersSlice = createSlice({
     }
 })
 
+export const { sortByCategory } = allFreelancersSlice.actions;
+
 export const selectAllFreelancers = (state)=>{
-    return state.allFreelancers
+    return state.allFreelancers.freelancers
+}
+export const selectAllFreelancersByReviews = (state)=>{
+    return state.allFreelancers.freelancersByReviews
 }
 
 export default allFreelancersSlice.reducer

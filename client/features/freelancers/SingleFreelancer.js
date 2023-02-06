@@ -9,7 +9,8 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { fetchRatingsByFreelancerAsync, selectRatings } from '../ratings/ViewAllSlice';
-
+import StarHalfIcon from '@mui/icons-material/StarHalf';
+import StarIcon from '@mui/icons-material/Star';
 
 const SingleFreelancer = () => {
 const navigate = useNavigate()
@@ -32,7 +33,7 @@ const ratingSum = rating.reduce((accumulator, value) =>{
   return accumulator + value;
 }, 0)
 
-const ratingAvg = Math.round(ratingSum / rating.length)
+const ratingAvg = Math.round(ratingSum / rating.length) ;
 
    
 useEffect(()=>{

@@ -5,6 +5,8 @@ import {
   fetchAllFreelancers,
   selectAllFreelancers,
   fetchFreelancersByCategoryAsync,
+  sortByCategory,
+  selectAllFreelancersByReviews,
 } from "./allFreelancersSlice";
 import usePagination from "./usePagimentation";
 
@@ -19,26 +21,28 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import ViewAvgRating from "../ratings/ViewAvgRating";
-import { fetchRatingsByFreelancerAsync, selectRatings } from "../ratings/ViewAllSlice";
+
+
 
 
 
 const AllFreelancers = () => {
   const dispatch = useDispatch();
   const freelancers = useSelector(selectAllFreelancers);
-  const reviews = useSelector(selectRatings)
-
+  const freelancersByReviews = useSelector(selectAllFreelancersByReviews)
+  
   const [category, setCategory] = useState("");
+  
 
   useEffect(() => {
     dispatch(fetchAllFreelancers())
-  }, [dispatch]);
 
-  const handleSearch = () => {
-    const cat = category.charAt(0).toUpperCase();
-    const newCat = cat + category.slice(1);
-    dispatch(fetchFreelancersByCategoryAsync(newCat));
+  }, [dispatch]);
+  
+
+   
+  const handleSort = () => { 
+    dispatch(sortByCategory())
   };
 
   ////FOR PAGINATION/////
@@ -54,34 +58,16 @@ const AllFreelancers = () => {
   };
 console.log("FREELANCERS ", freelancers)
 
-// const getAvg = (id) =>{
-//   dispatch(fetchRatingsByFreelancerAsync(id))
-//   const rating = reviews.map((review)=>review.rating)
-// const ratingSum = rating.reduce((accumulator, value) =>{
-//   return accumulator + value;
-// }, 0)
-
-// return Math.round(ratingSum / rating.length)
-
-// }
-  ///////////////////////
 
   return (
+
     <div className="allViewContainer"
     style={{marginBottom: "10px"}}
     >
-      <div className="search">
-        <input
-          className="searchBar"
-          type="text"
-          placeholder="search freelancers by category"
-          value={category}
-          onChange={(event) => setCategory(event.target.value)}
-          onKeyDown={handleSearch}
-        />
+      <div style={{marginTop:'1em'}} className="search">
+       <Button onClick={() => handleSort()} variant='contained'>Most Reviewed</Button>
       </div>
-
-
+      {freelancersByReviews.length ? (
       <Box p="5">
         <List p="10" pt="3" spacing={2}>
           <div className="allList">
@@ -108,19 +94,29 @@ console.log("FREELANCERS ", freelancers)
                       <Typography color='primary' variant="body2">
                         {freelancers.categories}
                       </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {`${freelancers.ratings.length} Reviews`}
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button size="small" variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
                   <div>
-                  {/* <ViewAvgRating id={freelancers.id} /> */}
+                  {/* { <ViewAvgRating id={freelancers.id} />} */}
                   </div>
                 </Link>
               </div>
+             
             ))}
+            
+
           </div>
         </List>
+        
         <Stack alignItems="center">
           <Pagination
           color='primary'
@@ -133,6 +129,68 @@ console.log("FREELANCERS ", freelancers)
           />
         </Stack>
       </Box>
+      ): 
+      <Box p="5">
+        <List p="10" pt="3" spacing={2}>
+          <div className="allList">
+            {_DATA.currentData().map((freelancers) => (
+              <div className="card">
+                <Link to={`/freelancers/${freelancers.id}`}>
+                  <Card 
+                    sx={{
+                      minWidth: 300, minHeight: 300, 
+                      
+                      margin: "0 auto",
+                      padding: "0.3em",
+                    }}
+                  >
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={freelancers.imageUrl}
+                      title="Freelancer"
+                    />
+                    <CardContent >
+                      <Typography color='primary' gutterBottom variant="h5" component="div">
+                        {freelancers.firstName} {freelancers.lastName}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.categories}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {`${freelancers.ratings.length} Reviews`}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" variant='contained'>Learn More</Button>
+                    </CardActions>
+                  </Card>
+                  <div>
+                  {/* { <ViewAvgRating id={freelancers.id} />} */}
+                  </div>
+                </Link>
+              </div>
+             
+            ))}
+            
+
+          </div>
+        </List>
+        
+        <Stack alignItems="center">
+          <Pagination
+          color='primary'
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Stack>
+      </Box> }
     </div>
   );
 };

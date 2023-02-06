@@ -26,9 +26,12 @@ const ratingSum = rating.reduce((accumulator, value) =>{
   return accumulator + value;
 }, 0)
 
+console.log("ID ", id)
+
 const ratingAvg = Math.round(ratingSum / rating.length)
 
 console.log("RATING AVG ", ratingAvg)
+console.log("RATING SUM ", ratingSum)
 
 
 useEffect(()=>{

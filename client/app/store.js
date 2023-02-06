@@ -33,6 +33,7 @@ const store = configureStore({
     singleProject: singleProjectSlice,
     client: clientReducer,
     allFreelancers: allFreelancersSlice,
+
     SingleFreelancer: singleFreelancerSlice,
     clientRequests: clientRequestSlice,
     freelancerMessages: freelancerMessagesSlice,
