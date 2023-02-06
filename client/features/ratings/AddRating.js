@@ -72,7 +72,7 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
   
   return (
     <div >
-      { singleRating ? "You already rated this freelancer for this project" :
+      { singleRating ? "You already rated the freelance for this project" :
         client === projectClientId ? (
           <Box
           sx={{
