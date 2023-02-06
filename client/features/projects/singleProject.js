@@ -408,7 +408,7 @@ const SingleProject = () => {
                       Unlike
                     </Button>
                      <Button
-                     onClick={handleCheckForProposal}
+                     onClick={() => handleSubmitProposal()}
                      size="small"
                      variant="contained"
                    >
@@ -458,7 +458,7 @@ const SingleProject = () => {
               />
             ) : null}
             {freelancerIsLoggedIn ? <FreelancerRequests /> : null}
-            <h1>{error}</h1>
+            {/* <h1>{error}</h1> */}
           </TabPanel>
         </div>
       </div>
