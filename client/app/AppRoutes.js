@@ -102,6 +102,8 @@ const AppRoutes = () => {
           <Route path="profile/update" element={<UpdateClient />} />
           <Route path="/post" element={<AddProject />} />
 
+          <Route path='/login' element={<Home />} />
+
 
            {/* PAGE NOT FOUND */}
            <Route path="*" element={<PageNotFound />} />
@@ -162,6 +164,7 @@ const AppRoutes = () => {
 
           <Route path='/submit/:id' element={<SubmitWork />} />
           <Route path='/work/:id' element={<Work />} />
+          <Route path='/login' element={<Home />} />
 
 
            {/* PAGE NOT FOUND */}
