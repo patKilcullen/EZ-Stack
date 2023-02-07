@@ -68,7 +68,7 @@ console.log("FREEEELANCEERR: ", freelancer.projects)
         </Card>
           
         {reviews.map((rating) => (
-          <div>
+          <div key={rating.id}>
              <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
              <Typography color='primary' variant="body2" >
             Review
@@ -87,7 +87,7 @@ console.log("FREEEELANCEERR: ", freelancer.projects)
           </div>
         ))}
  
-<Typography color='primary' variant="body2" >
+{/* <Typography color='primary' variant="body2" >
 Completed Projects: 
             </Typography>
 {freelancer.projects ? freelancer.projects.filter((project)=>{
@@ -105,7 +105,7 @@ return project.status === "Complete"})
             </Link> 
             </Card>
           </div>
-        )): null}
+        )): null} */}
         
         
         </div>

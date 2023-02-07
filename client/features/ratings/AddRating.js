@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchSingleProjectAsync, editSingleProject } from "../projects/singleProjectSlice";
 import { addRatingAsync } from "./ViewAllSlice";
 import { fetchRatingByFreelancerAndProject, selectSingleRating } from "./singleRatingSlice";
@@ -27,6 +28,8 @@ const statuses = ["Pending", "Ongoing", "Complete"];
 const AddRating = (props) => {
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+
+  const navigate = useNavigate()
   
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
@@ -65,7 +68,13 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
     dispatch(
       addRatingAsync({ freelancerId, rating, review, projectId })
     ).then(() => {
-      dispatch(fetchSingleProjectAsync(projectId));
+      dispatch(fetchSingleProjectAsync(projectId)).then(()=>{
+        window.location.reload()
+        // navigate(`/projects/${projectId}`)
+        console.log("MADE IT ALL THE WAYYY", projectId)
+        
+      })
+      
     });
   };
 
