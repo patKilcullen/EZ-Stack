@@ -21,12 +21,52 @@ imageUrl: {
     type: Sequelize.STRING,
     // allowNull: false
   },
-  rating: {
+  ratingAvg: {
     type: Sequelize.FLOAT,
     allowNull: true,
   },
   description: {
     type: Sequelize.TEXT,
+  },
+
+  category: {
+    type: Sequelize.ENUM(
+      ['Python Developer', 
+      'Javascript Developer',
+      'HTML & CSS Developer',
+      'Android Developer',
+      'iOS Developer'
+    ]),
+    defaultValue: 'Javascript Developer'
+    },
+    specialties:{
+      type: Sequelize.ENUM(
+        ['Web Application, Scripting, Bug Fixes, Help/Consultation', 
+        'Custom Websites using WordPress, Shopify, Wix, etc',
+        'Mobile Apps, Desktop Applications, Game Development',
+        'Website Development, Maitaince, and Customization',
+      ]),
+      defaultValue: 'Website Development, Maitaince, and Customization'
+      },
+      hourlyRate:{
+        type: Sequelize.INTEGER,
+        defaultValue: 20,
+      },
+
+      bio: {
+        type: Sequelize.STRING(70),
+        // allowNull: false
+      },
+
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+    // allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    // allowNull: false,
+    min: 5,
   },
   category: {
     type: Sequelize.ENUM(
@@ -56,17 +96,6 @@ imageUrl: {
         type: Sequelize.STRING(70),
         // allowNull: false
       },
-  
-  username: {
-    type: Sequelize.STRING,
-    unique: true,
-    // allowNull: false,
-  },
-  password: {
-    type: Sequelize.STRING,
-    // allowNull: false,
-    min: 5,
-  },
   
 });
 

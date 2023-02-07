@@ -68,6 +68,9 @@ const AllClientProjects = () => {
 
   return (
     <div className="allViewContainer">
+
+   
+
       <div className="allList">
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
@@ -144,6 +147,7 @@ return project.status === "Ongoing"
           >
             
             <Link to={`/projects/${project.id}`}>
+
 
           <Card sx={{ width: 400, height: 400 ,':hover': {boxShadow: 20},}}>
           <CardContent>
@@ -223,6 +227,7 @@ return project.status === "Complete"
             
           </div>
           
+
         ))}
        
         </TabPanel>

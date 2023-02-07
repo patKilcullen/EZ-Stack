@@ -4,10 +4,15 @@ import { Link } from "react-router-dom";
 import {
   fetchAllFreelancers,
   selectAllFreelancers,
-  selectAllFreelancersBySpecialties,
-  selectAllFreelancersByCategory, 
+
+  fetchFreelancersByCategoryAsync,
+  sortByReviews,
   sortByCategory,
+  selectAllFreelancersByReviews,
+  selectAllFreelancersByCategory,
+  selectAllFreelancersBySpecialties,
   sortBySpecialties,
+
 } from "./allFreelancersSlice";
 import usePagination from "./usePaginatation";
 
@@ -28,19 +33,35 @@ import InputLabel from "@mui/material/InputLabel";
 
 
 
+
+
+
+
 const AllFreelancers = () => {
   const dispatch = useDispatch();
   const freelancers = useSelector(selectAllFreelancers);
-  const freelancersBySpecialties = useSelector(selectAllFreelancersBySpecialties)
+
+  const freelancersByReviews = useSelector(selectAllFreelancersByReviews)
   const freelancersByCategory = useSelector(selectAllFreelancersByCategory)
   
   const [category, setCategory] = useState("");
+
+  const freelancersBySpecialties = useSelector(selectAllFreelancersBySpecialties)
+
   const [specialties, setSpecialties] = useState("");
+
   
 
   useEffect(() => {
-    dispatch(fetchAllFreelancers());
+    dispatch(fetchAllFreelancers())
+
   }, [dispatch]);
+  
+
+  const handleSort = () => { 
+    dispatch(sortByReviews())
+    console.log("SORTED BY REVIEWS ", freelancersByReviews)
+  };
 
 
   const handleCategory = (evt) => {
@@ -59,43 +80,147 @@ const AllFreelancers = () => {
 
   ///////////
 
+
+  const handleCategory = (evt) => {
+    evt.preventDefault();
+    console.log("handle category", category);
+    dispatch(sortByCategory(category));
+    console.log("FREELANCERS BY CAT ", freelancersByCategory)
+  }
+    
+
+
   ////FOR PAGINATION/////
   let [page, setPage] = useState(1);
   const PER_PAGE = 10;
 
   const count = Math.ceil(freelancers.length / PER_PAGE);
-   const _DATA = usePagination(freelancers, PER_PAGE);
 
-   const countB = Math.ceil(freelancersByCategory.length / PER_PAGE);
-   const _DATAB = usePagination(freelancersByCategory, PER_PAGE);
- 
+  const _DATA = usePagination(freelancers, PER_PAGE);
+  const countB = Math.ceil(freelancersByCategory.length / PER_PAGE);
+  const _DATAB = usePagination(freelancersByCategory, PER_PAGE);
+
    const countC = Math.ceil(freelancersBySpecialties.length / PER_PAGE);
    const _DATAC = usePagination(freelancersBySpecialties, PER_PAGE);
  
-
   const handleChangeAll = (e, p) => {
     setPage(p);
     _DATA.jump(p);
   };
-
-  const handleChangeCategory = (e, p) => {
-    setPage(p);
-    _DATAB.jump(p);
-  };
-
-  const handleChangeSpecialties = (e, p) => {
+  
+    const handleChangeSpecialties = (e, p) => {
     setPage(p);
     _DATAC.jump(p);
   };
+console.log("FREELANCERS ", freelancers)
 
-  ///////////////////////
 
-  if (freelancersByCategory.length) {
+if (freelancersByReviews.length){
+  return (
+    <div className="allViewContainer"
+    style={{marginBottom: "10px"}}
+    >
+
+      <h5>Search by Categories and Specialties</h5>
+      <form onSubmit={handleCategory}>
+        {/* category  */}
+        <InputLabel>Categories</InputLabel>
+        <Select
+          name="category"
+          fullWidth
+          // label="Category"
+          value={category}
+          color="primary"
+          sx={{ m: 1, width: "20ch" }}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <MenuItem value="all">
+            All freelancers
+          </MenuItem>
+          <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
+          <MenuItem value={"Javascript Developer"}>
+            Javascript Developer{" "}
+          </MenuItem>
+          <MenuItem value={"HTML & CSS Developer"}>
+            HTML & CSS Developer
+          </MenuItem>
+          <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
+        </Select>
+        <Button type="submit" variant="contained">
+          Search
+        </Button>
+      </form>
+      
+      <Box p="5">
+        <List p="10" pt="3" spacing={2}>
+          <div className="allList">
+            {_DATA.currentData().map((freelancers) => (
+              <div className="card">
+                <Link to={`/freelancers/${freelancers.id}`}>
+                  <Card 
+                    sx={{
+                      minWidth: 300, minHeight: 300, 
+                      
+                      margin: "0 auto",
+                      padding: "0.3em",
+                    }}
+                  >
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={freelancers.imageUrl}
+                      title="Freelancer"
+                    />
+                    <CardContent >
+                      <Typography color='primary' gutterBottom variant="h5" component="div">
+                        {freelancers.firstName} {freelancers.lastName}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.categories}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {`${freelancers.ratings.length} Reviews`}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" variant='contained'>Learn More</Button>
+                    </CardActions>
+                  </Card>
+                  <div>
+                  {/* { <ViewAvgRating id={freelancers.id} />} */}
+                  </div>
+                </Link>
+              </div>
+             
+            ))}
+            
+
+          </div>
+        </List>
+        <Stack alignItems="center">
+          <Pagination
+          color='primary'
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Stack>
+      </Box>
+    </div>
+  )}
+ if (freelancersByCategory.length) {
+
   return (
     <div className="allViewContainer" style={{ marginBottom: "10px" }}>
       <div
     style={{display:"flex", justifyContent: "space-between", alignItems:"center"}}
     >
+
     <h5>Search by Categories and Specialties</h5>
     <form onSubmit={handleCategory}>
       {/* category  */}
@@ -138,10 +263,8 @@ const AllFreelancers = () => {
           color="primary"
           sx={{ m: 1, width: "20ch" }}
           onChange={(e) => setSpecialties(e.target.value)}
+
         >
-          <MenuItem value="all">
-            All freelancers
-          </MenuItem>
           <MenuItem value={"Web Application, Scripting, Bug Fixes, Help/Consultation"}>
           Web Application, Scripting, Bug Fixes, Help/Consultation</MenuItem>
           <MenuItem value={"Custom Websites using WordPress, Shopify, Wix, etc"}>
@@ -152,12 +275,113 @@ const AllFreelancers = () => {
           </MenuItem>
           <MenuItem value={"Website Development, Maitaince, and Customization"}>
           Website Development, Maitaince, and Customization</MenuItem>
+
         </Select>
         <Button type="submit" variant="contained">
           Search
         </Button>
       </form>
+      <div style={{marginTop:'1em'}} className="search">
+       <Button onClick={() => handleSort()} variant='contained'>Most Reviewed</Button>
+
+
       </div>
+      <Box p="5">
+        <List p="10" pt="3" spacing={2}>
+          <div className="allList">
+            {freelancersByCategory.map((freelancers) => (
+              <div className="card">
+                <Link to={`/freelancers/${freelancers.id}`}>
+                  <Card 
+                    sx={{
+                      minWidth: 300, minHeight: 300, 
+                      
+                      margin: "0 auto",
+                      padding: "0.3em",
+                    }}
+                  >
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={freelancers.imageUrl}
+                      title="Freelancer"
+                    />
+                    <CardContent >
+                      <Typography color='primary' gutterBottom variant="h5" component="div">
+                        {freelancers.firstName} {freelancers.lastName}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.categories}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {`${freelancers.ratings.length} Reviews`}
+                      </Typography>
+                    </CardContent>
+                    <CardActions>
+                      <Button size="small" variant='contained'>Learn More</Button>
+                    </CardActions>
+                  </Card>
+                  <div>
+                  {/* { <ViewAvgRating id={freelancers.id} />} */}
+                  </div>
+                </Link>
+              </div>
+             
+            ))}
+            
+
+          </div>
+        </List>
+        <Stack alignItems="center">
+          <Pagination
+          color='primary'
+            count={count}
+            size="large"
+            page={page}
+            variant="outlined"
+            shape="rounded"
+            onChange={handleChange}
+          />
+        </Stack>
+      </Box>
+    </div>
+  )};
+  return (
+    <div className="allViewContainer"
+    style={{marginBottom: "10px"}}
+    >
+      <h5>Search by Categories and Specialties</h5>
+      <form onSubmit={handleCategory}>
+        {/* category  */}
+        <InputLabel>Categories</InputLabel>
+
+        <Select
+          name="category"
+          fullWidth
+          // label="Category"
+          value={category}
+          color="primary"
+          sx={{ m: 1, width: "20ch" }}
+          onChange={(e) => setCategory(e.target.value)}
+        >
+          <MenuItem value="all">
+            All freelancers
+          </MenuItem>
+          <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
+          <MenuItem value={"Javascript Developer"}>
+            Javascript Developer{" "}
+          </MenuItem>
+          <MenuItem value={"HTML & CSS Developer"}>
+            HTML & CSS Developer
+          </MenuItem>
+          <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
+        </Select>
+        <Button type="submit" variant="contained">
+          Search
+        </Button>
+      </form>
 
       <Box p="5">
         <List p="10" pt="3" spacing={2}>
@@ -323,6 +547,9 @@ if (freelancersBySpecialties.length) {
       </form>
       </div>
 
+      <div style={{marginTop:'1em'}} className="search">
+       <Button onClick={() => handleSort()} variant='contained'>Most Reviewed</Button>
+      </div>
       <Box p="5">
         <List p="10" pt="3" spacing={2}>
           
@@ -389,6 +616,12 @@ if (freelancersBySpecialties.length) {
                       >
                         {freelancers.bio}
                       </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {`${freelancers.ratings.length} Reviews`}
+                      </Typography>
                     </CardContent>
                     <CardActions>
                       <Button fullWidth size="small" variant="contained">
@@ -396,10 +629,13 @@ if (freelancersBySpecialties.length) {
                       </Button>
                     </CardActions>
                   </Card>
+                  <div>
+                  {/* { <ViewAvgRating id={freelancers.id} />} */}
+                  </div>
                 </Link>
               </div>
+             
             ))}
-
 
           </div>
         </List>
@@ -416,7 +652,7 @@ if (freelancersBySpecialties.length) {
         </Stack>
       </Box>
     </div>
-  );
+  )
 };
 
 return (

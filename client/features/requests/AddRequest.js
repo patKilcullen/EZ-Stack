@@ -64,7 +64,9 @@ const AddRequest = () => {
     <Container component="main">
       <Box
         sx={{
+
           // "& .MuiTextField-root": { m: 1, width: "100ch" },
+
           marginTop: 3,
           marginBottom: 3,
           display: "flex",
@@ -84,6 +86,7 @@ const AddRequest = () => {
         </Avatar>
         
         <div>
+
           <Typography color='primary' component="h1" 
           variant="h4" sx={{ textAlign: "center"}}>
             Submit a Proposal
@@ -92,6 +95,7 @@ const AddRequest = () => {
             style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
             ></hr>
             <br></br>
+
             {  project ? (
               <Link to={`/projects/${project.singleProject.id}`}>
                 <Typography
@@ -102,8 +106,10 @@ const AddRequest = () => {
                 </Typography>
               </Link>
             ) : null}
+
           <br></br>
           <Typography color='primary' variant="body2">
+
             posted by:
             {project.singleProject.id ? (
               <Link to={`/client-profile/${project.singleProject.client.id}`}>
@@ -119,8 +125,12 @@ const AddRequest = () => {
               </Link>
             ) : null}
           </Typography>
+          <br></br>
+
+
 
           <br></br>
+
 
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div

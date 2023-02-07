@@ -14,6 +14,17 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
       return data;
     });
 
+    export const fetchAvgRatingByFreelancerAsync = createAsyncThunk("averageRating", async (id) => {
+      const { data } = await axios.get(`/api/ratings/${id}`);
+      const ratings = data.map((data)=>data.rating)
+      const ratingsSum = ratings.reduce((accumulator, value) =>{
+           return accumulator + value;
+         }, 0)
+         const ratingAvg = Math.round(ratingsSum / ratings.length)
+      return ratingAvg;
+
+    });
+
     
 
     
@@ -38,6 +49,11 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
         
       });
       builder.addCase(fetchRatingsByFreelancerAsync.fulfilled, (state, action) => {
+        console.log("PAYLOAD ", action.payload)
+        return action.payload;
+        
+      });
+      builder.addCase(fetchAvgRatingByFreelancerAsync.fulfilled, (state, action) => {
         return action.payload;
         
       });
