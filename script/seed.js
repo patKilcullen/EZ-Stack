@@ -27,7 +27,6 @@ async function seed() {
       lastName: faker.name.lastName(),
       imageUrl: faker.image.people(),
       description: faker.commerce.productDescription(),
-      categories: faker.name.jobType(),
       username: faker.internet.userName(),
       password: faker.internet.password(), 
 
@@ -36,11 +35,32 @@ async function seed() {
 
 await Freelancer.create({
   username: 'aaaaa',
-  password: '12345'
+  password: '12345',
+  firstName: 'Andrew',
+  lastName:'Andrews',
+  email:'andrew@gmail.com',
+  imageUrl: faker.image.people(),
+  description: 
+  "Hi, I am a Professional Python Programmer and Django Developer with more than years of experience. I develop custom websites for companies and individuals. I can ace any level of complexity. The field of my Expertise includes: Frontend Development : HTML5, CSS3, Javascript",
+  category: 'Python Developer',
+  hourlyRate: 12,
+  specialties:'Web Application, Scripting, Bug Fixes, Help/Consultation',
+  bio:'I will fix your html, css, jquery, wordpress issues',
 })
+
 await Client.create({
   username: 'bbbbb',
-  password: '12345'
+  password: '12345',
+  firstName: 'Bob',
+  lastName:'Bobs',
+  email:'bob@gmail.com',
+  imageUrl: faker.image.people(),
+  description: 
+  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
+  category: 'HTML & CSS Developer',
+  hourlyRate: 12,
+  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
+  bio:'I will fix your html, css, jquery, wordpress issues',
 })
 await Rating.create({
   freelancerId: 102,

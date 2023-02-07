@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom"
 import { fetchProjectsAsync, selectProjects, fetchProjectsByCategoryAsync  } from "../projects/allProjectsSlice";
-import usePagination from "../freelancers/usePagimentation";
+import usePagination from "../freelancers/usePaginatation";
 
 
 import Card from '@mui/material/Card';
@@ -21,7 +21,7 @@ const AllProjects = () => {
   const projects = useSelector(selectProjects);
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
-
+  console.log("projects", projects)
   
   
   const dispatch = useDispatch()
@@ -49,7 +49,8 @@ const AllProjects = () => {
   
     const count = Math.ceil(projects.length / PER_PAGE);
     const _DATA = usePagination(projects, PER_PAGE);
-  
+    console.log("_Data project:", _DATA.currentData())
+    
     const handleChange = (e, p) => {
       setPage(p);
       _DATA.jump(p);
@@ -66,15 +67,24 @@ const AllProjects = () => {
     <Box p="5">
         <List p="10" pt="3" spacing={2}>
     <div className='allList'>
+      
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300, backgroundColor:"#F5F5F5", boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}>
+          <Card  sx={{ minWidth: 300, minHeight: 300, 
+            backgroundColor:"#F5F5F5", 
+            boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            ':hover': {
+              boxShadow: 20, // theme.shadows[20]
+            },
+            }}>
           <CardContent>
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
             {project.title}
             </Typography>
-            <hr></hr>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
             <br></br>
             <Typography color='primary'  variant="body1" component="div">
             {project.category}

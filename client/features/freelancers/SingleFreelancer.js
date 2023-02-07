@@ -50,10 +50,19 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
             <Typography gutterBottom variant="h5" component="div" align='center'>
             {freelancer.firstName} {freelancer.lastName} 
             </Typography>
-            <hr></hr>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr> 
+            
             <Typography color='primary' variant="body2" align='center' >
-            {freelancer.categories}
+            {freelancer.category}
             </Typography>
+
+            <Typography  variant="body2" color='secondary' align='center' >
+            {freelancer.specialties}
+            </Typography>
+           
+           
             
             <Typography  gutterBottom component="div" variant="subtitle1" >
             {freelancer.description} 

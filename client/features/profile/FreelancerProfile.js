@@ -148,7 +148,7 @@ const FreelancerProfile = () => {
     <TabPanel value={value} index={0}>
     <h2>Welcome {freelancer.firstName}, we've missed you!</h2>
     <Typography variant="body2" color="text.secondary">
-                  You are logged in as freelancer.
+                  You are logged in as a freelancer.
                 </Typography>
       <Box
         sx={{
@@ -164,7 +164,7 @@ const FreelancerProfile = () => {
         <div className="card">
           <Card 
           sx={{
-            maxWidth: 280,
+            width:400, height:550,
             margin: "0 auto",
             padding: "1em",
           }}
@@ -178,15 +178,26 @@ const FreelancerProfile = () => {
             />
             <CardContent>
               <Typography gutterBottom variant="h6" component="div">
-               Full Name: {freelancer.firstName} {freelancer.lastName}
+               {freelancer.firstName} {freelancer.lastName}
               </Typography>
-          <hr></hr>
               
-                <Typography variant="body2" color='text.secondary'>
+              <Typography variant="body2" color='text.secondary'>
                    {freelancer.email}
                 </Typography>
-                <br></br>
-              
+          <hr
+          style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+          ></hr>
+                <div 
+                      style={{display:"flex", justifyContent:"space-between", fontWeight:"bolder"}}
+                      >
+                        <Typography color='primary' variant="body2">
+                        {freelancer.category}
+                      </Typography>
+                      <Typography  variant="body2">
+                        Starting Rate: ${freelancer.hourlyRate}
+                      </Typography>
+                      </div>
+                      <br></br>
                 <Typography variant="body2" color="text.secondary">
                     Description: {freelancer.description}
                   </Typography>

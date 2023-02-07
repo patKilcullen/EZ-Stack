@@ -88,7 +88,9 @@ const AddRequest = () => {
           variant="h4" sx={{ textAlign: "center"}}>
             Submit a Proposal
             </Typography>
-            <hr></hr>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
             <br></br>
             {  project ? (
               <Link to={`/projects/${project.singleProject.id}`}>

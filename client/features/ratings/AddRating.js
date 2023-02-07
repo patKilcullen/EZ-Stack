@@ -90,7 +90,9 @@ const AddRating = (props) => {
           Add a Review!
         </Typography>
 
-        <hr></hr>
+        <hr
+        style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+        ></hr>
         <br></br>
 
         <div 

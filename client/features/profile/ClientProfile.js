@@ -164,7 +164,7 @@ const ClientProfile = () => {
           <div className="card">
             <Card 
             sx={{
-              maxWidth: 280,
+              width:400, height:550,
               margin: "0 auto",
               padding: "1em",
             }}
@@ -178,12 +178,16 @@ const ClientProfile = () => {
               />
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
-                  Full Name: {client.firstName} {client.lastName}
-                </Typography>
-            <hr></hr>
-                  <Typography variant="body2" color="text.secondary">
+                  {client.firstName} {client.lastName}
+                </Typography> 
+                
+                <Typography variant="body2" color="text.secondary">
                     {client.email}
                   </Typography>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
+                 
                   <br></br>
 
                   <Typography variant="body2" color="text.secondary">

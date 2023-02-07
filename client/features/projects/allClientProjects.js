@@ -31,7 +31,7 @@ const AllClientProjects = () => {
           style={{boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}
           >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ width: 400, height: 400 , }}>
+          <Card sx={{ width: 400, height: 400 ,':hover': {boxShadow: 20},}}>
           <CardContent>
           <Typography   variant="h5" component="div">
             {project.title}
@@ -39,7 +39,9 @@ const AllClientProjects = () => {
             <Typography color='primary'  variant="h6" component="div">
             category: {project.category}
             </Typography>
-            <hr></hr>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
             <Typography variant="body2" >
             Current Status: {project.status}
             </Typography>

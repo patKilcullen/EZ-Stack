@@ -61,7 +61,9 @@ const Client = () => {
           <Typography gutterBottom variant="h6" component="div">
             Full Name: {client.firstName} {client.lastName}
           </Typography>
-      <hr></hr>
+      <hr
+      style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+      ></hr>
             <Typography variant="body2" color="text.secondary">
               {client.email}
             </Typography>
@@ -93,7 +95,9 @@ const Client = () => {
             <Typography variant="body2" color="primary">
                   Status: {project.status}
                 </Typography>
-            <hr></hr>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
             <Button fullWidth variant="contained">Go to Project</Button>
         </Link>
         </div>
