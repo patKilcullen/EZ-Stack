@@ -312,7 +312,8 @@ const SingleProject = () => {
                     )}
                   </>
                 ) : null}
-                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button onClick={submitWork}>Submit Work</Button> : <Button>Work Submitted</Button>}
+                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button onClick={submitWork}>Submit Work</Button> : null}
+                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button>Work Submitted</Button>: null}
               </CardActions>
             </Card>
           </div>
