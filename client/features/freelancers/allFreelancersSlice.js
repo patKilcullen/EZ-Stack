@@ -21,10 +21,11 @@ const allFreelancersSlice = createSlice({
     initialState: {
         freelancers: [],
         freelancersByReviews: [],
+        freelancersByCategory:[]
     },
-    freelancersByReviews: [],
+
     reducers: {
-     sortByCategory(state, action){
+     sortByReviews(state, action){
         state.freelancersByReviews = state.freelancers.sort((a, b) => {
             const A = a.ratings.length;
             const B = b.ratings.length;
@@ -38,6 +39,9 @@ const allFreelancersSlice = createSlice({
             return 0;
           })
     },
+    sortByCategory(state, action){
+        state.freelancersByCategory = state.freelancers.filter((freelancer) => freelancer.category === action.payload)
+    }
 },
     extraReducers: (builder)=>{
         builder.addCase(fetchAllFreelancers.fulfilled, (state, action)=>{
@@ -51,13 +55,16 @@ const allFreelancersSlice = createSlice({
     }
 })
 
-export const { sortByCategory } = allFreelancersSlice.actions;
+export const { sortByReviews, sortByCategory } = allFreelancersSlice.actions;
 
 export const selectAllFreelancers = (state)=>{
     return state.allFreelancers.freelancers
 }
 export const selectAllFreelancersByReviews = (state)=>{
     return state.allFreelancers.freelancersByReviews
+}
+export const selectAllFreelancersByCategory = (state)=>{
+    return state.allFreelancers.freelancersByCategory
 }
 
 export default allFreelancersSlice.reducer

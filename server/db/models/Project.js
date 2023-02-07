@@ -17,8 +17,13 @@ const Project = db.define('project', {
       type: Sequelize.TEXT,
     },
     category: {
-      type: Sequelize.STRING
-    }
-  })
+      type: Sequelize.ENUM(
+        ['Python Developer', 
+        'Javascript Developer',
+        'HTML & CSS Developer',
+        'Android Developer',
+        'iOS Developer'
+      ]),
+  }})
   
   module.exports = Project

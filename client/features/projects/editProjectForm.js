@@ -28,6 +28,7 @@ const EditProject = (props) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
+const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
@@ -38,8 +39,13 @@ const EditProject = (props) => {
 
   const id = projectId
   
-
-  const dispatch = useDispatch();
+const categories = ['Python Developer', 
+'Javascript Developer',
+'HTML & CSS Developer',
+'Android Developer',
+'iOS Developer'
+]
+ 
   
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId)).then((res) => {
@@ -112,6 +118,24 @@ const EditProject = (props) => {
                   ))
                 : null}
             </Select>
+
+                {/* category  */}
+              <InputLabel >Category</InputLabel>
+              <Select name='category'
+              fullWidth
+              label="Category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              >
+                <MenuItem value=""><em>select</em></MenuItem>
+                {categories && categories.length
+                            ? categories.map((category) => (
+                                <MenuItem key={category} value={category}>
+                                  {category}
+                                </MenuItem>
+                              ))
+                            : null}
+              </Select>
 
             <Button
               type="submit"
