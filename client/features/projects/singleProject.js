@@ -20,12 +20,22 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+
+
 import {
-  checkLikedProjectsAsync,
-  likeProjectAsync,
-  selectLikedProjects,
-} from "./likedProjectsSlice";
-import FavoriteIcon from "@mui/icons-material/Favorite";
+  fetchSingleFreelancerRequest,
+  selectSingleRequest,
+} from "../requests/singleRequestSlice";
+
+
+import { likeProjectAsync, unlikeProjectAsync } from "./likedProjectsSlice";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import { checkLikedProjectsAsync, selectCheckProjects } from "./checkProjectSlice";
+
+
+
+
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -61,7 +71,6 @@ function a11yProps(index) {
 }
 
 const SingleProject = () => {
-  const [error, setError] = useState("");
   const [render, setRender] = useState(false);
   const navigate = useNavigate();
 
@@ -77,17 +86,16 @@ const SingleProject = () => {
 
   const project = useSelector(selectSingleProject);
 
+  console.log(project)
+
   const { projectId } = useParams();
 
+  const p = useSelector(selectCheckProjects);
   const dispatch = useDispatch();
-
-  const p = useSelector(selectLikedProjects);
 
   const clickMessage = () => {
     navigate(`/messages/${project.singleProject.clientId}`);
   };
-
-  console.log(p);
 
   const likeProject = async () => {
     if (!p[0]) {
@@ -101,24 +109,49 @@ const SingleProject = () => {
     }
   };
 
+  const viewWork = () => {
+  navigate(`/work/${project.singleProject.id}`)
+}
+
+  const submitWork = () => {
+    navigate(`/submit/${project.singleProject.id}`)
+  }
+
+  const reviewWork = () => {
+    navigate(`/review/${project.singleProject.id}`)
+  }
+
+
+  const unlike = async () => {
+    await dispatch(unlikeProjectAsync(p[0].id))
+    setRender(!render)
+  }
+
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId));
+
+    if(freelancerIsLoggedIn){
     dispatch(
       checkLikedProjectsAsync({ freelancerId: freelancer.id, projectId })
     );
+    
+    dispatch(
+      fetchSingleFreelancerRequest({ freelancerId: freelancer.id, projectId })
+    );
+    }
   }, [dispatch, render]);
 
   const handleDelete = (projectId) => {
     dispatch(deleteSingleProjectAsync(projectId)).then(() => navigate("/home"));
   };
 
-  const handleCheckForProposal = async () => {
-    const request = await axios.get(
-      `/api/requests/${projectId}/${freelancer.id}`
-    );
-    request.data[0]
-      ? setError("You already sent a proposal to this project")
-      : navigate(`/projects/${projectId}/addrequest`);
+
+
+  //  const request = useSelector(selectSingleRequest);
+  const request = useSelector((state) => state.singleRequest);
+
+  const handleSubmitProposal = async () => {
+    navigate(`/projects/${projectId}/addrequest`);
   };
 
   //MUI for tabs
@@ -126,6 +159,7 @@ const SingleProject = () => {
   const handleChange = (e, newValue) => {
     setValue(newValue);
   };
+
 
   return (
     <div>
@@ -139,7 +173,7 @@ const SingleProject = () => {
           {clientIsLoggedIn ? (
             <Tab label="Edit Project" {...a11yProps(1)} />
           ) : null}
-          {clientIsLoggedIn ? (
+          {clientIsLoggedIn  ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
           {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
@@ -151,9 +185,16 @@ const SingleProject = () => {
             className="card"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
           >
-            <Card sx={{ maxWidth: 600, maxHeight: 700, minHeight: 450, boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}>
+            <Card
+              sx={{
+                maxWidth: 600,
+                maxHeight: 700,
+                minHeight: 450,
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+              }}
+            >
               <CardContent>
-                {p[0] ? <FavoriteIcon></FavoriteIcon> : null}
+                {!p[0] ? null : <FavoriteIcon></FavoriteIcon>}
                 <Typography variant="h3" component="div" align="center">
                   {project.singleProject.title}
                 </Typography>
@@ -178,9 +219,9 @@ const SingleProject = () => {
                 </Typography>
                 <br></br>
 
-                <Typography variant="h6" color="primary" align="center">
+             { clientIsLoggedIn ? null : <Typography variant="h6" color="primary" align="center">
                   Posted by:
-                  {project.singleProject.id ? (
+                  {project.singleProject.id && project.singleProject.client ? (
                     <Link
                       to={`/client-profile/${project.singleProject.client.id}`}
                     >
@@ -195,7 +236,27 @@ const SingleProject = () => {
                       </Typography>
                     </Link>
                   ) : null}
-                </Typography>
+                </Typography> }
+
+                
+                {clientIsLoggedIn && project.singleProject.freelancer ? (
+                    
+                      <Typography
+                        color="primary"
+                        variant="h5"
+                        sx={{ display: "inline" }}
+                      >
+                        {" "}
+                        Assigned to:   {" "}
+                        <Link
+                      to={`/freelancers/${project.singleProject.freelancerId}`}
+                    >
+                        {project.singleProject.freelancer.firstName}{" "}
+                        {project.singleProject.freelancer.lastName}
+                        </Link>
+                      </Typography>
+                  
+                  ) : null}
 
                 <br></br>
                 <br></br>
@@ -212,6 +273,7 @@ const SingleProject = () => {
                     Delete Project
                   </Button>
                 ) : null}
+                {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button onClick={reviewWork}>Review Work</Button> : null}
                 {freelancerIsLoggedIn ? (
                   <Button
                     onClick={clickMessage}
@@ -221,29 +283,43 @@ const SingleProject = () => {
                     Message
                   </Button>
                 ) : null}
+                {client === project.singleProject.clientId && project.singleProject.status === 'Complete'|| freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete'? 
+                <Button onClick={viewWork}>View Work</Button> : null}
                 {freelancerIsLoggedIn ? (
                   <>
-                  <Button
-                    onClick={likeProject}
-                    size="small"
-                    variant="contained"
-                  >
-                    Like Project
-                  </Button>
-                   <Button
-                   onClick={handleCheckForProposal}
-                   size="small"
-                   variant="contained"
-                 >
-                   Submit a Proposal
-                 </Button>
-                 </>
+                    {!p[0] ? <Button
+                      onClick={likeProject}
+                      size="small"
+                      variant="contained"
+                    >
+                      Like Project
+                    </Button> : <Button
+                      onClick={unlike}
+                      size="small"
+                      variant="contained"
+                    >
+                      Unlike
+                    </Button> }
+
+                    {request.singleRequest ? null : (
+                      <Button
+                        onClick={() => handleSubmitProposal()}
+                        size="small"
+                        variant="contained"
+                      >
+                        Submit a Proposal
+                      </Button>
+                    )}
+                  </>
                 ) : null}
+                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button onClick={submitWork}>Submit Work</Button> : null}
+                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button>Work Submitted</Button>: null}
               </CardActions>
             </Card>
+            
+        
           </div>
         </TabPanel>
-
 
         <TabPanel value={value} index={1}>
           {project.singleProject.freelancerId === null ? (
@@ -259,17 +335,15 @@ const SingleProject = () => {
           )}
         </TabPanel>
 
-
-
         <TabPanel value={value} index={2}>
+          { project.singleProject.status === "Complete" ?
           <AddRating
             projectId={projectId}
             projectClientId={project.singleProject.clientId}
             projectFreelancerId={project.singleProject.freelancerId}
-          />
+          /> : "You can only add a review once you project is marked complete"
+  }
         </TabPanel>
-
-
 
         <TabPanel value={value} index={3}>
           {client === project.singleProject.clientId ? (
@@ -281,11 +355,11 @@ const SingleProject = () => {
             />
           ) : null}
           {freelancerIsLoggedIn ? <FreelancerRequests /> : null}
-          <h1>{error}</h1>
         </TabPanel>
       </div>
     </div>
   );
-};
+
+}
 
 export default SingleProject;

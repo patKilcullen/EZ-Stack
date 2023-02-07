@@ -349,6 +349,7 @@ if (freelancersBySpecialties.length) {
                       title="Freelancer"
                     />
                     <CardContent>
+
                       <Typography
                         color="primary"
                         gutterBottom

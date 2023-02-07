@@ -17,7 +17,7 @@ const LikedProjects = () => {
   const [render, setRender] = useState(false)
   const navigate = useNavigate()
 
-console.log(likes[0])
+console.log(likes)
   
   const dispatch = useDispatch()
 
@@ -41,7 +41,7 @@ console.log(likes[0])
     <div className="allViewContainer">
     <div className='allList'>
 
-        {likes.map((like) => (
+        {likes[0] ? likes.map((like) => (
 
           <div className='card'>
           <Card sx={{ maxWidth: 345 }}>
@@ -63,7 +63,7 @@ console.log(likes[0])
         </Card>
         
         </div>
-        ))}
+        )) : null}
       </div> 
     </div>
   )

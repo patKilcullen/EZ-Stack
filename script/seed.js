@@ -97,15 +97,15 @@ await Project.create({
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
-for (let i = 0; i <= 100; i++) {
-await Project.create({
-  clientId: Math.floor(Math.random() * 103),
-  freelancerId: Math.floor(Math.random() * 103),
-  title: faker.name.jobType(),
- status: 'Ongoing',
- description: faker.lorem.sentences(),
- category: faker.name.jobType()
-})}
+// for (let i = 0; i <= 100; i++) {
+// await Project.create({
+//   clientId: Math.floor(Math.random() * 103),
+//   freelancerId: Math.floor(Math.random() * 103),
+//   title: faker.name.jobType(),
+//  status: 'Ongoing',
+//  description: faker.lorem.sentences(),
+//  category: faker.name.jobType()
+// })}
 
 await Project.create({ 
   clientId: 4,
@@ -127,12 +127,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 2,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 2,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 await Request.create({
   projectId: 1,
   freelancerId: 3,
@@ -145,12 +145,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 1,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 1,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 
   // console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)

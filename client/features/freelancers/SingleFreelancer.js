@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate, useParams, Link } from "react-router-dom";
 import { fetchSingleFreelancer, selectSingleFreelancer } from './singleFreelancerSlice';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
@@ -26,6 +26,8 @@ const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
 
 console.log(freelancer)
+console.log("REVIEWS:  ", reviews)
+
 
 useEffect(()=>{
 dispatch(fetchSingleFreelancer(id)).then(()=>{
@@ -34,7 +36,7 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
 
 },[dispatch])
 
-
+console.log("FREEEELANCEERR: ", freelancer.projects)
   return (
     <div className='singleView'>
         <div className='card'>
@@ -75,20 +77,46 @@ dispatch(fetchSingleFreelancer(id)).then(()=>{
         </Card>
           
         {reviews.map((rating) => (
-          <div>
+          <div key={rating.id}>
              <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
              <Typography color='primary' variant="body2" >
             Review
             </Typography>
+            {rating.project ? <Typography variant="body2" color='primary'>
+            Project:<Link to={`/projects/${rating.projectId}`}> {rating.project.title}</Link>
+            </Typography>: null}
           <Typography variant="body2" color='primary'>
             {rating.rating === 1 ? (<p>{"★"}</p>) :rating.rating === 2 ? (<p>{"★★"}</p>):rating.rating === 3 ? (<p>{"★★★"}</p>) :rating.rating === 4 ? (<p>{"★★★★"}</p>):rating.rating === 5 ? (<p>{"★★★★★"}</p>): null}
             </Typography>
             <Typography variant="body2" color='primary'>
             {rating.review}
             </Typography>
+            
             </Card>
           </div>
         ))}
+ 
+{/* <Typography color='primary' variant="body2" >
+Completed Projects: 
+            </Typography>
+{freelancer.projects ? freelancer.projects.filter((project)=>{
+
+return project.status === "Complete"})
+
+.map((project) => (
+          <div>
+             <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
+             
+            <Link to={`/projects/${project.id}`} >
+            <Typography variant="body2" color='primary'>
+            {project.title}
+            </Typography>
+            </Link> 
+            </Card>
+          </div>
+        )): null} */}
+        
+        
         </div>
     </div>
   )
