@@ -85,12 +85,10 @@ const AllProjects = () => {
 if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
-    <Box p="5">
-        <List p="10" pt="3" spacing={2}>
-    <div className='allList'>
-      <div
-      >
-        <h5>Search Projects Categories</h5>
+<div style={{marginTop: 10}}>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          </div>
+          <div>
       <form onSubmit={handleCategory}>
         {/* category  */}
         <InputLabel>Categories</InputLabel>
@@ -120,7 +118,7 @@ if (projectsByCat.length) {
         </Button>
       </form>
       </div>
-    
+    <div className='allList'>
       
         {_DATAB.currentData().map((project) => (
           <div className='card'>
@@ -158,7 +156,6 @@ if (projectsByCat.length) {
         </div>
         ))}
       </div> 
-      </List>
         <Stack alignItems="center">
           <Pagination
           color='primary'
@@ -170,7 +167,6 @@ if (projectsByCat.length) {
             onChange={handleChangeCat}
           />
         </Stack>
-      </Box>
     </div>
   )}
   return (
@@ -178,7 +174,7 @@ if (projectsByCat.length) {
         <form onSubmit={handleCategory}>
           {/* category  */}
           <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
           </div>
           {/* <InputLabel>Categories</InputLabel> */}
           <Select
