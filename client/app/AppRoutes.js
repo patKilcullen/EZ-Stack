@@ -12,7 +12,6 @@ import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
 import ClientRequests from '../features/requests/ClientRequests'
 import FreelancerRequests from "../features/requests/FreelancerRequests"
-import MostReviewedFreelancers from '../features/freelancers/MostReviewedFreelancers'
 
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
@@ -70,8 +69,6 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/home" element={<Home />} />
-
-          <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
@@ -135,7 +132,6 @@ const AppRoutes = () => {
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
-          <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
 
           <Route
             path="/freelancer/:freelancerId/requests"
@@ -198,7 +194,6 @@ const AppRoutes = () => {
 
         <Route path="/projects" element={<AllProjects />} />
         <Route path="/projects/:projectId" element={<SingleProject />} />
-        <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
 
  
 

@@ -9,8 +9,7 @@ import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import { fetchRatingsByFreelancerAsync, selectRatings } from '../ratings/ViewAllSlice';
-import StarHalfIcon from '@mui/icons-material/StarHalf';
-import StarIcon from '@mui/icons-material/Star';
+
 
 const SingleFreelancer = () => {
 const navigate = useNavigate()
@@ -26,23 +25,15 @@ navigate(`/messages/${freelancer.id}`)
 const freelancer = useSelector(selectSingleFreelancer)
 const reviews = useSelector(selectRatings)
 
-
-console.log("REVIEW ", reviews)
-
-const rating = reviews.map((review)=>review.rating)
-const ratingSum = rating.reduce((accumulator, value) =>{
-  return accumulator + value;
-}, 0)
+console.log(freelancer)
+console.log("REVIEWS:  ", reviews)
 
 
-
-const ratingAvg = Math.round(ratingSum / rating.length) ;
-
-   
 useEffect(()=>{
 dispatch(fetchSingleFreelancer(id)).then(()=>{
-  dispatch(fetchRatingsByFreelancerAsync(id))  
-  })  
+  dispatch(fetchRatingsByFreelancerAsync(id))
+})
+
 },[dispatch])
 
 console.log("FREEEELANCEERR: ", freelancer.projects)
@@ -78,16 +69,7 @@ console.log("FREEEELANCEERR: ", freelancer.projects)
             <Typography  gutterBottom component="div" variant="subtitle1" >
             {freelancer.description} 
             </Typography>
-
-            <Typography color='primary' variant="body2" >
-            {ratingAvg === 1 ? (<p>{"★"}</p>) :ratingAvg === 2 ? (<p>{"★★"}</p>):ratingAvg === 3 ? (<p>{"★★★"}</p>) :ratingAvg === 4 ? (<p>{"★★★★"}</p>):ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
-            </Typography>
-            <Typography color='primary' variant="body2" >
-            {rating.length} Reviews
-            </Typography>
-
             
-
           </CardContent>
           <CardActions>
             {clientIsLoggedIn ? <Button  fullWidth onClick={messageButton} size='large'  variant='outlined'>Message</Button> : null}

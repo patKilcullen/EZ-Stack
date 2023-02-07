@@ -11,15 +11,12 @@ try{
 }
 })
 
-
-export const updateFreelancerAsync = createAsyncThunk('updateFreelancer', async ({id, firstName, lastName, email, ratingAvg, description, hourlyRate, username, category, bio, specialties, imageUrl }) =>{
-
+export const updateFreelancerAsync = createAsyncThunk('updateFreelancer', async ({id, firstName, lastName, email, description, hourlyRate, username, category, bio, specialties, imageUrl }) =>{
     try{
       const { data } = await axios.put(`/api/freelancers/${id}`, {
         firstName,
         lastName,
         email,
-        ratingAvg,
         description,
         category,
         hourlyRate,
