@@ -92,9 +92,8 @@ const AllProjects = () => {
     <Box p="5">
         <List p="10" pt="3" spacing={2}>
     <div className='allList'>
-        {_DATA.currentData().map((project) => (
+        {/* {_DATA.currentData().map((project) => (
           <div className='card'>
-            <Link to={`/projects/${project.id}`}>
           <Card  sx={{ minWidth: 300, minHeight: 300, 
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
@@ -129,7 +128,7 @@ const AllProjects = () => {
           </CardActions>
         </Card>
         </div>
-          )})}
+          ))} */}
         {_DATA.currentData().map((project) => {
           if(!likedProjects.includes(project.id)){
             return(
@@ -158,7 +157,7 @@ const AllProjects = () => {
               <br></br>
               <CardActions>
                 <Button onClick={() => learnMore(project.id)} size="small" fullWidth variant='contained'>Learn More</Button>
-                <Button onClick={() => likeProject(project.id)}>Like Project</Button>
+                {/* <Button onClick={() => likeProject(project.id)}>Like Project</Button> */}
               </CardActions>
             </Card>
             </div>

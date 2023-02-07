@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from "react-router-dom";
 // import { authenticate } from '../../app/store';
@@ -22,7 +22,9 @@ import Typography from '@mui/material/Typography';
 **/
 
 const AuthForm = ({ name, displayName }) => {
-  // const { error } = useSelector((state) => state.auth);
+  const { error } = useSelector((state) => state.clientAuth);
+  const [err, setErr] = useState(false)
+  const [errMessage, setErrMessage] = useState('')
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -34,14 +36,20 @@ const AuthForm = ({ name, displayName }) => {
     const password = evt.target.password.value;
     const option = evt.target.dispatchRoute.value;
     if(option === 'client'){
-    dispatch(clientAuthenticate({ username, password, method: formName }));
+    dispatch(clientAuthenticate({ username, password, method: formName })).then(() => setErr(true))
     }else if(option === 'freelancer'){
-    dispatch(freelancerAuthenticate({username, password, method: formName}))
+    dispatch(freelancerAuthenticate({username, password, method: formName})).then(() => setErr(true))
     }
-    navigate("/");
+    if(err){
+      navigate('/')
+    }else{
+      setErrMessage('Incorrect username/password')
+    }
   }; 
 
   return (
+    <div className='loginPage'>
+    {errMessage ? <h3>{errMessage}</h3>: null}
     <Box
     sx={{
       marginTop: 4,
@@ -69,10 +77,10 @@ const AuthForm = ({ name, displayName }) => {
         </div>
         <div className='signUpInput'>
         <TextField id="outlined-basic" label="password" name="password"  variant="filled" />
-        </div>
+        </div>  
         <div>
-        <InputLabel >User Type</InputLabel>
-          <Select name='dispatchRoute'>
+        <InputLabel>User Type</InputLabel>
+          <Select defaultValue={'client'} name='dispatchRoute'>
             <MenuItem value={'client'}>Client</MenuItem>
             <MenuItem value={'freelancer'}>Freelancer</MenuItem>
           </Select>
@@ -80,6 +88,7 @@ const AuthForm = ({ name, displayName }) => {
         </div>
       </form>
       </Box>
+      </div>
   );
 };
 

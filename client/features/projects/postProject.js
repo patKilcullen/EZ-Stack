@@ -32,7 +32,7 @@ const AddProject = () => {
   const handleAddProject = (e) => {
     e.preventDefault();
     dispatch(addProjectAsync({ clientId, title, description, category }))
-    .then(()=> navigate("/projects/client/:clientId"))
+    .then(()=> navigate(`/projects/client/${clientId}`))
   };
 
   const onChange = (e) => {
