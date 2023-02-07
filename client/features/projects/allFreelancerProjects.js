@@ -101,7 +101,7 @@ const AllFreelancerProjects = () => {
           style={{display:"flex", flexDirection: "column", justifyContent: "center", alignItems:"center"}}
           >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ minWidth: 400, minHeight: 400, display: "flex",flexDirection: "column", justifyContent: "center", alignItems:"center"  }}>
+          <Card sx={{ width: 300, height: 300 , display: "flex",flexDirection: "column", justifyContent: "center", alignItems:"center", ':hover': {boxShadow: 20},  }}>
           <CardContent>
           <Typography variant="h5" component="div">
             {project.title}

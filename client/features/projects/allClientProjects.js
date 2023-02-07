@@ -144,18 +144,22 @@ return project.status === "Ongoing"
           >
             
             <Link to={`/projects/${project.id}`}>
-              <Card sx={{ width: 400, height: 400 }}>
-                <CardContent>
-                  <Typography variant="h5" component="div">
-                    {project.title}
-                  </Typography>
-                  <Typography color="primary" variant="h6" component="div">
-                    category: {project.category}
-                  </Typography>
-                  <hr></hr>
-                  <Typography variant="body2">
-                    Current Status: {project.status}
-                  </Typography>
+
+          <Card sx={{ width: 400, height: 400 ,':hover': {boxShadow: 20},}}>
+          <CardContent>
+          <Typography   variant="h5" component="div">
+            {project.title}
+            </Typography>
+            <Typography color='primary'  variant="h6" component="div">
+            category: {project.category}
+            </Typography>
+            <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
+            <Typography variant="body2" >
+            Current Status: {project.status}
+            </Typography>
+
 
                   <Typography gutterBottom component="div" variant="subtitle1">
                     {project.description}

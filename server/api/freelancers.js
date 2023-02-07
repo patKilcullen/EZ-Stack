@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/cat/:category', async (req, res, next) => {
   try {
-    const freelancers = await Freelancer.findAll({ where: {categories: req.params.category}});
+    const freelancers = await Freelancer.findAll({ where: {category: req.params.category}});
     res.json(freelancers)
   } catch (err) {
     next(err)
