@@ -30,6 +30,10 @@ const AddRating = (props) => {
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
 
+// CHARACTER LIMIT
+  const [characterError, setCharacterError] = useState(false);
+  const [reviewMessage, setReviewMessage] = useState("");
+
   const navigate = useNavigate()
   
 
@@ -61,11 +65,13 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
 }, [dispatch])
 
   const handlePostRating = (e) => {
-    e.preventDefault();
+     e.preventDefault();
+    //  character limit
+// if(e.target.value.length <= 20){
     const rating = e.target.rating.value
    
-    
     const review = e.target.review.value
+    setCharacterError(false)
     dispatch(
       addRatingAsync({ freelancerId, rating, review, projectId })
     ).then(() => {
@@ -76,11 +82,17 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
       })
       
     });
-  };
- console.log("SINGLE RATING: ",singleRating.singleRating)
+  // }else{
+  //   setCharacterError(true)
+  // }
+}
+
   
   return (
     <div >
+{/* character limit */}
+      {/* {characterError} */}
+
       { singleRating.singleRating ? 
       <div>
       <h1>You already submitted a freelancer ratingfor this project  </h1>
@@ -145,6 +157,17 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
         </div>
         <div>
           <TextField id="outlined-basic" label="review" name="review"  variant="filled" fullWidth
+          // character limit
+          // error={characterError}
+          // helperText={
+          //   characterError
+          //     ? "Character limit exceeded (must be 20 characters or less"
+          //     : null
+          // }
+          // value={reviewMessage}
+          //       onChange={handleChange}
+
+
             multiline
             rows={4} 
             sx={{ backgroundColor:"#F5F5F5", }}/>
