@@ -14,20 +14,7 @@ import Box from "@mui/material/Box";
 import AddCircleOutlinedIcon from "@mui/icons-material/AddCircleOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import InputLabel from "@mui/material/InputLabel";
-import Select from "@mui/material/Select";
-import MenuItem from "@mui/material/MenuItem";
 ////////////////
-
-
-const categories = ['Python Developer', 
-'Javascript Developer',
-'HTML & CSS Developer',
-'Android Developer',
-'iOS Developer'
-]
-
-
 
 const AddProject = () => {
   
@@ -108,23 +95,16 @@ const AddProject = () => {
             onChange={onChange}
           />
 
-           {/* category  */}
-           <InputLabel >Category</InputLabel>
-          <Select name='category'
-          fullWidth
-          label="Category"
-          value={category}
-          onChange={(e) => setCategory(e.target.value)}
-          >
-            <MenuItem value=""><em>select</em></MenuItem>
-            {categories && categories.length
-                        ? categories.map((category) => (
-                            <MenuItem key={category} value={category}>
-                              {category}
-                            </MenuItem>
-                          ))
-                        : null}
-          </Select>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            autoComplete="category"
+            label="category"
+            value={category}
+            name="category"
+            onChange={onChange}
+          />
 
           <Button
             type="submit"
@@ -139,6 +119,23 @@ const AddProject = () => {
       </Box>
     </Container>
 
+    // <div id="addProject">
+    //   <form onSubmit={handleAddProject}>
+    //     <label htmlFor="description">Description:</label>
+    //     <input
+    //       name="description"
+    //       value={description}
+    //       onChange={(e) => setDescription(e.target.value)}
+    //     />
+    //     <label htmlFor="category">Category:</label>
+    //     <input
+    //       name="category"
+    //       value={category}
+    //       onChange={(e) => setCategory(e.target.value)}
+    //     />
+    //     <button type="submit">Post Project</button>
+    //   </form>
+    // </div>
   );
 };
 

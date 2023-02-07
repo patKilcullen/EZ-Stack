@@ -34,7 +34,6 @@ const Navbar = () => {
     }
     navigate('/home');
   };
-
 if (clientIsLoggedIn) {
   return (
  <div id="navbarBox">
