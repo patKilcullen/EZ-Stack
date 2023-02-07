@@ -28,7 +28,6 @@ async function seed() {
       imageUrl: faker.image.people(),
       ratingAvg: Math.floor(Math.random() * 5) + 1, 
       description: faker.commerce.productDescription(),
-      // categories: faker.name.jobType(),
       username: faker.internet.userName(),
       password: faker.internet.password(), 
 
@@ -51,6 +50,7 @@ await Freelancer.create({
   bio:'I will fix your html, css, jquery, wordpress issues',
 })
 
+
 await Freelancer.create({
   username: 'bbbbb',
   password: '12345',
@@ -64,6 +64,7 @@ await Freelancer.create({
   hourlyRate: 12,
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
   bio:'I will fix your html, css, jquery, wordpress issues',
+
 })
 await Freelancer.create({
   username: 'ccccc',
@@ -78,6 +79,8 @@ await Freelancer.create({
   hourlyRate: 12,
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
   bio:'I will fix your html, css, jquery, wordpress issues',
+
+
 })
 await Freelancer.create({
   username: 'ddddd',
@@ -129,6 +132,7 @@ await Project.create({
   description: faker.lorem.sentences(),
   category: "Python Developer"
 })
+
 for (let i = 0; i <= 25; i++) {
 await Project.create({
   clientId: Math.floor(Math.random() * 100),
@@ -175,6 +179,10 @@ for (let i = 0; i <= 25; i++) {
          category: 'Javascript Developer'
         })}
  
+
+
+
+
 await Project.create({ 
   clientId: 4,
   freelancerId: 2,
@@ -195,12 +203,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 2,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 2,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 await Request.create({
   projectId: 1,
   freelancerId: 3,
@@ -213,12 +221,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 1,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 1,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 
   // console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)

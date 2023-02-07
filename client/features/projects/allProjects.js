@@ -1,13 +1,18 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+
 import { Link } from "react-router-dom"
 import { 
   fetchProjectsAsync, 
   selectProjects, 
   selectProjectsByCategory,
-  sortByCategory  
+  sortByCategory,
+  fetchProjectsByCategoryAsync
 } from "../projects/allProjectsSlice";
 import usePagination from "../freelancers/usePagimentation";
+
+
+
 
 
 import Card from '@mui/material/Card';
@@ -19,12 +24,16 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
+
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
-
 import { likeProjectAsync } from "./likedProjectsSlice";
+
+import { fetchLikedProjectsAsync, likeProjectAsync, selectLikedProjects, unlikeProjectAsync } from "./likedProjectsSlice";
+import FavoriteIcon from '@mui/icons-material/Favorite';
+
 
 
 const AllProjects = () => {
@@ -34,19 +43,32 @@ const AllProjects = () => {
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
 
-  
-  
+  const navigate = useNavigate()
+
   const dispatch = useDispatch()
 
-  const [category, setCategory] = useState('')
+  const likedProjects = []
 
-  const likeProject = (freelancerId, projectId) => {
-    dispatch(likeProjectAsync({freelancerId, projectId}))
+  const [category, setCategory] = useState('')
+  const [render, setRender] = useState(false)
+
+  const liked = useSelector(selectLikedProjects)
+
+  const unlike = async (id) => {
+    await dispatch(unlikeProjectAsync(id))
+    setRender(!render)
+  }
+
+  console.log(liked)
+
+  const learnMore = (id) => {
+    navigate(`/projects/${id}`)
   }
   
   useEffect(() => {
     dispatch(fetchProjectsAsync());
-  }, [dispatch] );
+    dispatch(fetchLikedProjectsAsync(freelancer))
+  }, [dispatch, render] );
 
   const handleCategory = (evt) => {
     evt.preventDefault();
@@ -55,8 +77,20 @@ const AllProjects = () => {
     // console.log("FREELANCERS BY CAT ", freelancersByCategory)
   }
 
-  console.log("PROJECTS ", projects)
-  console.log("PROJECTS BY CAT ", projectsByCat)
+
+ 
+
+  const likeProject = async (id) => {
+      await dispatch(
+        likeProjectAsync({
+          freelancerId: freelancer,
+          projectId: id
+        })
+      );
+      setRender(!render);
+
+  };
+
 
 
     ////FOR PAGINATION/////
@@ -66,11 +100,14 @@ const AllProjects = () => {
     const count = Math.ceil(projects.length / PER_PAGE);
     const _DATA = usePagination(projects, PER_PAGE);
 
+
     const countB = Math.ceil(projectsByCat.length / PER_PAGE);
     const _DATAB = usePagination(projectsByCat, PER_PAGE);
 
 
   
+
+
     const handleChange = (e, p) => {
       setPage(p);
       _DATA.jump(p);
@@ -119,10 +156,15 @@ if (projectsByCat.length) {
       </form>
       </div>
     <div className='allList'>
+
       
         {_DATAB.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
+
+        {/* {_DATA.currentData().map((project) => (
+          <div className='card'>
+
           <Card  sx={{ minWidth: 300, minHeight: 300, 
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
@@ -131,30 +173,78 @@ if (projectsByCat.length) {
             },
             }}>
           <CardContent>
+
+        
+            <FavoriteIcon></FavoriteIcon>
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
-            {project.title}
+            {p.project.title}
+
             </Typography>
             <hr
             style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
             ></hr>
             <br></br>
             <Typography color='primary'  variant="body1" component="div">
+
             {project.category}
             </Typography>
             <br></br>
             <Typography variant="body2" color='primary'>
             Status: {project.status}
+
+            
+
             </Typography>
           </CardContent>
           <br></br>
           <br></br>
           <CardActions>
+
             <Button size="small" fullWidth variant='contained'>Learn More</Button>
+
+            <Button onClick={() => learnMore(p.project.id)} size="small" fullWidth variant='contained'>Learn More</Button>
+          
+            <Button onClick={() => unlike(p.id)}>Unlike</Button>
+               
           </CardActions>
         </Card>
-        </Link>
         </div>
-        ))}
+          ))} */}
+        {_DATA.currentData().map((project) => {
+          if(!likedProjects.includes(project.id)){
+            return(
+              <div className='card'>
+              <Card  sx={{ minWidth: 300, minHeight: 300, backgroundColor:"#F5F5F5", boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}>
+              <CardContent>
+                {liked ? liked.map((like) => {
+                  if(like.project.id == project.id){
+                    return <FavoriteIcon></FavoriteIcon>
+                  }
+                }) : null}
+              <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
+                {project.title}
+                </Typography>
+                <hr></hr>
+                <br></br>
+                <Typography color='primary'  variant="body1" component="div">
+                {project.category}
+                </Typography>
+                <br></br>
+                <Typography variant="body2" color='primary'>
+                Status: {project.status}
+                </Typography>
+              </CardContent>
+              <br></br>
+              <br></br>
+              <CardActions>
+                <Button onClick={() => learnMore(project.id)} size="small" fullWidth variant='contained'>Learn More</Button>
+                {/* <Button onClick={() => likeProject(project.id)}>Like Project</Button> */}
+              </CardActions>
+            </Card>
+            </div>
+            )
+          }
+          })}
       </div> 
         <Stack alignItems="center">
           <Pagination

@@ -83,7 +83,7 @@ const IndividualMessagesFreelancer = () => {
                   </div>
                   <div
                     className="mssg-content"
-                    style={{ margin: "10px 10px", fontSize: "20px", overflowWrap:"break-word"  }}
+                    style={{ margin: "10px 10px", fontSize: "20px", overflowwrap:"break-word"  }}
                   >
                     {message.content}
                   </div>

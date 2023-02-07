@@ -10,6 +10,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
 
     export const fetchRatingsByFreelancerAsync = createAsyncThunk("allProjectsByCategory", async (id) => {
       const { data } = await axios.get(`/api/ratings/${id}`);
+      console.log("DATER: ", data)
       return data;
     });
 
@@ -25,8 +26,10 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
     });
 
     
-    export const addRatingAsync = createAsyncThunk("addProject", async ({ freelancerId, rating, review }) => {
-      const { data } = await axios.post(`/api/ratings`, {freelancerId, rating, review});
+
+    
+    export const addRatingAsync = createAsyncThunk("addProject", async ({ freelancerId, rating, review, projectId }) => {
+      const { data } = await axios.post(`/api/ratings`, {freelancerId, rating, review, projectId});
         return data;
       });
 
@@ -34,6 +37,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
         await axios.delete(`/api/ratings/${id}`);
       return id;
     })
+
 
   const ratingsSlice = createSlice({
     name: "ratings",
@@ -61,7 +65,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
           return rating.id !== action.payload
         });
       });
-
+  
 
     },
   });

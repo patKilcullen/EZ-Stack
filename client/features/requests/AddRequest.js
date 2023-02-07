@@ -64,6 +64,9 @@ const AddRequest = () => {
     <Container component="main">
       <Box
         sx={{
+
+          // "& .MuiTextField-root": { m: 1, width: "100ch" },
+
           marginTop: 3,
           marginBottom: 3,
           display: "flex",
@@ -83,35 +86,36 @@ const AddRequest = () => {
         </Avatar>
         
         <div>
-          <Typography color='primary' component="h1"
-           variant="h4" sx={{ textAlign: "center"}}>
+
+          <Typography color='primary' component="h1" 
+          variant="h4" sx={{ textAlign: "center"}}>
             Submit a Proposal
             </Typography>
-          <hr
+            <hr
             style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
             ></hr>
             <br></br>
-          <Typography color='primary' component="h1" variant="h4"sx={{ bgcolor: "primary" }} >
-            {" "}
+
             {  project ? (
               <Link to={`/projects/${project.singleProject.id}`}>
                 <Typography
                   variant="h5"
                   sx={{ display: "inline" }}
                 >
-                    {project.singleProject.title}
+                  {project.singleProject.title}
                 </Typography>
               </Link>
             ) : null}
-            <br></br>
-          </Typography>
-          <Typography color='primary' variant="h5">
+
+          <br></br>
+          <Typography color='primary' variant="body2">
+
             posted by:
             {project.singleProject.id ? (
               <Link to={`/client-profile/${project.singleProject.client.id}`}>
                 <Typography
                   color='primary'
-                  variant="h5"
+                  variant="body2"
                   sx={{ display: "inline",}}
                 >
                   {" "}
@@ -122,6 +126,11 @@ const AddRequest = () => {
             ) : null}
           </Typography>
           <br></br>
+
+
+
+          <br></br>
+
 
           <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
             <div
@@ -139,6 +148,7 @@ const AddRequest = () => {
                 label="Write your proposal here"
                 placeholder="Placeholder"
                 multiline
+                rows={4}
                 variant="filled"
                 name="requestMessage"
                 value={requestMessage}
