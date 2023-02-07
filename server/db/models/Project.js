@@ -18,6 +18,9 @@ const Project = db.define('project', {
     },
     category: {
       type: Sequelize.STRING
+    },
+    work: {
+      type: Sequelize.TEXT
     }
   })
   
