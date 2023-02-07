@@ -24,8 +24,13 @@ Client.hasMany(Message)
 Message.belongsTo(Client)
 Freelancer.hasMany(Message)
 Message.belongsTo(Freelancer)
+
 Freelancer.hasMany(Rating)
 Rating.belongsTo(Freelancer)
+
+Rating.belongsTo(Project)
+Project.hasMany(Rating)
+
 Freelancer.hasMany(Like)
 Like.belongsTo(Freelancer)
 Project.hasMany(Like)

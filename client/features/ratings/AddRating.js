@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import { fetchSingleProjectAsync, editSingleProject } from "../projects/singleProjectSlice";
 import { addRatingAsync } from "./ViewAllSlice";
-
+import { fetchRatingByFreelancerAndProject, selectSingleRating } from "./singleRatingSlice";
 
 
 
@@ -20,6 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
 import Rating from '@mui/material/Rating';
+import Card from '@mui/material/Card';
 ////////////////
 
 const statuses = ["Pending", "Ongoing", "Complete"];
@@ -27,9 +29,17 @@ const statuses = ["Pending", "Ongoing", "Complete"];
 const AddRating = (props) => {
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+
+// CHARACTER LIMIT
+  const [characterError, setCharacterError] = useState(false);
+  const [reviewMessage, setReviewMessage] = useState("");
+
+  const navigate = useNavigate()
   
 
-  const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+  const freelancer = useSelector((state) => state.singleProject.singleProject.freelancer)
+  const singleRating = useSelector(selectSingleRating)
+  console.log("SINGLE RATING: ", singleRating)
 
   const client = useSelector((state) => state.clientAuth.clientMe.id)
 
@@ -50,24 +60,68 @@ const AddRating = (props) => {
 //       setReview(description);
 //     });
 //   }, [dispatch]);
+useEffect(()=>{
+dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
+}, [dispatch])
 
   const handlePostRating = (e) => {
-    e.preventDefault();
+     e.preventDefault();
+    //  character limit
+// if(e.target.value.length <= 20){
     const rating = e.target.rating.value
    
-    
     const review = e.target.review.value
+    setCharacterError(false)
     dispatch(
-      addRatingAsync({ freelancerId, rating, review })
+      addRatingAsync({ freelancerId, rating, review, projectId })
     ).then(() => {
-      dispatch(fetchSingleProjectAsync(projectId));
+      dispatch(fetchSingleProjectAsync(projectId)).then(()=>{
+        window.location.reload()
+        // navigate(`/projects/${projectId}`)
+
+      })
+      
     });
-  };
+  // }else{
+  //   setCharacterError(true)
+  // }
+}
 
   
   return (
     <div >
-        {client === projectClientId ? (
+{/* character limit */}
+      {/* {characterError} */}
+
+      { singleRating.singleRating ? 
+      <div>
+      <h1>You already submitted a freelancer ratingfor this project  </h1>
+    
+      <div >
+ 
+             <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
+          
+          { freelancer ? <Typography variant="body2" color='primary'>
+          Freelancer: {freelancer.firstName}{" "}
+          {freelancer.lastName}
+
+            </Typography>: null}
+          <Typography variant="body2" color='primary'>
+            {singleRating.singleRating.rating === 1 ? (<p>{"★"}</p>) :singleRating.singleRating.rating === 2 ? (<p>{"★★"}</p>):singleRating.singleRating.rating === 3 ? (<p>{"★★★"}</p>) :singleRating.singleRating.rating === 4 ? (<p>{"★★★★"}</p>):singleRating.singleRating.rating === 5 ? (<p>{"★★★★★"}</p>): null}
+            </Typography>
+            <Typography variant="body2" color='primary'>
+            {singleRating.singleRating.review}
+            </Typography>
+          
+            </Card>
+          </div>
+          </div>
+  
+      
+      
+      
+      :
+        client === projectClientId ? (
           <Box
           sx={{
           marginTop: 3,
@@ -103,6 +157,17 @@ const AddRating = (props) => {
         </div>
         <div>
           <TextField id="outlined-basic" label="review" name="review"  variant="filled" fullWidth
+          // character limit
+          // error={characterError}
+          // helperText={
+          //   characterError
+          //     ? "Character limit exceeded (must be 20 characters or less"
+          //     : null
+          // }
+          // value={reviewMessage}
+          //       onChange={handleChange}
+
+
             multiline
             rows={4} 
             sx={{ backgroundColor:"#F5F5F5", }}/>
@@ -114,6 +179,7 @@ const AddRating = (props) => {
       </form>
      </Box>
       ): null}
+        
   </div>
   );
 };

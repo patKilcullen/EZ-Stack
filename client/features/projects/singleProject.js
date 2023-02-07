@@ -173,7 +173,7 @@ const SingleProject = () => {
           {clientIsLoggedIn ? (
             <Tab label="Edit Project" {...a11yProps(1)} />
           ) : null}
-          {clientIsLoggedIn && project.singleProject.status === "Complete" ? (
+          {clientIsLoggedIn  ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
           {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
@@ -239,7 +239,7 @@ const SingleProject = () => {
                 </Typography> }
 
                 
-                {project.singleProject.freelancer ? (
+                {clientIsLoggedIn && project.singleProject.freelancer ? (
                     
                       <Typography
                         color="primary"
@@ -316,6 +316,8 @@ const SingleProject = () => {
                 {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button>Work Submitted</Button>: null}
               </CardActions>
             </Card>
+            
+        
           </div>
         </TabPanel>
 
@@ -334,11 +336,13 @@ const SingleProject = () => {
         </TabPanel>
 
         <TabPanel value={value} index={2}>
+          { project.singleProject.status === "Complete" ?
           <AddRating
             projectId={projectId}
             projectClientId={project.singleProject.clientId}
             projectFreelancerId={project.singleProject.freelancerId}
-          />
+          /> : "You can only add a review once you project is marked complete"
+  }
         </TabPanel>
 
         <TabPanel value={value} index={3}>

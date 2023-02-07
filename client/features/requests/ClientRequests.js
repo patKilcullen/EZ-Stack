@@ -26,6 +26,9 @@ export default function ClientRequests(props) {
   const requests = useSelector(selectClientRequests);
   const { projectId } = useParams();
 
+  const projectStatus = useSelector((state)=> state.singleProject.singleProject.status)
+  // console.log("LOGGO PROJECTO: ", project)
+
   useEffect(() => {
     dispatch(fetchClientRequests(projectId))
   }, [dispatch,]);
@@ -103,7 +106,7 @@ export default function ClientRequests(props) {
           ? 
           requests.length < 1 ? "No requests yet for this project" :
           requests.map((request) => (
-              <div>
+              <div key={request.id}>
                 <Card>
                   <CardContent>
                 <h3> Project Request: </h3>
@@ -126,7 +129,7 @@ export default function ClientRequests(props) {
                   {request.freelancer.lastName} to Project
                 </Button>: null}
                 {" "}
-               {request.project.freelancerId === request.freelancerId ? <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
+               {request.project.freelancerId === request.freelancerId && projectStatus !== "Complete" ? <Button size="small" variant="contained" onClick={() => handleUnassignUser(request.freelancer.id)}>
                   Unassign {request.freelancer.firstName}{" "}
                   {request.freelancer.lastName} from Project
                 </Button>: null}

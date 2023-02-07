@@ -68,27 +68,31 @@ console.log("FREEEELANCEERR: ", freelancer.projects)
         </Card>
           
         {reviews.map((rating) => (
-          <div>
+          <div key={rating.id}>
              <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
              <Typography color='primary' variant="body2" >
             Review
             </Typography>
+            {rating.project ? <Typography variant="body2" color='primary'>
+            Project:<Link to={`/projects/${rating.projectId}`}> {rating.project.title}</Link>
+            </Typography>: null}
           <Typography variant="body2" color='primary'>
             {rating.rating === 1 ? (<p>{"★"}</p>) :rating.rating === 2 ? (<p>{"★★"}</p>):rating.rating === 3 ? (<p>{"★★★"}</p>) :rating.rating === 4 ? (<p>{"★★★★"}</p>):rating.rating === 5 ? (<p>{"★★★★★"}</p>): null}
             </Typography>
             <Typography variant="body2" color='primary'>
             {rating.review}
             </Typography>
+            
             </Card>
           </div>
         ))}
  
-<Typography color='primary' variant="body2" >
+{/* <Typography color='primary' variant="body2" >
 Completed Projects: 
             </Typography>
 {freelancer.projects ? freelancer.projects.filter((project)=>{
 
-return project.status === "Ongoing"})
+return project.status === "Complete"})
 
 .map((project) => (
           <div>
@@ -101,7 +105,7 @@ return project.status === "Ongoing"})
             </Link> 
             </Card>
           </div>
-        )): null}
+        )): null} */}
         
         
         </div>
