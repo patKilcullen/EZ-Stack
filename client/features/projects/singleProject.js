@@ -173,7 +173,7 @@ const SingleProject = () => {
           {clientIsLoggedIn ? (
             <Tab label="Edit Project" {...a11yProps(1)} />
           ) : null}
-          {clientIsLoggedIn ? (
+          {clientIsLoggedIn && project.singleProject.status === "Complete" ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
           {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
@@ -219,7 +219,7 @@ const SingleProject = () => {
                 </Typography>
                 <br></br>
 
-                <Typography variant="h6" color="primary" align="center">
+             { clientIsLoggedIn ? null : <Typography variant="h6" color="primary" align="center">
                   Posted by:
                   {project.singleProject.id && project.singleProject.client ? (
                     <Link
@@ -236,7 +236,27 @@ const SingleProject = () => {
                       </Typography>
                     </Link>
                   ) : null}
-                </Typography>
+                </Typography> }
+
+                
+                {project.singleProject.freelancer ? (
+                    
+                      <Typography
+                        color="primary"
+                        variant="h5"
+                        sx={{ display: "inline" }}
+                      >
+                        {" "}
+                        Assigned to:   {" "}
+                        <Link
+                      to={`/freelancers/${project.singleProject.freelancerId}`}
+                    >
+                        {project.singleProject.freelancer.firstName}{" "}
+                        {project.singleProject.freelancer.lastName}
+                        </Link>
+                      </Typography>
+                  
+                  ) : null}
 
                 <br></br>
                 <br></br>
@@ -334,6 +354,7 @@ const SingleProject = () => {
       </div>
     </div>
   );
+
 }
 
 export default SingleProject;
