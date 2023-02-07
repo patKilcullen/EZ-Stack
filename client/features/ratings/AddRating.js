@@ -21,6 +21,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
 import Rating from '@mui/material/Rating';
+import Card from '@mui/material/Card';
 ////////////////
 
 const statuses = ["Pending", "Ongoing", "Complete"];
@@ -32,7 +33,7 @@ const AddRating = (props) => {
   const navigate = useNavigate()
   
 
-  const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+  const freelancer = useSelector((state) => state.singleProject.singleProject.freelancer)
   const singleRating = useSelector(selectSingleRating)
   console.log("SINGLE RATING: ", singleRating)
 
@@ -71,17 +72,43 @@ dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFree
       dispatch(fetchSingleProjectAsync(projectId)).then(()=>{
         window.location.reload()
         // navigate(`/projects/${projectId}`)
-        console.log("MADE IT ALL THE WAYYY", projectId)
-        
+
       })
       
     });
   };
-
+ console.log("SINGLE RATING: ",singleRating.singleRating)
   
   return (
     <div >
-      { singleRating.singleRating ? "You already rated the freelance for this project" :
+      { singleRating.singleRating ? 
+      <div>
+      <h1>You already submitted a freelancer ratingfor this project  </h1>
+    
+      <div >
+ 
+             <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
+          
+          { freelancer ? <Typography variant="body2" color='primary'>
+          Freelancer: {freelancer.firstName}{" "}
+          {freelancer.lastName}
+
+            </Typography>: null}
+          <Typography variant="body2" color='primary'>
+            {singleRating.singleRating.rating === 1 ? (<p>{"★"}</p>) :singleRating.singleRating.rating === 2 ? (<p>{"★★"}</p>):singleRating.singleRating.rating === 3 ? (<p>{"★★★"}</p>) :singleRating.singleRating.rating === 4 ? (<p>{"★★★★"}</p>):singleRating.singleRating.rating === 5 ? (<p>{"★★★★★"}</p>): null}
+            </Typography>
+            <Typography variant="body2" color='primary'>
+            {singleRating.singleRating.review}
+            </Typography>
+          
+            </Card>
+          </div>
+          </div>
+  
+      
+      
+      
+      :
         client === projectClientId ? (
           <Box
           sx={{

@@ -5,6 +5,8 @@ const initialState = {
   singleProject: {},
 };
 
+
+// IS THIS EVER USED?????
 export const fetchSingleRatingAsync = createAsyncThunk(
   "singleProject",
   async (id) => {
