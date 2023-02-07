@@ -40,7 +40,7 @@ const AuthForm = ({ name, displayName }) => {
     }else if(option === 'freelancer'){
     dispatch(freelancerAuthenticate({username, password, method: formName})).then(() => setErr(true))
     }
-    if(err){
+    if(err && !errMessage){
       navigate('/')
     }else{
       setErrMessage('Incorrect username/password')
