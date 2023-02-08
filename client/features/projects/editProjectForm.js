@@ -180,6 +180,17 @@ const EditProject = (props) => {
               onChange={(e) => setCategory(e.target.value)}
             />
 
+<TextField
+              margin="normal"
+              required
+              fullWidth
+              autoComplete="description"
+              label="description"
+              value={description}
+              name="description"
+              onChange={(e) => setDescription(e.target.value)}
+            />
+
             <Button
               type="submit"
               fullWidth

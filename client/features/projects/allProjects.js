@@ -5,11 +5,12 @@ import {
   fetchProjectsAsync, 
   selectProjects, 
   selectProjectsByCategory,
-  sortByCategory  
+  sortByCategory,  
+  sortByLiked
 } from "../projects/allProjectsSlice";
 import usePagination from "../freelancers/usePaginatation";
 
-
+import FavoriteIcon from '@mui/icons-material/Favorite';
 import Card from '@mui/material/Card';
 import CardActions from '@mui/material/CardActions';
 import CardContent from '@mui/material/CardContent';
@@ -24,7 +25,7 @@ import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
 
 
-import { likeProjectAsync } from "./likedProjectsSlice";
+import { fetchLikedProjectsAsync, likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
 
 
 const AllProjects = () => {
@@ -34,29 +35,32 @@ const AllProjects = () => {
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
 
-  
+  const liked = useSelector(selectLikedProjects)
   
   const dispatch = useDispatch()
 
   const [category, setCategory] = useState('')
 
-  const likeProject = (freelancerId, projectId) => {
-    dispatch(likeProjectAsync({freelancerId, projectId}))
-  }
+  const likedIds = []
+
+  console.log(likedIds)
   
   useEffect(() => {
     dispatch(fetchProjectsAsync());
-  }, [dispatch] );
+    if(freelancer){
+    dispatch(fetchLikedProjectsAsync(freelancer))
+    }
+  }, [dispatch]);
 
   const handleCategory = (evt) => {
     evt.preventDefault();
-    console.log("handle category", category);
+    if(category === 'Liked'){
+    dispatch(sortByLiked(likedIds))
+    }else{
     dispatch(sortByCategory(category));
-    // console.log("FREELANCERS BY CAT ", freelancersByCategory)
+    }
   }
 
-  console.log("PROJECTS ", projects)
-  console.log("PROJECTS BY CAT ", projectsByCat)
 
 
     ////FOR PAGINATION/////
@@ -112,6 +116,7 @@ if (projectsByCat.length) {
             HTML & CSS Developer
           </MenuItem>
           <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
+          <MenuItem value={'Liked'}>Liked</MenuItem>
         </Select>
         <Button type="submit" variant="contained">
           Search
@@ -131,6 +136,12 @@ if (projectsByCat.length) {
             },
             }}>
           <CardContent>
+          {liked ? liked.map((like) => {
+              likedIds.push(like.project.id)
+                  if(like.project.id == project.id){
+                    return <FavoriteIcon></FavoriteIcon>
+                  }
+                }) : null}
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
             {project.title}
             </Typography>
@@ -197,6 +208,7 @@ if (projectsByCat.length) {
               HTML & CSS Developer
             </MenuItem>
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
+            <MenuItem value={'Liked'}>Liked</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
             Search
@@ -217,6 +229,12 @@ if (projectsByCat.length) {
             },
             }}>
           <CardContent>
+          {liked ? liked.map((like) => {
+              likedIds.push(like.project.id)
+                  if(like.project.id == project.id){
+                    return <FavoriteIcon></FavoriteIcon>
+                  }
+                }) : null}
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
             {project.title}
             </Typography>
