@@ -263,17 +263,28 @@ const SingleProject = () => {
               </CardContent>
 
               <CardActions>
+
+                {clientIsLoggedIn ? 
+                <div className="clientButtons">
+
+
                 {client === project.singleProject.clientId && project.singleProject.status !== 'Complete'? (
+
                   <Button
                     onClick={() => handleDelete(project.singleProject.id)}
-                    fullWidth
                     size="large"
                     variant="contained"
                   >
                     Delete Project
                   </Button>
                 ) : null}
-                {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button onClick={reviewWork}>Review Work</Button> : null}
+                {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button size="large" variant="contained" onClick={reviewWork}>Review Work</Button> : null}
+                {client === project.singleProject.clientId && project.singleProject.status === 'Complete' ? 
+                <Button size="large" variant="contained" onClick={viewWork}>View Work</Button> : null}
+                </div> : null}
+                {freelancerIsLoggedIn ? 
+                <div className="freelancerButtons">
+                {freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete' ? <Button size="large" variant="contained" onClick={viewWork}>View Work</Button> : null }
                 {freelancerIsLoggedIn ? (
                   <Button
                     onClick={clickMessage}
@@ -283,8 +294,7 @@ const SingleProject = () => {
                     Message
                   </Button>
                 ) : null}
-                {client === project.singleProject.clientId && project.singleProject.status === 'Complete'|| freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete'? 
-                <Button onClick={viewWork}>View Work</Button> : null}
+            
                 {freelancerIsLoggedIn ? (
                   <>
                     {!p[0] ? <Button
@@ -312,8 +322,10 @@ const SingleProject = () => {
                     )}
                   </>
                 ) : null}
-                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button onClick={submitWork}>Submit Work</Button> : null}
-                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button>Work Submitted</Button>: null}
+                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button size="small" variant="contained" onClick={submitWork}>Submit Work</Button> : null}
+                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button size="small" variant="contained">Work Submitted</Button>: null}
+                </div>
+                : null}
               </CardActions>
             </Card>
             
