@@ -170,7 +170,7 @@ const ClientProfile = () => {
               <TableBody>
                 {client.projects ? client.projects.map((project) => (
                   <TableRow key={project.id}>
-                    <TableCell><Link to={`projects/${project.id}`}> {project.title}</Link></TableCell>
+                    <TableCell><Link to={`/projects/${project.id}`}> {project.title}</Link></TableCell>
                     <TableCell>{project.description}</TableCell>
                     <TableCell>{project.status}</TableCell>
       
