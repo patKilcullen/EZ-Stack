@@ -71,7 +71,7 @@ const AddRating = (props) => {
 useEffect(() => {
   dispatch(fetchRatingsByFreelancerAsync(freelancerId))
   dispatch(fetchSingleFreelancer(freelancerId))
-  
+   dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
  }, [dispatch]);
 
 //  PROJECT IN RATING
@@ -116,7 +116,7 @@ useEffect(() => {
 
       { singleRating.singleRating ? 
       <div>
-      <h1>You already submitted a freelancer ratingfor this project  </h1>
+      <h1>You already submitted a freelancer rating for this project  </h1>
     
       <div >
  
