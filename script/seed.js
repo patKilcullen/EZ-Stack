@@ -26,15 +26,12 @@ async function seed() {
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       imageUrl: faker.image.people(),
-      ratingAvg: Math.floor(Math.random() * 5) + 1, 
       description: faker.commerce.productDescription(),
-      // categories: faker.name.jobType(),
       username: faker.internet.userName(),
       password: faker.internet.password(), 
 
     });
 }
-
 
 await Freelancer.create({
   username: 'aaaaa',
@@ -51,7 +48,7 @@ await Freelancer.create({
   bio:'I will fix your html, css, jquery, wordpress issues',
 })
 
-await Freelancer.create({
+await Client.create({
   username: 'bbbbb',
   password: '12345',
   firstName: 'joe',
@@ -65,6 +62,7 @@ await Freelancer.create({
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
   bio:'I will fix your html, css, jquery, wordpress issues',
 })
+
 await Freelancer.create({
   username: 'ccccc',
   password: '12345',
@@ -94,6 +92,8 @@ await Freelancer.create({
   bio:'I will fix your html, css, jquery, wordpress issues',
 })
 
+
+
 await Rating.create({
   freelancerId: 102,
   rating: 3,
@@ -107,18 +107,18 @@ await Rating.create({
 })
 
 await Rating.create({
-  freelancerId: 101,
+  freelancerId: 102,
   rating: 3,
   review: 'cured my blindness with the beauty of their work'
 })
 
 await Project.create({
-   clientId: 5,
+   clientId: 102,
    freelancerId: 102,
    title: "super cool project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
-  category: "iOS Developer"
+  category: faker.name.jobType()
 })
 await Project.create({ 
   clientId: 4,
@@ -130,11 +130,12 @@ await Project.create({
 })
 
 await Project.create({
-   clientId: 6,
+   clientId: 102,
    freelancerId: 102,
    title: "nice project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
+
   category: "Python Developer"
 })
 for (let i = 0; i <= 25; i++) {
@@ -174,14 +175,17 @@ for (let i = 0; i <= 25; i++) {
        category: 'iOS Developer'
       })}
       
- 
+
+  
+
+
 await Project.create({ 
   clientId: 4,
   freelancerId: 2,
   title: "medium cool project",
  status: 'Ongoing',
  description: faker.lorem.sentences(),
- category: "HTML & CSS Developer"
+ category: faker.name.jobType()
 })
 await Request.create({
   projectId: 2,
@@ -195,12 +199,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 2,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 2,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 await Request.create({
   projectId: 1,
   freelancerId: 3,
@@ -213,12 +217,12 @@ await Request.create({
  status: 'PENDING',
  requestMessage: faker.lorem.paragraph(),
 })
-await Request.create({
-  projectId: 4,
-  freelancerId: 1,
- status: 'PENDING',
- requestMessage: faker.lorem.paragraph(),
-})
+// await Request.create({
+//   projectId: 4,
+//   freelancerId: 1,
+//  status: 'PENDING',
+//  requestMessage: faker.lorem.paragraph(),
+// })
 
   // console.log(`seeded ${user.length} users`)
   console.log(`seeded successfully`)

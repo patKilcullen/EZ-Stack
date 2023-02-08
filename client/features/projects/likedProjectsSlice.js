@@ -10,14 +10,6 @@ export const fetchLikedProjectsAsync = createAsyncThunk('likedProjects', async (
   }
 })
 
-export const checkLikedProjectsAsync = createAsyncThunk('checkLiked', async ({freelancerId, projectId}) => {
-  try{
-    const { data } = await axios.get(`/api/likes/check/${freelancerId}?projectId=${projectId}`)
-    return data
-  }catch(err){
-    console.log(err)
-  }
-})
 
 export const likeProjectAsync = createAsyncThunk('likeProject', async ({freelancerId, projectId}) => {
   try{
@@ -46,9 +38,6 @@ const likedProjectsSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(fetchLikedProjectsAsync.fulfilled, (state, action) => {
-      return action.payload
-    })
-    builder.addCase(checkLikedProjectsAsync.fulfilled, (state, action) => {
       return action.payload
     })
   }

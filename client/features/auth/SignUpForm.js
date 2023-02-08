@@ -88,7 +88,7 @@ const SignUpForm = () => {
         </div>
         <div>
         <InputLabel >User Type</InputLabel>
-          <Select name='dispatchRoute'>
+          <Select defaultValue={'client'} name='dispatchRoute'>
             <MenuItem value={'client'}>Client</MenuItem>
             <MenuItem value={'freelancer'}>Freelancer</MenuItem>
           </Select>

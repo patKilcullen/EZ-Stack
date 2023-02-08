@@ -35,36 +35,29 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
 
   const projectsSlice = createSlice({
     name: "projects",
-    initialState: {
-      projects: [],
-      projectsByCategory: [],
-  },
-    reducers: {
-      sortByCategory(state, action){
-        state.projectsByCategory = state.projects.filter((project) => project.category === action.payload)
-      }
-    },
+    initialState: [],
+    reducers: {},
     extraReducers: (builder) => {
       builder.addCase(fetchProjectsAsync.fulfilled, (state, action) => {
-        state.projects = action.payload;
+        return action.payload;
         
       });
       builder.addCase(fetchProjectsByCategoryAsync.fulfilled, (state, action) => {
-        state.projects = action.payload;
+        return action.payload;
         
       });
       builder.addCase(fetchProjectsByClientAsync.fulfilled, (state, action) => {
-        state.projects = action.payload;
+        return action.payload;
       });
       builder.addCase(fetchProjectsByFreelancerAsync.fulfilled, (state, action) => {
-        state.projects = action.payload;
+        return action.payload;
       });
 
       builder.addCase(addProjectAsync.fulfilled, (state, action) => {
-        state.projects.push(action.payload);
+        state.push(action.payload);
       });
       builder.addCase(deleteSingleProjectAsync.fulfilled, (state, action) => {
-        state.projects = state.projects.filter(project =>{
+        state = state.filter(project =>{
           return project.id !== action.payload
         });
       });
@@ -73,16 +66,9 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     },
   });
 
-  export const { sortByCategory } = projectsSlice.actions;
-
-  
   export const selectProjects = (state) => {
 
-    return state.allProjects.projects
-}
-export const selectProjectsByCategory = (state) => {
-
-  return state.allProjects.projectsByCategory
+    return state.allProjects
 }
 
   export default projectsSlice.reducer

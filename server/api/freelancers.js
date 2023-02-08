@@ -1,10 +1,10 @@
 const router = require('express').Router()
-const { models: { Freelancer, Project, Rating }} = require('../db')
+const { models: { Freelancer, Project }} = require('../db')
 module.exports = router
 
 router.get('/', async (req, res, next) => {
   try {
-    const freelancers = await Freelancer.findAll({include: [Project, Rating] })
+    const freelancers = await Freelancer.findAll({include: Project })
     res.json(freelancers)
   } catch (err) {
     next(err)
@@ -13,7 +13,7 @@ router.get('/', async (req, res, next) => {
 
 router.get('/cat/:category', async (req, res, next) => {
   try {
-    const freelancers = await Freelancer.findAll({ where: {categories: req.params.category}});
+    const freelancers = await Freelancer.findAll({ where: {category: req.params.category}});
     res.json(freelancers)
   } catch (err) {
     next(err)

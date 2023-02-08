@@ -10,23 +10,15 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
 
     export const fetchRatingsByFreelancerAsync = createAsyncThunk("allProjectsByCategory", async (id) => {
       const { data } = await axios.get(`/api/ratings/${id}`);
+      console.log("DATER: ", data)
       return data;
     });
 
-    export const fetchAvgRatingByFreelancerAsync = createAsyncThunk("averageRating", async (id) => {
-      const { data } = await axios.get(`/api/ratings/${id}`);
-      const ratings = data.map((data)=>data.rating)
-      const ratingsSum = ratings.reduce((accumulator, value) =>{
-           return accumulator + value;
-         }, 0)
-         const ratingAvg = Math.round(ratingsSum / ratings.length)
-      return ratingAvg;
-
-    });
+    
 
     
-    export const addRatingAsync = createAsyncThunk("addProject", async ({ freelancerId, rating, review }) => {
-      const { data } = await axios.post(`/api/ratings`, {freelancerId, rating, review});
+    export const addRatingAsync = createAsyncThunk("addProject", async ({ freelancerId, rating, review, projectId }) => {
+      const { data } = await axios.post(`/api/ratings`, {freelancerId, rating, review, projectId});
         return data;
       });
 
@@ -34,6 +26,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
         await axios.delete(`/api/ratings/${id}`);
       return id;
     })
+
 
   const ratingsSlice = createSlice({
     name: "ratings",
@@ -45,11 +38,6 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
         
       });
       builder.addCase(fetchRatingsByFreelancerAsync.fulfilled, (state, action) => {
-        console.log("PAYLOAD ", action.payload)
-        return action.payload;
-        
-      });
-      builder.addCase(fetchAvgRatingByFreelancerAsync.fulfilled, (state, action) => {
         return action.payload;
         
       });
@@ -61,7 +49,7 @@ export const fetchRatingsAsync = createAsyncThunk("allRatings", async () => {
           return rating.id !== action.payload
         });
       });
-
+  
 
     },
   });

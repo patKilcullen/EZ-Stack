@@ -21,22 +21,12 @@ imageUrl: {
     type: Sequelize.STRING,
     // allowNull: false
   },
-  ratingAvg: {
+  rating: {
     type: Sequelize.FLOAT,
     allowNull: true,
   },
   description: {
     type: Sequelize.TEXT,
-  },
-  username: {
-    type: Sequelize.STRING,
-    unique: true,
-    // allowNull: false,
-  },
-  password: {
-    type: Sequelize.STRING,
-    // allowNull: false,
-    min: 5,
   },
   category: {
     type: Sequelize.ENUM(
@@ -66,6 +56,17 @@ imageUrl: {
         type: Sequelize.STRING(70),
         // allowNull: false
       },
+  
+  username: {
+    type: Sequelize.STRING,
+    unique: true,
+    // allowNull: false,
+  },
+  password: {
+    type: Sequelize.STRING,
+    // allowNull: false,
+    min: 5,
+  },
   
 });
 
