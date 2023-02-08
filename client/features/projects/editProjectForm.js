@@ -28,7 +28,6 @@ const EditProject = (props) => {
   const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
 
-const dispatch = useDispatch();
   const navigate = useNavigate()
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
@@ -39,13 +38,8 @@ const dispatch = useDispatch();
 
   const id = projectId
   
-const categories = ['Python Developer', 
-'Javascript Developer',
-'HTML & CSS Developer',
-'Android Developer',
-'iOS Developer'
-]
- 
+
+  const dispatch = useDispatch();
   
   useEffect(() => {
     dispatch(fetchSingleProjectAsync(projectId)).then((res) => {
@@ -82,6 +76,10 @@ const categories = ['Python Developer',
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor:"#F5F5F5",
+            padding:"1em 1em",
+            borderRadius: "4px",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>
@@ -119,24 +117,6 @@ const categories = ['Python Developer',
                 : null}
             </Select>
 
-                {/* category  */}
-              <InputLabel >Category</InputLabel>
-              <Select name='category'
-              fullWidth
-              label="Category"
-              value={category}
-              onChange={(e) => setCategory(e.target.value)}
-              >
-                <MenuItem value=""><em>select</em></MenuItem>
-                {categories && categories.length
-                            ? categories.map((category) => (
-                                <MenuItem key={category} value={category}>
-                                  {category}
-                                </MenuItem>
-                              ))
-                            : null}
-              </Select>
-
             <Button
               type="submit"
               fullWidth
@@ -157,10 +137,14 @@ const categories = ['Python Developer',
         
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 3,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            backgroundColor:"#F5F5F5",
+            padding:"1em 1em",
+            borderRadius: "4px",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: "primary.main" }}>

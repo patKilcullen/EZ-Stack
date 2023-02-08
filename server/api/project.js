@@ -2,7 +2,7 @@ const router = require("express").Router();
 module.exports = router;
 
 const {
-  models: { Project, Client },
+  models: { Project, Client, Freelancer },
 } = require("../db");
 
 // All projects route
@@ -51,7 +51,7 @@ router.get("/client/:clientId", async (req, res, next) => {
 // Single project route
 router.get("/:projectId", async (req, res, next) => {
   try {
-    const project = await Project.findByPk(req.params.projectId, {include: Client});
+    const project = await Project.findByPk(req.params.projectId, {include: [Client, Freelancer]});
     res.send(project);
   } catch (error) {
     console.log("error in single product route");

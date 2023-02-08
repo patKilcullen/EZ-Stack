@@ -43,18 +43,22 @@ const handleDeleteRequest = async (projectId)=>{
     dispatch(fetchFreelancerRequests(id.toString()))
   })
 }
+console.log("REEEQUESTS SINGLE FREELANCER VIEW: ", requests)
 
   return (
 <div id='freelancerRequests'>
       <ul>
+        
         {id.toString() ? requests.map((request) => (
           <div key={request.id}>
             <Card sx={{ maxWidth: 345, marginLeft: -5 }}>
           <li >
-            <Typography> Your Request Status: {request.status}</Typography>
+            <Typography> Project: <Link to={`/projects/${request.projectId}`}> {request.project.title}</Link></Typography>
+            <Typography> Request Status: {request.status}</Typography>
               <Button onClick={()=> handleDeleteRequest(request.project.id)}>Remove this request/proposal</Button>
           </li>
           </Card>
+          {" "}
           </div>
         )): null}
       </ul>
