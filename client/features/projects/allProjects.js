@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom"
-import { fetchProjectsAsync, selectProjects, fetchProjectsByCategoryAsync  } from "../projects/allProjectsSlice";
-import usePagination from "../freelancers/usePaginatation";
+import { Link } from "react-router-dom"
+import { 
+  fetchProjectsAsync, 
+  selectProjects, 
+  selectProjectsByCategory,
+  sortByCategory  
+} from "../projects/allProjectsSlice";
+import usePagination from "../freelancers/usePagimentation";
 
 
 import Card from '@mui/material/Card';
@@ -14,59 +19,44 @@ import Pagination from "@mui/material/Pagination";
 import Box from "@mui/material/Box";
 import { List } from "@mui/material";
 import Stack from "@mui/material/Stack";
-import { fetchLikedProjectsAsync, likeProjectAsync, selectLikedProjects, unlikeProjectAsync } from "./likedProjectsSlice";
-import FavoriteIcon from '@mui/icons-material/Favorite';
+import Select from "@mui/material/Select";
+import MenuItem from "@mui/material/MenuItem";
+import InputLabel from "@mui/material/InputLabel";
+
+
+import { likeProjectAsync } from "./likedProjectsSlice";
 
 
 const AllProjects = () => {
+  
+  const projectsByCat = useSelector(selectProjectsByCategory)
   const projects = useSelector(selectProjects);
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
 
-  const navigate = useNavigate()
-
+  
+  
   const dispatch = useDispatch()
 
-  const likedProjects = []
-
   const [category, setCategory] = useState('')
-  const [render, setRender] = useState(false)
 
-  const liked = useSelector(selectLikedProjects)
-
-  const unlike = async (id) => {
-    await dispatch(unlikeProjectAsync(id))
-    setRender(!render)
-  }
-
-  console.log(liked)
-
-  const learnMore = (id) => {
-    navigate(`/projects/${id}`)
+  const likeProject = (freelancerId, projectId) => {
+    dispatch(likeProjectAsync({freelancerId, projectId}))
   }
   
   useEffect(() => {
     dispatch(fetchProjectsAsync());
-    dispatch(fetchLikedProjectsAsync(freelancer))
-  }, [dispatch, render] );
+  }, [dispatch] );
 
- const handleCategory = (evt) => {
+  const handleCategory = (evt) => {
     evt.preventDefault();
     console.log("handle category", category);
     dispatch(sortByCategory(category));
     // console.log("FREELANCERS BY CAT ", freelancersByCategory)
   }
 
-  const likeProject = async (id) => {
-      await dispatch(
-        likeProjectAsync({
-          freelancerId: freelancer,
-          projectId: id
-        })
-      );
-      setRender(!render);
-
-  };
+  console.log("PROJECTS ", projects)
+  console.log("PROJECTS BY CAT ", projectsByCat)
 
 
     ////FOR PAGINATION/////
@@ -75,15 +65,23 @@ const AllProjects = () => {
   
     const count = Math.ceil(projects.length / PER_PAGE);
     const _DATA = usePagination(projects, PER_PAGE);
-    console.log("_Data project:", _DATA.currentData())
-    
+
+    const countB = Math.ceil(projectsByCat.length / PER_PAGE);
+    const _DATAB = usePagination(projectsByCat, PER_PAGE);
+
+
+  
     const handleChange = (e, p) => {
       setPage(p);
       _DATA.jump(p);
     };
-  
-
     
+    const handleChangeCat = (e, p) => {
+      setPage(p);
+      _DATAB.jump(p);
+    };
+  
+    ///////////////////////
 if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
