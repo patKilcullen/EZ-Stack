@@ -42,6 +42,9 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     reducers: {
       sortByCategory(state, action){
         state.projectsByCategory = state.projects.filter((project) => project.category === action.payload)
+      },
+      sortByLiked(state, action){
+        state.projectsByCategory = state.projects.filter((project) => action.payload.includes(project.id) )
       }
     },
     extraReducers: (builder) => {
@@ -73,7 +76,7 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     },
   });
 
-  export const { sortByCategory } = projectsSlice.actions;
+  export const { sortByCategory, sortByLiked } = projectsSlice.actions;
 
   
   export const selectProjects = (state) => {
