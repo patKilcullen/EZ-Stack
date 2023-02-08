@@ -318,7 +318,7 @@ console.log("FREELANCERS ", freelancers)
                       </div>
                     </CardContent>
                     <CardActions>
-                      <Button size="small" variant='contained'>Learn More</Button>
+                      <Button size="small"  fullWidth variant='contained'>Learn More</Button>
                     </CardActions>
                   </Card>
                   <div>

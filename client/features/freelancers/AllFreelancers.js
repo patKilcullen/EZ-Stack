@@ -127,7 +127,6 @@ const AllFreelancers = () => {
 
           <form onSubmit={handleSpecialties}>
             {/* specialties  */}
-            <InputLabel>Specialties</InputLabel>
             <Select
               name="specialties"
               fullWidth
@@ -266,7 +265,7 @@ const AllFreelancers = () => {
                         </div>
                       </CardContent>
                       <CardActions>
-                        <Button size="small" variant="contained">
+                        <Button size="small" fullWidth variant="contained">
                           Learn More
                         </Button>
                       </CardActions>
@@ -474,7 +473,7 @@ const AllFreelancers = () => {
                         </div>
                       </CardContent>
                       <CardActions>
-                        <Button size="small" variant="contained">
+                        <Button size="small" fullWidth variant="contained">
                           Learn More
                         </Button>
                       </CardActions>
