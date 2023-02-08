@@ -174,7 +174,7 @@ if (projectsByCat.length) {
         <form onSubmit={handleCategory}>
           {/* category  */}
           <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
           </div>
           {/* <InputLabel>Categories</InputLabel> */}
           <Select
