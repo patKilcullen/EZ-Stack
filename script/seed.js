@@ -230,7 +230,6 @@ async function seed() {
     });
 }
 
-
 await Freelancer.create({
   username: 'aaaaa',
   password: '12345',
@@ -244,50 +243,62 @@ await Freelancer.create({
   hourlyRate: 12,
   specialties:'Web Application, Scripting, Bug Fixes, Help/Consultation',
   bio:'I will fix your html, css, jquery, wordpress issues',
-})
 
+})
+for (let i = 0; i <= 100; i++) {
 await Freelancer.create({
-  username: 'bbbbb',
-  password: '12345',
-  firstName: 'joe',
-  lastName:'Bobs',
-  email:'bob@gmail.com',
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
   imageUrl: faker.image.people(),
-  description: 
-  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
+  description: faker.commerce.productDescription(),
   category: 'HTML & CSS Developer',
-  hourlyRate: 12,
+  hourlyRate: 25,
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:'I will fix your html, css, jquery, wordpress issues',
+  bio:faker.commerce.productDescription(),
 })
 await Freelancer.create({
-  username: 'ccccc',
-  password: '12345',
-  firstName: 'Bob',
-  lastName:'Bobs',
-  email:'carlos@gmail.com',
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
   imageUrl: faker.image.people(),
-  description: 
-  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
-  category: 'iOS Developer',
-  hourlyRate: 12,
-  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:'I will fix your html, css, jquery, wordpress issues',
+  description: faker.commerce.productDescription(),
+  category: 'Python Developer',
+  hourlyRate: 30,
+  specialties:'Web Application, Scripting, Bug Fixes, Help/Consultation',
+  bio:faker.commerce.productDescription(),
 })
 await Freelancer.create({
-  username: 'ddddd',
-  password: '12345',
-  firstName: 'matt',
-  lastName:'Bobs',
-  email:'doug@gmail.com',
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
   imageUrl: faker.image.people(),
-  description: 
-  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
+  description: faker.commerce.productDescription(),
   category: 'Android Developer',
-  hourlyRate: 12,
-  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:'I will fix your html, css, jquery, wordpress issues',
+  hourlyRate: 20,
+  specialties:'Mobile Apps, Desktop Applications, Game Development',
+  bio:faker.commerce.productDescription(),
 })
+await Freelancer.create({
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
+  imageUrl: faker.image.people(),
+  description: faker.commerce.productDescription(),
+  category: 'iOS Developer',
+  hourlyRate: 35,
+  specialties:'Website Development, Maitaince, and Customization',
+  bio:faker.commerce.productDescription(),
+})}
+
 
 await Rating.create({
   freelancerId: 102,
@@ -334,8 +345,8 @@ await Project.create({
 })
 for (let i = 0; i <= 25; i++) {
 await Project.create({
-  clientId: Math.floor(Math.random() * 100+ 1),
-  freelancerId: Math.floor(Math.random() * 100 +1),
+  clientId: Math.floor(Math.random() * 100 + 1),
+  freelancerId: Math.floor(Math.random() * 100 + 1),
   title: faker.name.jobType(),
  status: 'Ongoing',
  description: faker.lorem.sentences(),

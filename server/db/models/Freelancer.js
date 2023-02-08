@@ -54,7 +54,7 @@ imageUrl: {
       },
 
       bio: {
-        type: Sequelize.STRING(70),
+        type: Sequelize.STRING,
         // allowNull: false
       },
   
