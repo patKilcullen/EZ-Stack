@@ -51,7 +51,7 @@ await Freelancer.create({
 await Client.create({
   username: 'bbbbb',
   password: '12345',
-  firstName: 'joe',
+  firstName: 'Bob',
   lastName:'Bobs',
   email:'bob@gmail.com',
   imageUrl: faker.image.people(),
@@ -62,38 +62,6 @@ await Client.create({
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
   bio:'I will fix your html, css, jquery, wordpress issues',
 })
-
-await Freelancer.create({
-  username: 'ccccc',
-  password: '12345',
-  firstName: 'Bob',
-  lastName:'Bobs',
-  email:'carlos@gmail.com',
-  imageUrl: faker.image.people(),
-  description: 
-  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
-  category: 'iOS Developer',
-  hourlyRate: 12,
-  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:'I will fix your html, css, jquery, wordpress issues',
-})
-await Freelancer.create({
-  username: 'ddddd',
-  password: '12345',
-  firstName: 'matt',
-  lastName:'Bobs',
-  email:'doug@gmail.com',
-  imageUrl: faker.image.people(),
-  description: 
-  "Are you facing any layout issue or difficulty in programming, Don't worry leave it to me, i will fix html, css, jquery, php, javascript, bootstrap, wordpress, shopify issue. i will also show you where was the issue.",
-  category: 'Android Developer',
-  hourlyRate: 12,
-  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:'I will fix your html, css, jquery, wordpress issues',
-})
-
-
-
 await Rating.create({
   freelancerId: 102,
   rating: 3,
@@ -120,14 +88,6 @@ await Project.create({
   description: faker.lorem.sentences(),
   category: faker.name.jobType()
 })
-await Project.create({ 
-  clientId: 4,
-  freelancerId: 2,
-  title: "medium cool project",
- status: 'Ongoing',
- description: faker.lorem.sentences(),
- category: "HTML & CSS Developer"
-})
 
 await Project.create({
    clientId: 102,
@@ -135,49 +95,17 @@ await Project.create({
    title: "nice project",
   status: 'Ongoing',
   description: faker.lorem.sentences(),
-
-  category: "Python Developer"
+  category: faker.name.jobType()
 })
-for (let i = 0; i <= 25; i++) {
-await Project.create({
-  clientId: Math.floor(Math.random() * 100),
-  freelancerId: Math.floor(Math.random() * 100),
-  title: faker.name.jobType(),
- status: 'Ongoing',
- description: faker.lorem.sentences(),
- category: 'Android Developer'
-})}
-for (let i = 0; i <= 25; i++) {
-  await Project.create({
-    clientId: Math.floor(Math.random() * 100),
-    freelancerId: Math.floor(Math.random() * 100),
-    title: faker.name.jobType(),
-   status: 'Ongoing',
-   description: faker.lorem.sentences(),
-   category: 'Python Developer'
-  })}
-  for (let i = 0; i <= 25; i++) {
-    await Project.create({
-      clientId: Math.floor(Math.random() * 100),
-      freelancerId: Math.floor(Math.random() * 100),
-      title: faker.name.jobType(),
-     status: 'Ongoing',
-     description: faker.lorem.sentences(),
-     category: 'HTML & CSS Developer'
-    })}
-    for (let i = 0; i <= 25; i++) {
-      await Project.create({
-        clientId: Math.floor(Math.random() * 100),
-        freelancerId: Math.floor(Math.random() * 100),
-        title: faker.name.jobType(),
-       status: 'Ongoing',
-       description: faker.lorem.sentences(),
-       category: 'iOS Developer'
-      })}
-      
-
-  
-
+// for (let i = 0; i <= 100; i++) {
+// await Project.create({
+//   clientId: Math.floor(Math.random() * 103),
+//   freelancerId: Math.floor(Math.random() * 103),
+//   title: faker.name.jobType(),
+//  status: 'Ongoing',
+//  description: faker.lorem.sentences(),
+//  category: faker.name.jobType()
+// })}
 
 await Project.create({ 
   clientId: 4,
