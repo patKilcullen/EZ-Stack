@@ -263,7 +263,7 @@ const SingleProject = () => {
               </CardContent>
 
               <CardActions>
-                {client === project.singleProject.clientId ? (
+                {client === project.singleProject.clientId && project.singleProject.status !== 'Complete'? (
                   <Button
                     onClick={() => handleDelete(project.singleProject.id)}
                     fullWidth
