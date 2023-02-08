@@ -76,114 +76,18 @@ const AllFreelancers = () => {
   };
 console.log("FREELANCERS ", freelancers)
 
-if (freelancersByReviews.length){
-  return (
-    <div className="allViewContainer"
-    style={{marginBottom: "10px"}}
-    >
 
-      <h5>Search by Categories and Specialties</h5>
-      <form onSubmit={handleCategory}>
-        {/* category  */}
-        <InputLabel>Categories</InputLabel>
-        <Select
-          name="category"
-          fullWidth
-          // label="Category"
-          value={category}
-          color="primary"
-          sx={{ m: 1, width: "20ch" }}
-          onChange={(e) => setCategory(e.target.value)}
-        >
-          <MenuItem value="all">
-            All freelancers
-          </MenuItem>
-          <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
-          <MenuItem value={"Javascript Developer"}>
-            Javascript Developer{" "}
-          </MenuItem>
-          <MenuItem value={"HTML & CSS Developer"}>
-            HTML & CSS Developer
-          </MenuItem>
-          <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
-        </Select>
-        <Button type="submit" variant="contained">
-          Search
-        </Button>
-      </form>
-      
-      <Box p="5">
-        <List p="10" pt="3" spacing={2}>
-          <div className="allList">
-            {_DATA.currentData().map((freelancers) => (
-              <div className="card">
-                <Link to={`/freelancers/${freelancers.id}`}>
-                  <Card 
-                    sx={{
-                      minWidth: 300, minHeight: 300, 
-                      
-                      margin: "0 auto",
-                      padding: "0.3em",
-                    }}
-                  >
-                    <CardMedia
-                      sx={{ height: 140 }}
-                      image={freelancers.imageUrl}
-                      title="Freelancer"
-                    />
-                    <CardContent >
-                      <Typography color='primary' gutterBottom variant="h5" component="div">
-                        {freelancers.firstName} {freelancers.lastName}
-                      </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.categories}
-                      </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
-                      </Typography>
-                      <Typography color='primary' variant="body2">
-                        {`${freelancers.ratings.length} Reviews`}
-                      </Typography>
-                    </CardContent>
-                    <CardActions>
-                      <Button size="small" variant='contained'>Learn More</Button>
-                    </CardActions>
-                  </Card>
-                  <div>
-                  {/* { <ViewAvgRating id={freelancers.id} />} */}
-                  </div>
-                </Link>
-              </div>
-             
-            ))}
-            
-
-          </div>
-        </List>
-        <Stack alignItems="center">
-          <Pagination
-          color='primary'
-            count={count}
-            size="large"
-            page={page}
-            variant="outlined"
-            shape="rounded"
-            onChange={handleChange}
-          />
-        </Stack>
-      </Box>
-    </div>
-  )}
  if (freelancersByCategory.length) {
   return (
     <div className="allViewContainer"
     style={{marginBottom: "10px"}}
     >
-      <h5>Search by Categories and Specialties</h5>
       <form onSubmit={handleCategory}>
+      <div style={{marginTop: 10}}>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          </div>
         {/* category  */}
-        <InputLabel>Categories</InputLabel>
-
+        
         <Select
           name="category"
           fullWidth
@@ -212,7 +116,7 @@ if (freelancersByReviews.length){
 
 
       <div style={{marginTop:'1em'}} className="search">
-       <Button onClick={() => handleSort()} variant='contained'>Most Reviewed</Button>
+       <Link to={'/freelancers/most'}><Button variant='contained'>Most Reviewed</Button></Link>
       </div>
       <Box p="5">
         <List p="10" pt="3" spacing={2}>
@@ -280,11 +184,11 @@ if (freelancersByReviews.length){
     <div className="allViewContainer"
     style={{marginBottom: "10px"}}
     >
-      <h5>Search by Categories and Specialties</h5>
       <form onSubmit={handleCategory}>
+      <div style={{marginTop: 10}}>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          </div>
         {/* category  */}
-        <InputLabel>Categories</InputLabel>
-
         <Select
           name="category"
           fullWidth
@@ -313,7 +217,7 @@ if (freelancersByReviews.length){
 
 
       <div style={{marginTop:'1em'}} className="search">
-       <Button onClick={() => handleSort()} variant='contained'>Most Reviewed</Button>
+       <Link to={'/freelancers/most'}><Button variant='contained'>Most Reviewed</Button></Link>
       </div>
       <Box p="5">
         <List p="10" pt="3" spacing={2}>

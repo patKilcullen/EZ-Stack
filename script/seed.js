@@ -54,7 +54,7 @@ await Freelancer.create({
 await Freelancer.create({
   username: 'bbbbb',
   password: '12345',
-  firstName: 'Bob',
+  firstName: 'joe',
   lastName:'Bobs',
   email:'bob@gmail.com',
   imageUrl: faker.image.people(),
@@ -82,7 +82,7 @@ await Freelancer.create({
 await Freelancer.create({
   username: 'ddddd',
   password: '12345',
-  firstName: 'Bob',
+  firstName: 'matt',
   lastName:'Bobs',
   email:'doug@gmail.com',
   imageUrl: faker.image.people(),
@@ -119,6 +119,14 @@ await Project.create({
   status: 'Ongoing',
   description: faker.lorem.sentences(),
   category: "iOS Developer"
+})
+await Project.create({ 
+  clientId: 4,
+  freelancerId: 2,
+  title: "medium cool project",
+ status: 'Ongoing',
+ description: faker.lorem.sentences(),
+ category: "HTML & CSS Developer"
 })
 
 await Project.create({
@@ -165,15 +173,7 @@ for (let i = 0; i <= 25; i++) {
        description: faker.lorem.sentences(),
        category: 'iOS Developer'
       })}
-      for (let i = 0; i <= 25; i++) {
-        await Project.create({
-          clientId: Math.floor(Math.random() * 100),
-          freelancerId: Math.floor(Math.random() * 100),
-          title: faker.name.jobType(),
-         status: 'Ongoing',
-         description: faker.lorem.sentences(),
-         category: 'Javascript Developer'
-        })}
+      
  
 await Project.create({ 
   clientId: 4,

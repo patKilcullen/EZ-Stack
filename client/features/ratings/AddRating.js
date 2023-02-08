@@ -27,8 +27,11 @@ import { fetchSingleFreelancer, updateFreelancerAsync } from "../freelancers/sin
 const statuses = ["Pending", "Ongoing", "Complete"];
 
 const AddRating = (props) => {
+  
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+
+
   
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
