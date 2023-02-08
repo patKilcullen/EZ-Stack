@@ -81,7 +81,7 @@ const AllProjects = () => {
       _DATAB.jump(p);
     };
   
-    ///////////////////////
+    
 if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
