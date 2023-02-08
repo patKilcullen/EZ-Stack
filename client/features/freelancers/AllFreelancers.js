@@ -78,6 +78,10 @@ const AllFreelancers = () => {
     _DATA.jump(p);
   };
 
+
+
+
+
   const handleChangeCategory = (e, p) => {
     setPage(p);
     _DATAB.jump(p);
@@ -88,7 +92,7 @@ const AllFreelancers = () => {
     _DATAC.jump(p);
   };
 
-  ///////////////////////
+
 
   if (freelancersByCategory.length) {
   return (
@@ -255,16 +259,19 @@ const AllFreelancers = () => {
 };
 
 if (freelancersBySpecialties.length) {
+
   return (
     <div className="allViewContainer" style={{ marginBottom: "10px" }}>
       <div
     style={{display:"flex", justifyContent: "space-between", alignItems:"center"}}
     >
-    <h5>Search by Categories and Specialties</h5>
-    <form onSubmit={handleCategory}>
-      {/* category  */}
-      <InputLabel>Categories</InputLabel>
 
+      <form onSubmit={handleCategory}>
+      <div style={{marginTop: 10}}>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          </div>
+        {/* category  */}
+        
       <Select
         name="category"
         fullWidth
@@ -294,6 +301,7 @@ if (freelancersBySpecialties.length) {
     <form onSubmit={handleSpecialties}>
         {/* specialties  */}
         <InputLabel>Specialties</InputLabel>
+
         <Select
           name="specialties"
           fullWidth
@@ -321,6 +329,10 @@ if (freelancersBySpecialties.length) {
           Search
         </Button>
       </form>
+
+      <div style={{marginTop:'1em'}} className="search">
+       <Link to={'/freelancers/most'}><Button variant='contained'>Most Reviewed</Button></Link>
+
       </div>
 
       <Box p="5">
@@ -424,10 +436,12 @@ return (
     <div
     style={{display:"flex", justifyContent: "space-between", alignItems:"center"}}
     >
-    <h5>Search by Categories and Specialties</h5>
-    <form onSubmit={handleCategory}>
-      {/* category  */}
-      <InputLabel>Categories</InputLabel>
+
+      <form onSubmit={handleCategory}>
+      <div style={{marginTop: 10}}>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          </div>
+        {/* category  */}
 
       <Select
         name="category"
@@ -458,6 +472,7 @@ return (
     <form onSubmit={handleSpecialties}>
         {/* specialties  */}
         <InputLabel>Specialties</InputLabel>
+
         <Select
           name="specialties"
           fullWidth
@@ -522,6 +537,36 @@ return (
                       {freelancers.firstName} {freelancers.lastName}
                     </Typography>
 
+
+      <div style={{marginTop:'1em'}} className="search">
+       <Link to={'/freelancers/most'}><Button variant='contained'>Most Reviewed</Button></Link>
+      </div>
+      <Box p="5">
+        <List p="10" pt="3" spacing={2}>
+          <div className="allList">
+            {_DATA.currentData().map((freelancers) => (
+              <div className="card">
+                <Link to={`/freelancers/${freelancers.id}`}>
+                  <Card 
+                    sx={{
+                      minWidth: 300, minHeight: 300, 
+                      
+                      margin: "0 auto",
+                      padding: "0.3em",
+                    }}
+                  >
+                    <CardMedia
+                      sx={{ height: 140 }}
+                      image={freelancers.imageUrl}
+                      title="Freelancer"
+                    />
+                    <CardContent >
+                      <Typography color='primary' gutterBottom variant="h5" component="div">
+                        {freelancers.firstName} {freelancers.lastName}
+                      </Typography>
+                      <Typography color='primary' variant="body2">
+                        {freelancers.categories}
+
                     <div
                       style={{
                         display: "flex",
@@ -531,6 +576,7 @@ return (
                     >
                       <Typography color="primary" variant="body2">
                         {freelancers.category}
+
                       </Typography>
                       <Typography variant="body2">
                         Starting Rate: ${freelancers.hourlyRate}

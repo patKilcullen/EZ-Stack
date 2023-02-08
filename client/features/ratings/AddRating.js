@@ -27,14 +27,19 @@ import Card from '@mui/material/Card';
 const statuses = ["Pending", "Ongoing", "Complete"];
 
 const AddRating = (props) => {
+  
   const [rating, setRating] = useState("");
   const [review, setReview] = useState("");
+
+
+
 
 // CHARACTER LIMIT
   const [characterError, setCharacterError] = useState(false);
   const [reviewMessage, setReviewMessage] = useState("");
 
   const navigate = useNavigate()
+
   
 
   const freelancer = useSelector((state) => state.singleProject.singleProject.freelancer)
