@@ -263,9 +263,13 @@ const SingleProject = () => {
               </CardContent>
 
               <CardActions>
+
                 {clientIsLoggedIn ? 
                 <div className="clientButtons">
-                {client === project.singleProject.clientId ? (
+
+
+                {client === project.singleProject.clientId && project.singleProject.status !== 'Complete'? (
+
                   <Button
                     onClick={() => handleDelete(project.singleProject.id)}
                     size="large"
