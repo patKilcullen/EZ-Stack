@@ -245,18 +245,77 @@ console.log("FREELANCERS ", freelancers)
                       title="Freelancer"
                     />
                     <CardContent >
-                      <Typography color='primary' gutterBottom variant="h5" component="div">
+                    <Typography
+                        color="primary"
+                        gutterBottom
+                        variant="h6"
+                        component="div"
+                      >
                         {freelancers.firstName} {freelancers.lastName}
                       </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.categories}
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "space-between",
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        <Typography color="primary" variant="body2">
+                          {freelancers.category}
+                        </Typography>
+                        <Typography variant="body2">
+                          Starting Rate: ${freelancers.hourlyRate}
+                        </Typography>
+                      </div>
+                      <hr
+                        style={{
+                          border: "none",
+                          height: "1px",
+                          color: "#333",
+                          backgroundColor: "#333",
+                        }}
+                      ></hr>
+
+                      <Typography variant="body2" color="secondary">
+                        Specialties: {freelancers.specialties}
                       </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancers.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancers.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancers.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancers.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+
+                      <br></br>
+                      <Typography
+                        variant="body1"
+                        align="center"
+                        overflowwrap="break-word"
+                      >
+                        {freelancers.bio}
                       </Typography>
-                      <Typography color='primary' variant="body2">
-                        {freelancers.ratings ? `${freelancers.ratings.length} Reviews`: null}
-                      </Typography>
+
+                      <div
+                        style={{
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          fontWeight: "bolder",
+                        }}
+                      >
+                        <Typography color="primary" variant="body2">
+                          {freelancers.ratingAvg === 1 ? (
+                            <p>{"★"}</p>
+                          ) : freelancers.ratingAvg === 2 ? (
+                            <p>{"★★"}</p>
+                          ) : freelancers.ratingAvg === 3 ? (
+                            <p>{"★★★"}</p>
+                          ) : freelancers.ratingAvg === 4 ? (
+                            <p>{"★★★★"}</p>
+                          ) : freelancers.ratingAvg === 5 ? (
+                            <p>{"★★★★★"}</p>
+                          ) : null}
+                        </Typography>
+                        <Typography color="primary" variant="body2">
+                          {freelancers.ratings
+                            ? `( ${freelancers.ratings.length} Reviews)`
+                            : null}
+                        </Typography>
+                      </div>
                     </CardContent>
                     <CardActions>
                       <Button size="small" variant='contained'>Learn More</Button>
