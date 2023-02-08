@@ -7,7 +7,7 @@ import {
   selectProjectsByCategory,
   sortByCategory  
 } from "../projects/allProjectsSlice";
-import usePagination from "../freelancers/usePagimentation";
+import usePagination from "../freelancers/usePaginatation";
 
 
 import Card from '@mui/material/Card';

@@ -69,12 +69,9 @@ console.log("FREEEELANCEERR: ", freelancer.projects)
             <Typography  gutterBottom component="div" variant="subtitle1" >
             {freelancer.description} 
             </Typography>
-            <Typography color='primary' variant="body2" >
-            {ratingAvg === 1 ? (<p>{"★"}</p>) :ratingAvg === 2 ? (<p>{"★★"}</p>):ratingAvg === 3 ? (<p>{"★★★"}</p>) :ratingAvg === 4 ? (<p>{"★★★★"}</p>):ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
-            </Typography>
-            <Typography color='primary' variant="body2" >
-            {rating.length} Reviews
-            </Typography>
+            <Typography color='primary' variant="body2">
+                        {freelancer.ratingAvg === 1 ? (<p>{"★"}</p>) :freelancer.ratingAvg === 2 ? (<p>{"★★"}</p>):freelancer.ratingAvg === 3 ? (<p>{"★★★"}</p>) :freelancer.ratingAvg === 4 ? (<p>{"★★★★"}</p>):freelancer.ratingAvg === 5 ? (<p>{"★★★★★"}</p>): null}
+                      </Typography>
             
           </CardContent>
           <CardActions>
@@ -129,3 +126,4 @@ return project.status === "Complete"})
 }
 
 export default SingleFreelancer
+

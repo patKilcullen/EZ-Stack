@@ -12,6 +12,7 @@ import AllClientProjects from '../features/projects/allClientProjects';
 import AllFreelancerProjects from '../features/projects/allFreelancerProjects';
 import ClientRequests from '../features/requests/ClientRequests'
 import FreelancerRequests from "../features/requests/FreelancerRequests"
+import MostReviewedFreelancers from '../features/freelancers/MostReviewedFreelancers'
 
 import { clientMe, freelancerMe } from './store';
 import Client from '../features/client/Client';
@@ -81,7 +82,7 @@ const AppRoutes = () => {
             path="/projects/client/:clientId"
             element={<AllClientProjects />}
           />
-
+  <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
 
           <Route path="/freelancers" element={<AllFreelancers />} />
           <Route path="/freelancers/:id" element={<SingleFreelancer />} />
@@ -137,6 +138,7 @@ const AppRoutes = () => {
             path="/freelancer/:freelancerId/requests"
             element={<FreelancerRequests />}
           />
+            <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
           <Route
             path="/projects/:projectId/addrequest"
             element={<AddRequest />}
@@ -185,7 +187,7 @@ const AppRoutes = () => {
 
           <Route path="/home" element={<Home />} />
 
-
+          <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
         <Route
           path="/login"
           element={<AuthForm name="login" displayName="Login" />}
