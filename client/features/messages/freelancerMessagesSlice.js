@@ -4,7 +4,6 @@ import axios from 'axios';
 export const fetchFreelancerMessagesAsync = createAsyncThunk('freelancerMessages', async (id) => {
   try{
     const { data } = await axios.get(`/api/messages/freelancer/${id}`)
-    console.log(data)
     return data
   }catch(err){
     console.log(err)
