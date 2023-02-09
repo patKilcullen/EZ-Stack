@@ -347,6 +347,7 @@ for (let i = 0; i <= 25; i++) {
          category: 'Javascript Developer'
         })}
       
+        for (let i = 0; i <= 50; i++) {
         await Rating.create({
           freelancerId: Math.floor(Math.random() * 100 + 1) ,
           rating: 5,
@@ -356,13 +357,13 @@ for (let i = 0; i <= 25; i++) {
         await Rating.create({
           freelancerId: Math.floor(Math.random() * 100 + 1),
           rating: 5,
-          review: 'saved my mom from a burning building'
+          review: 'exceeded my expectations'
         })
         
         await Rating.create({
           freelancerId: Math.floor(Math.random() * 100 + 1),
           rating: 5,
-          review: 'cured my blindness with the beauty of their work'
+          review: 'would reccomend to anyone looking for a quality app'
         })
         await Rating.create({
           freelancerId: Math.floor(Math.random() * 100 + 1),
@@ -373,7 +374,7 @@ for (let i = 0; i <= 25; i++) {
           freelancerId: Math.floor(Math.random() * 100 + 1),
           rating: 5,
           review: 'Did great work'
-        })
+        })}
  
 
 
