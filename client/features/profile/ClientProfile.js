@@ -115,13 +115,13 @@ const ClientProfile = () => {
               padding: "1em",
             }}
             >
-              <CardMedia
+              {client.imageUrl? <CardMedia
                 component="img"
                 height="250"
                 sx={{ objectFit: "contain" }}
                 image={client.imageUrl}
                 title="client"
-              />
+              /> : <p>No Profile Image</p>}
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                   {client.firstName} {client.lastName}

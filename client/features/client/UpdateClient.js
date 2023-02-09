@@ -32,6 +32,7 @@ const UpdateClient = () => {
     await dispatch(updateClientAsync({id: client.id, firstName, lastName, email, description, username, imageUrl }))
     .then(() => dispatch(fetchClient(id)));  
     navigate('/profile')
+    window.location.reload()
   }
 
   useEffect(() => {
