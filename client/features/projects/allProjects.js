@@ -90,16 +90,14 @@ if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
 <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
           </div>
           <div>
       <form onSubmit={handleCategory}>
         {/* category  */}
-        <InputLabel>Categories</InputLabel>
         <Select
           name="category"
           fullWidth
-          // label="Category"
           value={category}
           color="primary"
           sx={{ m: 1, width: "20ch" }}
@@ -115,8 +113,10 @@ if (projectsByCat.length) {
           <MenuItem value={"HTML & CSS Developer"}>
             HTML & CSS Developer
           </MenuItem>
+          <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
           <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
-          <MenuItem value={'Liked'}>Liked</MenuItem>
+          {freelancerIsLoggedIn ? (
+          <MenuItem value={'Liked'}>Liked</MenuItem>):null}
         </Select>
         <Button type="submit" variant="contained">
           Search
@@ -187,11 +187,9 @@ if (projectsByCat.length) {
           <div style={{marginTop: 10}}>
           <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
           </div>
-          {/* <InputLabel>Categories</InputLabel> */}
           <Select
             name="category"
             fullWidth
-            // label="Category"
             value={category}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
@@ -207,8 +205,10 @@ if (projectsByCat.length) {
             <MenuItem value={"HTML & CSS Developer"}>
               HTML & CSS Developer
             </MenuItem>
+            <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
-            <MenuItem value={'Liked'}>Liked</MenuItem>
+            {freelancerIsLoggedIn ? (
+          <MenuItem value={'Liked'}>Liked</MenuItem>):null}
           </Select>
           <Button type="submit" variant="contained">
             Search
