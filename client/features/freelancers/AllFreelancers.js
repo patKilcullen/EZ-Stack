@@ -118,6 +118,7 @@ const AllFreelancers = () => {
               <MenuItem value={"HTML & CSS Developer"}>
                 HTML & CSS Developer
               </MenuItem>
+              <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
@@ -319,6 +320,7 @@ const AllFreelancers = () => {
               <MenuItem value={"HTML & CSS Developer"}>
                 HTML & CSS Developer
               </MenuItem>
+              <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
@@ -525,6 +527,7 @@ const AllFreelancers = () => {
             <MenuItem value={"HTML & CSS Developer"}>
               HTML & CSS Developer
             </MenuItem>
+            <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
