@@ -180,8 +180,8 @@ const AllFreelancers = () => {
                     <Card
                       sx={{
                         minWidth: 300,
-                        minHeight: 300,
-
+                        height: 400,
+                        
                         margin: "0 auto",
                         padding: "0.3em",
                       }}
@@ -228,14 +228,7 @@ const AllFreelancers = () => {
                         </Typography>
 
                         <br></br>
-                        <Typography
-                          variant="body1"
-                          align="center"
-                          overflowwrap="break-word"
-                        >
-                          {freelancers.bio}
-                        </Typography>
-
+                      
                         <div
                           style={{
                             display: "flex",
