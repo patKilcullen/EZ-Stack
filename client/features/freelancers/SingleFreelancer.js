@@ -138,15 +138,16 @@ const SingleFreelancer = () => {
         <div
           style={{
             width: 500,
+            alignContent:"center"
           }}
         >
           <Typography color="primary" component="div" align="center" variant="h6">
             Reviews
           </Typography>
-          {reviews.map((rating) => (
-            <div key={rating.id} style={{ }}>
+          {reviews.length ? reviews.map((rating) => (
+            <div key={rating.id} style={{ overflow:"auto"}}>
               <Card sx={{ margin: "50px 50px", ":hover": { boxShadow: 20 }, padding:"10px 10px" }}>
-                <Typography variant="body2">
+                <Typography variant="body1"  fontWeight="bolder">
                   {rating.freelancer.firstName} {rating.freelancer.lastName}
                 </Typography>
                 {rating.project ? (
@@ -174,60 +175,9 @@ const SingleFreelancer = () => {
                 <Typography variant="body2">{rating.review}</Typography>
               </Card>
             </div>
-          ))}
-        </div>
-
-        <div>
-          <Typography color="primary" component="div" align="center" variant="h6">
-            Completed Projects
-          </Typography>
-          {freelancerProjects?.length
-            ? freelancerProjects.filter((project) => {
-                 return project.status === "Complete";
-               })
-              .map((project) => (
-                <div
-                  key={project.id}
-                  className="card"
-                  style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    justifyContent: "center",
-                    alignItems: "center",
-                  }}
-                >
-                  <Link to={`/projects/${project.id}`}>
-                    <Card
-                      sx={{
-                        margin: "50px 50px",
-                        ":hover": { boxShadow: 20 },
-                      }}
-                    >
-                      <CardContent>
-                        <Typography variant="h5" component="div">
-                          {project.title}
-                        </Typography>
-                        <Typography
-                          color="primary"
-                          variant="h6"
-                          component="div"
-                        >
-                          category: {project.category}
-                        </Typography>
-                        <Typography variant="body2">
-                          Current Status: {project.status}
-                        </Typography>
-                      </CardContent>
-                      <CardActions>
-                        <Button size="small" fullWidth variant="contained">
-                          Learn More
-                        </Button>
-                      </CardActions>
-                    </Card>
-                  </Link>
-                </div>
-              ))
-            : null}
+          )): <Typography component="div" align="center" variant="h6">
+          No Reviews Yet!
+        </Typography>}
         </div>
       </div>
       
