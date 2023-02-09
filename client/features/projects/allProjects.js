@@ -128,7 +128,7 @@ if (projectsByCat.length) {
         {_DATAB.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300, 
+          <Card  sx={{ width: 300, height: 300, maxWidth: 500,
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             ':hover': {
@@ -142,7 +142,7 @@ if (projectsByCat.length) {
                     return <FavoriteIcon></FavoriteIcon>
                   }
                 }) : null}
-          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
+          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
             <hr
@@ -155,6 +155,9 @@ if (projectsByCat.length) {
             <br></br>
             <Typography variant="body2" color='primary'>
             Status: {project.status}
+            </Typography>
+            <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word" >
+            {`${project.description.substr(0,80)}...`}
             </Typography>
           </CardContent>
           <br></br>
@@ -221,7 +224,7 @@ if (projectsByCat.length) {
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300, 
+          <Card  sx={{ width: 300, height: 300, maxWidth: 500,
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             ':hover': {
@@ -235,7 +238,7 @@ if (projectsByCat.length) {
                     return <FavoriteIcon></FavoriteIcon>
                   }
                 }) : null}
-          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
+          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
             <hr
@@ -249,11 +252,14 @@ if (projectsByCat.length) {
             <Typography variant="body2" color='primary'>
             Status: {project.status}
             </Typography>
+            <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word">
+            {`${project.description.substr(0,80)}...`}
+            </Typography>
           </CardContent>
             <br></br>
             <br></br>
             <CardActions>
-              <Button size="small" fullWidth variant='contained'>Learn More</Button>
+              <Button size="small" gutterbottom fullWidth variant='contained'>Learn More</Button>
             </CardActions>
           </Card>
         </Link>
