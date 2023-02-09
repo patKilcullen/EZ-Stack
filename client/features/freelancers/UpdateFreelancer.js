@@ -185,22 +185,6 @@ const UpdateFreelancer = () => {
             name="email"
             onChange={(e) => setEmail(e.target.value)}
           />
-
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            autoComplete="bio"
-            label="bio"
-            value={bio}
-            name="bio"
-            inputProps={{
-              maxLength: CHARACTER_LIMIT
-            }}
-            helperText={`${bio.length}/${CHARACTER_LIMIT}`}
-            onChange={(e) => setBio(e.target.value) && handleChange(bio)}
-          />  
-
           {/* category  */}
           <InputLabel >Category</InputLabel>
           <Select name='category'
