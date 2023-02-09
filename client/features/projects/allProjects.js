@@ -106,7 +106,7 @@ if (projectsByCat.length) {
           onChange={(e) => setCategory(e.target.value)}
         >
           <MenuItem value="all">
-            All freelancers
+            All Projects
           </MenuItem>
           <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
           <MenuItem value={"Javascript Developer"}>
