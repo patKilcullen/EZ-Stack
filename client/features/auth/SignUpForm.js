@@ -45,7 +45,7 @@ const SignUpForm = () => {
     }else if(option === 'freelancer'){
     dispatch(freelancerAuthenticate({username, password, firstName, lastName, email, method: 'signup'}))
     }
-    navigate('/')
+    navigate('/profile')
   }; 
 
   return (
