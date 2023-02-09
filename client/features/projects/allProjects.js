@@ -193,7 +193,7 @@ if (projectsByCat.length) {
           <Select
             name="category"
             fullWidth
-            value={category}
+            defaultValue={'all'}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setCategory(e.target.value)}

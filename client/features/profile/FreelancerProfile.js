@@ -115,13 +115,13 @@ const FreelancerProfile = () => {
             padding: "1em",
           }}
           >
-            <CardMedia
+            {freelancer.imageUrl ? <CardMedia
               component="img"
               height="250"
               sx={{ objectFit: "contain" }}
               image={freelancer.imageUrl}
               title="Freelancer"
-            />
+            /> : <p>No Profile Image</p>}
             <CardContent>
               <Typography gutterBottom variant="h6" component="div">
                {freelancer.firstName} {freelancer.lastName}

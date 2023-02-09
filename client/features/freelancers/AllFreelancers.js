@@ -107,6 +107,7 @@ const AllFreelancers = () => {
               placeholder="Search By Category"
               value={category}
               color="primary"
+              defaultValue='all'
               sx={{ m: 1, width: "20ch" }}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -310,6 +311,7 @@ const AllFreelancers = () => {
               value={category}
               color="primary"
               sx={{ m: 1, width: "20ch" }}
+              defaultValue='all'
               onChange={(e) => setCategory(e.target.value)}
             >
               <MenuItem value="all">All freelancers</MenuItem>
@@ -511,15 +513,15 @@ const AllFreelancers = () => {
         <form onSubmit={handleCategory}>
           {/* category  */}
           <Select
+            defaultValue={"all"}
             name="category"
             fullWidth
             placeholder="Search By Category"
-            value={category}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <MenuItem value="all">All freelancers</MenuItem>
+            <MenuItem value={"all"}>All freelancers</MenuItem>
             <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
             <MenuItem value={"Javascript Developer"}>
               Javascript Developer{" "}
@@ -538,10 +540,10 @@ const AllFreelancers = () => {
         <form onSubmit={handleSpecialties}>
           {/* specialties  */}
           <Select
+            defaultValue="all"
             name="specialties"
             fullWidth
             placeholder="Search By Specialties"
-            value={specialties}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setSpecialties(e.target.value)}
