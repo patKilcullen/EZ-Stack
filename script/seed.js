@@ -305,7 +305,7 @@ for (let i = 0; i <= 25; i++) {
 await Project.create({
   clientId: Math.floor(Math.random() * 100 + 1),
   freelancerId: Math.floor(Math.random() * 100 + 1),
-  title: faker.name.jobType(),
+  title: faker.name.jobArea(),
  status: 'Pending',
  description: faker.lorem.sentences(),
  category: 'Android Developer'
@@ -314,7 +314,7 @@ for (let i = 0; i <= 25; i++) {
   await Project.create({
     clientId: Math.floor(Math.random() * 100 + 1),
     freelancerId: Math.floor(Math.random() * 100 + 1),
-    title: faker.name.jobType(),
+    title: faker.name.jobArea(),
    status: 'Pending',
    description: faker.lorem.sentences(),
    category: 'Python Developer'
@@ -323,7 +323,7 @@ for (let i = 0; i <= 25; i++) {
     await Project.create({
       clientId: Math.floor(Math.random() * 100 + 1),
       freelancerId: Math.floor(Math.random() * 100 +1 ),
-      title: faker.name.jobType(),
+      title: faker.name.jobArea(),
      status: 'Pending',
      description: faker.lorem.sentences(),
      category: 'HTML & CSS Developer'
@@ -332,7 +332,7 @@ for (let i = 0; i <= 25; i++) {
       await Project.create({
         clientId: Math.floor(Math.random() * 100 + 1),
         freelancerId: Math.floor(Math.random() * 100 + 1),
-        title: faker.name.jobType(),
+        title: faker.name.jobArea(),
        status: 'Pending',
        description: faker.lorem.sentences(),
        category: 'iOS Developer'
@@ -341,7 +341,7 @@ for (let i = 0; i <= 25; i++) {
         await Project.create({
           clientId: Math.floor(Math.random() * 100 + 1),
           freelancerId: Math.floor(Math.random() * 100 + 1),
-          title: faker.name.jobType(),
+          title: faker.name.jobArea(),
          status: 'Pending',
          description: faker.lorem.sentences(),
          category: 'Javascript Developer'
