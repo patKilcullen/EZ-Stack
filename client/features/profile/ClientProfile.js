@@ -136,8 +136,11 @@ const ClientProfile = () => {
                  
                   <br></br>
 
+                  <Typography variant="h6" color="primary">
+                   Description:
+                  </Typography>
                   {client.description? (<Typography variant="body2" color="text.secondary">
-                    Description: {client.description }
+                    {client.description }
                   </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
                 
               </CardContent>
@@ -168,14 +171,16 @@ const ClientProfile = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {client.projects ? client.projects.map((project) => (
+                {client.projects?.length ? client.projects.map((project) => (
                   <TableRow key={project.id}>
                     <TableCell><Link to={`/projects/${project.id}`}> {project.title}</Link></TableCell>
                     <TableCell>{project.description}</TableCell>
                     <TableCell>{project.status}</TableCell>
       
                   </TableRow>
-                )): null}
+                )): <Typography variant="h6" component="div" alignContent="center" color="primary">
+                No Projects To View Yet!
+               </Typography>}
               </TableBody>
             </Table>
           </div>

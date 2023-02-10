@@ -5,6 +5,7 @@ import { fetchClientMessagesAsync, selectClientMessages } from './clientMessages
 import { fetchFreelancerMessagesAsync, selectFreelancerMessages } from './freelancerMessagesSlice';
 import { Button } from '@mui/material';
 
+import PersonIcon from '@mui/icons-material/Person';
 
 const AllMessages = () => {
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
@@ -63,13 +64,13 @@ const AllMessages = () => {
         if(unreadMessages.includes(message.id)){
         return(
           <>
-            <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username} (new messages)</button>
+            <Button className='messageLink' variant='outlined' startIcon={<PersonIcon />} onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username} (new messages)</Button>
           </>
         )
         }else{
           return(
             <>
-              <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username}</button>
+              <Button className='messageLink' variant='outlined' startIcon={<PersonIcon />} onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username}</Button>
             </>
           )
         }
@@ -120,13 +121,13 @@ const AllMessages = () => {
          if(unreadMessages.includes(message.id)){
          return(
            <>
-             <button className='messageLink' variant='outlined' onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username} (new messages)</button>
+             <Button className='messageLink' variant='outlined' startIcon={<PersonIcon />} onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username} (new messages)</Button>
            </>
          )
          }else{
            return(
              <>
-               <button className='messageLink' variant='outlined' onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username}</button>
+               <Button className='messageLink' variant='outlined' startIcon={<PersonIcon />} onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username}</Button>
              </>
            )
          }

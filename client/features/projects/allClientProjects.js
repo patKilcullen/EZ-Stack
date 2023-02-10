@@ -67,9 +67,9 @@ const AllClientProjects = () => {
   };
 
   return (
-    <Box sx={{ width: "100%" }}>
+    // <Box sx={{ width: "100%" }}>
       <div className="allViewContainer">
-        <div className="allList">
+        
           <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
             <Tabs
               value={value}
@@ -84,60 +84,55 @@ const AllClientProjects = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
-            <div className="allList">
-              {projects
-                .filter((project) => {
-                  return project.status === "Pending";
-                })
-                .map((project) => (
-                  <div
-                    key={project.id}
-                    className='card'
-                    style={{ width: "80vw" }}
-                  >
-                    <Link to={`/projects/${project.id}`}>
-                      <Card 
-                      sx={{ width:400, maxHeight:500,
-                          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                          backgroundColor:"#F5F5F5", 
-                          boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                        ':hover': {
-                        boxShadow: 20, // theme.shadows[20]
-                          },
-                          }}>
-                        <CardContent>
-                          <Typography variant="h6" >
-                            {project.title}
-                          </Typography>
-                          <Typography
-                            color="primary"
-                            variant="body2"
-                            
-                          >
-                            category: {project.category}
-                          </Typography>
-                          <hr></hr>
-                          <Typography variant="body2">
-                            Current Status: {project.status}
-                          </Typography>
+              
+                {projects
+                  .filter((project) => {
+                    return project.status === "Pending";
+                  })
+                  .map((project) => (
+                    <div key={project.id} className="card">
+                      <Link to={`/projects/${project.id}`}>
+                        <Card
+                          sx={{
+                            width:400, maxHeight:500,
+                            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                            backgroundColor: "#F5F5F5",
+                            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                            ":hover": {
+                              boxShadow: 20, // theme.shadows[20]
+                            },
+                          }}
+                        >
+                          <CardContent>
+                            <Typography variant="h6">
+                              {project.title}
+                            </Typography>
+                            <Typography color="primary" variant="body2">
+                              category: {project.category}
+                            </Typography>
+                            <hr></hr>
+                            <Typography variant="body2">
+                              Current Status: {project.status}
+                            </Typography>
 
-                          <Typography
-                            variant="subtitle1"
-                          >
-                            {project.description}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button fullWidth gutterbottom="true"
-                          variant="contained">
-                            Go to Project
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Link>
-                  </div>
-                ))}
-              </div>
+                            <Typography variant="subtitle1">
+                              {`${project.description.substr(0, 100)}...`}
+                            </Typography>
+                          </CardContent>
+                          <CardActions>
+                            <Button
+                              fullWidth
+                              gutterbottom="true"
+                              variant="contained"
+                            >
+                              Go to Project
+                            </Button>
+                          </CardActions>
+                        </Card>
+                      </Link>
+                    </div>
+                  ))}
+              
             </TabPanel>
             <TabPanel value={value} index={1}>
               {projects
@@ -148,14 +143,13 @@ const AllClientProjects = () => {
                   <div
                     key={project.id}
                     className="card"
-                    style={{ width: "80vw" }}
+
                     // style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
                   >
                     <Link to={`/projects/${project.id}`}>
                       <Card
                         sx={{
-                          width: 400,
-                          height: 400,
+                          width:400, maxHeight:500,
                           ":hover": { boxShadow: 20 },
                         }}
                       >
@@ -187,7 +181,7 @@ const AllClientProjects = () => {
                             component="div"
                             variant="subtitle1"
                           >
-                            {project.description}
+                            {`${project.description.substr(0, 100)}...`}
                           </Typography>
                         </CardContent>
                         <CardActions>
@@ -209,11 +203,14 @@ const AllClientProjects = () => {
                   <div
                     key={project.id}
                     className="card"
-                    style={{ width: "80vw" }}
+
                     // style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
                   >
                     <Link to={`/projects/${project.id}`}>
-                      <Card sx={{ width: 400, height: 400 }}>
+                      <Card sx={{
+                          width:400, maxHeight:500,
+                          ":hover": { boxShadow: 20 },
+                        }}>
                         <CardContent>
                           <Typography variant="h5" component="div">
                             {project.title}
@@ -235,7 +232,7 @@ const AllClientProjects = () => {
                             component="div"
                             variant="subtitle1"
                           >
-                            {project.description}
+                            {`${project.description.substr(0, 100)}...`}
                           </Typography>
                         </CardContent>
                         <CardActions>
@@ -249,9 +246,9 @@ const AllClientProjects = () => {
                 ))}
             </TabPanel>
           </Box>
-        </div>
+        
       </div>
-    </Box>
+    // </Box>
   );
 };
 
