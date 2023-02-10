@@ -26,6 +26,7 @@ export const fetchClientRequests = createAsyncThunk('fetchClientRequests',async(
   export const editAcceptRequest = createAsyncThunk(
     "editAcceptRequest",
     async (project) => {
+      console.log("PROJECTTT", project)
       try {
         const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
         console.log("DATAAAA: ", data)
@@ -46,7 +47,7 @@ const clientRequestsSlice = createSlice({
             return action.payload
         })
       //   builder.addCase(editAcceptRequest.fulfilled, (state, action)=>{
-      //     
+      //     state.ClientRequests = action.payload
       // })
     }
 })

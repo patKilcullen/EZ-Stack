@@ -41,7 +41,6 @@ export const fetchSingleRequestAsync = createAsyncThunk(
   export const editAcceptRequest = createAsyncThunk(
     "editAcceptRequest",
     async (project) => {
-        console.log("PROJECT!!!!: ", project)
       try {
         const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
         console.log("DATAAAA: ", data)
@@ -51,6 +50,19 @@ export const fetchSingleRequestAsync = createAsyncThunk(
       }
     }
   );
+
+  // export const editAcceptRequest = createAsyncThunk(
+  //   "editAcceptRequest",
+  //   async (project) => {
+  //     try {
+  //       const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
+  //       console.log("DATAAAA: ", data)
+  //       return data;
+  //     } catch (err) {
+  //       console.log(err);
+  //     }
+  //   }
+  // );
 
 
 const singleRequestSlice = createSlice({

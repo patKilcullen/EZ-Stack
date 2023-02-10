@@ -21,6 +21,12 @@ const Project = db.define('project', {
     },
     work: {
       type: Sequelize.TEXT
+    },
+    comment: {
+      type: Sequelize.TEXT
+    },
+    rejectedWork: {
+      type: Sequelize.TEXT
     }
   })
   
