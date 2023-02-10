@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -53,6 +53,8 @@ function a11yProps(index) {
 const AllClientProjects = () => {
   const projects = useSelector(selectProjects);
   const dispatch = useDispatch();
+  const [viewWork, setViewWork] = useState(false)
+  const [seenRequests, setSeenRequests] = useState(true)
 
   const client = useSelector((state) => state.clientAuth.clientMe.id);
 
@@ -64,24 +66,111 @@ const AllClientProjects = () => {
   const [value, setValue] = React.useState(0);
   const handleChange = (e, newValue) => {
     setValue(newValue);
-  };
+  };projects.map((project)=>{
+    // this solved map
+    project.request ?
+    project.requests.map((request)=>{
+      console.log("REQ IDS: ", request.id)
+    })
+           
+       :null   } )
+  console.log("PROJECTSfff: ", projects)
+
+
+ const requests =
+  projects.map((project)=>{
+    let requests = project.requests
+    // THIS SOLVED FILTER
+   return  requests ? requests.filter((request)=>{
+      console.log("REq ID: ", request.id)
+      return request.seenClient === false
+    }) : null   
+          })
+
+const seen = requests.filter((request)=>{
+  // this solved length 
+  return request ? request.length > 0 : null
+})
+
+
+  const projectWork = projects.filter((project)=>project.work !== null && project.status === 'Ongoing')
 
   return (
-    <Box sx={{ width: "100%" }}>
-      <div className="allViewContainer">
-        <div className="allList">
-          <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
-            <Tabs
-              value={value}
-              onChange={handleChange}
-              aria-label="basic tabs example"
-            >
-              <Tab label="Pending Projects" {...a11yProps(0)} />
-              (
-              <Tab label="Ongoing Projects" {...a11yProps(1)} />
-              ) (
-              <Tab label="Completed Projects" {...a11yProps(2)} />)
-            </Tabs>
+
+    <div className="allViewContainer">
+      <div className="allList">
+        
+      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      { projectWork.length ? 
+      <div>
+      <Typography color="primary" variant="h6" component="div">
+      You have submitted work that you need to accept or decline: 
+    </Typography>
+      <Button fullWidth variant="contained" onClick={()=>setViewWork(true)}>
+      View Work
+    </Button>
+    </div>
+      : null }
+
+
+      {/* && NEEDED???? */}
+      <p>{viewWork && projectWork ? 
+    
+        projectWork.map((project)=>{
+         return  <Typography color="primary" variant="h6" component="div">
+     <Link to={`/projects/${project.id}`}> {project.title}</Link>
+    </Typography>
+        })
+
+      : null }</p>
+
+
+
+<Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      {seen.length ? 
+      <div>
+      <Typography color="primary" variant="h6" component="div">
+      You have new proposals: 
+    </Typography>
+      <Button fullWidth variant="contained" onClick={()=>setSeenRequests(false)}>
+      View Proposals
+    </Button>
+    </div>
+      : null }
+</Box>
+
+{/* && NEEDED???? */}
+<p>{seenRequests && !seen ? null :
+    
+    seen.map((request)=>{
+
+let message = request[0].requestMessage
+let reqs =  projects.filter((project)=>{
+  return project.id === request[0].projectId
+}) 
+// "/projects/:projectId/requests"
+return reqs.map((proj)=>{
+  return <p>
+    <Link to={`/projects/${proj.id}/requests`} >{proj.title} </Link> 
+   {/* <Link to={`/projects/${proj.id}`}> {proj.title}</Link>  */}
+   </p>
+})
+
+
+})}</p>
+
+        <Tabs
+          value={value}
+          onChange={handleChange}
+          aria-label="basic tabs example"
+        >
+          <Tab label="Pending Projects" {...a11yProps(0)} />
+          (
+          <Tab label="Ongoing Projects" {...a11yProps(1)} />
+          ) (
+          <Tab label="Completed Projects" {...a11yProps(2)} />)
+        </Tabs>
+
 
             <TabPanel value={value} index={0}>
             <div className="allList">

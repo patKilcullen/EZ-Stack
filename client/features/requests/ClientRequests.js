@@ -17,11 +17,12 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
-
+import Switch from '@mui/material/Switch';
+import Checkbox from '@mui/material/Checkbox';
 
 export default function ClientRequests(props) {
 
-
+const navigate = useNavigate()
   const dispatch = useDispatch();
   const requests = useSelector(selectClientRequests);
   const { projectId } = useParams();
@@ -30,8 +31,16 @@ export default function ClientRequests(props) {
   // console.log("LOGGO PROJECTO: ", project)
 
   useEffect(() => {
-    dispatch(fetchClientRequests(projectId))
-  }, [dispatch,]);
+    dispatch(fetchClientRequests(projectId)).then(()=>{
+      requests.map((request)=>{
+        dispatch(editAcceptRequest({projectId: request.projectId, seenClient: !!request.seenClient, freelancerId: request.freelancerId})).then(()=>{
+          dispatch(fetchClientRequests(projectId))
+        })
+        
+      })
+    })
+
+  }, [dispatch]);
 
   const handleAssignUser = (id) => {
     dispatch(
@@ -62,8 +71,11 @@ export default function ClientRequests(props) {
         )
       })
       .then(() => {
-         dispatch(fetchClientRequests(projectId));
-
+          dispatch(fetchClientRequests(projectId)).then(()=>{
+            // navigate(`/projects/${projectId}`)
+            window.location.reload()
+          });
+      
       })
 
   };
@@ -97,8 +109,16 @@ export default function ClientRequests(props) {
          dispatch(fetchClientRequests(projectId));
       })
   };
+const handleRead = async (projectId, seenClient, freelancerId)=>{
+  console.log("SEEN CLIENT: ", !seenClient)
+    await dispatch(editAcceptRequest({projectId: projectId, seenClient: !seenClient, freelancerId: freelancerId})).then(() => {
+      dispatch(fetchClientRequests(projectId));
+   })
 
 
+}
+
+console.log("REAQUESTS: ", requests)
   return (
     <div>
       <ul>
@@ -110,7 +130,9 @@ export default function ClientRequests(props) {
                 <Card>
                   <CardContent>
                 <h3> Project Request: </h3>
+                 <h4 style={{display: 'inline', right: "0px"}}>Unread<Switch checked={request.seenClient} onChange={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)} color="primary" >Read</Switch>Read</h4> 
                 <li key={request.id}>
+
                   <p>Request Status: {request.status}</p>
                   <p>
                     You have recieved a request from:{" "}

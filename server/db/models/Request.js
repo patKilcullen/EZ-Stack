@@ -9,6 +9,14 @@ const Request = db.define('request', {
     },
     requestMessage: {
     type: Sequelize.TEXT
+    },
+    seenClient: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
+    },
+    seenFreelancer: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false,
     }
 })
 

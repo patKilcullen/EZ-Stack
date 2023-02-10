@@ -8,7 +8,7 @@ module.exports = router
 router.get('/', async (req, res, next) => {
   console.log("HELLO")
     try{
-        const requests = await Request.findAll();
+        const requests = await Request.findAll({include: [Freelancer, Project]});
         res.send(requests)
     }catch(err) {
         next(err)
@@ -54,14 +54,30 @@ router.get("/freelancer/:freelancerId", async (req, res, next) => {
 // Update Request Status
 router.put("/:projectId", async (req, res, next) => {
   console.log("REQ BODY: ", req.body)
+  console.log("REQ PARASM: ", req.params.projectId)
   try {
     const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
+    console.log("REQUEST: ", request)
     res.send(await request[0].update(req.body));
   } catch (error) {
     console.log("Error in update project route");
     next(error);
   }
 });
+
+// Update Request Status
+router.put("/request/:requestId", async (req, res, next) => {
+  console.log("REQ BODY: ", req.body)
+  try {
+    const request = await Request.findAll({where: {projectId : req.params.projectId, freelancerId: req.body.freelancerId}});
+    console.log("REQUEST: ", request)
+    res.send(await request[0].update(req.body));
+  } catch (error) {
+    console.log("Error in update project route");
+    next(error);
+  }
+});
+
 
 
 

@@ -83,10 +83,10 @@ const SubmitWork = () => {
               <TextField
                 sx={{ backgroundColor: "#f7f4eb" }}
                 id="filled-textarea"
-                label="Submit Work Here"
-                placeholder="Placeholder"
+                label="Submit Link Here"
+                placeholder="Enter link here"
                 multiline
-                rows={4}
+                rows={1}
                 variant="filled"
                 name="work"
               />
