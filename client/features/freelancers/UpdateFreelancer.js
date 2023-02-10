@@ -197,7 +197,7 @@ const UpdateFreelancer = () => {
             inputProps={{
               maxLength: CHARACTER_LIMIT
             }}
-            helperText={`${bio.length}/${CHARACTER_LIMIT}`}
+            // helperText={`${bio.length}/${CHARACTER_LIMIT}`}
             onChange={(e) => setBio(e.target.value) && handleChange(bio)}
           />  
 
