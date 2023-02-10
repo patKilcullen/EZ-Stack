@@ -164,7 +164,7 @@ const ClientProfile = () => {
                   <TableCell>Description</TableCell>
                   <TableCell>Status</TableCell>
                  
-                  <TableCell align="right">Sale Amount</TableCell>
+              
                 </TableRow>
               </TableHead>
               <TableBody>

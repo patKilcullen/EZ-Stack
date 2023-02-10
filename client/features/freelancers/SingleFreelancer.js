@@ -55,7 +55,7 @@ const SingleFreelancer = () => {
         <Card
           sx={{
             width: 500,
-            // height: 500,
+             height: 500,
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             margin: "0 100px",
           }}
