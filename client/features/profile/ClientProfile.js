@@ -136,9 +136,9 @@ const ClientProfile = () => {
                  
                   <br></br>
 
-                  <Typography variant="body2" color="text.secondary">
-                    Description: {client.description}
-                  </Typography>
+                  {client.description? (<Typography variant="body2" color="text.secondary">
+                    Description: {client.description }
+                  </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
                 
               </CardContent>
             </Card>

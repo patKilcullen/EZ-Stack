@@ -144,9 +144,11 @@ const FreelancerProfile = () => {
                       </Typography>
                       </div>
                       <br></br>
-                <Typography variant="body2" color="text.secondary">
-                    Description: {freelancer.description}
-                  </Typography>
+
+                      {freelancer.description? (<Typography variant="body2" color="text.secondary">
+                    Description: {freelancer.description }
+                  </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
+                
             </CardContent>
           </Card>
         </div>
