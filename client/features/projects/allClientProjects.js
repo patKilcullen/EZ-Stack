@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom";
 import {
@@ -53,8 +53,24 @@ function a11yProps(index) {
 const AllClientProjects = () => {
   const projects = useSelector(selectProjects);
   const dispatch = useDispatch();
+  const [pend, setPend] = useState(false)
+  const [ongo, setOngo] = useState(false)
+  const [comp, setComp] = useState(false)
 
   const client = useSelector((state) => state.clientAuth.clientMe.id);
+
+  projects.map((project) => {
+    if(project.status === 'Pending' && !pend){
+      setPend(true)
+    }
+    if(project.status === 'Ongoing' && !ongo){
+      setOngo(true)
+    }
+    if(project.status === 'Complete' && !comp){
+      setComp(true)
+    }
+  })
+
 
   useEffect(() => {
     dispatch(fetchProjectsByClientAsync(client));
@@ -84,12 +100,14 @@ const AllClientProjects = () => {
             </Tabs>
 
             <TabPanel value={value} index={0}>
+              {pend ? 
             <div className="allList">
               {projects
                 .filter((project) => {
                   return project.status === "Pending";
                 })
-                .map((project) => (
+                .map((project) => { 
+                return(
                   <div
                     key={project.id}
                     className='card'
@@ -136,10 +154,14 @@ const AllClientProjects = () => {
                       </Card>
                     </Link>
                   </div>
-                ))}
-              </div>
+                )
+
+              })}
+              </div> : <p>No Pending Projects</p>}
             </TabPanel>
             <TabPanel value={value} index={1}>
+              {ongo ? 
+              <div className="allList">
               {projects
                 .filter((project) => {
                   return project.status === "Ongoing";
@@ -199,8 +221,11 @@ const AllClientProjects = () => {
                     </Link>
                   </div>
                 ))}
+                </div> : <p>No Ongoing Projects</p> }
             </TabPanel>
             <TabPanel value={value} index={2}>
+              {comp ? 
+              <div className="allList">
               {projects
                 .filter((project) => {
                   return project.status === "Complete";
@@ -247,6 +272,7 @@ const AllClientProjects = () => {
                     </Link>
                   </div>
                 ))}
+                </div> : <p>No Completed Projects</p> }
             </TabPanel>
           </Box>
         </div>
