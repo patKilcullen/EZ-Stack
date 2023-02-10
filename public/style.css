@@ -294,3 +294,7 @@ li {
   width: 10vw;
   height: 5vh;
 }
+
+.backArrow{
+  cursor: pointer;
+}

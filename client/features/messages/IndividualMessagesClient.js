@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchSingleClientMessageAsync, selectSingleClientMessage, sendClientMessageAsync } from './clientSingleMessageSlice';
 import { updateMessageAsync } from './freelancerSingleMessageSlice';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 const IndividualMessagesClient = () => {
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
@@ -27,6 +28,10 @@ const IndividualMessagesClient = () => {
       dispatch(updateMessageAsync({id: msg.id, read: true}))
     }
   })
+
+  const backButton = () => {
+    window.history.back()
+  }
 
   useEffect(() => {
     dispatch(fetchSingleClientMessageAsync({id, clientId}))
@@ -54,6 +59,7 @@ const IndividualMessagesClient = () => {
       boxShadow: "1px 3px 3px 1px",
     }}
   >
+    <ArrowBackIcon className='backArrow' onClick={backButton}></ArrowBackIcon>
     <h3 
     style={{ display: "flex", justifyContent: "center" }}
     >Messages</h3>

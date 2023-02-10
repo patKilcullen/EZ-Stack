@@ -53,10 +53,28 @@ function a11yProps(index) {
 const AllClientProjects = () => {
   const projects = useSelector(selectProjects);
   const dispatch = useDispatch();
+
+  const [pend, setPend] = useState(false)
+  const [ongo, setOngo] = useState(false)
+  const [comp, setComp] = useState(false)
+
   const [viewWork, setViewWork] = useState(false)
   const [seenRequests, setSeenRequests] = useState(true)
 
   const client = useSelector((state) => state.clientAuth.clientMe.id);
+
+  projects.map((project) => {
+    if(project.status === 'Pending' && !pend){
+      setPend(true)
+    }
+    if(project.status === 'Ongoing' && !ongo){
+      setOngo(true)
+    }
+    if(project.status === 'Complete' && !comp){
+      setComp(true)
+    }
+  })
+
 
   useEffect(() => {
     dispatch(fetchProjectsByClientAsync(client));
@@ -174,7 +192,9 @@ return reqs.map((proj)=>{
 
 
             <TabPanel value={value} index={0}>
-              
+
+               {pend ? 
+            <div className="allList">
                 {projects
                   .filter((project) => {
                     return project.status === "Pending";
@@ -222,9 +242,11 @@ return reqs.map((proj)=>{
                       </Link>
                     </div>
                   ))}
-              
+               </div> : <p>No Pending Projects</p>}
             </TabPanel>
             <TabPanel value={value} index={1}>
+              {ongo ? 
+              <div className="allList">
               {projects
                 .filter((project) => {
                   return project.status === "Ongoing";
@@ -283,8 +305,11 @@ return reqs.map((proj)=>{
                     </Link>
                   </div>
                 ))}
+                </div> : <p>No Ongoing Projects</p> }
             </TabPanel>
             <TabPanel value={value} index={2}>
+              {comp ? 
+              <div className="allList">
               {projects
                 .filter((project) => {
                   return project.status === "Complete";
@@ -334,6 +359,7 @@ return reqs.map((proj)=>{
                     </Link>
                   </div>
                 ))}
+                </div> : <p>No Completed Projects</p> }
             </TabPanel>
           </Box>
         
