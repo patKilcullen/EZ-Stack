@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams, Link } from "react-router-dom"
 import { fetchProjectsByFreelancerAsync, selectProjects  } from "../projects/allProjectsSlice";
@@ -54,9 +54,13 @@ function a11yProps(index) {
 
 const AllFreelancerProjects = () => {
   const projects = useSelector(selectProjects);
+  const [viewRejects, setViewRejects] = useState(false)
 
   console.log("ALL PROJECT: ", projects)
   
+const rejects = projects.filter((project)=> project.rejectedWork)
+
+console.log("REJECCTS: ", rejects)
   const dispatch = useDispatch()
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
@@ -72,10 +76,36 @@ const AllFreelancerProjects = () => {
     setValue(newValue);
   };
 
+  console.log("FREELANCER PROJECTS: ", projects)
+
   return (
     <div className="allViewContainer">
     <div className='allList'>
 <Box>
+
+
+
+{ rejects.length ? 
+      <div>
+      <Typography color="primary" variant="h6" component="div">
+      Your submitted work was rejected: 
+    </Typography>
+      <Button fullWidth variant="contained" onClick={()=>setViewRejects(true)}>
+      View Rejected Work
+    </Button>
+    </div>
+      : null }
+
+<p>{viewRejects && rejects ? 
+    
+    rejects.map((reject)=>{
+     return  <Typography color="primary" variant="h6" component="div">
+ {/* <Link to={`/projects/${reject.id}`}> {reject.title}</Link> */}
+ <Link to={`/review/${reject.id}`} >{reject.title} </Link>
+</Typography>
+    })
+
+  : null }</p>
     <Tabs
           value={value}
           onChange={handleChange}
