@@ -107,6 +107,7 @@ const AllFreelancers = () => {
               placeholder="Search By Category"
               value={category}
               color="primary"
+              defaultValue='all'
               sx={{ m: 1, width: "20ch" }}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -118,6 +119,7 @@ const AllFreelancers = () => {
               <MenuItem value={"HTML & CSS Developer"}>
                 HTML & CSS Developer
               </MenuItem>
+              <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
@@ -180,8 +182,8 @@ const AllFreelancers = () => {
                     <Card
                       sx={{
                         minWidth: 300,
-                        minHeight: 300,
-
+                        height: 400,
+                        
                         margin: "0 auto",
                         padding: "0.3em",
                       }}
@@ -228,14 +230,7 @@ const AllFreelancers = () => {
                         </Typography>
 
                         <br></br>
-                        <Typography
-                          variant="body1"
-                          align="center"
-                          overflowwrap="break-word"
-                        >
-                          {freelancers.bio}
-                        </Typography>
-
+                      
                         <div
                           style={{
                             display: "flex",
@@ -316,6 +311,7 @@ const AllFreelancers = () => {
               value={category}
               color="primary"
               sx={{ m: 1, width: "20ch" }}
+              defaultValue='all'
               onChange={(e) => setCategory(e.target.value)}
             >
               <MenuItem value="all">All freelancers</MenuItem>
@@ -326,6 +322,7 @@ const AllFreelancers = () => {
               <MenuItem value={"HTML & CSS Developer"}>
                 HTML & CSS Developer
               </MenuItem>
+              <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
@@ -516,15 +513,15 @@ const AllFreelancers = () => {
         <form onSubmit={handleCategory}>
           {/* category  */}
           <Select
+            defaultValue={"all"}
             name="category"
             fullWidth
             placeholder="Search By Category"
-            value={category}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setCategory(e.target.value)}
           >
-            <MenuItem value="all">All freelancers</MenuItem>
+            <MenuItem value={"all"}>All freelancers</MenuItem>
             <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
             <MenuItem value={"Javascript Developer"}>
               Javascript Developer{" "}
@@ -532,6 +529,7 @@ const AllFreelancers = () => {
             <MenuItem value={"HTML & CSS Developer"}>
               HTML & CSS Developer
             </MenuItem>
+            <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
@@ -542,10 +540,10 @@ const AllFreelancers = () => {
         <form onSubmit={handleSpecialties}>
           {/* specialties  */}
           <Select
+            defaultValue="all"
             name="specialties"
             fullWidth
             placeholder="Search By Specialties"
-            value={specialties}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setSpecialties(e.target.value)}

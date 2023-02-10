@@ -9,7 +9,6 @@ import { Button } from '@mui/material';
 const AllMessages = () => {
   const clientIsLoggedIn = useSelector((state) => !!state.clientAuth.clientMe.id);
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id);
-  const [clientNew, setClientNew] = useState(false)
   const [freelancerNew, setFreelancerNew] = useState(false)
   const client = useSelector((state) => state.clientAuth.clientMe);
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
@@ -22,26 +21,31 @@ const AllMessages = () => {
 
   if(clientIsLoggedIn){
     const messages = useSelector(selectClientMessages)
-    const filteredMessages = messages.filter((message) => {
-      return message.from !== client.username
+    // const filteredMessages = messages.filter((message) => {
+    //   return message.from !== client.username
+    // })
+    const copy = [...messages]
+    const sorted = copy.sort((a,b) => {
+      return b.id-a.id
     })
-
     let newMsgs = []
-    for(const a of filteredMessages){
+    for(const a of sorted){
       const containsUser = newMsgs.some((msg) => {
-        return msg.from === a.from
+        return msg.freelancerId === a.freelancerId
       })
       if(!containsUser){
         newMsgs.push(a)
       }
     }
 
+  
+ 
+    let unreadMessages = []
     messages.map((msg) => {
-      if(!msg.read && msg.from != client.username && !clientNew){
-        setClientNew(true)
+      if(!msg.read && msg.from != client.username){
+        unreadMessages.push(msg.id)
       }
     })
-  
     const clickMessageClient = (freelancerId) => {
       navigate(`/messages/${freelancerId}`)
     }
@@ -55,36 +59,48 @@ const AllMessages = () => {
   return(
   <div className='messages'>
      <h1>Messages</h1>
-    <h4 className={clientNew ? 'newMessage' : 'noNewMessage'}>New Messages</h4>
-      {newMsgs ? newMsgs.map((message) => {
+      {newMsgs.length ? newMsgs.map((message) => {
+        if(unreadMessages.includes(message.id)){
         return(
           <>
-            <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.from}</button>
+            <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username} (new messages)</button>
           </>
         )
-      }) : null}
+        }else{
+          return(
+            <>
+              <button className='messageLink' variant='outlined' onClick={() => clickMessageClient(message.freelancerId)} >{message.freelancer.username}</button>
+            </>
+          )
+        }
+      }) : 
+      <h1>No Messages Yet!</h1>
+      }
   </div>
   )
   }
   
   if(freelancerIsLoggedIn){
     const messages = useSelector(selectFreelancerMessages)
-    const filteredMessages = messages.filter((message) => {
-      return message.from !== freelancer.username
+
+    const copy = [...messages]
+    const sorted = copy.sort((a,b) => {
+      return b.id-a.id
     })
+
     let newMsgs = []
-    for(const a of filteredMessages){
+    for(const a of sorted){
       const containsUser = newMsgs.some((msg) => {
-        return msg.from === a.from
+        return msg.clientId === a.clientId
       })
       if(!containsUser){
         newMsgs.push(a)
       }
     }
-
+    let unreadMessages = []
     messages.map((msg) => {
-      if(!msg.read && msg.from != freelancer.username && !freelancerNew){
-        setFreelancerNew(true)
+      if(!msg.read && msg.from != freelancer.username){
+        unreadMessages.push(msg.id)
       }
     })
 
@@ -99,17 +115,25 @@ const AllMessages = () => {
     }, [dispatch])
     return(
       <div className='messages'>
-        <h1>Messages</h1>
-        <h4 className={freelancerNew ? 'newMessage' : 'noNewMessage'}>New Messages</h4>
-        {newMsgs ? newMsgs.map((message) => {
-          
-          return(
-            <>
-              <button className='messageLink' onClick={() => clickMessageFreelancer(message.clientId)}>{message.from}</button>
-            </>
-          )
-        }) : null}
-      </div>
+      <h1>Messages</h1>
+       {newMsgs.length ? newMsgs.map((message) => {
+         if(unreadMessages.includes(message.id)){
+         return(
+           <>
+             <button className='messageLink' variant='outlined' onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username} (new messages)</button>
+           </>
+         )
+         }else{
+           return(
+             <>
+               <button className='messageLink' variant='outlined' onClick={() => clickMessageFreelancer(message.clientId)} >{message.client.username}</button>
+             </>
+           )
+         }
+       }) : 
+       <h1>No Messages Yet!</h1>
+       }
+   </div>
     )
   }
 }

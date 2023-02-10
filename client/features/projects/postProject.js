@@ -48,13 +48,22 @@ const AddProject = () => {
     .then(()=> navigate("/projects/client/:clientId"))
   };
 
+
   const onChange = (e) => {
     const value = e.target.value;
     const nameInput = e.target.name;
     if (nameInput === "description") setDescription(value);
     if (nameInput === "category") setCategory(value);
-    if (nameInput === "title") setTitle(value)
+    // if (nameInput === "title") setTitle(value)
   };
+
+   ////CharacterLimit//////
+   const CHARACTER_LIMIT = 30;
+
+   const handleChange = title=> event => {
+     setValues({ ...title, [title]: event.target.value });
+   };
+   //////////////
   
   return (
 <Container component="main" maxWidth="sm">
@@ -82,18 +91,21 @@ const AddProject = () => {
           noValidate
           sx={{ mt: 3 }}
         >
+
           <TextField
             margin="normal"
             required
             fullWidth
-            multiline
-            rows={4}
-            label="title"
             autoComplete="title"
+            label="title"
             value={title}
             name="title"
-            onChange={onChange}
-          />
+            inputProps={{
+              maxLength: CHARACTER_LIMIT
+            }}
+            helperText={`${title.length}/${CHARACTER_LIMIT}`}
+            onChange={(e) => setTitle(e.target.value) && handleChange(title)}
+          /> 
           <TextField
             margin="normal"
             required

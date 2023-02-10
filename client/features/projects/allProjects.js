@@ -90,23 +90,21 @@ if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
 <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories and Specialties</Typography>
+          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
           </div>
           <div>
       <form onSubmit={handleCategory}>
         {/* category  */}
-        <InputLabel>Categories</InputLabel>
         <Select
           name="category"
           fullWidth
-          // label="Category"
           value={category}
           color="primary"
           sx={{ m: 1, width: "20ch" }}
           onChange={(e) => setCategory(e.target.value)}
         >
           <MenuItem value="all">
-            All freelancers
+            All Projects
           </MenuItem>
           <MenuItem value={"Python Developer"}>Python Developer</MenuItem>
           <MenuItem value={"Javascript Developer"}>
@@ -115,8 +113,10 @@ if (projectsByCat.length) {
           <MenuItem value={"HTML & CSS Developer"}>
             HTML & CSS Developer
           </MenuItem>
+          <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
           <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
-          <MenuItem value={'Liked'}>Liked</MenuItem>
+          {freelancerIsLoggedIn ? (
+          <MenuItem value={'Liked'}>Liked</MenuItem>):null}
         </Select>
         <Button type="submit" variant="contained">
           Search
@@ -128,7 +128,7 @@ if (projectsByCat.length) {
         {_DATAB.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300, 
+          <Card  sx={{ width: 300, height: 300, maxWidth: 500,
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             ':hover': {
@@ -142,7 +142,7 @@ if (projectsByCat.length) {
                     return <FavoriteIcon></FavoriteIcon>
                   }
                 }) : null}
-          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
+          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
             <hr
@@ -155,6 +155,9 @@ if (projectsByCat.length) {
             <br></br>
             <Typography variant="body2" color='primary'>
             Status: {project.status}
+            </Typography>
+            <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word" >
+            {`${project.description.substr(0,80)}...`}
             </Typography>
           </CardContent>
           <br></br>
@@ -187,12 +190,10 @@ if (projectsByCat.length) {
           <div style={{marginTop: 10}}>
           <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
           </div>
-          {/* <InputLabel>Categories</InputLabel> */}
           <Select
             name="category"
             fullWidth
-            // label="Category"
-            value={category}
+            defaultValue={'all'}
             color="primary"
             sx={{ m: 1, width: "20ch" }}
             onChange={(e) => setCategory(e.target.value)}
@@ -207,8 +208,10 @@ if (projectsByCat.length) {
             <MenuItem value={"HTML & CSS Developer"}>
               HTML & CSS Developer
             </MenuItem>
+            <MenuItem value={"iOS Developer"}>iOS Developer</MenuItem>
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
-            <MenuItem value={'Liked'}>Liked</MenuItem>
+            {freelancerIsLoggedIn ? (
+          <MenuItem value={'Liked'}>Liked</MenuItem>):null}
           </Select>
           <Button type="submit" variant="contained">
             Search
@@ -221,7 +224,7 @@ if (projectsByCat.length) {
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ minWidth: 300, minHeight: 300, 
+          <Card  sx={{ width: 300, height: 300, maxWidth: 500,
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             ':hover': {
@@ -235,7 +238,7 @@ if (projectsByCat.length) {
                     return <FavoriteIcon></FavoriteIcon>
                   }
                 }) : null}
-          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h5" component="div">
+          <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
             <hr
@@ -249,11 +252,14 @@ if (projectsByCat.length) {
             <Typography variant="body2" color='primary'>
             Status: {project.status}
             </Typography>
+            <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word">
+            {`${project.description.substr(0,80)}...`}
+            </Typography>
           </CardContent>
             <br></br>
             <br></br>
             <CardActions>
-              <Button size="small" fullWidth variant='contained'>Learn More</Button>
+              <Button size="small" gutterbottom fullWidth variant='contained'>Learn More</Button>
             </CardActions>
           </Card>
         </Link>

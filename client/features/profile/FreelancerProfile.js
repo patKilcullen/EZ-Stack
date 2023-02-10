@@ -115,13 +115,13 @@ const FreelancerProfile = () => {
             padding: "1em",
           }}
           >
-            <CardMedia
+            {freelancer.imageUrl ? <CardMedia
               component="img"
               height="250"
               sx={{ objectFit: "contain" }}
               image={freelancer.imageUrl}
               title="Freelancer"
-            />
+            /> : <p>No Profile Image</p>}
             <CardContent>
               <Typography gutterBottom variant="h6" component="div">
                {freelancer.firstName} {freelancer.lastName}
@@ -144,9 +144,11 @@ const FreelancerProfile = () => {
                       </Typography>
                       </div>
                       <br></br>
-                <Typography variant="body2" color="text.secondary">
-                    Description: {freelancer.description}
-                  </Typography>
+
+                      {freelancer.description? (<Typography variant="body2" color="text.secondary">
+                    Description: {freelancer.description }
+                  </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
+                
             </CardContent>
           </Card>
         </div>

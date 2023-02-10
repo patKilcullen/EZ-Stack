@@ -115,13 +115,13 @@ const ClientProfile = () => {
               padding: "1em",
             }}
             >
-              <CardMedia
+              {client.imageUrl? <CardMedia
                 component="img"
                 height="250"
                 sx={{ objectFit: "contain" }}
                 image={client.imageUrl}
                 title="client"
-              />
+              /> : <p>No Profile Image</p>}
               <CardContent>
                 <Typography gutterBottom variant="h6" component="div">
                   {client.firstName} {client.lastName}
@@ -136,9 +136,9 @@ const ClientProfile = () => {
                  
                   <br></br>
 
-                  <Typography variant="body2" color="text.secondary">
-                    Description: {client.description}
-                  </Typography>
+                  {client.description? (<Typography variant="body2" color="text.secondary">
+                    Description: {client.description }
+                  </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
                 
               </CardContent>
             </Card>

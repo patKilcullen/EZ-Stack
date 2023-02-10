@@ -15,7 +15,7 @@ const Freelancer = db.define("freelancer", {
     // allowNull: false,
 },
 imageUrl: {
-    type: Sequelize.STRING,
+    type: Sequelize.TEXT,
   },
   email: {
     type: Sequelize.STRING,
@@ -52,12 +52,6 @@ imageUrl: {
         type: Sequelize.INTEGER,
         defaultValue: 20,
       },
-
-      bio: {
-        type: Sequelize.STRING,
-        // allowNull: false
-      },
-  
   username: {
     type: Sequelize.STRING,
     unique: true,

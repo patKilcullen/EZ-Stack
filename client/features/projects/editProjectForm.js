@@ -52,6 +52,20 @@ const EditProject = (props) => {
     });
   }, [dispatch]);
 
+  ////CharacterLimit//////
+  const CHARACTER_LIMIT = 30;
+
+  const handleChange = title=> event => {
+    setValues({ ...title, [title]: event.target.value });
+  };
+  //////////////
+  const categories = ['Python Developer', 
+'Javascript Developer',
+'HTML & CSS Developer',
+'Android Developer',
+'iOS Developer'
+]
+
   const handleEditProject = (e) => {
     e.preventDefault();
     dispatch(
@@ -160,36 +174,50 @@ const EditProject = (props) => {
             sx={{ mt: 3 }}
           >
             <TextField
-              margin="normal"
-              required
-              fullWidth
-              autoComplete="title"
-              label="title"
-              value={title}
-              name="title"
-              onChange={(e) => setTitle(e.target.value)}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              autoComplete="category"
-              label="category"
-              value={category}
-              name="category"
-              onChange={(e) => setCategory(e.target.value)}
-            />
+            margin="normal"
+            required
+            fullWidth
+            autoComplete="title"
+            label="title"
+            value={title}
+            name="title"
+            inputProps={{
+              maxLength: CHARACTER_LIMIT
+            }}
+            helperText={`${title.length}/${CHARACTER_LIMIT}`}
+            onChange={(e) => setTitle(e.target.value) && handleChange(title)}
+          /> 
 
-<TextField
-              margin="normal"
-              required
-              fullWidth
-              autoComplete="description"
-              label="description"
-              value={description}
-              name="description"
-              onChange={(e) => setDescription(e.target.value)}
-            />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            multiline
+            rows={4}
+            label="description"
+            autoComplete="description"
+            value={description}
+            name="description"
+            onChange={(e) => setDescription(e.target.value)}
+          />
+
+           {/* category  */}
+           <InputLabel >Category</InputLabel>
+          <Select name='category'
+          fullWidth
+          label="Category"
+          value={category}
+          onChange={(e) => setCategory(e.target.value)}
+          >
+            <MenuItem value=""><em>select</em></MenuItem>
+            {categories && categories.length
+                        ? categories.map((category) => (
+                            <MenuItem key={category} value={category}>
+                              {category}
+                            </MenuItem>
+                          ))
+                        : null}
+          </Select>
 
             <Button
               type="submit"

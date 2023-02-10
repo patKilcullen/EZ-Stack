@@ -49,7 +49,7 @@ export const fetchProjectsAsync = createAsyncThunk("allProjects", async () => {
     },
     extraReducers: (builder) => {
       builder.addCase(fetchProjectsAsync.fulfilled, (state, action) => {
-        state.projects = action.payload;
+        state.projects = action.payload.filter((project) => project.status === "Pending");
         
       });
       builder.addCase(fetchProjectsByCategoryAsync.fulfilled, (state, action) => {

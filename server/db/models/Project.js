@@ -5,7 +5,7 @@ const db = require('../db')
 
 const Project = db.define('project', {
     title: {
-     type: Sequelize.STRING,
+     type: Sequelize.STRING(30),
      allowNull: false
     },
     status: {

@@ -38,7 +38,6 @@ import AddProject from "../features/projects/postProject";
 
 import AddRequest from "../features/requests/AddRequest";
 import ViewAllRatings from '../features/ratings/ViewAllRatings';
-import LikedProjects from '../features/projects/LikedProjects';
 import SubmitWork from '../features/projects/SubmitWork';
 import ReviewWork from '../features/projects/ReviewWork';
 import Work from '../features/projects/Work';
@@ -162,7 +161,6 @@ const AppRoutes = () => {
           <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
 
-          <Route path='/liked' element={<LikedProjects />} />
 
           <Route path='/submit/:id' element={<SubmitWork />} />
           <Route path='/work/:id' element={<Work />} />

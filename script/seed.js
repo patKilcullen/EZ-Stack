@@ -217,34 +217,9 @@ async function seed() {
       description : faker.lorem.sentences(),
       imageUrl : faker.image.imageUrl(),  
     });
-    await Freelancer.create({
-      firstName: faker.name.firstName(),
-      lastName: faker.name.lastName(),
-      imageUrl: faker.image.people(),
-      ratingAvg: Math.floor(Math.random() * 5) + 1, 
-      description: faker.commerce.productDescription(),
-      // categories: faker.name.jobType(),
-      username: faker.internet.userName(),
-      password: faker.internet.password(), 
-
-    });
+    
 }
 
-await Freelancer.create({
-  username: 'aaaaa',
-  password: '12345',
-  firstName: 'Andrew',
-  lastName:'Andrews',
-  email:'andrew@gmail.com',
-  imageUrl: faker.image.people(),
-  description: 
-  "Hi, I am a Professional Python Programmer and Django Developer with more than years of experience. I develop custom websites for companies and individuals. I can ace any level of complexity. The field of my Expertise includes: Frontend Development : HTML5, CSS3, Javascript",
-  category: 'Python Developer',
-  hourlyRate: 12,
-  specialties:'Web Application, Scripting, Bug Fixes, Help/Consultation',
-  bio:'I will fix your html, css, jquery, wordpress issues',
-
-})
 for (let i = 0; i <= 100; i++) {
 await Freelancer.create({
   username: faker.internet.userName(),
@@ -257,7 +232,7 @@ await Freelancer.create({
   category: 'HTML & CSS Developer',
   hourlyRate: 25,
   specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
-  bio:faker.commerce.productDescription(),
+  
 })
 await Freelancer.create({
   username: faker.internet.userName(),
@@ -270,7 +245,7 @@ await Freelancer.create({
   category: 'Python Developer',
   hourlyRate: 30,
   specialties:'Web Application, Scripting, Bug Fixes, Help/Consultation',
-  bio:faker.commerce.productDescription(),
+  
 })
 await Freelancer.create({
   username: faker.internet.userName(),
@@ -283,7 +258,7 @@ await Freelancer.create({
   category: 'Android Developer',
   hourlyRate: 20,
   specialties:'Mobile Apps, Desktop Applications, Game Development',
-  bio:faker.commerce.productDescription(),
+ 
 })
 await Freelancer.create({
   username: faker.internet.userName(),
@@ -296,59 +271,42 @@ await Freelancer.create({
   category: 'iOS Developer',
   hourlyRate: 35,
   specialties:'Website Development, Maitaince, and Customization',
-  bio:faker.commerce.productDescription(),
+  
+})
+await Freelancer.create({
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
+  imageUrl: faker.image.people(),
+  description: faker.commerce.productDescription(),
+  category: 'Javascript Developer',
+  hourlyRate: 35,
+  specialties:'Website Development, Maitaince, and Customization',
+  
 })}
-
-
-await Rating.create({
-  freelancerId: 102,
-  rating: 3,
-  review: 'did super great job'
+await Freelancer.create({
+  username: faker.internet.userName(),
+      password: faker.internet.password(),
+      firstName: faker.name.firstName(),
+      lastName: faker.name.lastName(),
+      email : faker.internet.email(),
+  imageUrl: faker.image.people(),
+  description: faker.commerce.productDescription(),
+  category: 'HTML & CSS Developer',
+  hourlyRate: 25,
+  specialties:'Custom Websites using WordPress, Shopify, Wix, etc',
+  
 })
 
-await Rating.create({
-  freelancerId: 102,
-  rating: 4,
-  review: 'saved my mom from a burning building'
-})
 
-await Rating.create({
-  freelancerId: 101,
-  rating: 3,
-  review: 'cured my blindness with the beauty of their work'
-})
-
-await Project.create({
-   clientId: 5,
-   freelancerId: 102,
-   title: "super cool project",
-  status: 'Ongoing',
-  description: faker.lorem.sentences(),
-  category: "iOS Developer"
-})
-await Project.create({ 
-  clientId: 4,
-  freelancerId: 2,
-  title: "medium cool project",
- status: 'Ongoing',
- description: faker.lorem.sentences(),
- category: "HTML & CSS Developer"
-})
-
-await Project.create({
-   clientId: 6,
-   freelancerId: 102,
-   title: "nice project",
-  status: 'Ongoing',
-  description: faker.lorem.sentences(),
-  category: "Python Developer"
-})
 for (let i = 0; i <= 25; i++) {
 await Project.create({
   clientId: Math.floor(Math.random() * 100 + 1),
   freelancerId: Math.floor(Math.random() * 100 + 1),
   title: faker.name.jobType(),
- status: 'Ongoing',
+ status: 'Pending',
  description: faker.lorem.sentences(),
  category: 'Android Developer'
 })}
@@ -357,7 +315,7 @@ for (let i = 0; i <= 25; i++) {
     clientId: Math.floor(Math.random() * 100 + 1),
     freelancerId: Math.floor(Math.random() * 100 + 1),
     title: faker.name.jobType(),
-   status: 'Ongoing',
+   status: 'Pending',
    description: faker.lorem.sentences(),
    category: 'Python Developer'
   })}
@@ -366,7 +324,7 @@ for (let i = 0; i <= 25; i++) {
       clientId: Math.floor(Math.random() * 100 + 1),
       freelancerId: Math.floor(Math.random() * 100 +1 ),
       title: faker.name.jobType(),
-     status: 'Ongoing',
+     status: 'Pending',
      description: faker.lorem.sentences(),
      category: 'HTML & CSS Developer'
     })}
@@ -375,20 +333,51 @@ for (let i = 0; i <= 25; i++) {
         clientId: Math.floor(Math.random() * 100 + 1),
         freelancerId: Math.floor(Math.random() * 100 + 1),
         title: faker.name.jobType(),
-       status: 'Ongoing',
+       status: 'Pending',
        description: faker.lorem.sentences(),
        category: 'iOS Developer'
       })}
+      for (let i = 0; i <= 25; i++) {
+        await Project.create({
+          clientId: Math.floor(Math.random() * 100 + 1),
+          freelancerId: Math.floor(Math.random() * 100 + 1),
+          title: faker.name.jobType(),
+         status: 'Pending',
+         description: faker.lorem.sentences(),
+         category: 'Javascript Developer'
+        })}
       
+        for (let i = 0; i <= 50; i++) {
+        await Rating.create({
+          freelancerId: Math.floor(Math.random() * 100 + 1) ,
+          rating: 5,
+          review: 'did super great job'
+        })
+        
+        await Rating.create({
+          freelancerId: Math.floor(Math.random() * 100 + 1),
+          rating: 5,
+          review: 'exceeded my expectations'
+        })
+        
+        await Rating.create({
+          freelancerId: Math.floor(Math.random() * 100 + 1),
+          rating: 5,
+          review: 'would reccomend to anyone looking for a quality app'
+        })
+        await Rating.create({
+          freelancerId: Math.floor(Math.random() * 100 + 1),
+          rating: 5,
+          review: 'Awesome job'
+        })
+        await Rating.create({
+          freelancerId: Math.floor(Math.random() * 100 + 1),
+          rating: 5,
+          review: 'Did great work'
+        })}
  
-await Project.create({ 
-  clientId: 4,
-  freelancerId: 2,
-  title: "medium cool project",
- status: 'Ongoing',
- description: faker.lorem.sentences(),
- category: "HTML & CSS Developer"
-})
+
+
 await Request.create({
   projectId: 2,
   freelancerId: 2,

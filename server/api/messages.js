@@ -2,13 +2,13 @@ const router = require("express").Router();
 module.exports = router;
 
 const {
-  models: { Message },
+  models: { Message, Freelancer, Client },
 } = require("../db");
 
 router.get('/client/:id', async (req, res, next) => {
   try {
     const messages = await Message.findAll({
-      where: {clientId: req.params.id}})
+      where: {clientId: req.params.id}, include: Freelancer})
       res.send(messages)
   } catch (error) {
     next(error);
@@ -17,7 +17,7 @@ router.get('/client/:id', async (req, res, next) => {
 router.get('/freelancer/:id', async (req, res, next) => {
   try {
     const messages = await Message.findAll({
-      where: {freelancerId: req.params.id}})
+      where: {freelancerId: req.params.id}, include: Client})
       res.send(messages)
   } catch (error) {
     next(error);
