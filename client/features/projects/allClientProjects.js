@@ -340,7 +340,6 @@ return reqs.map((proj)=>{
           </Box>
         </div>
       </div>
-    </Box>
   );
 };
 
