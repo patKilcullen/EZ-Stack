@@ -167,7 +167,7 @@ const AppRoutes = () => {
           <Route path='/submit/:id' element={<SubmitWork />} />
           <Route path='/work/:id' element={<Work />} />
           <Route path='/login' element={<Home />} />
-
+          <Route path='/review/:id' element={<ReviewWork />} />
 
            {/* PAGE NOT FOUND */}
            <Route path="*" element={<PageNotFound />} />
