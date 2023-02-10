@@ -65,6 +65,14 @@ if(project.singleProject.freelancerId === freelancer.id || project.singleProject
 
             </div>
           </Box> 
+          <Box cosx={{ mt: 3 }}>
+            <div
+            style={{display:"flex", flexDirection:"column", width:600, alignItems:'center'}}
+            >
+              <p>{project.singleProject.comment}</p>
+
+            </div>
+          </Box> 
           </>
           :  <>
           <Typography color='primary' component="h1" 

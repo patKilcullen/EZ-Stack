@@ -22,7 +22,8 @@ const SubmitWork = () => {
   const formSubmit = async (e) => {
     e.preventDefault()
     const work = e.target.work.value
-    await dispatch(editSingleProject({id, work}))
+    const comment = e.target.comment.value
+    await dispatch(editSingleProject({id, work, comment}))
     navigate(`/projects/${id}`)
   }
 
@@ -89,6 +90,16 @@ const SubmitWork = () => {
                 rows={1}
                 variant="filled"
                 name="work"
+              />
+              <TextField
+                sx={{ backgroundColor: "#f7f4eb" }}
+                id="filled-textarea"
+                label="Submit Comment Here"
+                placeholder="Enter Comment here"
+                multiline
+                rows={4}
+                variant="filled"
+                name="comment"
               />
               <Button
                 type="submit"

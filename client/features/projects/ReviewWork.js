@@ -26,7 +26,7 @@ const ReviewWork = () => {
   }
 
   const reject = async () => {
-    await dispatch(editSingleProject({id, work: null, rejectedWork: project.singleProject.work}))
+    await dispatch(editSingleProject({id, work: null, comment: null, rejectedWork: project.singleProject.work}))
     navigate(`/messages/${project.singleProject.freelancerId}`)
   }
   const message = async () => {
@@ -84,6 +84,7 @@ if( project.singleProject.clientId && client === project.singleProject.clientId)
             style={{display:"flex", flexDirection:"column", width:600, alignItems:'center'}}
             >
               <a href={project.singleProject.work}>{project.singleProject.work}</a>
+              <p>{project.singleProject.comment}</p>
              <div
              style={{display:"flex", flexDirection:"row", width:600, alignItems:'center', justifyContent:'center', gap:'.5rem'}}
              >
