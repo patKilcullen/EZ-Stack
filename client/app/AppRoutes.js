@@ -41,7 +41,7 @@ import ViewAllRatings from '../features/ratings/ViewAllRatings';
 import SubmitWork from '../features/projects/SubmitWork';
 import ReviewWork from '../features/projects/ReviewWork';
 import Work from '../features/projects/Work';
-import ImageUpload from '../features/imageUpload/ImageUpload';
+
 
 /**
  * COMPONENT
@@ -133,8 +133,7 @@ const AppRoutes = () => {
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
-          <Route path="/imgupload" element={<ImageUpload />} />
-
+          
           <Route
             path="/freelancer/:freelancerId/requests"
             element={<FreelancerRequests />}
@@ -186,8 +185,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/home" element={<Home />} />
-          <Route path="/imgupload" element={<ImageUpload />} />
-
+          
           <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
         <Route
           path="/login"

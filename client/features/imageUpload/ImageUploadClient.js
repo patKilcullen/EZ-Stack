@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import Axios from "axios";
-import { updateFreelancerAsync } from "../freelancers/singleFreelancerSlice";
 import { useDispatch, useSelector } from "react-redux";
+import { updateClientAsync } from "../client/clientSlice";
 import Button from "@mui/material/Button";
 
 
@@ -10,27 +10,30 @@ import Button from "@mui/material/Button";
 
 
 
-function ImageUpload(){
+function ImageUploadClient(){
 
-     const freelancerId = useSelector((state) => state.freelancerAuth.me.id)
+     
+     const clientId = useSelector((state) => state.clientAuth.clientMe.id)
+
      
 
      const dispatch = useDispatch()
 
     const [image, setImage] = useState()
-    const [imageUrl, setImageUrl] = useState()
+    const [imageUrl, setImageUrl] = useState("")
 
     const uploadImage = () =>{
     
         const formData = new FormData()
         formData.append("file", image)
         formData.append("upload_preset", "q1rexrny")
-        
 
         Axios.post("https://api.cloudinary.com/v1_1/dsj9mewkg/image/upload", formData).then((res)=>setImageUrl(res.data.url))
+          
     }
-    {imageUrl ? dispatch(updateFreelancerAsync({id: freelancerId, imageUrl})) : null }
+    {imageUrl ? dispatch(updateClientAsync({id: clientId, imageUrl})) : null }
     
+   
     
 return (
 
@@ -43,4 +46,4 @@ return (
 }
 
 
-export default ImageUpload
+export default ImageUploadClient
