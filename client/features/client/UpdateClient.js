@@ -12,6 +12,7 @@ import Box from "@mui/material/Box";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
+import ImageUploadClient from "../imageUpload/ImageUploadClient";
 ////////////
 
 const UpdateClient = () => {
@@ -45,7 +46,7 @@ const UpdateClient = () => {
     setEmail(client.email)
     setDescription(client.description)
     setUsername(client.username)
-    setImageUrl(client.imageUrl)
+    
   }, [])
 
   return (
@@ -125,17 +126,6 @@ const UpdateClient = () => {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <TextField
-          margin="normal"
-          required
-          fullWidth
-          autoComplete="image"
-          label="imageUrl"
-          value={imageUrl}
-          name="image"
-          onChange={(e) => setImageUrl(e.target.value)}
-        />
-
         <Button
           type="submit"
           fullWidth
@@ -146,6 +136,7 @@ const UpdateClient = () => {
           Update
         </Button>
       </Box>
+      <ImageUploadClient />
     </Box>
   </Container>
     // <form 
