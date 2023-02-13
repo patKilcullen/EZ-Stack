@@ -198,6 +198,8 @@ const faker = require("faker")
 
 const {db, models: {Client, Freelancer, Project, Request, Rating} } = require('../server/db')
 
+const {images} = require('./images')
+
 
 /**
  * seed - this function clears the database, updates tables to
@@ -228,7 +230,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'HTML & CSS Developer',
   hourlyRate: 25,
@@ -241,7 +243,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'Python Developer',
   hourlyRate: 30,
@@ -254,7 +256,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'Android Developer',
   hourlyRate: 20,
@@ -267,7 +269,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'iOS Developer',
   hourlyRate: 35,
@@ -280,7 +282,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'Javascript Developer',
   hourlyRate: 35,
@@ -293,7 +295,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(450, 150, true),
+  imageUrl: images[Math.floor(Math.random() * 30) + 1],
   description: faker.commerce.productDescription(),
   category: 'HTML & CSS Developer',
   hourlyRate: 25,

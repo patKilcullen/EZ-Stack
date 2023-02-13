@@ -600,11 +600,13 @@ const AllFreelancers = () => {
                       },
                     }}
                   >
-                    <CardMedia
-                      sx={{ height: 200, width: 450}}
+                    <div className="fImg">
+                    <CardMedia className="freelancerImg"
+                      sx={{ height: 200, width: 200}}
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />
+                    </div>
                     <CardContent>
                       <Typography
                         color="primary"

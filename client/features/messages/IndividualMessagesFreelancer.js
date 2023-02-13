@@ -30,6 +30,10 @@ const IndividualMessagesFreelancer = () => {
     }
   })
 
+  const backButton = () => {
+    window.history.back()
+  }
+
   useEffect(() => {
     dispatch(fetchSingleFreelancerMessageAsync({id, freelancerId}))
   }, [dispatch, render])
@@ -66,6 +70,7 @@ const IndividualMessagesFreelancer = () => {
         Messages
         <ForumTwoToneIcon size="large"/>
       </Typography>
+      <ArrowBackIcon className='backArrow' onClick={backButton}></ArrowBackIcon>
       {sorted
         ? sorted.map((message) => {
             return (
