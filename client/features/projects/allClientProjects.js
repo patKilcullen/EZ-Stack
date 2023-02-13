@@ -201,21 +201,7 @@ return reqs.map((proj)=>{
 
             <TabPanel value={value} index={0}>
 
-              
-              {projects?.length ? 
-              (
-              <div
-              style={{
-                width: 600,
-                height:500,
-                alignContent:"center",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                overflow:"auto",
-              }}
-              >
-
-
-               {pend ? 
+                {pend ? 
             <div className="allList">
 
                 {projects
@@ -278,24 +264,7 @@ return reqs.map((proj)=>{
                     </div>
                   ))}
 
-              </div>
-            ): 
-            <Link to="/post">
-              <AddBoxTwoToneIcon fontSize="large" color="secondary"/> 
-              POST A PROJECT</Link>
-            }
-
-            </TabPanel>
-            <TabPanel value={value} index={1}>
-            <div
-              style={{
-                width: 600,
-                height:500,
-                alignContent:"center",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                overflow:"auto",
-              }}
-              >
+    
                </div> : <p>No Pending Projects</p>}
             </TabPanel>
             <TabPanel value={value} index={1}>
@@ -369,18 +338,8 @@ return reqs.map((proj)=>{
                   </div>
                 ))}
 
-                </div>
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-            <div
-              style={{
-                width: 600,
-                height:500,
-                alignContent:"center",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                overflow:"auto",
-              }}
-              >
+     
+          
 
                 </div> : <p>No Ongoing Projects</p> }
             </TabPanel>
@@ -447,7 +406,6 @@ return reqs.map((proj)=>{
                   </div>
                 ))}
 
-                </div>
 
                 </div> : <p>No Completed Projects</p> }
 

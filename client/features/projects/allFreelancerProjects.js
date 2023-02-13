@@ -136,17 +136,6 @@ console.log("REJECCTS: ", rejects)
         <TabPanel value={value} index={0}>
 
 
-        {projects?.length ? 
-              (
-              <div
-              style={{
-                width: 600,
-                height:500,
-                alignContent:"center",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                overflow:"auto",
-              }}
-              >
 
       {ongo ? 
           <div>
@@ -204,15 +193,7 @@ console.log("REJECCTS: ", rejects)
             </Link>
         
           </div>
-        ))
-        }
-        </div>
 
-            ): 
-            <Link to="/projects">
-              <AddBoxTwoToneIcon fontSize="large" color="secondary"/> 
-              No Ongoing Projects yet, Find a Project!</Link>
-            }
 
         ))}
         </div> : <p>No Ongoing Projects</p>}
@@ -222,15 +203,7 @@ console.log("REJECCTS: ", rejects)
         <TabPanel value={value} index={1}>
 
 
-        <div
-              style={{
-                width: 600,
-                height:500,
-                alignContent:"center",
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
-                overflow:"auto",
-              }}
-              >
+  
 
        {comp ? 
        <div>
@@ -292,7 +265,7 @@ console.log("REJECCTS: ", rejects)
         </div>
         ))}
 
-        </div>
+
 
         </div> : <p>No Completed Projects</p>}
 
