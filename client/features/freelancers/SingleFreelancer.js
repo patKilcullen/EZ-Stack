@@ -42,14 +42,13 @@ const SingleFreelancer = () => {
 
 
   return (
-    <div className="singleView"
-    style={{padding:"10px", }}
-    >
+    // <div className="singleView"
+    // style={{padding:"10px", }}
+    // >
       <div
         style={{
           display: "flex",
-          marginTop: 10,
-          
+          marginTop: 26,
         }}
       >
         <Card
@@ -58,6 +57,8 @@ const SingleFreelancer = () => {
              height: 500,
             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             margin: "0 100px",
+            padding: "0 1em",
+            ":hover": { boxShadow: 20 },
           }}
         >
           <CardMedia
@@ -137,21 +138,24 @@ const SingleFreelancer = () => {
 
         <div
           style={{
-            width: 500,
-            alignContent:"center"
+            width: 600,
+            height:500,
+            alignContent:"center",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            overflow:"auto",
           }}
         >
-          <Typography color="primary" component="div" align="center" variant="h6">
+          <Typography color="primary" align="center" component="div" margin="50px" variant="h5">
             Reviews
           </Typography>
           {reviews.length ? reviews.map((rating) => (
-            <div key={rating.id} style={{ overflow:"auto"}}>
-              <Card sx={{ margin: "50px 50px", ":hover": { boxShadow: 20 }, padding:"10px 10px" }}>
-                <Typography variant="body1"  fontWeight="bolder">
+            <div key={rating.id} >
+              <Card sx={{ margin: "50px", ":hover": { boxShadow: 20 }, padding:"10px 10px" }}>
+                <Typography variant="body1"  align="center" fontWeight="bolder">
                   {rating.freelancer.firstName} {rating.freelancer.lastName}
                 </Typography>
                 {rating.project ? (
-                  <Typography variant="body2" color="primary">
+                  <Typography align="center" variant="body2" color="primary">
                     Project:
                     <Link to={`/projects/${rating.projectId}`}>
                       {" "}
@@ -159,7 +163,7 @@ const SingleFreelancer = () => {
                     </Link>
                   </Typography>
                 ) : null}
-                <Typography variant="body2" color="primary">
+                <Typography align="center" variant="body2" color="primary">
                   {rating.rating === 1 ? (
                     <p>Rating: {"★"}</p>
                   ) : rating.rating === 2 ? (
@@ -172,7 +176,7 @@ const SingleFreelancer = () => {
                     <p>Rating: {"★★★★★"}</p>
                   ) : null}
                 </Typography>
-                <Typography variant="body2">{rating.review}</Typography>
+                <Typography variant="body2" align="center">{rating.review}</Typography>
               </Card>
             </div>
           )): <Typography component="div" align="center" variant="h6">
@@ -181,29 +185,8 @@ const SingleFreelancer = () => {
         </div>
       </div>
       
-    </div>
+    // </div>
   );
 };
 
 export default SingleFreelancer;
-
-{
-  /* {freelancer.projects
-          ? freelancer.projects
-              .filter((project) => {
-                return project.status === "Complete";
-              })
-
-              .map((project) => (
-                <div>
-                  <Card sx={{ width: 500, margin: "10%", marginLeft: 0 }}>
-                    <Link to={`/projects/${project.id}`}>
-                      <Typography variant="body2" color="primary">
-                        {project.title}
-                      </Typography>
-                    </Link>
-                  </Card>
-                </div>
-              ))
-          : null} */
-}

@@ -27,6 +27,7 @@ import Stack from "@mui/material/Stack";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
+import ManageSearchTwoToneIcon from '@mui/icons-material/ManageSearchTwoTone';
 
 const AllFreelancers = () => {
   const dispatch = useDispatch();
@@ -123,7 +124,7 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-              Search
+            Search {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
 
@@ -163,7 +164,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-              Search
+            Search {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
         </div>
@@ -326,7 +327,7 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-              Search
+            Search {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
 
@@ -366,7 +367,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-              Search
+            Search {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
         </div>
@@ -533,7 +534,7 @@ const AllFreelancers = () => {
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-            Search
+          Search {' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
 
@@ -571,7 +572,7 @@ const AllFreelancers = () => {
             </MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-            Search
+          Search {' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
       </div>

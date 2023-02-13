@@ -21,7 +21,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
-
+import DvrTwoToneIcon from '@mui/icons-material/DvrTwoTone';
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
@@ -102,7 +102,6 @@ const FreelancerProfile = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor: "#F5F5F5",
             borderRadius: "4px",
           }}
         >
@@ -110,7 +109,7 @@ const FreelancerProfile = () => {
             <Card
               sx={{
                 width: 400,
-                height: 550,
+                // height: 550,
                 margin: "0 auto",
                 padding: "1em",
               }}
@@ -118,7 +117,7 @@ const FreelancerProfile = () => {
               {freelancer.imageUrl ? (
                 <CardMedia
                   component="img"
-                  height="250"
+                  height="200"
                   sx={{ objectFit: "contain" }}
                   image={freelancer.imageUrl}
                   title="Freelancer"
@@ -170,7 +169,9 @@ const FreelancerProfile = () => {
               </CardContent>
             </Card>
           </div>
-
+          
+          {freelancer.projects?.length ? 
+             (
           <div
             className="recent-orders"
             style={{
@@ -181,15 +182,16 @@ const FreelancerProfile = () => {
             }}
           >
             <Typography
-              component="h6"
-              color="primary"
-              gutterBottom
-              align="center"
-            >
-              Recent Projects
-            </Typography>
+        color="primary"
+        marginTop={3}
+        variant="h6"
+        align="center"
+      >
+         Recent Projects {" "}
+        <DvrTwoToneIcon size="large"/>
+      </Typography>
 
-            <Table size="small">
+            <Table size="medium">
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
@@ -198,13 +200,14 @@ const FreelancerProfile = () => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                {freelancer.projects?.length
-                  ? freelancer.projects.map((project) => (
+                {freelancer.projects.map((project) => (
                       <TableRow key={project.id}>
                         <TableCell>
+                        <Button color="primary" size="small" variant="contained">
                           <Link to={`/projects/${project.id}`}>
                             {project.title}
                           </Link>
+                        </Button>
                         </TableCell>
                         <TableCell>{`${project.description.substr(
                           0,
@@ -212,13 +215,11 @@ const FreelancerProfile = () => {
                         )}...`}</TableCell>
                         <TableCell>{project.status}</TableCell>
                       </TableRow>
-                    ))
-                  : <Typography variant="h6" component="div" align="center" color="primary">
-                  No Projects To View Yet!
-                 </Typography>}
+                    ))}
               </TableBody>
             </Table>
           </div>
+          ): null }
         </Box>
       </TabPanel>
       <TabPanel value={value} index={1}>

@@ -19,6 +19,7 @@ import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 import Switch from '@mui/material/Switch';
 import Checkbox from '@mui/material/Checkbox';
+import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
 
 export default function ClientRequests(props) {
 
@@ -75,7 +76,7 @@ const navigate = useNavigate()
             // navigate(`/projects/${projectId}`)
             window.location.reload()
           });
-      
+      navigate(`/projects/${projectId}`)
       })
 
   };
@@ -120,29 +121,38 @@ const handleRead = async (projectId, seenClient, freelancerId)=>{
 
 console.log("REAQUESTS: ", requests)
   return (
-    <div>
+    <div >
       <ul>
         {props.clientId === props.projectClientId
           ? 
           requests.length < 1 ? "No requests yet for this project" :
           requests.map((request) => (
-              <div key={request.id}>
-                <Card>
+              <div key={request.id}
+              style={{ margin:"20px 20px",  ":hover": {boxShadow: 20}, overflow:"auto"}}
+              >
+                <Card
+                sx={{":hover": {boxShadow: 20}}}
+                >
                   <CardContent>
-                <h3> Project Request: </h3>
+                <h3> Project Request for: {request.project.title}</h3>
                  <h4 style={{display: 'inline', right: "0px"}}>Unread<Switch checked={request.seenClient} onChange={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)} color="primary" >Read</Switch>Read</h4> 
                 <li key={request.id}>
-
-                  <p>Request Status: {request.status}</p>
+                  <p>Request Status: 
+                     <Typography variant="body2"  color="secondary">
+                <PendingTwoToneIcon fontSize="small"/>
+                   {request.status}
+                </Typography>
+                  </p>
                   <p>
-                    You have recieved a request from:{" "}
+                    You have received a request from:{" "}
                     <Link to={`/freelancers/${request.freelancer.id}`}>
                       {" "}
                       {request.freelancer.firstName}{" "}
                       {request.freelancer.lastName}
                     </Link>
+                    <hr></hr>
                   </p>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography gutterBottom variant="body2" >
                   {request.requestMessage}
                   </Typography>
                 </li>

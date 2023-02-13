@@ -3,6 +3,10 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchSingleFreelancerMessageAsync, selectSingleFreelancerMessage, sendFreelancerMessageAsync, updateMessageAsync } from './freelancerSingleMessageSlice';
 
+import ForumTwoToneIcon from '@mui/icons-material/ForumTwoTone';
+import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
+import Typography from '@mui/material/Typography';
+
 const IndividualMessagesFreelancer = () => {
   const freelancerId = useSelector((state) => state.freelancerAuth.me.id)
   const freelancer = useSelector((state) => state.freelancerAuth.me)
@@ -43,17 +47,25 @@ const IndividualMessagesFreelancer = () => {
         overflowY: "auto",
         padding: "10px",
         backgroundColor: "#F5F5F5",
-        margin: "20px 20px",
-        width: "60vw",
-        height: "60vh",
+        margin: "50px 50px",
+        width: "30vw",
+        minHeight: "40vh",
         alignContent: "center",
         borderRadius: "4px",
         boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
       }}
     >
-      <h3 
-    style={{ display: "flex", justifyContent: "center" }}
-    >Messages</h3>
+      <Typography
+        color="primary"
+        component="div"
+        marginTop={5}
+        marginBottom={3}
+        variant="h4"
+        align='center'
+      >
+        Messages
+        <ForumTwoToneIcon size="large"/>
+      </Typography>
       {sorted
         ? sorted.map((message) => {
             return (
@@ -75,6 +87,7 @@ const IndividualMessagesFreelancer = () => {
                       <span
                        style={{ marginLeft: "5px" }}
                       >
+                        {<Person2TwoToneIcon color="primary" size="small" />}
                         
                         from: {message.from} - 
                         at: {message.createdAt}

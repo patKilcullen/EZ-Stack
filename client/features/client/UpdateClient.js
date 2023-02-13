@@ -57,7 +57,7 @@ const UpdateClient = () => {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        backgroundColor:"#F5F5F5",
+        // backgroundColor:"#F5F5F5",
         padding:"1em 1em",
         borderRadius: "4px"
       }}
@@ -139,57 +139,6 @@ const UpdateClient = () => {
       <ImageUploadClient />
     </Box>
   </Container>
-    // <form 
-    // onSubmit={handleSubmit}
-    // >
-    //     <h1>Update your information</h1>
-
-    //   <label>Username:</label>
-    //   <input 
-    //   name="username"
-    //   value={username}
-    //   onChange={(e) => setUsername(e.target.value)}
-    //   />
-
-    //   <label >First Name:</label>
-    //   <input
-    //     name="fisrtName"
-    //     value={firstName}
-    //     onChange={(e) => setFirstName(e.target.value)}
-    //   />
-
-    //   <label>Last name:</label>
-    //   <input
-    //     name="lastname"
-    //     value={lastName}
-    //     onChange={(e) => setLastName(e.target.value)}
-    //   />
-     
-     
-    //   <label>Email:</label>
-    //   <input
-    //     name="email"
-    //     value={email}
-    //     onChange={(e) => setEmail(e.target.value)}
-    //   />
-      
-      
-    //   <label>Description:</label>
-    //   <input
-    //     name="description"
-    //     value={description}
-    //     onChange={(e) => setDescription(e.target.value)}
-    //   />
-
-    //   <label>Profile Image:</label>
-    //   <input 
-    //   name="image"
-    //   value={imageUrl}
-    //   onChange={(e) => setImageUrl(e.target.value)}
-    //   />
-
-    //   <button type="submit">Edit</button>
-    // </form>
   );
 };
 

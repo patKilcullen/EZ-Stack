@@ -23,9 +23,12 @@ import Stack from "@mui/material/Stack";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-
+import PendingIcon from '@mui/icons-material/Pending';
+import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
+import ManageSearchTwoToneIcon from '@mui/icons-material/ManageSearchTwoTone';
 
 import { fetchLikedProjectsAsync, likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
+
 
 
 const AllProjects = () => {
@@ -90,7 +93,7 @@ if (projectsByCat.length) {
   return (
 <div className="allViewContainer">
 <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
+<Typography color="primary" variant="body1" fontWeight={"bold"}   marginTop={1}>Search by Categories</Typography>
           </div>
           <div>
       <form onSubmit={handleCategory}>
@@ -119,7 +122,7 @@ if (projectsByCat.length) {
           <MenuItem value={'Liked'}>Liked</MenuItem>):null}
         </Select>
         <Button type="submit" variant="contained">
-          Search
+          Search {' '} <ManageSearchTwoToneIcon size="large"/>
         </Button>
       </form>
       </div>
@@ -136,15 +139,19 @@ if (projectsByCat.length) {
             },
             }}>
           <CardContent>
-          {liked ? liked.map((like) => {
-              likedIds.push(like.project.id)
-                  if(like.project.id == project.id){
-                    return <FavoriteIcon></FavoriteIcon>
-                  }
-                }) : null}
+            <div
+            style={{display:"flex", justifyContent:"space-around" }}
+            >
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
+            {liked ? liked.map((like) => {
+              likedIds.push(like.project.id)
+                  if(like.project.id == project.id){
+                    return <FavoriteIcon color="primary"></FavoriteIcon>
+                  }
+                }) : null}
+            </div>
             <hr
             style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
             ></hr>
@@ -153,15 +160,17 @@ if (projectsByCat.length) {
             {project.category}
             </Typography>
             <br></br>
-            <Typography variant="body2" color='primary'>
-            Status: {project.status}
+            <Typography variant="body1" color='secondary'>
+            <PendingTwoToneIcon fontSize="small"/>
+             {project.status}
             </Typography>
+            <br></br>
             <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word" >
-            {`${project.description.substr(0,80)}...`}
+            {project.description ? `${project.description.substr(0,80)}...`: null}
             </Typography>
           </CardContent>
           <br></br>
-          <br></br>
+         
           <CardActions>
             <Button size="small" fullWidth variant='contained'>Learn More</Button>
           </CardActions>
@@ -188,7 +197,7 @@ if (projectsByCat.length) {
         <form onSubmit={handleCategory}>
           {/* category  */}
           <div style={{marginTop: 10}}>
-          <Typography fontWeight={"bold"} color="primary">Search by Categories</Typography>
+          <Typography color="primary" variant="body1" fontWeight={"bold"}   marginTop={1}>Search by Categories</Typography>
           </div>
           <Select
             name="category"
@@ -214,7 +223,7 @@ if (projectsByCat.length) {
           <MenuItem value={'Liked'}>Liked</MenuItem>):null}
           </Select>
           <Button type="submit" variant="contained">
-            Search
+          Search {' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
     
@@ -232,15 +241,19 @@ if (projectsByCat.length) {
             },
             }}>
           <CardContent>
-          {liked ? liked.map((like) => {
-              likedIds.push(like.project.id)
-                  if(like.project.id == project.id){
-                    return <FavoriteIcon></FavoriteIcon>
-                  }
-                }) : null}
+          <div
+            style={{display:"flex", justifyContent:"space-around" }}
+            >
           <Typography fontFamily={"Playfair Display serif"}  align="center" variant="h6" >
             {project.title}
             </Typography>
+            {liked ? liked.map((like) => {
+              likedIds.push(like.project.id)
+                  if(like.project.id == project.id){
+                    return <FavoriteIcon color="primary"></FavoriteIcon>
+                  }
+                }) : null}
+            </div>
             <hr
             style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
             ></hr>
@@ -249,15 +262,17 @@ if (projectsByCat.length) {
             {project.category}
             </Typography>
             <br></br>
-            <Typography variant="body2" color='primary'>
-            Status: {project.status}
+            <Typography variant="body1" color='secondary'>
+            <PendingTwoToneIcon fontSize="small"/>
+             {project.status}
             </Typography>
+            <br></br>
             <Typography fontFamily={"Playfair Display serif"}  align="center" variant="body2" overflowwrap="break-word">
-            {`${project.description.substr(0,80)}...`}
+            {project.description ? `${project.description.substr(0,80)}...`: null}
             </Typography>
           </CardContent>
             <br></br>
-            <br></br>
+           
             <CardActions>
               <Button size="small" gutterbottom fullWidth variant='contained'>Learn More</Button>
             </CardActions>

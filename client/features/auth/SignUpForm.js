@@ -86,8 +86,10 @@ const SignUpForm = () => {
         <div className="signUpInput">
         <TextField id="outlined-basic" label="email" name="email"  variant="filled" />
         </div>
-        <div>
-        <InputLabel >User Type</InputLabel>
+       <InputLabel align="center" > Select User Type</InputLabel>
+        <div 
+        style={{display:"flex", justifyContent:"space-evenly"}}
+        >
           <Select defaultValue={'client'} name='dispatchRoute'>
             <MenuItem value={'client'}>Client</MenuItem>
             <MenuItem value={'freelancer'}>Freelancer</MenuItem>

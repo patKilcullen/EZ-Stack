@@ -11,11 +11,16 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
-
 import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
+import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
+import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
+import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsActiveTwoTone';
+import ContentPasteGoTwoToneIcon from '@mui/icons-material/ContentPasteGoTwoTone';
+import AssignmentTurnedInTwoToneIcon from '@mui/icons-material/AssignmentTurnedInTwoTone';
+
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -122,11 +127,12 @@ const seen = requests.filter((request)=>{
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
       { projectWork.length ? 
       <div>
-      <Typography color="primary" variant="h6" component="div">
-      You have submitted work that you need to accept or decline: 
+      <Typography variant="h6" color='secondary'>
+      <NotificationsActiveTwoToneIcon fontSize="large"/>
+      You have submitted work that you need to accept or decline! 
     </Typography>
-      <Button fullWidth variant="contained" onClick={()=>setViewWork(true)}>
-      View Work
+      <Button  variant="contained" onClick={()=>setViewWork(true)}>
+      Click to View Work
     </Button>
     </div>
       : null }
@@ -136,9 +142,9 @@ const seen = requests.filter((request)=>{
       <p>{viewWork && projectWork ? 
     
         projectWork.map((project)=>{
-         return  <Typography color="primary" variant="h6" component="div">
+         return  <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
      <Link to={`/projects/${project.id}`}> {project.title}</Link>
-    </Typography>
+    </Button>
         })
 
       : null }</p>
@@ -148,10 +154,12 @@ const seen = requests.filter((request)=>{
 <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
       {seen.length ? 
       <div>
-      <Typography color="primary" variant="h6" component="div">
-      You have new proposals: 
-    </Typography>
-      <Button fullWidth variant="contained" onClick={()=>setSeenRequests(false)}>
+      
+    <Typography variant="h6" color='secondary'>
+            <NotificationsActiveTwoToneIcon fontSize="large"/>
+            You have new proposals! 
+            </Typography>
+      <Button variant="contained" onClick={()=>setSeenRequests(false)}>
       View Proposals
     </Button>
     </div>
@@ -169,10 +177,10 @@ let reqs =  projects.filter((project)=>{
 }) 
 // "/projects/:projectId/requests"
 return reqs.map((proj)=>{
-  return <p>
+  return <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
     <Link to={`/projects/${proj.id}/requests`} >{proj.title} </Link> 
    {/* <Link to={`/projects/${proj.id}`}> {proj.title}</Link>  */}
-   </p>
+   </Button>
 })
 
 
@@ -193,8 +201,23 @@ return reqs.map((proj)=>{
 
             <TabPanel value={value} index={0}>
 
+              
+              {projects?.length ? 
+              (
+              <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
+
+
                {pend ? 
             <div className="allList">
+
                 {projects
                   .filter((project) => {
                     return project.status === "Pending";
@@ -207,25 +230,37 @@ return reqs.map((proj)=>{
                             width:400, maxHeight:500,
                             boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
                             backgroundColor: "#F5F5F5",
-                            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                            padding:"10px 10px",
+                            margin:"10px 10px",
                             ":hover": {
                               boxShadow: 20, // theme.shadows[20]
                             },
                           }}
                         >
                           <CardContent>
-                            <Typography variant="h6">
+                          <Typography fontFamily={"Playfair Display serif"} variant="h6" component="div">
                               {project.title}
                             </Typography>
+                             <hr
+                            style={{
+                              border: "none",
+                              height: "1px",
+                              color: "#333",
+                              backgroundColor: "#333",
+                            }}
+                          ></hr>
                             <Typography color="primary" variant="body2">
                               category: {project.category}
                             </Typography>
-                            <hr></hr>
-                            <Typography variant="body2">
-                              Current Status: {project.status}
-                            </Typography>
+                           
+                            <Typography variant="body2" align="center" color="secondary">
+                <PendingTwoToneIcon fontSize="small"/>
+                   {project.status}
+                </Typography>
 
-                            <Typography variant="subtitle1">
+                            <Typography gutterBottom
+                            component="div"
+                            variant="body2">
                               {`${project.description.substr(0, 100)}...`}
                             </Typography>
                           </CardContent>
@@ -242,11 +277,32 @@ return reqs.map((proj)=>{
                       </Link>
                     </div>
                   ))}
+
+              </div>
+            ): 
+            <Link to="/post">
+              <AddBoxTwoToneIcon fontSize="large" color="secondary"/> 
+              POST A PROJECT</Link>
+            }
+
+            </TabPanel>
+            <TabPanel value={value} index={1}>
+            <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
                </div> : <p>No Pending Projects</p>}
             </TabPanel>
             <TabPanel value={value} index={1}>
               {ongo ? 
               <div className="allList">
+
+
               {projects
                 .filter((project) => {
                   return project.status === "Ongoing";
@@ -262,19 +318,98 @@ return reqs.map((proj)=>{
                       <Card
                         sx={{
                           width:400, maxHeight:500,
-                          ":hover": { boxShadow: 20 },
+                          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                          backgroundColor: "#F5F5F5",
+                          padding:"10px 10px",
+                          margin:"10px 10px",
+                          ":hover": {
+                            boxShadow: 20, // theme.shadows[20]
+                          },
                         }}
                       >
                         <CardContent>
-                          <Typography variant="h5" component="div">
+                          <Typography fontFamily={"Playfair Display serif"} variant="h6" component="div">
                             {project.title}
                           </Typography>
+                           <hr
+                            style={{
+                              border: "none",
+                              height: "1px",
+                              color: "#333",
+                              backgroundColor: "#333",
+                            }}
+                          ></hr>
                           <Typography
                             color="primary"
-                            variant="h6"
-                            component="div"
+                            variant="body2"
                           >
                             category: {project.category}
+                          </Typography>
+                         
+                          <Typography variant="body2" align="center" color="secondary">
+                <ContentPasteGoTwoToneIcon fontSize="small"/>
+                   {project.status}
+                </Typography>
+
+                          <Typography
+                            gutterBottom
+                            component="div"
+                            variant="body2"
+                          >
+                            {`${project.description.substr(0, 90)}...`}
+                          </Typography>
+                        </CardContent>
+                        <CardActions>
+                          <Button fullWidth variant="contained">
+                            Go to Project
+                          </Button>
+                        </CardActions>
+                      </Card>
+                    </Link>
+                  </div>
+                ))}
+
+                </div>
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+            <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
+
+                </div> : <p>No Ongoing Projects</p> }
+            </TabPanel>
+            <TabPanel value={value} index={2}>
+              {comp ? 
+              <div className="allList">
+              
+              {projects
+                .filter((project) => {
+                  return project.status === "Complete";
+                })
+                .map((project) => (
+                  <div
+                    key={project.id}
+                    className="card" >
+                    <Link to={`/projects/${project.id}`}>
+                      <Card sx={{
+                           width:400, maxHeight:500,
+                           boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                           backgroundColor: "#F5F5F5",
+                           padding:"10px 10px",
+                           margin:"10px 10px",
+                           ":hover": {
+                             boxShadow: 20, // theme.shadows[20]
+                           },
+                        }}>
+                        <CardContent>
+                          <Typography fontFamily={"Playfair Display serif"} variant="h6" component="div">
+                            {project.title}
                           </Typography>
                           <hr
                             style={{
@@ -284,82 +419,38 @@ return reqs.map((proj)=>{
                               backgroundColor: "#333",
                             }}
                           ></hr>
-                          <Typography variant="body2">
-                            Current Status: {project.status}
-                          </Typography>
 
-                          <Typography
-                            gutterBottom
-                            component="div"
-                            variant="subtitle1"
-                          >
-                            {`${project.description.substr(0, 100)}...`}
-                          </Typography>
-                        </CardContent>
-                        <CardActions>
-                          <Button fullWidth variant="contained">
-                            Go to Project
-                          </Button>
-                        </CardActions>
-                      </Card>
-                    </Link>
-                  </div>
-                ))}
-                </div> : <p>No Ongoing Projects</p> }
-            </TabPanel>
-            <TabPanel value={value} index={2}>
-              {comp ? 
-              <div className="allList">
-              {projects
-                .filter((project) => {
-                  return project.status === "Complete";
-                })
-                .map((project) => (
-                  <div
-                    key={project.id}
-                    className="card"
-
-                    // style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)" }}
-                  >
-                    <Link to={`/projects/${project.id}`}>
-                      <Card sx={{
-                          width:400, maxHeight:500,
-                          ":hover": { boxShadow: 20 },
-                        }}>
-                        <CardContent>
-                          <Typography variant="h5" component="div">
-                            {project.title}
-                          </Typography>
-                          <Typography
-                            color="primary"
-                            variant="h6"
-                            component="div"
+                          <Typography  color='primary'  variant="body2"
                           >
                             category: {project.category}
                           </Typography>
-                          <hr></hr>
-                          <Typography variant="body2">
-                            Current Status: {project.status}
-                          </Typography>
+                          <Typography variant="body2" align="center" color="secondary">
+                <AssignmentTurnedInTwoToneIcon fontSize="small"/>
+                   {project.status}
+                </Typography>
 
                           <Typography
                             gutterBottom
                             component="div"
-                            variant="subtitle1"
+                            variant="body2"
                           >
                             {`${project.description.substr(0, 100)}...`}
                           </Typography>
                         </CardContent>
                         <CardActions>
                           <Button fullWidth variant="contained">
-                            Go to Project
+                          View Work
                           </Button>
                         </CardActions>
                       </Card>
                     </Link>
                   </div>
                 ))}
+
+                </div>
+
                 </div> : <p>No Completed Projects</p> }
+
             </TabPanel>
           </Box>
         

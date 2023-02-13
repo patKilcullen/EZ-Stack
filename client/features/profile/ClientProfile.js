@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
@@ -18,6 +17,7 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import Button from "@mui/material/Button";
+import DvrTwoToneIcon from '@mui/icons-material/DvrTwoTone';
 
 import Table from "@mui/material/Table";
 import TableBody from "@mui/material/TableBody";
@@ -60,7 +60,6 @@ function a11yProps(index) {
 }
 ////////////////END TABS/////////
 
-
 const ClientProfile = () => {
   const dispatch = useDispatch();
   const id = useSelector((state) => state.clientAuth.clientMe.id);
@@ -80,7 +79,7 @@ const ClientProfile = () => {
 
   return (
     <Box sx={{ width: "100%" }}>
-      <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
+      <Box sx={{ borderBottom: 0.5, borderColor: "divider" }}>
         <Tabs
           value={value}
           onChange={handleChange}
@@ -91,112 +90,127 @@ const ClientProfile = () => {
         </Tabs>
       </Box>
       <TabPanel value={value} index={0}>
-
-      <h2>Welcome {client.firstName}, we've missed you!</h2>
-      <Typography variant="body2" color="text.secondary">
-                    You are logged in as a client.
-                  </Typography>
+        <h2>Welcome {client.firstName}, we've missed you!</h2>
+        <Typography variant="body2" color="text.secondary">
+          You are logged in as a client.
+        </Typography>
         <Box
           sx={{
-            marginTop: 3,
+            // marginTop: 2,
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",
             alignItems: "center",
-            backgroundColor:"#F5F5F5",
-            borderRadius: "4px"
+            borderRadius: "4px",
           }}
-          >
-          <div className="card">
-            <Card 
-            sx={{
-              width:400, height:550,
-              margin: "0 auto",
-              padding: "1em",
-            }}
+        >
+          
+            <Card
+              sx={{
+                width: 850,
+                // height: 650,
+                margin: "0 auto",
+                padding: "1em",
+              }}
             >
-              {client.imageUrl? <CardMedia
-                component="img"
-                height="250"
-                sx={{ objectFit: "contain" }}
-                image={client.imageUrl}
-                title="client"
-              /> : <p>No Profile Image</p>}
+              {client.imageUrl ? (
+                <CardMedia
+                  component="img"
+                  height="200"
+                  sx={{ objectFit: "contain" }}
+                  image={client.imageUrl}
+                  title="client"
+                />
+              ) : (
+                <p>No Profile Image</p>
+              )}
               <CardContent>
-                <Typography gutterBottom variant="h6" component="div">
+                <Typography align="center" variant="h6" component="div">
                   {client.firstName} {client.lastName}
-                </Typography> 
-                
-                <Typography variant="body2" color="text.secondary">
-                    {client.email}
-                  </Typography>
-            <hr
-            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
-            ></hr>
-                 
-                  <br></br>
+                </Typography>
 
-                  <Typography variant="h6" color="primary">
-                   Description:
+                <Typography align="center" variant="body2" color="text.secondary">
+                  {client.email}
+                </Typography>
+                <hr
+                  style={{
+                    border: "none",
+                    height: "1px",
+                    color: "#333",
+                    backgroundColor: "#333",
+                  }}
+                ></hr>
+
+                <br></br>
+
+                <Typography align="center" variant="h6" color="primary">
+                  Description:
+                </Typography>
+                {client.description ? (
+                  <Typography align="center" variant="body2" color="text.secondary">
+                    {client.description}
                   </Typography>
-                  {client.description? (<Typography variant="body2" color="text.secondary">
-                    {client.description }
-                  </Typography>): "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"}
-                
+                ) : (
+                  "Click on the Edit Account Tab to add Description, edit your hourly rate, category etc!"
+                )}
               </CardContent>
             </Card>
-          </div>
-
-
-          <div 
-          className="recent-orders"
-          style={{backgroundColor: "white", margin:"100px 100px",  borderRadius: "4px",
-          boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",  }}>
+          
+          
+            {client.projects?.length ? 
+             (
+          <div
+            className="recent-orders"
+            style={{
+              backgroundColor: "white",
+              margin: "100px 100px",
+              borderRadius: "4px",
+              boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            }}
+          >
             <Typography
-              component="h6"
-              color="primary"
-              gutterBottom
-              align="center"
-            >
-              Recent Projects
-            </Typography>
-            <Table size="small">
+        color="primary"
+        marginTop={3}
+        variant="h6"
+        align="center"
+      >
+         Recent Projects {" "}
+        <DvrTwoToneIcon size="large"/>
+      </Typography>
+            <Table size="medium">
               <TableHead>
                 <TableRow>
                   <TableCell>Title</TableCell>
                   <TableCell>Description</TableCell>
                   <TableCell>Status</TableCell>
-                 
-              
                 </TableRow>
               </TableHead>
               <TableBody>
-                {client.projects?.length ? client.projects.map((project) => (
-                  <TableRow key={project.id}>
-                    <TableCell><Link to={`/projects/${project.id}`}> {project.title}</Link></TableCell>
-                    <TableCell>{project.description}</TableCell>
-                    <TableCell>{project.status}</TableCell>
-      
-                  </TableRow>
-                )): <Typography variant="h6" component="div" alignContent="center" color="primary">
-                No Projects To View Yet!
-               </Typography>}
+                {client.projects.map((project) => (
+                    <TableRow key={project.id}>
+                      <TableCell>
+                        <Button color="primary" size="small" variant="contained">
+                          <Link to={`/projects/${project.id}`}>
+                          {" "}
+                          {project.title}
+                        </Link>
+                        </Button>
+                      </TableCell>
+                      <TableCell>{project.description}</TableCell>
+                      <TableCell>{project.status}</TableCell>
+                    </TableRow>
+                  ))}
               </TableBody>
             </Table>
           </div>
-
-
+            ): null }
 
         </Box>
-
       </TabPanel>
       <TabPanel value={value} index={1}>
-        <div
-         style={{width: "80vw"}}
-        >
-           <UpdateClient />
+        <div style={{ width: "80vw" }}>
+          <UpdateClient />
         </div>
-       
       </TabPanel>
     </Box>
   );
