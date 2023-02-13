@@ -51,7 +51,7 @@ const UpdateFreelancer = () => {
   const [category, setCategory] = useState('');
   const [specialties, setSpecialties] = useState('');
   const [hourlyRate, setHourlyRate] = useState("")
-  const [bio, setBio] = useState("");
+  // const [bio, setBio] = useState("");
   const [imageUrl, setImageUrl] = useState("");
 
 
@@ -69,7 +69,7 @@ const UpdateFreelancer = () => {
         username,
         category,
         specialties,
-        bio,
+        // bio,
         imageUrl,
       })
     ).then(() => dispatch(fetchSingleFreelancer(id)));
@@ -90,7 +90,7 @@ const UpdateFreelancer = () => {
     setHourlyRate(freelancer.hourlyRate);
     setCategory(freelancer.category);
     setSpecialties(freelancer.specialties);
-    setBio(freelancer.bio);
+    // setBio(freelancer.bio);
     setImageUrl(freelancer.imageUrl);
   }, []);
 
@@ -187,20 +187,7 @@ const UpdateFreelancer = () => {
           />
 
 
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            autoComplete="bio"
-            label="bio"
-            value={bio}
-            name="bio"
-            inputProps={{
-              maxLength: CHARACTER_LIMIT
-            }}
-            // helperText={`${bio.length}/${CHARACTER_LIMIT}`}
-            onChange={(e) => setBio(e.target.value) && handleChange(bio)}
-          />  
+        
 
           {/* category  */}
           <InputLabel >Category</InputLabel>

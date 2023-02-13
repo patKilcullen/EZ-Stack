@@ -14,7 +14,9 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
+import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
+import AssignmentTurnedInTwoToneIcon from '@mui/icons-material/AssignmentTurnedInTwoTone';
+import ContentPasteGoTwoToneIcon from '@mui/icons-material/ContentPasteGoTwoTone';
 
 
 function TabPanel(props) {
@@ -99,10 +101,10 @@ console.log("REJECCTS: ", rejects)
 <p>{viewRejects && rejects ? 
     
     rejects.map((reject)=>{
-     return  <Typography color="primary" variant="h6" component="div">
+     return   <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
  {/* <Link to={`/projects/${reject.id}`}> {reject.title}</Link> */}
  <Link to={`/review/${reject.id}`} >{reject.title} </Link>
-</Typography>
+ </Button>
     })
 
   : null }</p>
@@ -122,39 +124,92 @@ console.log("REJECCTS: ", rejects)
 
         <TabPanel value={value} index={0}>
 
+        {projects?.length ? 
+              (
+              <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
+
         {projects.filter((project)=>{
             
             return project.status === "Ongoing"
                       
                     }).map((project) => (
           <div key={project.id} className='card'
-          style={{display:"flex", flexDirection: "column", justifyContent: "center", alignItems:"center"}}
           >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ width: 300, height: 300 , display: "flex",flexDirection: "column", justifyContent: "center", alignItems:"center", ':hover': {boxShadow: 20},  }}>
-          <CardContent>
-          <Typography variant="h5" component="div">
-            {project.title}
-            </Typography>
-            <Typography color='primary'  variant="h6" component="div">
-            category: {project.category}
-            </Typography>
-            <Typography variant="body2" >
-            Current Status: {project.status}
-            </Typography>
-          </CardContent>
-          <CardActions>
-            <Button size="small" variant="contained">Learn More</Button>
-          </CardActions>
-        </Card>
-        </Link>
+              <Card sx={{ 
+                width:400, maxHeight:500,
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                backgroundColor: "#F5F5F5",
+                padding:"10px 10px",
+                margin:"10px 10px",
+                ":hover": {
+                  boxShadow: 20, // theme.shadows[20]
+                },
+              }}>
+                <CardContent>
+                <Typography fontFamily={"Playfair Display serif"} variant="h6" component="div">
+                  {project.title}
+                  </Typography>
+                  <hr
+                    style={{
+                      border: "none",
+                      height: "1px",
+                      color: "#333",
+                      backgroundColor: "#333",
+                    }}
+                  ></hr>
+                  <Typography color='primary'  variant="body2">
+                  {project.category}
+                  </Typography>
+                  <Typography variant="body2" align="center" color="secondary">
+                <ContentPasteGoTwoToneIcon fontSize="small"/>
+                   {project.status}
+                </Typography>
+                <Typography
+                            gutterBottom
+                            component="div"
+                            variant="body2"
+                          >
+                            {`${project.description.substr(0, 100)}...`}
+                          </Typography>
+
+                </CardContent>
+                <CardActions>
+                  <Button size="small" fullWidth variant="contained">Submit Work!</Button>
+                </CardActions>
+              </Card>
+            </Link>
         
+          </div>
+        ))
+        }
         </div>
-        ))}
+            ): 
+            <Link to="/projects">
+              <AddBoxTwoToneIcon fontSize="large" color="secondary"/> 
+              No Ongoing Projects yet, Find a Project!</Link>
+            }
         </TabPanel>
 
         <TabPanel value={value} index={1}>
 
+        <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
         {projects.filter((project)=>{
             
             return project.status === "Complete"
@@ -164,26 +219,54 @@ console.log("REJECCTS: ", rejects)
           style={{display:"flex", flexDirection: "column", justifyContent: "center", alignItems:"center"}}
           >
             <Link to={`/projects/${project.id}`}>
-          <Card sx={{ minWidth: 400, minHeight: 400, display: "flex",flexDirection: "column", justifyContent: "center", alignItems:"center"  }}>
+          <Card sx={{ 
+            width:400, maxHeight:500,
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            backgroundColor: "#F5F5F5",
+            padding:"10px 10px",
+            margin:"10px 10px",
+            ":hover": {
+              boxShadow: 20, // theme.shadows[20]
+            },
+            }}>
           <CardContent>
-          <Typography variant="h5" component="div">
+          <Typography fontFamily={"Playfair Display serif"} variant="h6" component="div">
             {project.title}
             </Typography>
-            <Typography color='primary'  variant="h6" component="div">
+            <hr
+              style={{
+                border: "none",
+                height: "1px",
+                color: "#333",
+                backgroundColor: "#333",
+              }}
+            ></hr>
+            <Typography color='primary'  variant="body2" >
             category: {project.category}
             </Typography>
-            <Typography variant="body2" >
-            Current Status: {project.status}
-            </Typography>
+            <Typography variant="body2" align="center" color="secondary">
+                <AssignmentTurnedInTwoToneIcon fontSize="small"/>
+                   {project.status}
+                </Typography>
+                <Typography
+                            gutterBottom
+                            component="div"
+                            variant="body2"
+                          >
+                            {`${project.description.substr(0, 100)}...`}
+                          </Typography>
+
+
           </CardContent>
           <CardActions>
-            <Button size="small" variant="contained">Learn More</Button>
+            <Button fullWidth variant="contained">View Work</Button>
           </CardActions>
         </Card>
         </Link>
       
         </div>
         ))}
+        </div>
         </TabPanel>
         </Box>
     </div>

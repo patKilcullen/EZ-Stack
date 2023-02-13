@@ -20,7 +20,13 @@ import PropTypes from "prop-types";
 import Tabs from "@mui/material/Tabs";
 import Tab from "@mui/material/Tab";
 import Box from "@mui/material/Box";
-
+import SendIcon from '@mui/icons-material/Send';
+import MessageIcon from '@mui/icons-material/Message';
+import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
+import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
+import DeleteIcon from '@mui/icons-material/Delete';
+import ViewListIcon from '@mui/icons-material/ViewList';
+import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
 
 import {
   fetchSingleFreelancerRequest,
@@ -195,21 +201,25 @@ const SingleProject = () => {
             >
               <CardContent>
                 {!p[0] ? null : <FavoriteIcon></FavoriteIcon>}
-                <Typography variant="h3" component="div" align="center">
+                <Typography fontFamily={"Playfair Display serif"} variant="h4" component="div" align="center">
                   {project.singleProject.title}
                 </Typography>
+                <hr
+            style={{border: "none", height: "1px",color: "#333",backgroundColor: "#333"}}
+            ></hr>
 
                 <Typography
                   color="primary"
                   align="center"
-                  variant="h5"
+                  variant="body1"
                   component="div"
                 >
                   {project.singleProject.category}
                 </Typography>
-
-                <Typography variant="h6" align="center" color="primary">
-                  Status: {project.singleProject.status}
+                
+                <Typography variant="body1" align="center" color="secondary">
+                {/* <PendingTwoToneIcon fontSize="small"/> */}
+                   {project.singleProject.status}
                 </Typography>
                 <br></br>
                 <br></br>
@@ -219,7 +229,7 @@ const SingleProject = () => {
                 </Typography>
                 <br></br>
 
-             { clientIsLoggedIn ? null : <Typography variant="h6" color="primary" align="center">
+             { clientIsLoggedIn ? null : <Typography variant="h6" align="center">
                   Posted by:
                   {project.singleProject.id && project.singleProject.client ? (
                     <Link
@@ -227,7 +237,7 @@ const SingleProject = () => {
                     >
                       <Typography
                         color="primary"
-                        variant="h5"
+                        variant="h6"
                         sx={{ display: "inline" }}
                       >
                         {" "}
@@ -259,13 +269,17 @@ const SingleProject = () => {
                   ) : null}
 
                 <br></br>
-                <br></br>
+                
               </CardContent>
 
-              <CardActions>
+              <CardActions
+              align="center"
+              >
 
                 {clientIsLoggedIn ? 
-                <div className="clientButtons">
+                <div className="clientButtons" 
+                // style={{display:"flex", justifyContent:"center", alignItems:"center"}}
+                >
 
 
                 {client === project.singleProject.clientId && project.singleProject.status !== 'Complete'? (
@@ -274,22 +288,26 @@ const SingleProject = () => {
                     onClick={() => handleDelete(project.singleProject.id)}
                     size="large"
                     variant="contained"
+                    fullWidth
+                    startIcon={<DeleteIcon />}
                   >
                     Delete Project
                   </Button>
                 ) : null}
                 {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button size="large" variant="contained" onClick={reviewWork}>Review Work</Button> : null}
                 {client === project.singleProject.clientId && project.singleProject.status === 'Complete' ? 
-                <Button size="large" variant="contained" onClick={viewWork}>View Work</Button> : null}
+                <Button size="large" variant="contained" startIcon={<ViewListIcon />} onClick={viewWork}>View Work</Button> : null}
                 </div> : null}
                 {freelancerIsLoggedIn ? 
                 <div className="freelancerButtons">
                 {freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete' ? <Button size="large" variant="contained" onClick={viewWork}>View Work</Button> : null }
                 {freelancerIsLoggedIn ? (
                   <Button
+                  sx={{ padding: 1, margin: 2, }} 
                     onClick={clickMessage}
-                    type="small"
+                    size="large"
                     variant="contained"
+                    endIcon={<MessageIcon />}
                   >
                     Message
                   </Button>
@@ -298,26 +316,33 @@ const SingleProject = () => {
                 {freelancerIsLoggedIn ? (
                   <>
                     {!p[0] ? <Button
+                    sx={{ padding: 1, margin: 2, }} 
                       onClick={likeProject}
-                      size="small"
+                      size="large"
                       variant="contained"
+                      endIcon={<FavoriteBorderIcon />}
                     >
-                      Like Project
+                      Like 
                     </Button> : <Button
+                    sx={{ padding: 1, margin: 2,  }} 
                       onClick={unlike}
-                      size="small"
+                      size="large"
                       variant="contained"
+                      endIcon={<HeartBrokenIcon />}
                     >
                       Unlike
                     </Button> }
 
                     {request.singleRequest ? null : (
                       <Button
+                      sx={{ padding: 1, margin: 2 }} 
                         onClick={() => handleSubmitProposal()}
-                        size="small"
+                        size="large"
+                        
                         variant="contained"
+                        endIcon={<SendIcon />}
                       >
-                        Submit a Proposal
+                        Send Proposal
                       </Button>
                     )}
                   </>

@@ -4,6 +4,10 @@ import { useParams } from 'react-router-dom';
 import { fetchSingleClientMessageAsync, selectSingleClientMessage, sendClientMessageAsync } from './clientSingleMessageSlice';
 import { updateMessageAsync } from './freelancerSingleMessageSlice';
 
+import ForumTwoToneIcon from '@mui/icons-material/ForumTwoTone';
+import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
+import Typography from '@mui/material/Typography';
+
 const IndividualMessagesClient = () => {
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
   const client = useSelector((state) => state.clientAuth.clientMe);
@@ -54,9 +58,17 @@ const IndividualMessagesClient = () => {
       boxShadow: "1px 3px 3px 1px",
     }}
   >
-    <h3 
-    style={{ display: "flex", justifyContent: "center" }}
-    >Messages</h3>
+    <Typography
+        color="primary"
+        component="div"
+        marginTop={5}
+        marginBottom={3}
+        variant="h4"
+        align='center'
+      >
+        Messages
+        <ForumTwoToneIcon size="large"/>
+      </Typography>
     {sorted
       ? sorted.map((message) => {
           return (
@@ -78,7 +90,7 @@ const IndividualMessagesClient = () => {
                     <span
                      style={{ marginLeft: "5px" }}
                     >
-                      
+                       {<Person2TwoToneIcon color="secondary" size="small" />}
                       from: {message.from} - 
                       at: {message.createdAt}
                     </span>
