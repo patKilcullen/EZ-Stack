@@ -1,4 +1,5 @@
 import React from 'react'
+import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 
 const aboutStyles = {
@@ -32,6 +33,7 @@ const aboutStyles = {
   };
 
 const AboutUs = () => {
+
   return (
     <>
     <div style={aboutStyles.about}>
@@ -82,9 +84,9 @@ const AboutUs = () => {
         <div style={aboutStyles.column}>
             <div style={aboutStyles.card}>
             <div style={aboutStyles.container}>
-                <h2>Steven Sch...</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>stevenh@capstone.com</p>
+                <h2>Steven Scheck</h2>
+                <p>Steven Scheck is a software Engineer from California who enjoys working with a team to solve problems. He recently graduated Fullstack Academy Web Development Course and is beginning his Job Search. </p>
+                <a href='https://www.linkedin.com/in/steven-scheck/'><LinkedInIcon></LinkedInIcon></a>
             </div>
             </div>
             
