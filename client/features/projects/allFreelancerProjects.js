@@ -57,6 +57,8 @@ function a11yProps(index) {
 const AllFreelancerProjects = () => {
   const projects = useSelector(selectProjects);
   const [viewRejects, setViewRejects] = useState(false)
+  const [ongo, setOngo] = useState(false)
+  const [comp, setComp] = useState(false)
 
   console.log("ALL PROJECT: ", projects)
   
@@ -66,6 +68,15 @@ console.log("REJECCTS: ", rejects)
   const dispatch = useDispatch()
 
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
+
+  projects.map((project) => {
+    if(project.status === 'Ongoing' && !ongo){
+      setOngo(true)
+    }
+    if(project.status === 'Complete' && !comp){
+      setComp(true)
+    }
+  })
   
   
   useEffect(() => {
@@ -124,6 +135,7 @@ console.log("REJECCTS: ", rejects)
 
         <TabPanel value={value} index={0}>
 
+
         {projects?.length ? 
               (
               <div
@@ -135,6 +147,9 @@ console.log("REJECCTS: ", rejects)
                 overflow:"auto",
               }}
               >
+
+      {ongo ? 
+          <div>
 
         {projects.filter((project)=>{
             
@@ -192,14 +207,20 @@ console.log("REJECCTS: ", rejects)
         ))
         }
         </div>
+
             ): 
             <Link to="/projects">
               <AddBoxTwoToneIcon fontSize="large" color="secondary"/> 
               No Ongoing Projects yet, Find a Project!</Link>
             }
+
+        ))}
+        </div> : <p>No Ongoing Projects</p>}
+
         </TabPanel>
 
         <TabPanel value={value} index={1}>
+
 
         <div
               style={{
@@ -210,6 +231,10 @@ console.log("REJECCTS: ", rejects)
                 overflow:"auto",
               }}
               >
+
+       {comp ? 
+       <div>
+
         {projects.filter((project)=>{
             
             return project.status === "Complete"
@@ -266,7 +291,11 @@ console.log("REJECCTS: ", rejects)
       
         </div>
         ))}
+
         </div>
+
+        </div> : <p>No Completed Projects</p>}
+
         </TabPanel>
         </Box>
     </div>

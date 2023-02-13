@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useParams } from 'react-router-dom';
 import { fetchSingleClientMessageAsync, selectSingleClientMessage, sendClientMessageAsync } from './clientSingleMessageSlice';
 import { updateMessageAsync } from './freelancerSingleMessageSlice';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 
 import ForumTwoToneIcon from '@mui/icons-material/ForumTwoTone';
 import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
@@ -32,6 +33,10 @@ const IndividualMessagesClient = () => {
     }
   })
 
+  const backButton = () => {
+    window.history.back()
+  }
+
   useEffect(() => {
     dispatch(fetchSingleClientMessageAsync({id, clientId}))
   }, [dispatch, render])
@@ -58,6 +63,7 @@ const IndividualMessagesClient = () => {
       boxShadow: "1px 3px 3px 1px",
     }}
   >
+
     <Typography
         color="primary"
         component="div"
@@ -69,6 +75,10 @@ const IndividualMessagesClient = () => {
         Messages
         <ForumTwoToneIcon size="large"/>
       </Typography>
+
+    <ArrowBackIcon className='backArrow' onClick={backButton}></ArrowBackIcon>
+   
+
     {sorted
       ? sorted.map((message) => {
           return (

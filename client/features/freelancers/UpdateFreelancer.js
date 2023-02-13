@@ -6,6 +6,7 @@ import {
   selectSingleFreelancer,
   updateFreelancerAsync,
 } from "./singleFreelancerSlice";
+import ImageUpload from "../imageUpload/ImageUpload";
 
 
 // MATERIAL UI
@@ -68,9 +69,7 @@ const UpdateFreelancer = () => {
         hourlyRate,
         username,
         category,
-        specialties,
-        // bio,
-        imageUrl,
+        specialties
       })
     ).then(() => dispatch(fetchSingleFreelancer(id)));
     navigate("/profile");
@@ -90,8 +89,6 @@ const UpdateFreelancer = () => {
     setHourlyRate(freelancer.hourlyRate);
     setCategory(freelancer.category);
     setSpecialties(freelancer.specialties);
-    // setBio(freelancer.bio);
-    setImageUrl(freelancer.imageUrl);
   }, []);
 
   ////CharacterLimit//////
@@ -239,20 +236,6 @@ const UpdateFreelancer = () => {
             name="description"
             onChange={(e) => setDescription(e.target.value)}
           />
-
-
-
-          <TextField
-            margin="normal"
-            required
-            fullWidth
-            autoComplete="image"
-            label="imageUrl"
-            value={imageUrl}
-            name="image"
-            onChange={(e) => setImageUrl(e.target.value)}
-          />
-
           <Button
             type="submit"
             fullWidth
@@ -263,6 +246,7 @@ const UpdateFreelancer = () => {
             Update
           </Button>
         </Box>
+        <ImageUpload />
       </Box>
     </Container>
   );

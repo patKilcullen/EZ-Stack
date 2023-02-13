@@ -28,7 +28,7 @@ const AuthForm = ({ name, displayName }) => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const handleSubmit = (evt) => {
+  const handleSubmit = async (evt) => {
     evt.preventDefault();
     const formName = evt.target.name;
     console.log(formName)
@@ -36,9 +36,9 @@ const AuthForm = ({ name, displayName }) => {
     const password = evt.target.password.value;
     const option = evt.target.dispatchRoute.value;
     if(option === 'client'){
-    dispatch(clientAuthenticate({ username, password, method: formName })).then(() => setErr(true))
+    await dispatch(clientAuthenticate({ username, password, method: formName })).then(() => setErr(true))
     }else if(option === 'freelancer'){
-    dispatch(freelancerAuthenticate({username, password, method: formName})).then(() => setErr(true))
+    await dispatch(freelancerAuthenticate({username, password, method: formName})).then(() => setErr(true))
     }
     if(err && !errMessage){
       navigate('/')

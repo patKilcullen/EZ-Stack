@@ -198,6 +198,7 @@ const faker = require("faker")
 
 const {db, models: {Client, Freelancer, Project, Request, Rating} } = require('../server/db')
 
+
 /**
  * seed - this function clears the database, updates tables to
  *      match the models, and populates the database.
@@ -227,7 +228,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'HTML & CSS Developer',
   hourlyRate: 25,
@@ -240,7 +241,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'Python Developer',
   hourlyRate: 30,
@@ -253,7 +254,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'Android Developer',
   hourlyRate: 20,
@@ -266,7 +267,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'iOS Developer',
   hourlyRate: 35,
@@ -279,7 +280,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'Javascript Developer',
   hourlyRate: 35,
@@ -292,7 +293,7 @@ await Freelancer.create({
       firstName: faker.name.firstName(),
       lastName: faker.name.lastName(),
       email : faker.internet.email(),
-  imageUrl: faker.image.people(),
+  imageUrl: faker.image.people(450, 150, true),
   description: faker.commerce.productDescription(),
   category: 'HTML & CSS Developer',
   hourlyRate: 25,
@@ -305,7 +306,7 @@ for (let i = 0; i <= 25; i++) {
 await Project.create({
   clientId: Math.floor(Math.random() * 100 + 1),
   freelancerId: Math.floor(Math.random() * 100 + 1),
-  title: faker.name.jobType(),
+  title: faker.name.jobArea(),
  status: 'Pending',
  description: faker.lorem.sentences(),
  category: 'Android Developer'
@@ -314,7 +315,7 @@ for (let i = 0; i <= 25; i++) {
   await Project.create({
     clientId: Math.floor(Math.random() * 100 + 1),
     freelancerId: Math.floor(Math.random() * 100 + 1),
-    title: faker.name.jobType(),
+    title: faker.name.jobArea(),
    status: 'Pending',
    description: faker.lorem.sentences(),
    category: 'Python Developer'
@@ -323,7 +324,7 @@ for (let i = 0; i <= 25; i++) {
     await Project.create({
       clientId: Math.floor(Math.random() * 100 + 1),
       freelancerId: Math.floor(Math.random() * 100 +1 ),
-      title: faker.name.jobType(),
+      title: faker.name.jobArea(),
      status: 'Pending',
      description: faker.lorem.sentences(),
      category: 'HTML & CSS Developer'
@@ -332,7 +333,7 @@ for (let i = 0; i <= 25; i++) {
       await Project.create({
         clientId: Math.floor(Math.random() * 100 + 1),
         freelancerId: Math.floor(Math.random() * 100 + 1),
-        title: faker.name.jobType(),
+        title: faker.name.jobArea(),
        status: 'Pending',
        description: faker.lorem.sentences(),
        category: 'iOS Developer'
@@ -341,7 +342,7 @@ for (let i = 0; i <= 25; i++) {
         await Project.create({
           clientId: Math.floor(Math.random() * 100 + 1),
           freelancerId: Math.floor(Math.random() * 100 + 1),
-          title: faker.name.jobType(),
+          title: faker.name.jobArea(),
          status: 'Pending',
          description: faker.lorem.sentences(),
          category: 'Javascript Developer'

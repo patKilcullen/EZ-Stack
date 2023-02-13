@@ -601,7 +601,7 @@ const AllFreelancers = () => {
                     }}
                   >
                     <CardMedia
-                      sx={{ height: 140 }}
+                      sx={{ height: 200, width: 450}}
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />

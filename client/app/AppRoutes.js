@@ -42,6 +42,7 @@ import SubmitWork from '../features/projects/SubmitWork';
 import ReviewWork from '../features/projects/ReviewWork';
 import Work from '../features/projects/Work';
 
+
 /**
  * COMPONENT
  */
@@ -132,7 +133,7 @@ const AppRoutes = () => {
 
           <Route path="/projects" element={<AllProjects />} />
           <Route path="/projects/:projectId" element={<SingleProject />} />
-
+          
           <Route
             path="/freelancer/:freelancerId/requests"
             element={<FreelancerRequests />}
@@ -184,7 +185,7 @@ const AppRoutes = () => {
           <Route path="/" element={<Home />} />
 
           <Route path="/home" element={<Home />} />
-
+          
           <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
         <Route
           path="/login"
