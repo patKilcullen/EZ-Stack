@@ -41,6 +41,8 @@ import ViewAllRatings from '../features/ratings/ViewAllRatings';
 import SubmitWork from '../features/projects/SubmitWork';
 import ReviewWork from '../features/projects/ReviewWork';
 import Work from '../features/projects/Work';
+
+
 import SingleRequest from '../features/requests/SingleRequest';
 
 
@@ -167,7 +169,10 @@ const AppRoutes = () => {
           <Route path='/messages/:id' element={<IndividualMessagesFreelancer/>} />
           <Route path="/client-profile/:id" element={<Client />} />
 
+
+          {/* <Route path='/:clientId/requests/' element={<ClientRequest />} /> */}
           <Route path='requests/:requestId' element={<SingleRequest />} />
+
           <Route path='/submit/:id' element={<SubmitWork />} />
           <Route path='/work/:id' element={<Work />} />
           <Route path='/login' element={<Home />} />

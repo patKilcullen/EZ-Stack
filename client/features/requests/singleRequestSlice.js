@@ -41,6 +41,7 @@ export const fetchSingleRequestAsync = createAsyncThunk(
   export const editAcceptRequest = createAsyncThunk(
     "editAcceptRequest",
     async (project) => {
+      console.log("PROJECT: ", project)
       try {
         const { data } = await axios.put(`/api/requests/${project.projectId}`, project);
         console.log("DATAAAA: ", data)
@@ -70,10 +71,11 @@ const singleRequestSlice = createSlice({
     initialState: {},
     reducer: {},
     extraReducers: (builder) =>{
-        // builder.addCase(fetchSingleRequestAsync.fulfilled, (state, action)=>{
-        //     console.log("FETCH SINGEL REQUEST ACTION PAYLOAD: ", action.payload)
-        //      return action.payload
-        // })
+        builder.addCase(fetchSingleRequestAsync.fulfilled, (state, action)=>{
+            console.log("FETCH SINGEL REQUEST ACTION PAYLOAD: ", action.payload)
+            //  return action.payload
+             state.singleRequest = action.payload
+        })
         builder.addCase(fetchSingleFreelancerRequest.fulfilled, (state, action)=>{
             console.log("FETCH SINGEL REQUEST ACTION PAYLOAD: ", action.payload)
              state.singleRequest = action.payload
@@ -85,6 +87,6 @@ const singleRequestSlice = createSlice({
 
 
 export const selectSingleRequest = (state)=>{
-    return state.clientRequests
+    return state.singleRequest
 }
 export default singleRequestSlice.reducer

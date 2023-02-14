@@ -23,20 +23,30 @@ useEffect(()=>{
 
     
             dispatch(fetchSingleRequestAsync(requestId))
-            // .then(()=>{
-            //     dispatch(
-            //         editAcceptRequest({
-            //           projectId: request.projectId,
-            //           seenClient: !request.seenClient,
-            //           freelancerId: request.freelancerId,
-            //         }))
-            // })
+            .then(async ()=>{
+             request ?   await  dispatch(
+                    editAcceptRequest({
+                      projectId: request.projectId ,
+                      seenClient: true,
+                      freelancerId: request.freelancerId,
+                    })): null
+            })
       
 
 }, [dispatch, request])
 
+// const handleRead = async (projectId, seenClient, freelancerId)=>{
+//   console.log("SEEN CLIENT: ", !seenClient)
+//     await dispatch(editAcceptRequest({projectId: projectId, seenClient: !seenClient, freelancerId: freelancerId})).then(() => {
+//       dispatch(fetchClientRequests(projectId));
+//    })
+
+
+// }
+
 
 const wholeRequest = useSelector(selectSingleRequest)
+console.log("WHOLE REQUEST: ", wholeRequest)
 const request = wholeRequest.singleRequest
 
 const handleAssignUser = (id) => {
@@ -122,35 +132,39 @@ const handleAssignUser = (id) => {
 
 
 
-const handleRead = async (info) => {
-    console.log("SEEN CLIENT: ", info.projectId, !info.seenClient, info.freelancerId);
-    await dispatch(
-      editAcceptRequest({
-        projectId: info.projectId,
-        seenClient: !info.seenClient,
-        freelancerId: info.freelancerId,
-      })
-    ).then( async () => {
+// const handleRead = async (info) => {
+//     console.log("SEEN CLIENT: ", info.projectId, !info.seenClient, info.freelancerId);
+//     await dispatch(
+//       editAcceptRequest({
+//         projectId: info.projectId,
+//         seenClient: !info.seenClient,
+//         freelancerId: info.freelancerId,
+//       })
+//     ).then( async () => {
 
-        // dispatch(fetchSingleRequestAsync(request.requestId))
+//         // dispatch(fetchSingleRequestAsync(request.requestId))
         
-        dispatch(fetchSingleRequestAsync(request.requestId))
-        .then(()=>{
-            dispatch(fetchClientRequests(request.projectId))
+//         dispatch(fetchSingleRequestAsync(request.requestId))
+//         .then(()=>{
+//             dispatch(fetchClientRequests(request.projectId))
               
-        });
+//         });
   
      
-    });
-  };
+//     });
+//   };
 console.log("THIS REQUEST: ", request)
+
+
 
   return (
     <Card>
                     <CardContent>
-                        
+                     {request && request.projectId ? <Link to={`/projects/${request.projectId}/requests`}> <Button> Back to proposals</Button></Link> : null}
+
+                       
                       <h3> Project Request: </h3>
-                      <h4 style={{ display: "inline", right: "0px" }}>
+                      {/* <h4 style={{ display: "inline", right: "0px" }}>
                         Unread
                         
                     { request ?   <Switch
@@ -168,7 +182,7 @@ console.log("THIS REQUEST: ", request)
                           Read
                         </Switch>: null }
                         Read
-                      </h4>
+                      </h4> */}
                   {request && request.freelancer ?  <li >
                         <p>Request Status: {request.status}</p>
                        <p>
