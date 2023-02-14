@@ -75,7 +75,7 @@ const navigate = useNavigate()
       })
       .then(() => {
           dispatch(fetchClientRequests(projectId)).then(()=>{
-            // navigate(`/projects/${projectId}`)
+           
             window.location.reload()
           });
       navigate(`/projects/${projectId}`)
@@ -121,149 +121,12 @@ const handleRead = async (projectId, seenClient, freelancerId)=>{
 
 }
 
-console.log("REAQUESTS: ", requests)
-
-
-
-
-// return (
-//     <div>
-//       <ul>
-//         {props.clientId === props.projectClientId
-//           ? requests.length < 1
-//             ? "No requests yet for this project"
-//             : requests.map((request) => (
-//                 <div key={request.id}>
-//                   <Card>
-//                     {/* Component with Props */}
-//                     {/* <h1>{request.id}</h1>
-//                     <SingleRequest  project={request.project} requestId={request.id} projectId={request.projectId} status={request.status} requestMessage={request.requestMessage} freelancer={request.freelancer} freelancerId={request.freelancer.id} seenClient={request.seenClient}> 
-//                     </SingleRequest>
-//                     {/* Map through some, click link to open */}
-                    
-//                       <Link to={`/requests/${request.id}`}> View Proposal</Link>
-//                       <h3> Project Request: </h3>
-//                       <p>Request Status: {request.status}</p>
-//                       From:{" "}
-//                       <Link to={`/freelancers/${request.freelancer.id}`}>
-//                         {" "}
-//                         {request.freelancer.firstName}{" "}
-//                         {request.freelancer.lastName}
-//                       </Link>
-                    
-//                     <Typography gutterBottom variant="h5" component="div">
-//                       Proposal: {request.requestMessage}
-//                     </Typography>
-//                     {request.project.freelancerId === null ? (
-//                       <Button
-//                         size="small"
-//                         variant="contained"
-//                         onClick={() => handleAssignUser(request.freelancer.id)}
-//                       >
-//                         Assign {request.freelancer.firstName}{" "}
-//                         {request.freelancer.lastName} to Project
-//                       </Button>
-//                     ) : null}{" "}
-//                     {request.project.freelancerId === request.freelancerId &&
-//                     projectStatus !== "Complete" ? (
-//                       <Button
-//                         size="small"
-//                         variant="contained"
-//                         onClick={() =>
-//                           handleUnassignUser(request.freelancer.id)
-//                         }
-//                       >
-//                         Unassign {request.freelancer.firstName}{" "}
-//                         {request.freelancer.lastName} from Project
-//                       </Button>
-//                     ) : null}
-//                     {/* Map throug everything */}
-//                     {/* <Link to={`/requests/${request.id}`} >View Proposal</Link> */}
-//                     {/* <CardContent>
-//                       <h3> Project Request: </h3>
-//                       <h4 style={{ display: "inline", right: "0px" }}>
-//                         Unread
-//                         <Switch
-//                           checked={request.seenClient}
-//                           onChange={() =>
-//                             handleRead(
-//                               request.projectId,
-//                               request.seenClient,
-//                               request.freelancer.id
-//                             )
-//                           }
-//                           color="primary"
-//                         >
-//                           Read
-//                         </Switch>
-//                         Read
-//                       </h4>
-//                       <li key={request.id}>
-//                         <p>Request Status: {request.status}</p>
-//                         <p>
-//                           You have recieved a request from:{" "}
-//                           <Link to={`/freelancers/${request.freelancer.id}`}>
-//                             {" "}
-//                             {request.freelancer.firstName}{" "}
-//                             {request.freelancer.lastName}
-//                           </Link>
-//                         </p>
-//                         <Typography gutterBottom variant="h5" component="div">
-//                           {request.requestMessage}
-//                         </Typography>
-//                       </li>
-//                       {request.project.freelancerId === null ? (
-//                         <Button
-//                           size="small"
-//                           variant="contained"
-//                           onClick={() =>
-//                             handleAssignUser(request.freelancer.id)
-//                           }
-//                         >
-//                           Assign {request.freelancer.firstName}{" "}
-//                           {request.freelancer.lastName} to Project
-//                         </Button>
-//                       ) : null}{" "}
-//                       {request.project.freelancerId === request.freelancerId &&
-//                       projectStatus !== "Complete" ? (
-//                         <Button
-//                           size="small"
-//                           variant="contained"
-//                           onClick={() =>
-//                             handleUnassignUser(request.freelancer.id)
-//                           }
-//                         >
-//                           Unassign {request.freelancer.firstName}{" "}
-//                           {request.freelancer.lastName} from Project
-//                         </Button>
-//                       ) : null}
-//                     </CardContent> */}
-//                   </Card>
-//                 </div>
-//               ))
-//           : null}
-//       </ul>
-//     </div>
-//   );
-
-
-
-
-
-
-
-
-
-
-
-
-
-console.log("PROPSSSSSSS: ", props )
-
   return (
     <div >
       <ul>
+        
         {!props.clientId ? <Link to={`/projects/${projectId}`}><Button>View Project</Button> </Link>:null}
+
         {props.clientId === props.projectClientId
           ? 
           requests.length < 1 ? "No requests yet for this project" :
