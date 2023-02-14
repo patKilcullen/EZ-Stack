@@ -242,7 +242,17 @@ const AllFreelancers = () => {
                           }}
                         >
                           <Typography color="primary" variant="body2">
-                            {freelancers.ratingAvg === 1 ? (
+                            {freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 5 ?
+                            (<p>{"★★★★★"}</p>)  :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 4 ?
+                            (<p>{"★★★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 3 ?
+                            (<p>{"★★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 2 ?
+                            (<p>{"★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 1 ?
+                            (<p>{"★"}</p>) :
+                            freelancers.ratingAvg === 1 ? (
                               <p>{"★"}</p>
                             ) : freelancers.ratingAvg === 2 ? (
                               <p>{"★★"}</p>
@@ -453,7 +463,17 @@ const AllFreelancers = () => {
                           }}
                         >
                           <Typography color="primary" variant="body2">
-                            {freelancers.ratingAvg === 1 ? (
+                            {freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 5 ?
+                            (<p>{"★★★★★"}</p>)  :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 4 ?
+                            (<p>{"★★★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 3 ?
+                            (<p>{"★★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 2 ?
+                            (<p>{"★★"}</p>) :
+                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 1 ?
+                            (<p>{"★"}</p>) :
+                            freelancers.ratingAvg === 1 ? (
                               <p>{"★"}</p>
                             ) : freelancers.ratingAvg === 2 ? (
                               <p>{"★★"}</p>
@@ -602,12 +622,15 @@ const AllFreelancers = () => {
                       },
                     }}
                   >
-                    <CardMedia
-                    component="img"
-                      sx={{ height: 200, width: 450,objectFit: "contain" }}
+
+                    <div className="fImg">
+                    <CardMedia className="freelancerImg"
+                      sx={{ height: 200, width: 200}}
+
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />
+                    </div>
                     <CardContent>
                       <Typography
                         color="primary"

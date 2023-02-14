@@ -73,6 +73,7 @@ const IndividualMessagesFreelancer = () => {
         Messages
         <ForumTwoToneIcon size="large"/>
       </Typography>
+      <ArrowBackIcon className='backArrow' onClick={backButton}></ArrowBackIcon>
       {sorted
         ? sorted.map((message) => {
             return (
