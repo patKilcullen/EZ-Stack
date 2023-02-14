@@ -124,7 +124,7 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search {' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
 
@@ -164,7 +164,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search {' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Specialties{' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
         </div>
@@ -190,7 +190,8 @@ const AllFreelancers = () => {
                       }}
                     >
                       <CardMedia
-                        sx={{ height: 140 }}
+                       component="img"
+                       sx={{ height: 200, width: 450,objectFit: "contain" }}
                         image={freelancers.imageUrl}
                         title="Freelancer"
                       />
@@ -337,7 +338,7 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search {' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Category {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
 
@@ -377,7 +378,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search {' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Specialties {' '} <ManageSearchTwoToneIcon size="large"/>
             </Button>
           </form>
         </div>
@@ -403,7 +404,8 @@ const AllFreelancers = () => {
                       }}
                     >
                       <CardMedia
-                        sx={{ height: 140 }}
+                       component="img"
+                       sx={{ height: 200, width: 450,objectFit: "contain" }}
                         image={freelancers.imageUrl}
                         title="Freelancer"
                       />
@@ -554,7 +556,7 @@ const AllFreelancers = () => {
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-          Search {' '} <ManageSearchTwoToneIcon size="large"/>
+          Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
 
@@ -592,7 +594,7 @@ const AllFreelancers = () => {
             </MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-          Search {' '} <ManageSearchTwoToneIcon size="large"/>
+          Search Specialties{' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
       </div>
@@ -620,9 +622,11 @@ const AllFreelancers = () => {
                       },
                     }}
                   >
+
                     <div className="fImg">
                     <CardMedia className="freelancerImg"
                       sx={{ height: 200, width: 200}}
+
                       image={freelancers.imageUrl}
                       title="Freelancer"
                     />

@@ -79,7 +79,7 @@ const FreelancerProfile = () => {
   ///
 
   return (
-    <Box sx={{ width: "100%" }}>
+    <Box sx={{ }}>
       <Box sx={{ borderBottom: 1, borderColor: "divider" }}>
         <Tabs
           value={value}
@@ -90,9 +90,9 @@ const FreelancerProfile = () => {
           <Tab label="Edit Account" {...a11yProps(1)} />
         </Tabs>
       </Box>
-      <TabPanel value={value} index={0}>
+      <TabPanel value={value} index={0}>      
         <h2>Welcome {freelancer.firstName}, we've missed you!</h2>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           You are logged in as a freelancer.
         </Typography>
         <Box
@@ -112,6 +112,7 @@ const FreelancerProfile = () => {
                 // height: 550,
                 margin: "0 auto",
                 padding: "1em",
+                ":hover": { boxShadow: 20 },
               }}
             >
               {freelancer.imageUrl ? (
@@ -175,10 +176,11 @@ const FreelancerProfile = () => {
           <div
             className="recent-orders"
             style={{
-              backgroundColor: "white",
+              backgroundColor: "whitesmoke",
               margin: "100px 100px",
               borderRadius: "4px",
-              boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+              ":hover": { boxShadow: 20 },
+              boxShadow: "1px 3px 3px 1px",
             }}
           >
             <Typography

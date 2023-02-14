@@ -2,8 +2,8 @@
 
 body {
   /* background-color: #51d0de; */
-  /* background-color: #bf4aa8; */
-   background-image: url(https://img.freepik.com/free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products-plain-studio-background_1258-54444.jpg?w=1380&t=st=1676067350~exp=1676067950~hmac=117564d9ce3e343dbd524c499f67ccddf102c27372e512f814bd4750e64e6537);
+  /* background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%); */
+   /* background-image: url(https://img.freepik.com/free-photo/abstract-luxury-blur-dark-grey-black-gradient-used-as-background-studio-wall-display-your-products-plain-studio-background_1258-54444.jpg?w=1380&t=st=1676067350~exp=1676067950~hmac=117564d9ce3e343dbd524c499f67ccddf102c27372e512f814bd4750e64e6537); */
    width: 100%;
    background-size: cover;
   }
@@ -12,17 +12,17 @@ body {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  /* background-color: #bf4aa8; */
-  /* background-color: #51d0de; */
+  background: linear-gradient(to top, #dfe9f3 0%, white 100%);
+
 }
+
+
 
 
 #main {
   display: flex;
   flex-direction: row;
-  min-height: 68vh;
-
- /* background-color:#51d0de; */
+  min-height: 73vh;
   justify-content: center;
   flex: 2;
 }
@@ -35,7 +35,6 @@ body {
   align-items:center;
   position: relative;
   bottom: 0;
-  /* border-radius: 25px; */
   min-height: 10vh;
 }
 
@@ -223,7 +222,7 @@ nav a:hover::before {
   display: flex;
   justify-content: space-between;
   background-color:#bf4aa8;
-  min-height: 15vh;
+  min-height: 8vh;
 
 }
 
@@ -277,9 +276,9 @@ li {
 
 #siteName span {
   margin-top: 5px;
-  font-size: 15px;
+  font-size: 13px;
   color: whitesmoke;
-  word-spacing: 1px;
+  /* word-spacing: 1px; */
   font-weight: normal;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -288,7 +287,7 @@ li {
   display: grid;
   grid-template-columns: 1fr max-content 1fr;
   grid-template-rows: 27px 0;
-  grid-gap: 20px;
+  grid-gap: 10px;
   align-items: center;
 }
 
@@ -300,12 +299,14 @@ li {
   border-top: 1px solid whitesmoke;
   height: 5px;
   background-color: whitesmoke;
+ 
 }
+
 
 #navbar-right {
   display: flex;
   justify-content: flex-end;
-  width: 60%;
+  /* width: 60%; */
 }
 
 #navbar-right a {

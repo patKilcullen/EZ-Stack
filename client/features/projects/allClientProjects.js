@@ -202,7 +202,15 @@ return reqs.map((proj)=>{
             <TabPanel value={value} index={0}>
 
                 {pend ? 
-            <div className="allList">
+            <div
+            style={{
+              width: 600,
+              height:500,
+              alignContent:"center",
+              boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+              overflow:"auto",
+            }}
+            >
 
                 {projects
                   .filter((project) => {
@@ -269,7 +277,15 @@ return reqs.map((proj)=>{
             </TabPanel>
             <TabPanel value={value} index={1}>
               {ongo ? 
-              <div className="allList">
+              <div
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
 
 
               {projects
@@ -345,7 +361,15 @@ return reqs.map((proj)=>{
             </TabPanel>
             <TabPanel value={value} index={2}>
               {comp ? 
-              <div className="allList">
+              <div 
+              style={{
+                width: 600,
+                height:500,
+                alignContent:"center",
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow:"auto",
+              }}
+              >
               
               {projects
                 .filter((project) => {

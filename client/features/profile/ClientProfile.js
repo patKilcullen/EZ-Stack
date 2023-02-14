@@ -91,7 +91,7 @@ const ClientProfile = () => {
       </Box>
       <TabPanel value={value} index={0}>
         <h2>Welcome {client.firstName}, we've missed you!</h2>
-        <Typography variant="body2" color="text.secondary">
+        <Typography variant="body1" color="text.secondary">
           You are logged in as a client.
         </Typography>
         <Box
@@ -111,6 +111,7 @@ const ClientProfile = () => {
                 // height: 650,
                 margin: "0 auto",
                 padding: "1em",
+                ":hover": { boxShadow: 20 },
               }}
             >
               {client.imageUrl ? (
@@ -160,12 +161,13 @@ const ClientProfile = () => {
             {client.projects?.length ? 
              (
           <div
-            className="recent-orders"
-            style={{
-              backgroundColor: "white",
-              margin: "100px 100px",
-              borderRadius: "4px",
-              boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+          className="recent-orders"
+          style={{
+            backgroundColor: "#F5F5F5",
+            margin: "100px 100px",
+            borderRadius: "4px",
+            ":hover": { boxShadow: 20 },
+            boxShadow: "1px 3px 3px 1px",
             }}
           >
             <Typography

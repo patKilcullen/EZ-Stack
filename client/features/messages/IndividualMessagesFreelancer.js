@@ -6,6 +6,8 @@ import { fetchSingleFreelancerMessageAsync, selectSingleFreelancerMessage, sendF
 import ForumTwoToneIcon from '@mui/icons-material/ForumTwoTone';
 import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
 import Typography from '@mui/material/Typography';
+import ArrowBackIcon from '@mui/icons-material/ArrowBack';
+import Button from "@mui/material/Button";
 
 const IndividualMessagesFreelancer = () => {
   const freelancerId = useSelector((state) => state.freelancerAuth.me.id)
@@ -51,12 +53,13 @@ const IndividualMessagesFreelancer = () => {
         overflowY: "auto",
         padding: "10px",
         backgroundColor: "#F5F5F5",
-        margin: "50px 50px",
-        width: "30vw",
-        minHeight: "40vh",
+        margin: "20px 20px",
+        width: "60vw",
+        height: "60vh",
         alignContent: "center",
         borderRadius: "4px",
-        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+        boxShadow: "1px 3px 3px 1px",
+        ":hover": { boxShadow: 20 },
       }}
     >
       <Typography
@@ -126,6 +129,9 @@ const IndividualMessagesFreelancer = () => {
             resize: "none"}}
           onChange={(e) => setContent(e.target.value)}
         />
+         <div
+      style={{display:"flex", justifyContent:"space-evenly"}}
+      >
         <button 
         type="submit"
         style={{
@@ -143,6 +149,11 @@ const IndividualMessagesFreelancer = () => {
           marginTop: "5px"
         }}
         >Send</button>
+        <Button onClick={backButton} color="primary" variant="contained">
+      Go Back
+      <ArrowBackIcon  className='backArrow'></ArrowBackIcon>
+      </Button>
+        </div>
       </form>
     </div>
   )

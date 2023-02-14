@@ -17,7 +17,7 @@ import Box from "@mui/material/Box";
 import AddBoxTwoToneIcon from '@mui/icons-material/AddBoxTwoTone';
 import AssignmentTurnedInTwoToneIcon from '@mui/icons-material/AssignmentTurnedInTwoTone';
 import ContentPasteGoTwoToneIcon from '@mui/icons-material/ContentPasteGoTwoTone';
-
+import NotificationsActiveTwoToneIcon from '@mui/icons-material/NotificationsActiveTwoTone';
 
 function TabPanel(props) {
   const { children, value, index, ...other } = props;
@@ -100,10 +100,11 @@ console.log("REJECCTS: ", rejects)
 
 { rejects.length ? 
       <div>
-      <Typography color="primary" variant="h6" component="div">
+      <Typography variant="h6" color='secondary'>
+      <NotificationsActiveTwoToneIcon fontSize="large"/>
       Your submitted work was rejected: 
     </Typography>
-      <Button fullWidth variant="contained" onClick={()=>setViewRejects(true)}>
+      <Button  variant="contained" onClick={()=>setViewRejects(true)}>
       View Rejected Work
     </Button>
     </div>
@@ -138,7 +139,15 @@ console.log("REJECCTS: ", rejects)
 
 
       {ongo ? 
-          <div>
+          <div
+          style={{
+            width: 600,
+            height:500,
+            alignContent:"center",
+            boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+            overflow:"auto",
+          }}
+          >
 
         {projects.filter((project)=>{
             
@@ -206,7 +215,15 @@ console.log("REJECCTS: ", rejects)
   
 
        {comp ? 
-       <div>
+       <div
+       style={{
+        width: 600,
+        height:500,
+        alignContent:"center",
+        boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+        overflow:"auto",
+      }}
+       >
 
         {projects.filter((project)=>{
             
