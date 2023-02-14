@@ -8,6 +8,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ForumTwoToneIcon from '@mui/icons-material/ForumTwoTone';
 import Person2TwoToneIcon from '@mui/icons-material/Person2TwoTone';
 import Typography from '@mui/material/Typography';
+import Button from "@mui/material/Button";
 
 const IndividualMessagesClient = () => {
   const clientId = useSelector((state) => state.clientAuth.clientMe.id);
@@ -61,6 +62,7 @@ const IndividualMessagesClient = () => {
       alignContent: "center",
       borderRadius: "4px",
       boxShadow: "1px 3px 3px 1px",
+      ":hover": { boxShadow: 20 },
     }}
   >
 
@@ -75,9 +77,6 @@ const IndividualMessagesClient = () => {
         Messages
         <ForumTwoToneIcon size="large"/>
       </Typography>
-
-    <ArrowBackIcon className='backArrow' onClick={backButton}></ArrowBackIcon>
-   
 
     {sorted
       ? sorted.map((message) => {
@@ -133,6 +132,9 @@ const IndividualMessagesClient = () => {
           resize: "none"}}
         onChange={(e) => setContent(e.target.value)}
       />
+      <div
+      style={{display:"flex", justifyContent:"space-evenly"}}
+      >
       <button 
       type="submit"
       style={{
@@ -150,6 +152,11 @@ const IndividualMessagesClient = () => {
         marginTop: "5px"
       }}
       >Send</button>
+      <Button onClick={backButton} color="primary" variant="contained">
+      Go Back
+      <ArrowBackIcon  className='backArrow'></ArrowBackIcon>
+      </Button>
+      </div>
     </form>
   </div>
 

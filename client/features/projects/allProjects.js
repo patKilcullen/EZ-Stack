@@ -27,13 +27,15 @@ import PendingIcon from '@mui/icons-material/Pending';
 import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
 import ManageSearchTwoToneIcon from '@mui/icons-material/ManageSearchTwoTone';
 
+
+
 import { fetchLikedProjectsAsync, likeProjectAsync, selectLikedProjects } from "./likedProjectsSlice";
 
 
 
+
 const AllProjects = () => {
-  
-  const projectsByCat = useSelector(selectProjectsByCategory)
+const projectsByCat = useSelector(selectProjectsByCategory)
   const projects = useSelector(selectProjects);
   const freelancer = useSelector((state) => state.freelancerAuth.me.id)
   const freelancerIsLoggedIn = useSelector((state) => !!state.freelancerAuth.me.id)
@@ -122,7 +124,7 @@ if (projectsByCat.length) {
           <MenuItem value={'Liked'}>Liked</MenuItem>):null}
         </Select>
         <Button type="submit" variant="contained">
-          Search {' '} <ManageSearchTwoToneIcon size="large"/>
+          Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
         </Button>
       </form>
       </div>
@@ -137,7 +139,10 @@ if (projectsByCat.length) {
             ':hover': {
               boxShadow: 20, // theme.shadows[20]
             },
-            }}>
+            }}
+            >
+            
+            
           <CardContent>
             <div
             style={{display:"flex", justifyContent:"space-around" }}
@@ -223,7 +228,7 @@ if (projectsByCat.length) {
           <MenuItem value={'Liked'}>Liked</MenuItem>):null}
           </Select>
           <Button type="submit" variant="contained">
-          Search {' '} <ManageSearchTwoToneIcon size="large"/>
+          Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
           </Button>
         </form>
     
@@ -233,13 +238,17 @@ if (projectsByCat.length) {
         {_DATA.currentData().map((project) => (
           <div className='card'>
             <Link to={`/projects/${project.id}`}>
-          <Card  sx={{ width: 300, height: 300, maxWidth: 500,
+          <Card  
+           sx={{ width: 300, height: 300, maxWidth: 500,
             backgroundColor:"#F5F5F5", 
             boxShadow:"0 4px 8px 0 rgba(0, 0, 0, 0.2)",
             ':hover': {
               boxShadow: 20, // theme.shadows[20]
             },
-            }}>
+            }}
+            >
+            
+            
           <CardContent>
           <div
             style={{display:"flex", justifyContent:"space-around" }}
@@ -274,7 +283,7 @@ if (projectsByCat.length) {
             <br></br>
            
             <CardActions>
-              <Button size="small" gutterbottom fullWidth variant='contained'>Learn More</Button>
+              <Button size="small" fullWidth variant='contained'>Learn More</Button>
             </CardActions>
           </Card>
         </Link>
