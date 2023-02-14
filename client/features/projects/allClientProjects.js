@@ -167,7 +167,7 @@ const seen = requests.filter((request)=>{
 </Box>
 
 {/* && NEEDED???? */}
-<p>{seenRequests && !seen ? null :
+<p>{seenRequests && seen ? null :
     
     seen.map((request)=>{
 
