@@ -7,6 +7,7 @@ import {
 } from "./clientRequestSlice";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { editAssignFreelancer } from "../projects/singleProjectSlice";
+import SingleRequest from "./SingleRequest";
 
 import { selectSingleProject } from "../projects/singleProjectSlice";
 import { fetchSingleProjectAsync } from "../projects/singleProjectSlice";
@@ -139,7 +140,7 @@ return (
                     </SingleRequest>
                     {/* Map through some, click link to open */}
                     
-                      
+                      <Link to={`/requests/${request.id}`}> View Proposal</Link>
                       <h3> Project Request: </h3>
                       <p>Request Status: {request.status}</p>
                       From:{" "}

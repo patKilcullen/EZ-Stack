@@ -143,7 +143,7 @@ const handleRead = async (info) => {
      
     });
   };
-
+console.log("THIS REQUEST: ", request)
 
   return (
     <Card>
