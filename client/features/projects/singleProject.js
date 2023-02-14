@@ -27,6 +27,8 @@ import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 import DeleteIcon from '@mui/icons-material/Delete';
 import ViewListIcon from '@mui/icons-material/ViewList';
 import PendingTwoToneIcon from '@mui/icons-material/PendingTwoTone';
+import { fetchRatingsByFreelancerAsync, selectRatings } from "../ratings/ViewAllSlice";
+import { updateFreelancerAsync } from "../freelancers/singleFreelancerSlice";
 
 import {
   fetchSingleFreelancerRequest,
@@ -132,8 +134,21 @@ const SingleProject = () => {
     await dispatch(unlikeProjectAsync(p[0].id))
     setRender(!render)
   }
+  const reviews = useSelector(selectRatings)
+
+  const ratings = reviews.map((review)=>review.rating)
+  
+  const ratingSum = ratings.reduce((accumulator, value) =>{
+    return accumulator + value;
+  }, 0)
+  const ratingAvg = Math.round(ratingSum / ratings.length)
+  
+  {!ratingAvg ? dispatch(updateFreelancerAsync({id: project.singleProject.freelancerId, ratingAvg: 5})): dispatch(updateFreelancerAsync({id: project.singleProject.freelancerId, ratingAvg}))}
 
   useEffect(() => {
+
+    dispatch(fetchRatingsByFreelancerAsync(project.singleProject.freelancerId))
+
     dispatch(fetchSingleProjectAsync(projectId));
 
     if(freelancerIsLoggedIn){

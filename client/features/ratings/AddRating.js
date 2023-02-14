@@ -28,9 +28,7 @@ import { fetchSingleFreelancer, updateFreelancerAsync } from "../freelancers/sin
 const statuses = ["Pending", "Ongoing", "Complete"];
 
 const AddRating = (props) => {
-  const [rating, setRating] = useState("");
-  const [review, setReview] = useState("");
-
+  
 // CHARACTER LIMIT
   const [characterError, setCharacterError] = useState(false);
   const [reviewMessage, setReviewMessage] = useState("");
@@ -39,7 +37,7 @@ const AddRating = (props) => {
 
   const freelancer = useSelector((state) => state.singleProject.singleProject.freelancer)
   const singleRating = useSelector(selectSingleRating)
-  console.log("SINGLE RATING: ", singleRating)
+  
 
   const client = useSelector((state) => state.clientAuth.clientMe.id)
 
@@ -51,64 +49,40 @@ const AddRating = (props) => {
   const id = freelancerId
 
   const ratings = reviews.map((review)=>review.rating)
+  
   const ratingSum = ratings.reduce((accumulator, value) =>{
     return accumulator + value;
   }, 0)
   const ratingAvg = Math.round(ratingSum / ratings.length)
 
+  
   const dispatch = useDispatch();
   
-//   useEffect(() => {
-//     dispatch(fetchSingleProjectAsync(projectId))
-//     .then((res) => {
-//       const {status, description, category } = res.payload;
-
-//       setRating(status);
-//       setReview(description);
-//     });
-//   }, [dispatch]);
-
-useEffect(() => {
-  dispatch(fetchRatingsByFreelancerAsync(freelancerId))
-  dispatch(fetchSingleFreelancer(freelancerId))
-
+ useEffect(() => {
+   dispatch(fetchRatingsByFreelancerAsync(freelancerId))
    dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
-
- }, [dispatch]);
-
-//  PROJECT IN RATING
-// useEffect(()=>{
-// dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
-// }, [dispatch])
-
-  const handlePostRating = (e) => {
+   
+  }, [dispatch]);
+ 
+  const  handlePostRating = (e) => {
      e.preventDefault();
-    //  character limit
-// if(e.target.value.length <= 20){
+   
     const rating = e.target.rating.value
    
     const review = e.target.review.value
-    setCharacterError(false)
-    ratings.push(parseInt(rating))
-    dispatch(
-      addRatingAsync({ freelancerId, rating, review, projectId })
-    ).then(() => {dispatch(updateFreelancerAsync({id, ratingAvg})).then(()=> window.location.reload())
-    console.log("NEW REVIEWS ", reviews)
-  });
     
-    // .then(() => {
-    //   dispatch(fetchSingleProjectAsync(projectId)).then(()=>{
-    //     window.location.reload()
-    //     // navigate(`/projects/${projectId}`)
+    setCharacterError(false)
+    //ratings.push(parseInt(rating))
+     dispatch(addRatingAsync({ freelancerId, rating, review, projectId })).then(()=>window.location.reload())
+     
+    
+    //dispatch(fetchRatingsByFreelancerAsync(freelancerId))
+    //dispatch(updateFreelancerAsync({id, ratingAvg}))
+     
+  };
+       
 
-    //   })
-      
-    // });
 
-  // }else{
-  //   setCharacterError(true)
-  // }
-}
 
   
   return (

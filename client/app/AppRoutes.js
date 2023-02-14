@@ -43,6 +43,7 @@ import ReviewWork from '../features/projects/ReviewWork';
 import Work from '../features/projects/Work';
 
 
+
 /**
  * COMPONENT
  */
@@ -82,6 +83,7 @@ const AppRoutes = () => {
             path="/projects/client/:clientId"
             element={<AllClientProjects />}
           />
+          
   <Route path="/freelancers/most" element={<MostReviewedFreelancers />} />
 
           <Route path="/freelancers" element={<AllFreelancers />} />

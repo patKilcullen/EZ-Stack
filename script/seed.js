@@ -351,30 +351,21 @@ for (let i = 0; i <= 25; i++) {
         })}
       
         for (let i = 0; i <= 50; i++) {
-        await Rating.create({
-          freelancerId: Math.floor(Math.random() * 100 + 1) ,
-          rating: 5,
-          review: 'did super great job'
-        })
+        
         
         await Rating.create({
-          freelancerId: Math.floor(Math.random() * 100 + 1),
+          freelancerId: Math.floor(Math.random() * 200 + 1),
           rating: 5,
           review: 'exceeded my expectations'
         })
         
         await Rating.create({
-          freelancerId: Math.floor(Math.random() * 100 + 1),
-          rating: 5,
-          review: 'would reccomend to anyone looking for a quality app'
-        })
-        await Rating.create({
-          freelancerId: Math.floor(Math.random() * 100 + 1),
+          freelancerId: Math.floor(Math.random() * 200 + 1),
           rating: 5,
           review: 'Awesome job'
         })
         await Rating.create({
-          freelancerId: Math.floor(Math.random() * 100 + 1),
+          freelancerId: Math.floor(Math.random() * 200 + 1),
           rating: 5,
           review: 'Did great work'
         })}
