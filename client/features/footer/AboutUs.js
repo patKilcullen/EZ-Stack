@@ -65,8 +65,8 @@ const AboutUs = () => {
             <div style={aboutStyles.card}>
             <div style={aboutStyles.container}>
                 <h2>Michael Ryan</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
-                <p>Michael@capstone.com</p>
+                <p>Michael is a Software Developer from Florida with a passion for using technology to solve problems and create innovative and user-friendy web applications.</p>
+                <a href="https://www.linkedin.com/in/mikegerardryan/"><LinkedInIcon></LinkedInIcon></a>
             </div>
             </div>
         </div>
