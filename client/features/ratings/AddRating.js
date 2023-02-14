@@ -60,6 +60,7 @@ const AddRating = (props) => {
   
  useEffect(() => {
    dispatch(fetchRatingsByFreelancerAsync(freelancerId))
+   dispatch(fetchRatingByFreelancerAndProject({projectId, freelancerId: projectFreelancerId}))
    
   }, [dispatch]);
  
@@ -72,8 +73,8 @@ const AddRating = (props) => {
     
     setCharacterError(false)
     //ratings.push(parseInt(rating))
-    
      dispatch(addRatingAsync({ freelancerId, rating, review, projectId })).then(()=>window.location.reload())
+     
     
     //dispatch(fetchRatingsByFreelancerAsync(freelancerId))
     //dispatch(updateFreelancerAsync({id, ratingAvg}))
