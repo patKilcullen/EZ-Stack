@@ -120,7 +120,7 @@ const handleRead = async (projectId, seenClient, freelancerId)=>{
 
 
 }
-
+console.log("WEQWEST: ", requests)
   return (
     <div >
       <ul>
@@ -166,7 +166,16 @@ const handleRead = async (projectId, seenClient, freelancerId)=>{
                     <hr></hr>
                   </p>
                   <Typography gutterBottom variant="body2" >
-                  {request.requestMessage}
+                  Hourly Rate: $ {request.freelancer ? request.freelancer.hourlyRate : null}
+                  </Typography>
+                  <Typography gutterBottom variant="body2" >
+                  Proposal:
+                  </Typography>
+                  <Typography gutterBottom variant="body2" >
+                  {request.requestMessage.substr(
+                          0,
+                          200
+                        )}
                   </Typography>
                 </li>
               {request.project.freelancerId === null ?  <Button size="small" variant="contained" onClick={() => handleAssignUser(request.freelancer.id)}>

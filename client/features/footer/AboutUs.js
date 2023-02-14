@@ -75,7 +75,7 @@ const AboutUs = () => {
             <div style={aboutStyles.card}>
             <div style={aboutStyles.container}>
                 <h2>Patrick Kilcullen</h2>
-                <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+                <p>Patrick is a fullstack software engineer from Chicago who gets excited about developing challenging apps that improve peoples lives.</p>
                 <p>patrick@scapstone.com</p>
             </div>
             </div>
