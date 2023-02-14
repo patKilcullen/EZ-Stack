@@ -7,6 +7,7 @@ import {
 } from "./clientRequestSlice";
 import { useParams, Link, useNavigate } from "react-router-dom";
 import { editAssignFreelancer } from "../projects/singleProjectSlice";
+import SingleRequest from "./SingleRequest";
 
 import { selectSingleProject } from "../projects/singleProjectSlice";
 import { fetchSingleProjectAsync } from "../projects/singleProjectSlice";
@@ -32,14 +33,15 @@ const navigate = useNavigate()
   // console.log("LOGGO PROJECTO: ", project)
 
   useEffect(() => {
-    dispatch(fetchClientRequests(projectId)).then(()=>{
-      requests.map((request)=>{
-        dispatch(editAcceptRequest({projectId: request.projectId, seenClient: !!request.seenClient, freelancerId: request.freelancerId})).then(()=>{
-          dispatch(fetchClientRequests(projectId))
-        })
+    dispatch(fetchClientRequests(projectId))
+    // .then(()=>{
+    //   requests.map((request)=>{
+    //     dispatch(editAcceptRequest({projectId: request.projectId, seenClient: !!request.seenClient, freelancerId: request.freelancerId})).then(()=>{
+    //       dispatch(fetchClientRequests(projectId))
+    //     })
         
-      })
-    })
+    //   })
+    // })
 
   }, [dispatch]);
 
@@ -73,7 +75,7 @@ const navigate = useNavigate()
       })
       .then(() => {
           dispatch(fetchClientRequests(projectId)).then(()=>{
-            // navigate(`/projects/${projectId}`)
+           
             window.location.reload()
           });
       navigate(`/projects/${projectId}`)
@@ -119,23 +121,34 @@ const handleRead = async (projectId, seenClient, freelancerId)=>{
 
 }
 
-console.log("REAQUESTS: ", requests)
   return (
     <div >
       <ul>
+        
+        {!props.clientId ? <Link to={`/projects/${projectId}`}><Button>View Project</Button> </Link>:null}
+
         {props.clientId === props.projectClientId
           ? 
           requests.length < 1 ? "No requests yet for this project" :
           requests.map((request) => (
               <div key={request.id}
+              
               style={{ margin:"20px 20px",  ":hover": {boxShadow: 20}, overflow:"auto"}}
               >
+                
                 <Card
                 sx={{":hover": {boxShadow: 20}}}
                 >
+                  <Link to={`/requests/${request.id}`}> <Button onClick={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)}  >View Proposal</Button></Link>
+                  {!request.seenClient ? 
+                  <Typography variant="body2"  color="secondary">
+                  Not Read
+                  </Typography> : null
+                }
                   <CardContent>
+      
                 <h3> Project Request for: {request.project.title}</h3>
-                 <h4 style={{display: 'inline', right: "0px"}}>Unread<Switch checked={request.seenClient} onChange={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)} color="primary" >Read</Switch>Read</h4> 
+                 {/* <h4 style={{display: 'inline', right: "0px"}}>Unread<Switch checked={request.seenClient} onChange={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)} color="primary" >Read</Switch>Read</h4>  */}
                 <li key={request.id}>
                   <p>Request Status: 
                      <Typography variant="body2"  color="secondary">

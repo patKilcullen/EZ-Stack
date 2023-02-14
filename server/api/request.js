@@ -25,6 +25,17 @@ router.get('/', async (req, res, next) => {
 //     }
 //   });
 
+
+router.get("/:id", async (req, res, next) => {
+  try {
+    const request = await Request.findByPk(req.params.id, {include: [Freelancer, Project]});
+
+    res.send(request);
+  } catch (err) {
+    next(err);
+  }
+});
+
   //GET route by ProjectID - 
 router.get("/product/:projectId/", async (req, res, next) => {
   console.log("HOLA: ")

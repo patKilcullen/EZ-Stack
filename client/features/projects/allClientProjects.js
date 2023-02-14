@@ -177,10 +177,17 @@ let reqs =  projects.filter((project)=>{
 }) 
 // "/projects/:projectId/requests"
 return reqs.map((proj)=>{
-  return <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
+  return <div>
+      {/* <Typography variant="h6" color='secondary'>
+            
+            {message}
+            </Typography> */}
+   <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
     <Link to={`/projects/${proj.id}/requests`} >{proj.title} </Link> 
+    
    {/* <Link to={`/projects/${proj.id}`}> {proj.title}</Link>  */}
    </Button>
+   </div>
 })
 
 
