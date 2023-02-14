@@ -352,7 +352,6 @@ for (let i = 0; i <= 25; i++) {
       
         for (let i = 0; i <= 50; i++) {
         
-        
         await Rating.create({
           freelancerId: Math.floor(Math.random() * 200 + 1),
           rating: 5,
