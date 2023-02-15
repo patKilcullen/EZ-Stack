@@ -207,16 +207,16 @@ const SingleProject = () => {
       <div className="singleView">
         <TabPanel value={value} index={0}>
           <div
-            className="card"
+            // className="singleProj"
             style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}
           >
             <Card
+            className="singleProj"
               sx={{
                 maxWidth: 600,
                 maxHeight: 700,
                 minHeight: 450,
                 boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", 
-                // alignContent:"center",
               }}
             >
               <CardContent>
@@ -297,90 +297,93 @@ const SingleProject = () => {
               >
 
                 {clientIsLoggedIn ? 
-                // <div className="clientButtons" 
-                // // style={{display:"flex", justifyContent:"center", alignItems:"center"}}
-                // >
-                <ButtonGroup align="center"  size="small">
-
+                <div className="clientButtons" >
+              
 
                 {client === project.singleProject.clientId && project.singleProject.status !== 'Complete'? (
 
                   <Button
                     onClick={() => handleDelete(project.singleProject.id)}
-                    size="large"
-                    variant="text"
+                    variant="contained"
                     fullWidth
                     startIcon={<DeleteIcon />}
                   >
                     Delete Project
                   </Button>
                 ) : null}
-                {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button size="large" variant="text" onClick={reviewWork}>Review Work</Button> : null}
+                {client === project.singleProject.clientId && project.singleProject.work && project.singleProject.status === 'Ongoing'? <Button variant="contained" onClick={reviewWork}>Review Work</Button> : null}
                 {client === project.singleProject.clientId && project.singleProject.status === 'Complete' ? 
-                <Button size="large" variant="text" startIcon={<ViewListIcon />} onClick={viewWork}>View Work</Button> : null}
-                {/* </div>  */}
-                </ButtonGroup>
+                <Button variant="contained" startIcon={<ViewListIcon />} onClick={viewWork}>View Work</Button> : null}
+                </div> 
+
                 
                 : null}
                 {freelancerIsLoggedIn ? 
-                // <div className="freelancerButtons">
-                <ButtonGroup align="center"  size="small">
-                {freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete' ? <Button startIcon={<ViewListIcon />} size="large" variant="text" onClick={viewWork}>View Work</Button> : null }
+                <div className="freelancerButtons">
+          
+                {freelancer.id === project.singleProject.freelancerId && project.singleProject.status === 'Complete' ? <Button startIcon={<ViewListIcon />} className='fButton' variant="contained" onClick={viewWork}>View Work</Button> : null }
                 
-                {freelancerIsLoggedIn ? (
-                  <Button
-                  sx={{ padding: 1, margin: 2, }} 
+
+                  <Button 
+                  // sx={{ padding: 1, margin: 2, }} 
+                  className="fButton"
                     onClick={clickMessage}
-                    size="large"
-                    // variant="contained"
-                    variant="text"
+                    // size="large"
+                    variant="contained"
+                    // variant="text"
                     endIcon={<MessageIcon />}
                   >
                     Message
                   </Button>
                   
-                ) : null}
+
             
-                {freelancerIsLoggedIn ? (
-                  <div>
-                    {!p[0] ? <Button
-                    sx={{ padding: 1, margin: 2, }} 
+
+                    {!p[0] && project.singleProject.status !== 'Complete' ? <Button
+                    // sx={{ padding: 1, margin: 2, }} 
                       onClick={likeProject}
-                      size="large"
-                      // variant="contained"
-                      variant="text"
+                      className="fButton"
+                      // size="large"
+                      variant="contained"
+                      // variant="text"
                       endIcon={<FavoriteBorderIcon />}
                     >
                       Like 
-                    </Button> : <Button
-                    sx={{ padding: 1, margin: 2,  }} 
+                    </Button> : null }
+
+                    
+                    {p[0] && project.singleProject.status !== 'Complete' ?
+                    <Button
+                    // sx={{ padding: 1, margin: 2,  }} 
                       onClick={unlike}
-                      size="large"
-                      variant="text"
-                      // variant="contained"
+                      className="fButton"
+                      // size="large"
+                      // variant="text"
+                      variant="contained"
                       endIcon={<HeartBrokenIcon />}
                     >
                       Unlike
-                    </Button> }
+                    </Button>
+                    : null } 
 
                     {request.singleRequest ? null : (
                       <Button
-                      sx={{ padding: 1, margin: 2 }} 
+                      // sx={{ padding: 1, margin: 2 }} 
                         onClick={() => handleSubmitProposal()}
-                        size="large"
-                        variant="text"
-                        // variant="contained"
+                        // size="large"
+                        className="fButton"
+                        // variant="text"
+                        variant="contained"
                         endIcon={<SendIcon />}
                       >
                         Send Proposal
                       </Button>
                     )}
-                  </div>
-                ) : null}
-                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button  endIcon={<SendIcon />} size="large" variant="text" onClick={submitWork}>Submit Work</Button> : null}
-                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button endIcon={<SendIcon />} size="large" variant="text" onClick={viewWork} >Work Submitted</Button>: null}
-                {/* </div> */}
-              </ButtonGroup>
+
+                {project.singleProject.freelancerId === freelancer.id && !project.singleProject.work ? <Button  endIcon={<SendIcon />} className='fButton' variant="contained" onClick={submitWork}>Submit Work</Button> : null}
+                {project.singleProject.freelancerId === freelancer.id && project.singleProject.work ? <Button endIcon={<SendIcon />} className='fButton' variant="contained" onClick={viewWork} >Work Submitted</Button>: null}
+                </div>
+
                 : null}
               </CardActions>
             </Card>
