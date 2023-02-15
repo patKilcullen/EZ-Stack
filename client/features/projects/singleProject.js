@@ -208,14 +208,15 @@ const SingleProject = () => {
         <TabPanel value={value} index={0}>
           <div
             className="card"
-            style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}
+            style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", overflow: "auto"}}
           >
             <Card
               sx={{
                 maxWidth: 600,
                 maxHeight: 700,
                 minHeight: 450,
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", 
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow: "auto" 
                 // alignContent:"center",
               }}
             >
