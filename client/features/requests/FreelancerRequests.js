@@ -125,7 +125,7 @@ export default function FreelancerRequests(props) {
                   <br></br>
                   <Typography component="div" variant="body2">
                     {" "}
-                    Request Status: 
+                    Proposal Status: 
                   </Typography>
                   <Typography variant="body2" align="center" color="secondary">
                 <PendingTwoToneIcon fontSize="small"/>
@@ -138,7 +138,7 @@ export default function FreelancerRequests(props) {
                     variant="contained"
                     onClick={() => handleDeleteRequest(request.project.id)}
                   >
-                    Delete proposal
+                    Delete Proposal
                   </Button>
                 </Card>{" "}
               </div>

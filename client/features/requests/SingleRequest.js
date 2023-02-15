@@ -184,9 +184,9 @@ console.log("THIS REQUEST: ", request)
                         Read
                       </h4> */}
                   {request && request.freelancer ?  <li >
-                        <p>Request Status: {request.status}</p>
+                        <p>Proposal Status: {request.status}</p>
                        <p>
-                          You have recieved a request from:{" "}
+                          From Freelancer:{" "}
                           <Link to={`/freelancers/${request.freelancer.id}`}>
                             {" "}
                             {request.freelancer.firstName}{" "}
