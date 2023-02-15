@@ -147,17 +147,17 @@ console.log("WEQWEST: ", requests)
                 }
                   <CardContent>
       
-                <h3> Project Request for: {request.project.title}</h3>
+                <h3> Proposal for: {request.project.title}</h3>
                  {/* <h4 style={{display: 'inline', right: "0px"}}>Unread<Switch checked={request.seenClient} onChange={()=>handleRead(request.projectId, request.seenClient, request.freelancer.id)} color="primary" >Read</Switch>Read</h4>  */}
                 <li key={request.id}>
-                  <p>Request Status: 
+                  <p>Proposal Status: 
                      <Typography variant="body2"  color="secondary">
                 <PendingTwoToneIcon fontSize="small"/>
                    {request.status}
                 </Typography>
                   </p>
                   <p>
-                    You have received a request from:{" "}
+                    From Freelancer:{" "}
                     <Link to={`/freelancers/${request.freelancer.id}`}>
                       {" "}
                       {request.freelancer.firstName}{" "}
