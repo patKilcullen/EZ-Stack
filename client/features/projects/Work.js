@@ -61,7 +61,7 @@ if(project.singleProject.freelancerId === freelancer.id || project.singleProject
             <div
             style={{display:"flex", flexDirection:"column", width:600, alignItems:'center'}}
             >
-              <p>{project.singleProject.work}</p>
+              <a href={`${project.singleProject.work}`}>{project.singleProject.work}</a>
 
             </div>
           </Box> 

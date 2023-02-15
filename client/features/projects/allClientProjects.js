@@ -138,6 +138,15 @@ const seen = requests.filter((request)=>{
       : null }
 
 
+<p>{viewWork && projectWork ? 
+    
+    <Typography fontFamily={"Playfair Display serif"} variant="h7" component="div">
+                              You have new work for the following projects :
+                            </Typography>
+
+  : null }</p>
+
+
       {/* && NEEDED???? */}
       <p>{viewWork && projectWork ? 
     

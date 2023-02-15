@@ -201,14 +201,15 @@ const SingleProject = () => {
           {clientIsLoggedIn  ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
-          {clientIsLoggedIn ? <Tab label="Proposals" {...a11yProps(3)} /> : null}
+          {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
         </Tabs>
       </Box>
       <div className="singleView">
         <TabPanel value={value} index={0}>
           <div
-            // className="singleProj"
-            style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)"}}
+
+            // className="card"
+            style={{ boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", overflow: "auto"}}
           >
             <Card
             className="singleProj"
@@ -216,7 +217,10 @@ const SingleProject = () => {
                 maxWidth: 600,
                 maxHeight: 700,
                 minHeight: 450,
-                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)", 
+
+                boxShadow: "0 4px 8px 0 rgba(0, 0, 0, 0.2)",
+                overflow: "auto" 
+
               }}
             >
               <CardContent>
