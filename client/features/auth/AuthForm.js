@@ -77,7 +77,7 @@ const AuthForm = ({ name, displayName }) => {
           <TextField  id="outlined-basic" label="username" name="username"  variant="filled" />
         </div>
         <div className='signUpInput'>
-        <TextField id="outlined-basic" label="password" name="password"  variant="filled" />
+        <TextField id="outlined-basic" label="password" name="password"  variant="filled" type={'password'} />
         </div>  
         <InputLabel align="center">Select User Type</InputLabel>
         <div

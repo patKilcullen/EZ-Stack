@@ -75,7 +75,7 @@ const SignUpForm = () => {
           <TextField id="outlined-basic" label="username" name="username"  variant="filled" />
         </div>
         <div className="signUpInput">
-          <TextField id="outlined-basic" label="password" name="password"  variant="filled" />
+          <TextField id="outlined-basic" label="password" name="password"  variant="filled" type={'password'} />
         </div>
         <div className="signUpInput">
           <TextField id="outlined-basic" label="firstName" name="firstName"  variant="filled" />
