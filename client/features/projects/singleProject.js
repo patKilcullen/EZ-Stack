@@ -201,7 +201,7 @@ const SingleProject = () => {
           {clientIsLoggedIn  ? (
             <Tab label="Add Review" {...a11yProps(2)} />
           ) : null}
-          {clientIsLoggedIn ? <Tab label="Proposals" {...a11yProps(3)} /> : null}
+          {clientIsLoggedIn ? <Tab label="Requests" {...a11yProps(3)} /> : null}
         </Tabs>
       </Box>
       <div className="singleView">
