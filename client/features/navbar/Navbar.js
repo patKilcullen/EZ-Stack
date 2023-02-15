@@ -41,7 +41,7 @@ const Navbar = () => {
     return (
       <div id="navbarBox">
         <h1 id="siteName">
-          Fivver Clone<span>Some Slogan</span>
+          EZ-Stack<span>Web development made EZ</span>
         </h1>
         <div id="navbar-right">
           <nav>
@@ -95,7 +95,7 @@ const Navbar = () => {
     return (
       <div id="navbarBox">
         <h1 id="siteName">
-          Fivver Clone<span>Some Slogan</span>
+          EZ-Stack<span>Web development made EZ</span>
         </h1>
         <div id="navbar-right">
           <nav>
