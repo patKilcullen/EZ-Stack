@@ -52,7 +52,7 @@ const AddRequest = () => {
   };
 
   const handleChange = (e) => {
-    if (e.target.value.length <= 5000) {
+    if (e.target.value.length <= 10000) {
       setCharacterError(false);
       setRequestMessage(e.target.value);
     } else {
@@ -130,7 +130,7 @@ const AddRequest = () => {
                 error={characterError}
                 helperText={
                   characterError
-                    ? "Character limit exceeded (must be 5000 characters or less"
+                    ? "Character limit exceeded (must be 10000 characters or less"
                     : null
                 }
                 sx={{ backgroundColor: "#f7f4eb" }}

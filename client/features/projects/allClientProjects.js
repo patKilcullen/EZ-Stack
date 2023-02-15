@@ -167,8 +167,11 @@ const seen = requests.filter((request)=>{
 </Box>
 
 {/* && NEEDED???? */}
+<p>{seenRequests && seen ? null : <Typography fontFamily={"Playfair Display serif"} variant="h7" component="div">
+                              You have unread proposals for the following projects :
+                            </Typography>}</p>
 <p>{seenRequests && seen ? null :
-    
+  
     seen.map((request)=>{
 
 let message = request[0].requestMessage
@@ -177,11 +180,13 @@ let reqs =  projects.filter((project)=>{
 }) 
 // "/projects/:projectId/requests"
 return reqs.map((proj)=>{
+
   return <div>
       {/* <Typography variant="h6" color='secondary'>
             
             {message}
             </Typography> */}
+            
    <Button size="small" color="secondary" variant="contained" sx={{ padding: 0.5, margin: 1.5,  }} >
     <Link to={`/projects/${proj.id}/requests`} >{proj.title} </Link> 
     
