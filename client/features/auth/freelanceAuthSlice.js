@@ -1,48 +1,60 @@
-import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
 /*
   CONSTANT VARIABLES
 */
-const TOKEN = 'token';
+const TOKEN = "token";
 
 /*
   THUNKS
 */
-export const freelancerMe = createAsyncThunk('auth/freelancer/freelancerMe', async () => {
-  const token = window.localStorage.getItem(TOKEN);
-  try {
-    if (token) {
-      const res = await axios.get('/auth/freelancer/freelancerMe', {
-        headers: {
-          authorization: token,
-        },
-      });
-      return res.data;
-    } else {
-      return {};
-    }
-  } catch (err) {
-    if (err.response.data) {
-      return thunkAPI.rejectWithValue(err.response.data);
-    } else {
-      return 'There was an issue with your request.';
+export const freelancerMe = createAsyncThunk(
+  "auth/freelancer/freelancerMe",
+  async () => {
+    const token = window.localStorage.getItem(TOKEN);
+    try {
+      if (token) {
+        const res = await axios.get("/auth/freelancer/freelancerMe", {
+          headers: {
+            authorization: token,
+          },
+        });
+        return res.data;
+      } else {
+        return {};
+      }
+    } catch (err) {
+      if (err.response.data) {
+        return thunkAPI.rejectWithValue(err.response.data);
+      } else {
+        return "There was an issue with your request.";
+      }
     }
   }
-});
+);
 
 export const freelancerAuthenticate = createAsyncThunk(
-  'freelancerAuth/authenticate',
-  async ({ username, password, firstName, lastName, email, method }, thunkAPI) => {
+  "freelancerAuth/authenticate",
+  async (
+    { username, password, firstName, lastName, email, method },
+    thunkAPI
+  ) => {
     try {
-      const res = await axios.post(`/auth/freelancer/${method}`, { username, password, firstName, lastName, email });
+      const res = await axios.post(`/auth/freelancer/${method}`, {
+        username,
+        password,
+        firstName,
+        lastName,
+        email,
+      });
       window.localStorage.setItem(TOKEN, res.data.token);
       thunkAPI.dispatch(freelancerMe());
     } catch (err) {
       if (err.response.data) {
         return thunkAPI.rejectWithValue(err.response.data);
       } else {
-        return 'There was an issue with your request.';
+        return "There was an issue with your request.";
       }
     }
   }
@@ -52,7 +64,7 @@ export const freelancerAuthenticate = createAsyncThunk(
   SLICE
 */
 export const freelancerAuthSlice = createSlice({
-  name: 'freelancerAuth',
+  name: "freelancerAuth",
   initialState: {
     me: {},
     error: null,

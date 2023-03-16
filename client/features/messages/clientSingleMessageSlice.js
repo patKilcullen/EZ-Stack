@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
+// GET single client message
 export const fetchSingleClientMessageAsync = createAsyncThunk('clientSingleMessage', async ({id, clientId}) => {
   try{
     const { data } = await axios.get(`/api/messages/client/conversation/${id}?clientId=${clientId}`)
@@ -10,6 +11,7 @@ export const fetchSingleClientMessageAsync = createAsyncThunk('clientSingleMessa
   }
 })
 
+// Update.send Message 
 export const sendClientMessageAsync = createAsyncThunk('clientSendMessage', async ({freelancerId, clientId, content, from}) => {
   try{
     const { data } = await axios.post(`/api/messages`, {
@@ -35,6 +37,7 @@ export const clientSingleMessageSlice = createSlice({
   }
 })
 
+// ACTIONS
 export const selectSingleClientMessage = (state) => state.clientSingleMessage
-
+// REDUCER
 export default clientSingleMessageSlice.reducer

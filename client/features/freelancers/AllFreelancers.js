@@ -1,19 +1,16 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
 import {
   fetchAllFreelancers,
   selectAllFreelancers,
-  fetchFreelancersByCategoryAsync,
-  sortByReviews,
   sortByCategory,
-  selectAllFreelancersByReviews,
   selectAllFreelancersByCategory,
   selectAllFreelancersBySpecialties,
   sortBySpecialties,
 } from "./allFreelancersSlice";
 import usePagination from "./usePaginatation";
 
+// MUI
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -27,12 +24,12 @@ import Stack from "@mui/material/Stack";
 import Select from "@mui/material/Select";
 import MenuItem from "@mui/material/MenuItem";
 import InputLabel from "@mui/material/InputLabel";
-import ManageSearchTwoToneIcon from '@mui/icons-material/ManageSearchTwoTone';
+import ManageSearchTwoToneIcon from "@mui/icons-material/ManageSearchTwoTone";
 
 const AllFreelancers = () => {
   const dispatch = useDispatch();
   const freelancers = useSelector(selectAllFreelancers);
-  const freelancersByReviews = useSelector(selectAllFreelancersByReviews);
+
   const freelancersByCategory = useSelector(selectAllFreelancersByCategory);
   const freelancersBySpecialties = useSelector(
     selectAllFreelancersBySpecialties
@@ -40,23 +37,19 @@ const AllFreelancers = () => {
   const [category, setCategory] = useState("");
   const [specialties, setSpecialties] = useState("");
 
-  console.log("FREELANCER RATINGS: ", freelancers);
+  // Fetch all freelancers when page loads
   useEffect(() => {
     dispatch(fetchAllFreelancers());
   }, [dispatch]);
 
   const handleCategory = (evt) => {
     evt.preventDefault();
-    console.log("handle category", category);
     dispatch(sortByCategory(category));
-    console.log("FREELANCERS BY CAT ", freelancersByCategory);
   };
 
   const handleSpecialties = (evt) => {
     evt.preventDefault();
-    console.log("handle specialties", specialties);
     dispatch(sortBySpecialties(specialties));
-    // console.log("FREELANCERS BY CAT ", freelancersByCategory)
   };
 
   ////FOR PAGINATION/////
@@ -83,8 +76,7 @@ const AllFreelancers = () => {
     _DATAC.jump(p);
   };
 
-  console.log("FREELANCERS ", freelancers);
-
+  // if sorted by freelancer specialties, render...
   if (freelancersBySpecialties.length) {
     return (
       <div className="allViewContainer" style={{ marginBottom: "10px" }}>
@@ -100,6 +92,8 @@ const AllFreelancers = () => {
             alignItems: "center",
           }}
         >
+
+    {/* Categories drop down */}
           <form onSubmit={handleCategory}>
             {/* category  */}
             <Select
@@ -108,7 +102,7 @@ const AllFreelancers = () => {
               placeholder="Search By Category"
               value={category}
               color="primary"
-              defaultValue='all'
+              defaultValue="all"
               sx={{ m: 1, width: "20ch" }}
               onChange={(e) => setCategory(e.target.value)}
             >
@@ -124,10 +118,10 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
+              Search Category <ManageSearchTwoToneIcon size="large" />
             </Button>
           </form>
-
+     {/* Specialities drop down */}
           <form onSubmit={handleSpecialties}>
             {/* specialties  */}
             <Select
@@ -164,7 +158,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search Specialties{' '} <ManageSearchTwoToneIcon size="large"/>
+              Search Specialties <ManageSearchTwoToneIcon size="large" />
             </Button>
           </form>
         </div>
@@ -184,14 +178,14 @@ const AllFreelancers = () => {
                       sx={{
                         minWidth: 300,
                         height: 400,
-                        
+
                         margin: "0 auto",
                         padding: "0.3em",
                       }}
                     >
                       <CardMedia
-                       component="img"
-                       sx={{ height: 200, width: 450,objectFit: "contain" }}
+                        component="img"
+                        sx={{ height: 200, width: 450, objectFit: "contain" }}
                         image={freelancers.imageUrl}
                         title="Freelancer"
                       />
@@ -232,7 +226,7 @@ const AllFreelancers = () => {
                         </Typography>
 
                         <br></br>
-                      
+
                         <div
                           style={{
                             display: "flex",
@@ -241,18 +235,24 @@ const AllFreelancers = () => {
                             fontWeight: "bolder",
                           }}
                         >
+                          {/* Converts rating into stars */}
                           <Typography color="primary" variant="body2">
-                            {freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 5 ?
-                            (<p>{"★★★★★"}</p>)  :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 4 ?
-                            (<p>{"★★★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 3 ?
-                            (<p>{"★★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 2 ?
-                            (<p>{"★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 1 ?
-                            (<p>{"★"}</p>) :
-                            freelancers.ratingAvg === 1 ? (
+                            {freelancers.ratings.length === 1 &&
+                            freelancers.ratings[0].rating === 5 ? (
+                              <p>{"★★★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 4 ? (
+                              <p>{"★★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 3 ? (
+                              <p>{"★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 2 ? (
+                              <p>{"★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 1 ? (
+                              <p>{"★"}</p>
+                            ) : freelancers.ratingAvg === 1 ? (
                               <p>{"★"}</p>
                             ) : freelancers.ratingAvg === 2 ? (
                               <p>{"★★"}</p>
@@ -264,6 +264,8 @@ const AllFreelancers = () => {
                               <p>{"★★★★★"}</p>
                             ) : null}
                           </Typography>
+
+                          {/* Dsiplay number of reviews */}
                           <Typography color="primary" variant="body2">
                             {freelancers.ratings
                               ? `( ${freelancers.ratings.length} Reviews)`
@@ -277,7 +279,7 @@ const AllFreelancers = () => {
                         </Button>
                       </CardActions>
                     </Card>
-                    <div>{/* { <ViewAvgRating id={freelancers.id} />} */}</div>
+                    
                   </Link>
                 </div>
               ))}
@@ -298,7 +300,7 @@ const AllFreelancers = () => {
       </div>
     );
   }
-
+// if sorted by freelancer Category, render...
   if (freelancersByCategory.length) {
     return (
       <div className="allViewContainer" style={{ marginBottom: "10px" }}>
@@ -314,6 +316,7 @@ const AllFreelancers = () => {
             alignItems: "center",
           }}
         >
+    {/* Categories drop down */}
           <form onSubmit={handleCategory}>
             {/* category  */}
             <Select
@@ -323,7 +326,7 @@ const AllFreelancers = () => {
               value={category}
               color="primary"
               sx={{ m: 1, width: "20ch" }}
-              defaultValue='all'
+              defaultValue="all"
               onChange={(e) => setCategory(e.target.value)}
             >
               <MenuItem value="all">All freelancers</MenuItem>
@@ -338,10 +341,11 @@ const AllFreelancers = () => {
               <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search Category {' '} <ManageSearchTwoToneIcon size="large"/>
+              Search Category <ManageSearchTwoToneIcon size="large" />
             </Button>
           </form>
 
+    {/* Specialties drop down */}
           <form onSubmit={handleSpecialties}>
             {/* specialties  */}
             <Select
@@ -378,7 +382,7 @@ const AllFreelancers = () => {
               </MenuItem>
             </Select>
             <Button type="submit" variant="contained">
-            Search Specialties {' '} <ManageSearchTwoToneIcon size="large"/>
+              Search Specialties <ManageSearchTwoToneIcon size="large" />
             </Button>
           </form>
         </div>
@@ -404,8 +408,8 @@ const AllFreelancers = () => {
                       }}
                     >
                       <CardMedia
-                       component="img"
-                       sx={{ height: 200, width: 450,objectFit: "contain" }}
+                        component="img"
+                        sx={{ height: 200, width: 450, objectFit: "contain" }}
                         image={freelancers.imageUrl}
                         title="Freelancer"
                       />
@@ -463,17 +467,22 @@ const AllFreelancers = () => {
                           }}
                         >
                           <Typography color="primary" variant="body2">
-                            {freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 5 ?
-                            (<p>{"★★★★★"}</p>)  :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 4 ?
-                            (<p>{"★★★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 3 ?
-                            (<p>{"★★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 2 ?
-                            (<p>{"★★"}</p>) :
-                            freelancers.ratings.length === 1 && freelancers.ratings[0].rating === 1 ?
-                            (<p>{"★"}</p>) :
-                            freelancers.ratingAvg === 1 ? (
+                            {freelancers.ratings.length === 1 &&
+                            freelancers.ratings[0].rating === 5 ? (
+                              <p>{"★★★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 4 ? (
+                              <p>{"★★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 3 ? (
+                              <p>{"★★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 2 ? (
+                              <p>{"★★"}</p>
+                            ) : freelancers.ratings.length === 1 &&
+                              freelancers.ratings[0].rating === 1 ? (
+                              <p>{"★"}</p>
+                            ) : freelancers.ratingAvg === 1 ? (
                               <p>{"★"}</p>
                             ) : freelancers.ratingAvg === 2 ? (
                               <p>{"★★"}</p>
@@ -519,6 +528,8 @@ const AllFreelancers = () => {
       </div>
     );
   }
+
+  // View all freelancers/ no sort
   return (
     <div className="allViewContainer" style={{ marginBottom: "10px" }}>
       <div style={{ marginTop: 10 }}>
@@ -556,7 +567,7 @@ const AllFreelancers = () => {
             <MenuItem value={"Android Developer"}>Android Developer</MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-          Search Category{' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Category <ManageSearchTwoToneIcon size="large" />
           </Button>
         </form>
 
@@ -594,7 +605,7 @@ const AllFreelancers = () => {
             </MenuItem>
           </Select>
           <Button type="submit" variant="contained">
-          Search Specialties{' '} <ManageSearchTwoToneIcon size="large"/>
+            Search Specialties <ManageSearchTwoToneIcon size="large" />
           </Button>
         </form>
       </div>
@@ -622,14 +633,13 @@ const AllFreelancers = () => {
                       },
                     }}
                   >
-
                     <div className="fImg">
-                    <CardMedia className="freelancerImg"
-                      sx={{ height: 200, width: 200}}
-
-                      image={freelancers.imageUrl}
-                      title="Freelancer"
-                    />
+                      <CardMedia
+                        className="freelancerImg"
+                        sx={{ height: 200, width: 200 }}
+                        image={freelancers.imageUrl}
+                        title="Freelancer"
+                      />
                     </div>
                     <CardContent>
                       <Typography

@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
+// GET single freelancer
 export const fetchSingleFreelancer = createAsyncThunk("fetchSingleFreelancer", async(id)=>{
 try{
     const {data} = await axios.get(`/api/freelancers/${id}`)
@@ -11,6 +12,7 @@ try{
 }
 })
 
+// UPDATE sinlge freelancer
 export const updateFreelancerAsync = createAsyncThunk('updateFreelancer', async ({id, firstName, lastName, email, ratingAvg, description, hourlyRate, username, category, bio, specialties, imageUrl }) =>{
     try{
       const { data } = await axios.put(`/api/freelancers/${id}`, {
@@ -42,8 +44,11 @@ const SingleFreelancer = createSlice({
         })
     }
 })
+
+// ACTIONS
 export const selectSingleFreelancer = (state)=>{
     return state.SingleFreelancer
 }
 
+// REDUCER
 export default SingleFreelancer.reducer 

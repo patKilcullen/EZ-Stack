@@ -4,17 +4,10 @@ import SideNav from "../navbar/SideNav";
 import AllProjects from "../projects/allProjects";
 import  AllFreelancers  from "../freelancers/AllFreelancers";
 
-/**
- * COMPONENT
- */
-const Home = () => {
-  const clientUsername = useSelector(
-    (state) => state.clientAuth.clientMe.username
-  );
-  const freelancerUsername = useSelector(
-    (state) => state.freelancerAuth.me.username
-  );
 
+
+const Home = () => {
+// Determines if freelancer or client is logged in, the displays projects if freelancer, and freeelancers if client
   const clientIsLoggedIn = useSelector(
     (state) => !!state.clientAuth.clientMe.id
   );

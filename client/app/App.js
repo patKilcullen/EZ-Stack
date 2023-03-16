@@ -6,6 +6,7 @@ import SideNav from '../features/navbar/SideNav';
 import AppRoutes from './AppRoutes';
 import { createTheme, ThemeProvider } from '@mui/material/styles'
 
+// Material UI Theme
 const theme = createTheme({
   palette: {
     primary: {
@@ -20,6 +21,7 @@ const theme = createTheme({
   }
 })
 
+// Main app layout
 const App = () => {
   return (
     <ThemeProvider theme={theme}>
