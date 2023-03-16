@@ -80,6 +80,8 @@ const AboutUs = () => {
                 <h2>Patrick Kilcullen</h2>
                 <p>Patrick is a fullstack software engineer from Chicago who gets excited about developing challenging apps that improve peoples lives.</p>
                 <p>patrick@scapstone.com</p>
+                <a href='https://www.linkedin.com/in/patrickjkilcullen/'><LinkedInIcon></LinkedInIcon></a>
+                
             </div>
             </div>
         </div>

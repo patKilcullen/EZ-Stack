@@ -21,5 +21,10 @@ if(process.env.DATABASE_URL){
 }
 
 const db = new Sequelize(
-  process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`, config)
+  
+  
+  //  process.env.DATABASE_URL || `postgres://ezstack_user:p9aT3cH05CKYJR8So9u9cbMF7I02Koun@dpg-cfn7peirrk0eqlv3ooc0-a/ezstack`, config)
+   process.env.DATABASE_URL || `postgres://localhost:5432/${databaseName}`, config)
+  // `postgres://patkilcullen:Bp2DCMjuZnYalTrj4AVFkI2YLsAkgZ19@dpg-cfn9v3irrk0eqlviln0g-a/ezstack_cra7`, config)
+  
 module.exports = db

@@ -1,0 +1,9 @@
+services:
+-type: web
+env: node
+name: ezstack
+repo: https://github.com/patKilcullen/EZ-Stack
+plan: free
+
+databases:
+-name: ezstack
